@@ -1,0 +1,156 @@
+/*
+Al cuerpo de la
+pagina se aplica el tamaño de fuente
+ */
+body{
+	font-size: 12px;
+}
+/**
+ * se aplica el ancho, margen centrado
+ * borde de un pixel con redondeado, y rellenado
+ * a la izquierda y derecha
+ */
+#Contenedor{
+	width: 400px;
+	margin: 25px auto;
+	background-color: #F3EDED;
+        border: 1px solid #ECE8E8;
+	height: 300px;
+	border-radius:8px;
+	padding: 0px 9px 0px 9px;
+}
+
+/**
+ * Aplicando al icono de usuario el color de fondo,
+ * rellenado de 20px y un redondeado de 120px en forma
+ * de un circulo
+ */
+.Icon span{
+      background: #A8A6A6;
+      padding: 20px;
+      border-radius: 120px;
+}
+/**
+ * Se aplica al contenedor madre un margen de tamaño 10px hacia la cabecera y pie,
+ * color de fuente blanco,un tamaño de fuente 50px y texto centrado.
+ */
+.Icon{
+     margin-top: 10px;
+     margin-bottom:10px; 
+     color: #FFF;
+     font-size: 50px;
+     text-align: center;
+}
+/**
+ * Se aplica al contenedor donde muestra en el pie
+ * la opción de olvidaste tu contraseña?
+ */
+.opcioncontra{
+	text-align: center;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+/**
+ * En las siguientes lineas
+ * se define el diseño adaptable, para que
+ * se muestre en los dispositivos móviles
+ */
+
+/******************************************/
+/***    DISEÑO PARA MOVILES 800        ****/
+/******************************************/
+@media only screen and (max-width:800px){
+    .primeraColumna{
+		position: absolute; 
+		background-color: white;
+		/*border: 1px solid #ECE8E8;*/
+	}
+}
+@media only screen and (max-width:750px){
+    .infoCliente{
+		padding-left: 0px!important;
+		text-align: center;
+	}
+}
+/*and (orientation : landscape) cuando da la vuelta, posicion vertical*/
+@media only screen and (max-width:600px){
+	#Contenedor{
+		width: 100%;
+		height: auto;
+	}
+	.small_view {
+    	display: none;
+    }
+    .infoCliente{
+		/*font-weight: bold; 
+		font-size: 15px;*/
+		text-align: center;
+	}
+}
+
+/******************************************/
+/***    DISEÑO PARA MOVILES 240        ****/
+/******************************************/
+@media only screen and (max-width:240px){
+	
+}
+
+
+#Principal{
+	width: 95%;
+	padding: 0px 9px 0px 9px;
+}
+
+.small_view {
+}
+
+.usuarioLoged{
+	/*height:40px;
+	width:60%;
+	float:left;
+	margin-top: 10px;
+	/*margin: 10px;*/
+	font-size: 15px;
+	font-weight: bold;
+}
+.botonSalir{
+	height:40px;
+	width:50px;
+	float:right;
+	margin-top: 10px;
+	/*margin: 10px;*/
+}
+
+.mensajeError{
+	color: red;
+	font-size: 15px;
+     text-align: center;
+     border: none;
+     font-weight: bold;
+}
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+   background: url('../imagenes/ajaxloadingbar.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
+
+.primeraColumna{
+	/*position: absolute; 
+	/*background-color: white;*/
+	width: 60px;
+}
+.infoCliente{
+	font-weight: bold; 
+	font-size: 15px;
+	padding-left: 30px!important;
+}
+/*.primeraColumna:hover{
+	background-color: red;
+	}*/
