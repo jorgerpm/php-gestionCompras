@@ -52,10 +52,9 @@
                                         <td><?php echo $listaArchivoXml->pdfBase64 ?></td>
                                         <td><?php echo $listaArchivoXml->idUsuarioCarga ?></td>
                                         <td><?php echo $listaArchivoXml->ubicacionArchivo ?></td>
-                                        <td><a href="<?php echo $listaArchivoXml->urlArchivo ?>"><?php echo $listaArchivoXml->urlArchivo ?></a></td>
                                         <td><?php echo $listaArchivoXml->idProveedor ?></td>
-                                        <td><?php echo $listaArchivoXml->nombreArchivoXml ?></td>
-                                        <td><?php echo $listaArchivoXml->nombreArchivoPdf ?></td>
+                                        <td><a href="<?php echo $listaArchivoXml->urlArchivo . "/" . $listaArchivoXml->nombreArchivoXml ?>"><?php echo $listaArchivoXml->urlArchivo . "/" . $listaArchivoXml->nombreArchivoXml ?></a></td>
+                                        <td><a href="<?php echo $listaArchivoXml->urlArchivo . "/" . $listaArchivoXml->nombreArchivoPdf ?>"><?php echo $listaArchivoXml->urlArchivo . "/" . $listaArchivoXml->nombreArchivoPdf ?></a></td>
                                         <td><?php echo $listaArchivoXml->tipoDocumento ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">

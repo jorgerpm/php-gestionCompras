@@ -56,3 +56,4 @@
         </div>
     </div>
 </main>
+<script src="./Assets/js/functions_usuarios.js"></script>

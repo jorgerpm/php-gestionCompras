@@ -30,11 +30,13 @@
                             </thead>
                             <tbody>
                                 <?php require_once './Controllers/rolControlador.php';
-                                foreach ($respuesta as $listaRol) { ?>
+                                $rolControlador = new rolControlador();
+                                $listaRoles = $rolControlador->listarRoles();
+                                foreach($listaRoles as $rol) { ?>
                                     <tr>
-                                        <td><?php echo $listaRol->id ?></td>
-                                        <td><?php echo $listaRol->nombre ?></td>
-                                        <td><?php echo $listaRol->idEstado ?></td>
+                                        <td><?php echo $rol->id; ?></td>
+                                        <td><?php echo $rol->nombre; ?></td>
+                                        <td><?php echo $rol->idEstado; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                                 <button class="btn btn-info fa fa-edit" type="button"></button>
@@ -50,3 +52,4 @@
         </div>
     </div>
 </main>
+<script src="./Assets/js/functions_roles.js"></script>

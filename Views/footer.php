@@ -1,5 +1,3 @@
-    <!-- Essential javascripts for application to work-->
-    <script src="./Assets/js/jquery-3.3.1.min.js"></script>
     <script src="./Assets/js/popper.min.js"></script>
     <script src="./Assets/js/bootstrap.min.js"></script>
     <script src="./Assets/js/main.js"></script>
@@ -19,8 +17,7 @@
       	ga('send', 'pageview');
       }
     </script>
-    <script src="./Assets/js/functions_roles.js"></script>
-    <script src="./Assets/js/functions_usuarios.js"></script>
+    
     <script src="./Assets/js/functions_alertas.js"></script>
   </body>
 </html>
