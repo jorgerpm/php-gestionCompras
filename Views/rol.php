@@ -20,9 +20,9 @@
                             <p><button class="btn btn-primary btn-sm fa" type="button" onclick="openModalRole(null);"><i class="fas fa-plus-circle"></i> Nuevo</button></p>
                         </div>
                         <div>
-                            <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href=''">buscar</button></p>
+                            <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = ''">buscar</button></p>
                         </div>
-                            <table class="table table-hover table-bordered" id="sampleTable">
+                        <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                                 <tr>
                                     <th>Código</th>
@@ -33,14 +33,15 @@
                             </thead>
                             <tbody>
                                 <?php require_once './acciones/listarRoles.php';
-                                foreach($listaRoles as $rol) { ?>
+                                foreach ($listaRoles as $rol) {
+                                    ?>
                                     <tr>
                                         <td><?php echo $rol->id; ?></td>
                                         <td><?php echo $rol->nombre; ?></td>
                                         <td><?php echo $rol->idEstado; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalRole(arr=<?php echo json_encode($rol); ?>);'></button>
+                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalRole(arr =<?php echo json_encode($rol); ?>);'></button>
                                             </div>
                                         </td>
                                     </tr>

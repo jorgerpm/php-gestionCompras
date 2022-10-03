@@ -2,7 +2,6 @@
 ob_start();
 session_start();
 
-//require_once './Controllers/vistasControlador.php';
 
 $plantilla = new vistasControlador();
 $vistas = $plantilla->obtener_vistas_controlador();

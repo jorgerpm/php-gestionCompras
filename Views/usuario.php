@@ -17,7 +17,10 @@
                 <div class="tile-body">
                     <div class="table-responsive">
                         <div>
-                            <p><button class="btn btn-primary btn-sm fa" type="button" onclick="openModalUsuario();"><i class="fas fa-plus-circle"></i> Nuevo</button></p>
+                            <p><button class="btn btn-primary btn-sm fa" type="button" onclick="openModalUsuario(null);"><i class="fas fa-plus-circle"></i> Nuevo</button></p>
+                        </div>
+                        <div>
+                            <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href=''">buscar</button></p>
                         </div>
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
@@ -32,18 +35,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php require_once './Controllers/usuarioControlador.php';
-                                foreach ($respuesta as $listaUsuario) { ?>
+                                <?php require_once './acciones/listarUsuarios.php';
+                                foreach ($listaUsuarios as $usuario) { ?>
                                     <tr>
-                                        <td><?php echo $listaUsuario->id ?></td>
-                                        <td><?php echo $listaUsuario->nombre ?></td>
-                                        <td><?php echo $listaUsuario->usuario ?></td>
-                                        <td><?php echo $listaUsuario->correo ?></td>
-                                        <td><?php echo $listaUsuario->idRol ?></td>
-                                        <td><?php echo $listaUsuario->idEstado ?></td>
+                                        <td><?php echo $usuario->id ?></td>
+                                        <td><?php echo $usuario->nombre ?></td>
+                                        <td><?php echo $usuario->usuario ?></td>
+                                        <td><?php echo $usuario->correo ?></td>
+                                        <td><?php echo $usuario->idRol ?></td>
+                                        <td><?php echo $usuario->idEstado ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button class="btn btn-info fa fa-edit" type="button"></button>
+                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalUsuario(variableUsuario=<?php echo json_encode($usuario); ?>);'></button>
                                             </div>
                                         </td>
                                     </tr>

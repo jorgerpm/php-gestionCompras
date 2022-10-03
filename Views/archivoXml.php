@@ -31,10 +31,9 @@
                                     <th>Pdf base 64</th>
                                     <th>Usuario</th>
                                     <th>Ubicación archivo</th>
-                                    <th>Url del archivo</th>
                                     <th>Proveedor</th>
-                                    <th>Nombre del archivo xml</th>
-                                    <th>Nombre del archivo pdf</th>
+                                    <th>Archivo xml</th>
+                                    <th>Archivo pdf</th>
                                     <th>Tipo de documento</th>
                                     <th></th>
                                 </tr>
