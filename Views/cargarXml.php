@@ -11,15 +11,49 @@
         </ul>
     </div>
     <!-- Cargar archivo xml -->
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Archivos</label>
-        <div class="col-sm-8">
+    <div class="container">		
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                
+                
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="inputFileXml" class="btn btn-primary">Cargar factura xml</label>
+                            <input type="file" name="" class="btn btn-primary" id="inputFileXml" accept=".xml" style="display:none" required="">
+                        </div>
+                        <div class="col-sm-8">
+                            <label id="archivoXml" style="word-break:break-word;"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-12">
+                            <label for="inputFilePdf" class="btn btn-primary">Cargar factura Ride</label>
+                            <input type="file" name="" class="btn btn-primary" id="inputFilePdf" accept=".pdf" style="display:none" required="">
+                        </div>
+                        <div class="col-sm-8">
+                            <label id="archivoPdf" style="word-break:break-word;"></label>
+                        </div>
+                    </div>
+                    
+                </div>
+                <button type="button" class="btn btn-primary" onclick="uploadFile();">Cargar archivos</button>
 
-            <label for="inputFile" class="btn btn-primary">Select Image</label>
-            <input type="file" name="" id="inputFile" multiple style="display:none">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <ul id="listaDeArchivos">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
         </div>
-        <button type="button" class="btn btn-primary" onclick="uploadFile();">Cargar</button>
-        <ul id="listaDeArchivos">
-        </ul>
     </div>
+
 </main>
+
+<script src="./Assets/js/functions_alertas.js"></script>

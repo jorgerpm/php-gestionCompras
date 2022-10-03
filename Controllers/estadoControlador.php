@@ -2,15 +2,14 @@
 
 //require_once '../Utils/configUtil.php';
 
-class rolControlador extends rolModelo {
+class estadoControlador extends estadoModelo {
 
-    public function listarRoles() {
-        $listaRoles = rolModelo::listar_roles();
-        return $listaRoles;
+    public function listar_estados() {
+        return estadoModelo::listar_estados();
     }
 
     //aqui la logica
-    public function guardar_rol_controlador() {
+    public function guardar_estado_controlador() {
         $idRol = $_POST['idRol'];
         $txtNombre = $_POST['txtNombre'];
         $listStatus = $_POST['listStatus'];

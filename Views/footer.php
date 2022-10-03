@@ -1,3 +1,4 @@
+
     <script src="./Assets/js/popper.min.js"></script>
     <script src="./Assets/js/bootstrap.min.js"></script>
     <script src="./Assets/js/main.js"></script>
@@ -18,6 +19,5 @@
       }
     </script>
     
-    <script src="./Assets/js/functions_alertas.js"></script>
   </body>
 </html>

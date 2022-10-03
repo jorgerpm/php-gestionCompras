@@ -1,6 +1,6 @@
 <?php
 //recibir de la base de datos
-require_once 'serviciosWebControlador.php';
+require_once '../Models/serviciosWebModelo.php';
 $array = [];
-$servicio = new serviciosWebControlador();
+$servicio = new serviciosWebModelo();
 $respuesta = $servicio->invocarGet('proveedor/listarProveedores', $array);

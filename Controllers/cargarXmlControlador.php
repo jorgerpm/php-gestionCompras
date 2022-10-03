@@ -1,8 +1,13 @@
 <?php
 session_start();
 $countfiles = count($_FILES['archivos']['name']); //Cuenta el total de archivos
-$upload_location = '../Archivos_subidos/'; //cargar directorio
+$upload_location = __DIR__.'Archivos_subidos/'; //cargar directorio
+$upload_location = str_replace("Controllers", "", $upload_location);
 $count = 0;
+
+//$archivo_xml = "";
+//$archivo_pdf = "";
+
 for ($i = 0; $i < $countfiles; $i++) {
     $file_name = $_FILES['archivos']['name'][$i]; //Nombre del archivo
     $path = $upload_location . $file_name; //Ruta del archivo
@@ -20,7 +25,7 @@ for ($i = 0; $i < $countfiles; $i++) {
         }
     }
 }
-echo $count;
+//echo $count;
 /* //copiar el archivo a una carpeta
   foreach($_FILES['archivos']['tmp_name'] as $key => $value) {
   if(file_exists($_FILES['archivos']['tmp_name'][$key])) {
@@ -38,14 +43,20 @@ echo $count;
   } */
 
 //enviarle a la base de datos
-require_once 'serviciosWebControlador.php';
+//require_once './../Utils/constantesUtil.php';
+require_once '../Models/serviciosWebModelo.php';
 $array = [
-    'ubicacionArchivo' => 'C:/xampp/htdocs/cargaXmlFacturas/Archivos_subidos/' . $archivo_xml,
+    'ubicacionArchivo' => '/home/jorge/proyectosPhp/proyectos/php-factura-xml/Archivos_subidos/' . $archivo_xml,
+    //'ubicacionArchivo' => $upload_location . $archivo_xml,
     'nombreArchivoXml' => $archivo_xml,
-    'nombreArchivoPdf' => $archivo_pdf,
+    'nombreArchivoPdf' => isset($archivo_pdf) ? $archivo_pdf : null,
     'urlArchivo' => 'http://localhost/cargaXmlFacturas/Archivos_subidos',
     'idUsuarioCarga' => $_SESSION['Usuario']->id,
     'tipoDocumento' => '01'
 ];
-$servicio = new serviciosWebControlador();
-$servicio->invocarPost('archivoXml/guardarXmlDB', $array);
+$servicio = new serviciosWebModelo();
+//print_r($servicio);
+//print_r($array);
+$respp = $servicio->invocarPost('archivoXml/guardarXmlDB', $array);
+echo $respp->respuesta;
+//header("location: ../cargarXml");

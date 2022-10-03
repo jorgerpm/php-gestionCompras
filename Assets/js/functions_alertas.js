@@ -23,68 +23,114 @@
  }
  }*/
 
-//--------------------------------  -----------------------
-var inputFile = $("#inputFile");
-var listaDeArchivos = $("#listaDeArchivos");
-var archivosParaSubir = [];
 
-function actualizarListaDeArchivos() {
-    let listaHtml = archivosParaSubir.map(function (item, index) {
-        return `<li>
-      ${item.name} 
-      <button data-index="${index}" class="file-list-eliminar">Eliminar</button>
-    </li>`;
-    });
-    listaDeArchivos.html(listaHtml);
-}
 
-inputFile.on('change', function (e) {
-    let files = e.target.files;
-    if (files.length == 0)
-        return;
-    files = Array.from(files);
-    files.forEach(uu => {
-        archivosParaSubir.push(uu);
-    });
-    actualizarListaDeArchivos();
-    $(this).val('');
-});
+/* --------------------------------  -----------------------*/
+var inputFileXml = $("#inputFileXml");
+var inputFilePdf = $("#inputFilePdf");
 
-$(document).on("click", ".file-list-eliminar", function () {
-    let index = $(this).data('index');
-    archivosParaSubir.splice(index, 1);
-    actualizarListaDeArchivos();
-});
+var nombreArchivoXml = $("#archivoXml");
+var nombreArchivoPdf = $("#archivoPdf");
+var fileXml = [];
+var filePdf = [];
 
-// Upload file
-function uploadFile() {
-    if (archivosParaSubir.length == 0) {
-        //alert('seleccione al menos un archivo');
-        swal("", "Seleccione al menos un archivo", "warning");
-    } else {
-        var formData = new FormData();
-        // Read selected files
-        archivosParaSubir.forEach(fe => {
-            formData.append("archivos[]", fe);
-            console.log('arhicvo: ', fe);
+
+function actualizarListaDeArchivos(tipo) {
+    if (tipo === 1) {
+        let listaHtml = fileXml.map(function (item, index) {
+            return `${item.name}`;
         });
-        var xhttp = new XMLHttpRequest();
-        // Set POST method and ajax file path
-        xhttp.open("POST", "./Controllers/cargarXmlControlador.php", true);
-        // call on request changes state
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var response = this.responseText;
-                archivosParaSubir = [];
-                actualizarListaDeArchivos();
-                swal("Prueba!", "Your imaginary file has been deleted.", "success");
-            }
-        };
-        // Send request with data
-        xhttp.send(formData);
+        nombreArchivoXml.text(listaHtml);
+    } else {
+        let listaHtml = filePdf.map(function (item, index) {
+            return `${item.name}`;
+        });
+        nombreArchivoPdf.text(listaHtml);
     }
 }
 
-$('#demoSwal').click(function () {
-    swal("Prueba!", "Your imaginary file has been deleted.", "success");
+inputFileXml.on('change', function (e) {
+    let files = e.target.files;
+
+    if (files.length === 0)
+        return;
+
+    files = Array.from(files);
+    files.forEach(uu => {
+        fileXml.push(uu);
+    });
+    actualizarListaDeArchivos(1);
+    $(this).val('');
 });
+inputFilePdf.on('change', function (e) {
+    let files = e.target.files;
+
+    if (files.length === 0)
+        return;
+
+    files = Array.from(files);
+    files.forEach(uu => {
+        filePdf.push(uu);
+    });
+    actualizarListaDeArchivos(2);
+    $(this).val('');
+});
+
+/*$(document).on("click", ".file-list-eliminar", function () {
+    let index = $(this).data('index');
+    archivosParaSubir.splice(index, 1);
+    actualizarListaDeArchivos();
+});*/
+
+// Upload file
+function uploadFile() {
+    if (fileXml.length === 0) {
+//alert('seleccione al menos un archivo');
+        swal("", "Debe seleccionar al menos el archivo xml de la factura", "warning");
+    } else {
+
+        var formData = new FormData();
+
+        // Read selected files
+        fileXml.forEach(fe => {
+            formData.append("archivos[]", fe);
+            console.log('arhicvo: ', fe);
+        });
+        filePdf.forEach(fe => {
+            formData.append("archivos[]", fe);
+            console.log('arhicvo: ', fe);
+        });
+
+        var xhttp = new XMLHttpRequest();
+
+        // Set POST method and ajax file path
+        xhttp.open("POST", "./Controllers/cargarXmlControlador.php", true);
+
+        // call on request changes state
+        xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+
+                var response = this.responseText;
+
+                if (response === "OK") {
+
+                    fileXml = [];
+                    filePdf = [];
+                    actualizarListaDeArchivos(1);
+                    actualizarListaDeArchivos(2);
+
+                    swal("", "Archivos cargados correctamente", "success");
+                } else {
+                    swal("1", "Error en la carga del archivo. " + response, "error");
+                }
+
+            } else {
+                swal("2", "Error en la carga del archivo. " + this.responseText, "error");
+            }
+        };
+
+        // Send request with data
+        xhttp.send(formData);
+    }
+
+}

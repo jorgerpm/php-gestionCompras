@@ -1,26 +1,39 @@
 <?php
-session_start();
-if(isset($_POST['usuario']) && isset($_POST['clave'])){
-    require_once 'serviciosWebControlador.php';
-    $array = [
-        'usuario' => $_POST['usuario'],
-        'clave' => $_POST['clave']
-    ];
-    
-    $servicio = new serviciosWebControlador();
-    $respuesta = $servicio->invocarPost('usuario/loginSistema', $array);
-    if(isset($respuesta) && $respuesta->id > 0) {
-        header("location: ../home");
-        $_SESSION['Usuario'] = $respuesta;
-    }else {
-        require_once '../Assets/js/functions_alertas.js';
-        $alerta=[
-            "Alerta"=>"simple",
-            "Titulo"=>"Ocurrió un error inesperado",
-            "Texto"=>"Nombre de usuario o contraseña incorrectos",
-            "Tipo"=>"error"
-        ];
-        unset($_SESSION['Usuario']); //destruye la sesión
-        header("location: ../login");
-    }
+if(is_file('./Utils/configUtil.php')){
+    require_once './Utils/configUtil.php';
 }
+else{
+    require_once '../Utils/configUtil.php';
+}
+
+ob_start();
+session_start();
+
+        if (isset($_POST['usuario']) && isset($_POST['clave'])) {
+    //require_once '../Models/serviciosWebModelo.php';
+            $array = [
+                'usuario' => $_POST['usuario'],
+                'clave' => $_POST['clave']
+            ];
+
+            $servicio = new serviciosWebModelo();
+            $respuesta = $servicio->invocarPost('usuario/loginSistema', $array);
+            if (isset($respuesta) && $respuesta->id > 0) {
+                $_SESSION['Usuario'] = $respuesta;
+                header('Location: ../home');
+            } else {
+                print_r($respuesta);
+//                unset($_SESSION['Usuario']); //destruye la sesión
+//unset($_POST['usuario']);
+                $_SESSION['no'] = "no";
+//                header('Location: ./');
+            }
+        } else {
+            echo "<br>ddddddddddddd<br>";
+//unset($_POST['usuario']);
+//session_unset();
+//session_destroy();
+//header('Location: ./login');
+        }
+//    }
+//}
