@@ -31,7 +31,7 @@
  * funcion para cuando se realiza el submit de un formulario
  * **/
 $('.FormularioAjax').submit(function(e){
-        e.preventDefault();
+        e.preventDefault(); //no se envíe el submit todavía
 
         var form=$(this);
 
@@ -73,7 +73,7 @@ $('.FormularioAjax').submit(function(e){
                 cache: false,
                 contentType: false,
                 processData: false,
-                xhr: function(){
+                /*xhr: function(){
                     var xhr = new window.XMLHttpRequest();
                     xhr.upload.addEventListener("progress", function(evt) {
                       if (evt.lengthComputable) {
@@ -87,7 +87,7 @@ $('.FormularioAjax').submit(function(e){
                       }
                     }, false);
                     return xhr;
-                },
+                },*/
                 success: function (data) {
                     respuesta.html(data);
                 },

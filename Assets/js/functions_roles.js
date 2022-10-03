@@ -1,4 +1,4 @@
-function openModalRole(val_datos) {
+function openModalRol(val_datos) {
 //    alert(val_datos.nombre);
 //    alert(val_datos.id);
     document.querySelector('#formRol').reset();

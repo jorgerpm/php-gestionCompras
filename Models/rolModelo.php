@@ -1,6 +1,4 @@
 <?php
-//require_once './serviciosWebModelo.php';
-
 class rolModelo extends serviciosWebModelo {
     
     public function guardar_rol_modelo($datos){

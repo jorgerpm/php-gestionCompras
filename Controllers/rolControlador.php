@@ -1,7 +1,5 @@
 <?php
 
-//require_once '../Utils/configUtil.php';
-
 class rolControlador extends rolModelo {
 
     public function listarRoles() {
@@ -27,7 +25,7 @@ class rolControlador extends rolModelo {
             if ($respuesta->id > 0) {
                 return '<script>swal("", "Datos almacenados correctamente", "success")
                     .then((value) => {
-                            $(`#btnBuscar`).click();
+                        $(`#btnBuscar`).click();
                     });</script>';
             } else {
                 return '<script>swal("", "Error al almacenar los datos.", "error");</script>';

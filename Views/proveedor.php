@@ -1,4 +1,4 @@
-<?php require_once 'Template/Modals/modalRol.php'; ?>
+<?php require_once 'Template/Modals/modalProveedor.php'; ?>
 <main class="app-content">
     <div class="app-title">
         <div>
@@ -17,7 +17,10 @@
                 <div class="tile-body">
                     <div class="table-responsive">
                         <div>
-                            <p><button class="btn btn-primary btn-sm fa" type="button" onclick="openModal();"><i class="fas fa-plus-circle"></i> Nuevo</button></p>
+                            <p><button class="btn btn-primary btn-sm fa" type="button" onclick="openModalProveedor(null);"><i class="fas fa-plus-circle"></i> Nuevo</button></p>
+                        </div>
+                        <div>
+                            <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = ''">buscar</button></p>
                         </div>
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
@@ -30,16 +33,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php require_once './Controllers/proveedorControlador.php';
-                                foreach ($respuesta as $listaProveedor) { ?>
+                                <?php require_once './acciones/listarProveedores.php';
+                                foreach ($listaProveedores as $proveedor) { ?>
                                     <tr>
-                                        <td><?php echo $listaProveedor->id ?></td>
-                                        <td><?php echo $listaProveedor->nombre ?></td>
-                                        <td><?php echo $listaProveedor->ruc ?></td>
-                                        <td><?php echo $listaProveedor->codigoJD ?></td>
+                                        <td><?php echo $proveedor->id ?></td>
+                                        <td><?php echo $proveedor->nombre ?></td>
+                                        <td><?php echo $proveedor->ruc ?></td>
+                                        <td><?php echo $proveedor->codigoJD ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button class="btn btn-info fa fa-edit" type="button"></button>
+                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalProveedor(variableProveedor = <?php echo json_encode($proveedor); ?>);'></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -52,3 +55,4 @@
         </div>
     </div>
 </main>
+<script src="./Assets/js/functions_proveedores.js"></script>

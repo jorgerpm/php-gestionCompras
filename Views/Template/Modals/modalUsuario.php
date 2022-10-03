@@ -8,17 +8,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formUsuario" action="" name="formUsuario" class="form-horizontal">
+                <form id="formUsuario" class="FormularioAjax login-form" action="acciones/guardarUsuario.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                     <input type="hidden" id="idUsuario" name="idUsuario" value="">
                     <p class="text-danger">Todos los campos son obligatorios.*</p>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label class="control-label">Nombre</label>
-                            <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre y apellido" required="">
+                            <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre y apellido" required="" style="text-transform: uppercase;">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Usuario</label>
-                            <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Nombre de usuario" required="">
+                            <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Nombre de usuario" required="" style="text-transform: uppercase;">
                         </div>
                     </div>
                     <div class="form-row">
@@ -34,25 +34,33 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="listaRol">Rol</label>
-                            <select class="form-control" id="listaRol" name="listaRol" required="">
-                                <option value="1">Administrador</option>
-                                <option value="2">Cliente</option>
-                                <option value="3">Proveedor</option>
+                            <?php require_once './acciones/listarRoles.php'; ?>
+                            <select class="form-control" id="cbxListaRol" name="cbxListaRol" required="">
+                                <?php
+                                foreach ($listaRoles as $rol) {
+                                    echo '<option value="' . $rol->id . '">' . $rol->nombre . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="listaEstado">Estado</label>
-                            <select class="form-control" id="listaEstado" name="listaEstado" required="">
-                                <option value="1">Activo</option>
-                                <option value="2">Inactivo</option>
+                            <?php require_once './acciones/listarEstados.php'; ?>
+                            <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
+                                <?php
+                                foreach ($listaEstados as $estado) {
+                                    echo '<option value="' . $estado->id . '">' . $estado->nombre . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
-                    <div class="tile-footer">
+                    <div class="tile-footer" style="text-align: end;">
                         <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg
-                        fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn
-                        btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                                                                                            fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn
+                                                                                             btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                     </div>
+                    <div class="RespuestaAjax"></div>
                 </form>
             </div>
         </div>

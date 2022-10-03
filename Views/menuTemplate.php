@@ -92,13 +92,13 @@
                 </div-->
             </div>
             <ul class="app-menu">
-                <li><a class="app-menu__item" href="usuario"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Usuario</span></a></li>
-                <li><a class="app-menu__item" href="rol"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Rol</span></a></li>
-                <li><a class="app-menu__item" href="cargarXml"><i class="app-menu__icon fa fa-upload"></i><span class="app-menu__label">Cargar Xml</span></a></li>
-                <li><a class="app-menu__item" href="menu"><i class="app-menu__icon fa fa-upload"></i><span class="app-menu__label">Menú</span></a></li>
-                <li><a class="app-menu__item" href="proveedor"><i class="app-menu__icon fa fa-upload"></i><span class="app-menu__label">Proveedor</span></a></li>
-                <li><a class="app-menu__item" href="parametro"><i class="app-menu__icon fa fa-upload"></i><span class="app-menu__label">Parámetros</span></a></li>
-                <li><a class="app-menu__item" href="archivoXml"><i class="app-menu__icon fa fa-upload"></i><span class="app-menu__label">Archivo Xml</span></a></li>
+                <li><a class="app-menu__item" href="usuario"><i class="app-menu__icon fa fa-circle"></i><span class="app-menu__label">Usuario</span></a></li>
+                <li><a class="app-menu__item" href="rol"><i class="app-menu__icon fa fa-circle"></i><span class="app-menu__label">Rol</span></a></li>
+                <li><a class="app-menu__item" href="cargarXml"><i class="app-menu__icon fa fa-circle"></i><span class="app-menu__label">Cargar Xml</span></a></li>
+                <li><a class="app-menu__item" href="menu"><i class="app-menu__icon fa fa-circle"></i><span class="app-menu__label">Menú</span></a></li>
+                <li><a class="app-menu__item" href="proveedor"><i class="app-menu__icon fa fa-circle"></i><span class="app-menu__label">Proveedor</span></a></li>
+                <li><a class="app-menu__item" href="parametro"><i class="app-menu__icon fa fa-circle"></i><span class="app-menu__label">Parámetros</span></a></li>
+                <li><a class="app-menu__item" href="archivoXml"><i class="app-menu__icon fa fa-circle"></i><span class="app-menu__label">Archivo Xml</span></a></li>
                 <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
