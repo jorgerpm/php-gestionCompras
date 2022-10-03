@@ -1,4 +1,11 @@
 <?php
+if(is_file('./Utils/configUtil.php')){
+    require_once './Utils/configUtil.php';
+}
+else{
+    require_once '../Utils/configUtil.php';
+}
+
 session_start();
 $countfiles = count($_FILES['archivos']['name']); //Cuenta el total de archivos
 $upload_location = __DIR__.'Archivos_subidos/'; //cargar directorio
@@ -44,7 +51,7 @@ for ($i = 0; $i < $countfiles; $i++) {
 
 //enviarle a la base de datos
 //require_once './../Utils/constantesUtil.php';
-require_once '../Models/serviciosWebModelo.php';
+//require_once '../Models/serviciosWebModelo.php';
 $array = [
     'ubicacionArchivo' => '/home/jorge/proyectosPhp/proyectos/php-factura-xml/Archivos_subidos/' . $archivo_xml,
     //'ubicacionArchivo' => $upload_location . $archivo_xml,

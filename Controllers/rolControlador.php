@@ -25,7 +25,10 @@ class rolControlador extends rolModelo {
             $respuesta = rolModelo::guardar_rol_modelo($datos);
 
             if ($respuesta->id > 0) {
-                return '<script>swal("", "Datos almacenados correctamente", "success");</script>';
+                return '<script>swal("", "Datos almacenados correctamente", "success")
+                    .then((value) => {
+                            $(`#btnBuscar`).click();
+                    });</script>';
             } else {
                 return '<script>swal("", "Error al almacenar los datos.", "error");</script>';
             }

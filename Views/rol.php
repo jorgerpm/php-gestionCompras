@@ -19,6 +19,9 @@
                         <div>
                             <p><button class="btn btn-primary btn-sm fa" type="button" onclick="openModalRole(null);"><i class="fas fa-plus-circle"></i> Nuevo</button></p>
                         </div>
+                        <div>
+                            <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href=''">buscar</button></p>
+                        </div>
                             <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                                 <tr>
@@ -29,10 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php /*require_once './Controllers/rolControlador.php';
-                                $rolControlador = new rolControlador();
-                                $listaRoles = $rolControlador->listarRoles();*/
-                             require_once './acciones/listarRoles.php';
+                                <?php require_once './acciones/listarRoles.php';
                                 foreach($listaRoles as $rol) { ?>
                                     <tr>
                                         <td><?php echo $rol->id; ?></td>
