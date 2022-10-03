@@ -3,7 +3,7 @@
     <div class="app-title">
         <div>
             <h1><i class="fa fa-th-list"></i> Roles</h1>
-            <p>Sección para editar y crear roles</p>
+            <p>Editar y crear roles</p>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -41,7 +41,7 @@
                                         <td><?php echo $rol->idEstado; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalRole(arr =<?php echo json_encode($rol); ?>);'></button>
+                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalRole(variableRol =<?php echo json_encode($rol); ?>);'></button>
                                             </div>
                                         </td>
                                     </tr>

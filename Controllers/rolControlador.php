@@ -1,7 +1,5 @@
 <?php
 
-//require_once '../Utils/configUtil.php';
-
 class rolControlador extends rolModelo {
 
     public function listarRoles() {
