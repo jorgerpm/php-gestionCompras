@@ -14,11 +14,11 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label class="control-label">Nombre</label>
-                            <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre y apellido" required="">
+                            <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre y apellido" required="" style="text-transform: uppercase;">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Usuario</label>
-                            <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Nombre de usuario" required="">
+                            <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Nombre de usuario" required="" style="text-transform: uppercase;">
                         </div>
                     </div>
                     <div class="form-row">

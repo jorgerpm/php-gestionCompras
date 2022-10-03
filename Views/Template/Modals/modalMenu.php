@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label for="exampleSelect1">Estado</label>
                         <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
-                        <option>seleccione</option>
+                            <option value="1">seleccione</option>
                         </select>
                     </div>
                     <div class="tile-footer" style="text-align: end;">

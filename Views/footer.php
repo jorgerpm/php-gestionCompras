@@ -24,8 +24,6 @@
         ga('send', 'pageview');
     }
 </script>
-<!-- Essential javascripts for application to work-->
-<script src="./Assets/js/jquery-3.3.1.min.js"></script>
 <!-- Data table plugin-->
 <script type="text/javascript" src="./Assets/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="./Assets/js/plugins/dataTables.bootstrap.min.js"></script>
