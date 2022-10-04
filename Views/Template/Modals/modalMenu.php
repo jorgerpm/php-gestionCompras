@@ -25,22 +25,24 @@
                         <label class="control-label">Im&aacute;gen</label>
                         <input class="form-control" id="txtImagen" name="txtImagen" type="text" placeholder="Im&aacute;gen del men&uacute;" required="" style="text-transform: uppercase;">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleSelect1">Estado</label>
-                        <?php require_once './acciones/listarEstados.php'; ?>
-                        <select class="form-control" id="cbxListaMenu" name="cbxListaMenu" required="">
-                            <?php
-                            foreach ($listaEstados as $estado) {
-                                echo '<option value="' . $estado->id . '">' . $estado->nombre . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleSelect1">Estado</label>
-                        <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
-                            <option value="1">seleccione</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleSelect1">Estado</label>
+                            <?php require_once './acciones/listarEstados.php'; ?>
+                            <select class="form-control" id="cbxListaMenu" name="cbxListaMenu" required="">
+                                <?php
+                                foreach ($listaEstados as $estado) {
+                                    echo '<option value="' . $estado->id . '">' . $estado->nombre . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleSelect1">Men&uacute;</label>
+                            <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
+                                <option value="1">seleccione</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="tile-footer" style="text-align: end;">
                         <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg

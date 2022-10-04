@@ -27,7 +27,32 @@
 <!-- Data table plugin-->
 <script type="text/javascript" src="./Assets/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="./Assets/js/plugins/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript">$('#sampleTable').DataTable();</script>
+<script type="text/javascript">
+        var table = $('#sampleTable').DataTable({
+        //scrollY: '34vh',
+        //scrollCollapse: true,
+        language: {
+            lengthMenu: 'Mostrar _MENU_ registros por pagina',
+            zeroRecords: 'No existen registros',
+            info: 'Mostrando pagina _PAGE_ de _PAGES_',
+            infoEmpty: 'No existen registros',
+            infoFiltered: '(filtrados de los _MAX_ registros totales)',
+        },
+        lengthMenu: [
+            [10, 25, 50, 100], //cantidad
+            [10, 25, 50, 100],//texto que se muestra
+        ],
+    });
+//    $('a.toggle-vis').on('click', function (e) {
+//        e.preventDefault();
+// 
+//        // Get the column API object
+//        var column = table.column($(this).attr('data-column'));
+// 
+//        // Toggle the visibility
+//        column.visible(!column.visible());
+//    });
+    </script>
 <!-- Google analytics script-->
 <script type="text/javascript">
   if(document.location.hostname == 'pratikborsadiya.in') {

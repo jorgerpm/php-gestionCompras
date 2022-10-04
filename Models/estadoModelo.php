@@ -10,7 +10,7 @@ class estadoModelo extends serviciosWebModelo {
     
     public function listar_estados() {
         $array = [];
-        $listaData = self::invocarGet('estado/listarEstados', $array);
-        return $listaData;
+        $listaEstados = self::invocarGet('estado/listarEstados', $array);
+        return $listaEstados;
     }
 }
