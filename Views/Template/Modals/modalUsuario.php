@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Usuario</label>
-                            <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Nombre de usuario" required="" style="text-transform: uppercase;">
+                            <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Nombre de usuario" required="">
                         </div>
                     </div>
                     <div class="form-row">

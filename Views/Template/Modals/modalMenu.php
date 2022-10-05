@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Im&aacute;gen</label>
-                        <input class="form-control" id="txtImagen" name="txtImagen" type="text" placeholder="Im&aacute;gen del men&uacute;" required="" style="text-transform: uppercase;">
+                        <input class="form-control" id="txtImagen" name="txtImagen" type="text" placeholder="Im&aacute;gen del men&uacute;" required="">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">

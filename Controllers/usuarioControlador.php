@@ -9,7 +9,7 @@ class usuarioControlador extends usuarioModelo {
 
     //aqui la logica
     public function guardar_usuario_controlador() {
-        $idRol = $_POST['idUsuario'];
+        $id = $_POST['idUsuario'];
         $txtNombre = $_POST['txtNombre'];
         $txtUsuario = $_POST['txtUsuario'];
         $txtClave = $_POST['txtClave'];
@@ -19,13 +19,13 @@ class usuarioControlador extends usuarioModelo {
 
         if (isset($txtNombre) && isset($txtUsuario) && isset($txtClave) && isset($txtCorreo) && isset($cbxListaRol) && isset($cbxListaEstado)) {
             $datos = [
-                "id" => $idRol,
+                "id" => $id,
                 "nombre" => strtoupper($txtNombre),
-                "usuario" => strtoupper($txtUsuario),
+                "usuario" => $txtUsuario,
                 "clave" => strtoupper($txtClave),
-                "correo" => strtoupper($txtCorreo),
-                "idEstado" => $cbxListaRol,
-                "idRol" => $cbxListaEstado
+                "correo" => $txtCorreo,
+                "idEstado" => $cbxListaEstado,
+                "idRol" => $cbxListaRol
             ];
 
             $respuesta = usuarioModelo::guardar_usuario_modelo($datos);

@@ -12,4 +12,11 @@ class menuModelo extends serviciosWebModelo {
         $listaMenus = self::invocarGet('menu/listarMenus', $array);
         return $listaMenus;
     }
+    
+    public function listar_menus_por_rol() {
+        $array = [];
+        $idRolUsuario = $_SESSION['Usuario']->idRol;
+        $listaMenusPorRol = self::invocarGet('menu/listarMenusPorRol?idRol='.$idRolUsuario, $array);
+        return $listaMenusPorRol;
+    }
 }

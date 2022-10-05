@@ -20,8 +20,8 @@ class menuControlador extends menuModelo {
             $datos = [
                 "id" => $idMenu,
                 "titulo" => strtoupper($txtTitulo),
-                "link" => strtoupper($txtLink),
-                "imagen" => strtoupper($txtImagen),
+                "link" => $txtLink,
+                "imagen" => $txtImagen,
                 "idMenu" => $cbxListaMenu,
                 "idEstado" => $cbxListaEstado
             ];
@@ -42,4 +42,8 @@ class menuControlador extends menuModelo {
         }
     }
 
+    public function listarMenusPorRol() {
+        $listaMenusPorRol = menuModelo::listar_menus_por_rol();
+        return $listaMenusPorRol;
+    }
 }
