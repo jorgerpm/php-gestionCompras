@@ -86,9 +86,9 @@
         <!-- Sidebar menu-->
         <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
         <aside class="app-sidebar">
-            <div class="app-sidebar__user fa fa-user-circle">
+            <div class="app-sidebar__user fa fa-user-circle" style="text-align:center">
                 <div>
-                    <p class="app-sidebar__user-name">Bienvenido <?php echo $_SESSION['Usuario']->nombre ?></p>
+                    <span class="app-sidebar__user-name tamañoTitulo"><?php echo $_SESSION['Usuario']->nombre ?></span>
                     <!--<p class="app-sidebar__user-designation">Frontend Developer</p>-->
                 </div>
             </div>
@@ -98,21 +98,14 @@
                 foreach ($listaMenuPorRol as $menu) {
                     if ($menu->idMenu == null) {
                         $menuPadre = $menu->id;
-                        $arrayAux = [];
-                        ?>
-
-
+                        $arrayAux = [];?>
                         <?php
                         foreach ($listaMenuPorRol as $menuHijo) {
                             if ($menuHijo->idMenu == $menuPadre) {
-                                array_push($arrayAux, $menuHijo);
-                                ?>
-
-                            <?php } ?>
-                        <?php
-                        }
-                        if (count($arrayAux) > 0) {
-                            ?>
+                            array_push($arrayAux, $menuHijo);
+                            }?>
+                        <?php }
+                        if (count($arrayAux) > 0) { ?>
                             <li class="treeview">
                                 <a class="app-menu__item" href="<?php echo $menu->link; ?>" data-toggle="treeview">
                                     <i class="app-menu__icon fa <?php echo $menu->imagen; ?>">
@@ -125,31 +118,20 @@
                                 <ul class="treeview-menu">
                                 <?php foreach ($arrayAux as $menuHijoAux) { ?>
                                         <li>
-                                            <a class="treeview-item" href="<?php echo $menuHijoAux->link; ?>">
+                                            <a class="treeview-item" style="padding: 7px 0 7px 20px" href="<?php echo $menuHijoAux->link; ?>">
                                                 <i class="icon fa <?php echo $menuHijoAux->imagen; ?>">
                                                     <span class="app-menu__label"><?php echo $menuHijoAux->titulo; ?>
                                                     </span>
                                                 </i>
                                             </a>
                                         </li>
-            <?php } ?>
+                                <?php } ?>
                                 </ul>
                             </li>
-        <?php }else { ?>
+                        <?php }else { ?>
                             <li><a class="app-menu__item" href="<?php echo $menu->link; ?>"><i class="app-menu__icon fa <?php echo $menu->imagen; ?>"></i><span class="app-menu__label"><?php echo $menu->titulo; ?></span></a></li>
-        <?php } ?>
-
-
-
-
-
-                    <?php
-                    } else {
-                        
-                    }
-                    ?>
-
-            <?php } ?>
-
+                        <?php } ?>
+                    <?php } ?>
+                <?php } ?>
             </ul>
         </aside>
