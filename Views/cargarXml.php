@@ -1,7 +1,7 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <span style="font-size: 18px"><i class="fa fa-th-list"></i> Cargar archivo Xml</span>
+            <span class="tamañoTitulo"><i class="fa fa-th-list"></i> Cargar archivo Xml</span>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -13,10 +13,8 @@
     <div class="container">		
         <div class="panel panel-primary">
             <div class="panel-body">
-                
-                
                 <div class="form-group">
-                    <div class="row">
+                    <div class="row espacio">
                         <div class="col-sm-4">
                             <label for="inputFileXml" class="btn btn-primary">Cargar factura xml</label>
                             <input type="file" name="" class="btn btn-primary" id="inputFileXml" accept=".xml" style="display:none" required="">

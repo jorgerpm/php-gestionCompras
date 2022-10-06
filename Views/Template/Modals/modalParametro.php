@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Valor</label>
-                            <input class="form-control" id="txtValor" name="txtValor" type="text" placeholder="Valor del par&aacute;metro" required="" style="text-transform: uppercase;">
+                            <input class="form-control" id="txtValor" name="txtValor" type="text" placeholder="Valor del par&aacute;metro" required="">
                         </div>
                     </div>
                     <div class="form-group">

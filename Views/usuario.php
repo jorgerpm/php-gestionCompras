@@ -10,7 +10,7 @@
         </ul>
     </div>
     </div>
-    <div style="margin-top:-10px" class="row">
+    <div class="row espacio">
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">

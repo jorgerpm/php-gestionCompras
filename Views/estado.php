@@ -2,8 +2,7 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-th-list"></i> Estados</h1>
-            <p>Editar y crear estados</p>
+            <span class="tamañoTitulo"><i class="fa fa-th-list"></i> Estados</span>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -11,7 +10,7 @@
             <li class="breadcrumb-item active"><a href="#">Gesti&oacute;n de estados</a></li>
         </ul>
     </div>
-    <div class="row">
+    <div class="row espacio">
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">

@@ -2,8 +2,7 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-dashboard"></i> Gestión de proveedores</h1>
-            <p>crear y editar proveedores</p>
+            <span class="tamañoTitulo"><i class="fa fa-dashboard"></i> Gestión de proveedores</span>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -11,7 +10,7 @@
         </ul>
     </div>
     </div>
-    <div class="row">
+    <div class="row espacio">
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
