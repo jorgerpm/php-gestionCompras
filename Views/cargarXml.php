@@ -10,7 +10,7 @@
         </ul>
     </div>
     <!-- Cargar archivo xml -->
-    <div class="container">		
+    <div class="container tile">		
         <div class="panel panel-primary">
             <div class="panel-body">
                 
