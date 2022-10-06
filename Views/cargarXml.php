@@ -1,8 +1,7 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-th-list"></i> Cargar archivo Xml</h1>
-            <p>Subir los archivos xml y pdf para almacenar en la base de datos</p>
+            <span style="font-size: 18px"><i class="fa fa-th-list"></i> Cargar archivo Xml</span>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>

@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Main CSS-->
         <link rel="stylesheet" type="text/css" href="./Assets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="./Assets/css/estilosExtra.css">
         <!-- Font-icon css-->
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         
@@ -92,14 +93,63 @@
                 </div>
             </div>
             <ul class="app-menu">
-                <?php require_once './acciones/listarMenuPorRol.php';
-                foreach ($listaMenuPorRol as $menuPorRol) { ?>
-                    <li><a class="app-menu__item" href="<?php echo $menuPorRol->link; ?>"><i class="app-menu__icon fa <?php echo $menuPorRol->imagen; ?>"></i><span class="app-menu__label"><?php echo $menuPorRol->titulo; ?></span></a></li>
-                <?php } ?>
-                <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
-                    </ul>
-                </li> 
+                <?php
+                require_once './acciones/listarMenuPorRol.php';
+                foreach ($listaMenuPorRol as $menu) {
+                    if ($menu->idMenu == null) {
+                        $menuPadre = $menu->id;
+                        $arrayAux = [];
+                        ?>
+
+
+                        <?php
+                        foreach ($listaMenuPorRol as $menuHijo) {
+                            if ($menuHijo->idMenu == $menuPadre) {
+                                array_push($arrayAux, $menuHijo);
+                                ?>
+
+                            <?php } ?>
+                        <?php
+                        }
+                        if (count($arrayAux) > 0) {
+                            ?>
+                            <li class="treeview">
+                                <a class="app-menu__item" href="<?php echo $menu->link; ?>" data-toggle="treeview">
+                                    <i class="app-menu__icon fa <?php echo $menu->imagen; ?>">
+                                    </i>
+                                    <span class="app-menu__label"><?php echo $menu->titulo; ?>
+                                    </span>
+                                    <i class="treeview-indicator fa fa-angle-right">
+                                    </i>
+                                </a>
+                                <ul class="treeview-menu">
+                                <?php foreach ($arrayAux as $menuHijoAux) { ?>
+                                        <li>
+                                            <a class="treeview-item" href="<?php echo $menuHijoAux->link; ?>">
+                                                <i class="icon fa <?php echo $menuHijoAux->imagen; ?>">
+                                                    <span class="app-menu__label"><?php echo $menuHijoAux->titulo; ?>
+                                                    </span>
+                                                </i>
+                                            </a>
+                                        </li>
+            <?php } ?>
+                                </ul>
+                            </li>
+        <?php }else { ?>
+                            <li><a class="app-menu__item" href="<?php echo $menu->link; ?>"><i class="app-menu__icon fa <?php echo $menu->imagen; ?>"></i><span class="app-menu__label"><?php echo $menu->titulo; ?></span></a></li>
+        <?php } ?>
+
+
+
+
+
+                    <?php
+                    } else {
+                        
+                    }
+                    ?>
+
+            <?php } ?>
+
             </ul>
         </aside>
