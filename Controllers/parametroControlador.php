@@ -18,7 +18,7 @@ class parametroControlador extends parametroModelo {
             $datos = [
                 "id" => $idParametro,
                 "nombre" => strtoupper($txtNombre),
-                "valor" => strtoupper($txtValor),
+                "valor" => $txtValor,
                 "idEstado" => strtoupper($cbxListaEstado)
             ];
 

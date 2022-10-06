@@ -22,7 +22,7 @@ class usuarioControlador extends usuarioModelo {
                 "id" => $id,
                 "nombre" => strtoupper($txtNombre),
                 "usuario" => $txtUsuario,
-                "clave" => strtoupper($txtClave),
+                "clave" => $txtClave,
                 "correo" => $txtCorreo,
                 "idEstado" => $cbxListaEstado,
                 "idRol" => $cbxListaRol
