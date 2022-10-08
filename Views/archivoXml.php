@@ -15,9 +15,14 @@
             <div class="tile-body">
                 <div class="table-responsive">
                     <?php
+                    //require_once './acciones/listarArchivos.php';
                     $archiCont = new archivoXmlControlador();
-                    $respuesta = $archiCont->listar_archivos_controlador(null);
-                    $columns = $archiCont->crear_columnas($respuesta);
+                    if(isset($_POST['dtFechaIni'])){
+                        $respuesta = $archiCont->listar_archivos_controlador($_POST);
+                    } else{
+                        $respuesta = $archiCont->listar_archivos_controlador(null);
+                    }
+                        $columns = $archiCont->crear_columnas($respuesta);
                     ?>
                     <a  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         Columnas a mostrar:
@@ -35,35 +40,33 @@
                         </div>
                     </div>
                     
-                    <form action="">
-                    <div class="row">
-                        <div class="col-md-3 col-12">
-                        <?php require_once './acciones/listarUsuarios.php'; ?>
-                        <select class="form-control" id="listUsers" name="listUsers" required="">
-                            <?php
-                            foreach ($listaUsuarios as $user) {
-                                echo '<option value="' . $user->id . '">' . $user->nombre . '</option>';
-                            }
-                            ?>
-                        </select>
+                    
+                    <form id="formEstado" class="FormularioAjax login-form" action="./acciones/listarArchivos.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-3 col-12">
+                            <?php require_once './acciones/listarUsuarios.php'; ?>
+                            <select class="form-control" id="listUsers" name="listUsers" required="">
+                                <?php
+                                foreach ($listaUsuarios as $user) {
+                                    echo '<option value="' . $user->id . '">' . $user->nombre . '</option>';
+                                }?>
+                            </select>
+                                </div>
+                            <div class="col-md-3 col-12">
+                                <input id="dtFechaIni" name="dtFechaIni" class="form-control" type="date" >
                             </div>
-                        <div class="col-md-3 col-12">
-                            <input id="dtFechaIni" name="dtFechaIni" class="form-control" type="date" >
+                            <div class="col-md-3 col-12">
+                                <input id="dtFechaFin" name="dtFechaFin" class="form-control" type="date" >
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <button class="btn btn-primary" id="btnActionForm" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
+                            </div>
                         </div>
-                        <div class="col-md-3 col-12">
-                            <input id="dtFechaFin" name="dtFechaFin" class="form-control" type="date" >
-                        </div>
-                        <div class="col-md-3 col-12">
-                            <button class="btn btn-primary" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
-                        </div>
-                    </div>
+                        <div class="RespuestaAjax"></div>
                     </form>
                     
                     <br>
-
-
-
-
+                    
                     <table id="sampleTableXml" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
@@ -163,3 +166,13 @@
         column.visible(!column.visible());
     });
 </script>
+
+<!-- <script type="text/javascript">
+      //este es el metodo que lo mantendra actualizado 
+        $(document).ready(function() {
+          var refreshId =  setInterval( function(){
+         $('#tablaControl').load('archivoXml');//actualizas el div
+      }, 40000 );
+    });
+</script>
+tablas dinámicas: https://www.youtube.com/watch?v=52niJ-2TrQ0 -->

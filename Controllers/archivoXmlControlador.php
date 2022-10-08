@@ -7,12 +7,12 @@ class archivoXmlControlador extends archivoXmlModelo {
             return archivoXmlModelo::listar_archivos($post['dtFechaIni'], $post['dtFechaFin'], $post['listUsers']);
         }
         else{
-            return archivoXmlModelo::listar_archivos(date("d-m-Y"), date("d-m-Y"), null);
+            return archivoXmlModelo::listar_archivos(date("Y-m-d"), date("Y-m-d"), 1);
         }
     }
 
     public function crear_columnas($respuesta) {
-        $listvarj = json_decode($respuesta[0]->comprobante);
+        
 
         $columns = [];
         array_push($columns, 'Estado');
@@ -20,6 +20,8 @@ class archivoXmlControlador extends archivoXmlModelo {
         array_push($columns, 'Fecha de autorización');
         array_push($columns, 'Ambiente');
 
+        if(isset($respuesta[0]->comprobante)){
+        $listvarj = json_decode($respuesta[0]->comprobante);
         $docum = null;
         if (isset($listvarj->factura)) {
             $docum = $listvarj->factura;
@@ -35,7 +37,7 @@ class archivoXmlControlador extends archivoXmlModelo {
                 }
             }
         }
-        
+        }
         array_push($columns, 'Usuario');
         array_push($columns, 'Tipo de documento');
         array_push($columns, 'Proveedor');

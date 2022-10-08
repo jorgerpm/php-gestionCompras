@@ -121,7 +121,7 @@ function uploadFile() {
 
                     swal("", "Archivos cargados correctamente", "success");
                 } else {
-                    swal("1", "Error en la carga del archivo. " + response, "error");
+                    swal("", "Error en la carga del archivo. " + response, "error");
                 }
 
             } else {
