@@ -50,6 +50,8 @@ function actualizarListaDeArchivos(tipo) {
 }
 
 inputFileXml.on('change', function (e) {
+    fileXml = [];
+    
     let files = e.target.files;
 
     if (files.length === 0)
@@ -63,6 +65,8 @@ inputFileXml.on('change', function (e) {
     $(this).val('');
 });
 inputFilePdf.on('change', function (e) {
+    filePdf = [];
+    
     let files = e.target.files;
 
     if (files.length === 0)
@@ -112,7 +116,7 @@ function uploadFile() {
 
                 var response = this.responseText;
 
-                if (response === "Archivo xml guardado con éxito") {
+                if (response === "OK") {
 
                     fileXml = [];
                     filePdf = [];

@@ -53,8 +53,8 @@ for ($i = 0; $i < $countfiles; $i++) {
 //require_once './../Utils/constantesUtil.php';
 //require_once '../Models/serviciosWebModelo.php';
 $array = [
-    'ubicacionArchivo' => 'C:/xampp/htdocs/cargaXmlFacturas/Archivos_subidos/' . $archivo_xml,
-    //'ubicacionArchivo' => $upload_location . $archivo_xml,
+    'ubicacionArchivo' => '/home/jorge/proyectosPhp/proyectos/php-factura-xml/Archivos_subidos/' . $archivo_xml,
+//    'ubicacionArchivo' => $upload_location . $archivo_xml,
     'nombreArchivoXml' => $archivo_xml,
     'nombreArchivoPdf' => isset($archivo_pdf) ? $archivo_pdf : null,
     'urlArchivo' => 'http://localhost/cargaXmlFacturas/Archivos_subidos',
