@@ -1,11 +1,11 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <span class="tamañoTitulo"><i class="fa fa-dashboard"></i> Gestión de archivos Xml</span>
+            <span class="tamañoTitulo"><i class="fa fa-dashboard"></i> Búsquedas de los archivos xml</span>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">Cargar Xml</a></li>
+            <li class="breadcrumb-item"><a href="#">Consultar facturas</a></li>
         </ul>
     </div>
 </div>
@@ -29,36 +29,37 @@
                     </a>
                     <div class="collapse" style="overflow: scroll;" id="collapseExample">
                         <div class="btn-group" data-toggle="buttons">
-                            <?php
-                            foreach ($columns as $index => $col) {
+                            <?php foreach ($columns as $index => $col) {
                                 echo '<label class="toggle-vis btn btn-primary active" data-column="' . $index . '">';
                                 echo '<input type="checkbox" checked>';
                                 echo '<a >' . $col . '</a>';
                                 echo '</label>';
-                            }
-                            ?>
+                            } ?>
                         </div>
                     </div>
                     
                     
                     <form id="formEstado" class="login-form" action="" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
-                        <div class="row">
+                        <div class="row" style="padding-top: 20px">
                             <div class="col-md-3 col-12">
-                            <?php require_once './acciones/listarUsuarios.php'; ?>
-                            <select class="form-control" id="listUsers" name="listUsers" required="">
-                                <?php
-                                foreach ($listaUsuarios as $user) {
-                                    echo '<option value="' . $user->id . '">' . $user->nombre . '</option>';
-                                }?>
-                            </select>
-                                </div>
+                                <label>USUARIOS:</label>
+                                <?php require_once './acciones/listarUsuarios.php'; ?>
+                                <select class="form-control" id="listUsers" name="listUsers" required="">
+                                    <?php
+                                    foreach ($listaUsuarios as $user) {
+                                        echo '<option value="' . $user->id . '">' . $user->nombre . '</option>';
+                                    }?>
+                                </select>
+                            </div>
                             <div class="col-md-3 col-12">
+                                <label>DESDE:</label>
                                 <input id="dtFechaIni" name="dtFechaIni" class="form-control" type="date" >
                             </div>
                             <div class="col-md-3 col-12">
+                                <label>HASTA:</label>
                                 <input id="dtFechaFin" name="dtFechaFin" class="form-control" type="date" >
                             </div>
-                            <div class="col-md-3 col-12">
+                            <div class="col-md-3 col-12" style="padding-top: 30px">
                                 <button class="btn btn-primary" id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
                             </div>
                         </div>

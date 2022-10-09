@@ -18,12 +18,12 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Link</label>
-                            <input class="form-control" id="txtLink" name="txtLink" type="text" placeholder="Link del men&uacute;" required="">
+                            <input class="form-control" id="txtLink" name="txtLink" type="text" placeholder="Link del men&uacute;">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Im&aacute;gen</label>
-                        <input class="form-control" id="txtImagen" name="txtImagen" type="text" placeholder="Im&aacute;gen del men&uacute;" required="">
+                        <input class="form-control" id="txtImagen" name="txtImagen" type="text" placeholder="Im&aacute;gen del men&uacute;">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -40,7 +40,7 @@
                         <div class="form-group col-md-6">
                             <label for="exampleSelect1">Men&uacute;</label>
                             <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
-                                <option value="1">seleccione</option>
+                                <option value="0">seleccione</option>
                             </select>
                         </div>
                     </div>

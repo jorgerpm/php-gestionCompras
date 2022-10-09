@@ -93,27 +93,22 @@
                 </div>
             </div>
             <ul class="app-menu">
-                <?php
-                require_once './acciones/listarMenuPorRol.php';
+                <?php require_once './acciones/listarMenuPorRol.php';
                 foreach ($listaMenuPorRol as $menu) {
                     if ($menu->idMenu == null) {
                         $menuPadre = $menu->id;
-                        $arrayAux = [];?>
-                        <?php
+                        $arrayAux = [];
                         foreach ($listaMenuPorRol as $menuHijo) {
                             if ($menuHijo->idMenu == $menuPadre) {
                             array_push($arrayAux, $menuHijo);
-                            }?>
-                        <?php }
+                            }
+                        }
                         if (count($arrayAux) > 0) { ?>
                             <li class="treeview">
                                 <a class="app-menu__item" href="<?php echo $menu->link; ?>" data-toggle="treeview">
-                                    <i class="app-menu__icon fa <?php echo $menu->imagen; ?>">
-                                    </i>
-                                    <span class="app-menu__label"><?php echo $menu->titulo; ?>
-                                    </span>
-                                    <i class="treeview-indicator fa fa-angle-right">
-                                    </i>
+                                    <i class="app-menu__icon fa <?php echo $menu->imagen; ?>"></i>
+                                    <span class="app-menu__label"><?php echo $menu->titulo; ?></span>
+                                    <i class="treeview-indicator fa fa-angle-right"></i>
                                 </a>
                                 <ul class="treeview-menu">
                                 <?php foreach ($arrayAux as $menuHijoAux) { ?>
@@ -130,8 +125,8 @@
                             </li>
                         <?php }else { ?>
                             <li><a class="app-menu__item" href="<?php echo $menu->link; ?>"><i class="app-menu__icon fa <?php echo $menu->imagen; ?>"></i><span class="app-menu__label"><?php echo $menu->titulo; ?></span></a></li>
-                        <?php } ?>
-                    <?php } ?>
-                <?php } ?>
+                        <?php }
+                    }
+                } ?>
             </ul>
         </aside>
