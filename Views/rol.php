@@ -32,8 +32,7 @@
                             </thead>
                             <tbody>
                                 <?php require_once './acciones/listarRoles.php';
-                                foreach ($listaRoles as $rol) {
-                                    ?>
+                                foreach ($listaRoles as $rol) { ?>
                                     <tr>
                                         <td><?php echo $rol->id; ?></td>
                                         <td><?php echo $rol->nombre; ?></td>

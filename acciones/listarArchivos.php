@@ -10,4 +10,4 @@ else{
 $archiCont = new archivoXmlControlador();
 $respuesta = $archiCont->listar_archivos_controlador($_POST);
 $columns = $archiCont->crear_columnas($respuesta);
-//echo '<script>window.location.href=""</script>';
+echo '<script>window.location.href=""</script>';

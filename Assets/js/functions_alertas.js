@@ -112,7 +112,7 @@ function uploadFile() {
 
                 var response = this.responseText;
 
-                if (response === "OK") {
+                if (response === "Archivo xml guardado con éxito") {
 
                     fileXml = [];
                     filePdf = [];

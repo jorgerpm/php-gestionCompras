@@ -17,7 +17,7 @@
                     <?php
                     //require_once './acciones/listarArchivos.php';
                     $archiCont = new archivoXmlControlador();
-                    if(isset($_POST['dtFechaIni'])){
+                    if(isset($_POST['btnSearch'])){
                         $respuesta = $archiCont->listar_archivos_controlador($_POST);
                     } else{
                         $respuesta = $archiCont->listar_archivos_controlador(null);
@@ -41,7 +41,7 @@
                     </div>
                     
                     
-                    <form id="formEstado" class="FormularioAjax login-form" action="./acciones/listarArchivos.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
+                    <form id="formEstado" class="login-form" action="" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-3 col-12">
                             <?php require_once './acciones/listarUsuarios.php'; ?>
@@ -59,7 +59,7 @@
                                 <input id="dtFechaFin" name="dtFechaFin" class="form-control" type="date" >
                             </div>
                             <div class="col-md-3 col-12">
-                                <button class="btn btn-primary" id="btnActionForm" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
+                                <button class="btn btn-primary" id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
                             </div>
                         </div>
                         <div class="RespuestaAjax"></div>
