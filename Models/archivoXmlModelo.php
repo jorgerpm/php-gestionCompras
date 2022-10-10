@@ -12,7 +12,7 @@ class archivoXmlModelo extends serviciosWebModelo {
         $dateIni = strtotime($fechaIni) * 1000;
         $dateFin = strtotime($fechaFin) * 1000;
         $array = [];
-        $listaArchivos = self::invocarGet('archivoXml/listarPorFecha?fechaInicio='.$fechaIni.'&fechaFinal='.$fechaFin.'&idUsuarioCarga='.$idUser, $array);
+        $listaArchivos = self::invocarGet('archivoXml/listarPorFecha?fechaInicio='.$fechaIni.'&fechaFinal='.$fechaFin.'&idUsuarioCarga='.$idUser.'&desde=0&hasta=10', $array);
         return $listaArchivos;
     }
 }

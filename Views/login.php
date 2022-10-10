@@ -26,7 +26,7 @@
             <div class="login-box">
                 <!-- sección para iniciar sesión -->
                 <!--form class="login-form" action="" method="post" name="FormEntrar"-->
-                <form class="login-form" action="./Controllers/loginControlador.php" method="POST" data-form="login" autocomplete="off" enctype="multipart/form-data">
+                <form class="FormLogin login-form" action="./acciones/loginSistema.php" method="POST" data-form="login" autocomplete="off" enctype="multipart/form-data">
                     <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>INICIO DE SESI&Oacute;N</h3> <!-- título sección -->
 
                     <!-- Ingreso nombre de usuario -->
@@ -87,6 +87,7 @@
         <script src="./Assets/js/plugins/pace.min.js"></script>
         <script type="text/javascript" src="./Assets/js/plugins/bootstrap-notify.min.js"></script>
         <script type="text/javascript" src="./Assets/js/plugins/sweetalert.min.js"></script>
+        <script type="text/javascript" src="./Assets/js/md5.js"></script>
         <script type="text/javascript">
             // Login Page Flipbox control
             $('.login-content [data-toggle="flip"]').click(function () {
@@ -95,10 +96,10 @@
             });
 
 <?php
-if (isset($_SESSION['no'])) {
-    echo "swal('', 'Datos de usuario incorrectos.', 'error')";
-    unset($_SESSION['no']);
-}
+//if (isset($_SESSION['no'])) {
+//    echo "swal('', 'Datos de usuario incorrectos.', 'error')";
+//    unset($_SESSION['no']);
+//}
 ?>
 
         </script>

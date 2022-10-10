@@ -1,28 +1,28 @@
 (function () {
-	"use strict";
+    "use strict";
 
-	var treeviewMenu = $('.app-menu');
+    var treeviewMenu = $('.app-menu');
 
-	// Toggle Sidebar
-	$('[data-toggle="sidebar"]').click(function(event) {
-		event.preventDefault();
-		$('.app').toggleClass('sidenav-toggled');
-	});
+    // Toggle Sidebar
+    $('[data-toggle="sidebar"]').click(function (event) {
+        event.preventDefault();
+        $('.app').toggleClass('sidenav-toggled');
+    });
 
-	// Activate sidebar treeview toggle
-	$("[data-toggle='treeview']").click(function(event) {
-		event.preventDefault();
-		if(!$(this).parent().hasClass('is-expanded')) {
-			treeviewMenu.find("[data-toggle='treeview']").parent().removeClass('is-expanded');
-		}
-		$(this).parent().toggleClass('is-expanded');
-	});
+    // Activate sidebar treeview toggle
+    $("[data-toggle='treeview']").click(function (event) {
+        event.preventDefault();
+        if (!$(this).parent().hasClass('is-expanded')) {
+            treeviewMenu.find("[data-toggle='treeview']").parent().removeClass('is-expanded');
+        }
+        $(this).parent().toggleClass('is-expanded');
+    });
 
-	// Set initial active toggle
-	$("[data-toggle='treeview.'].is-expanded").parent().toggleClass('is-expanded');
+    // Set initial active toggle
+    $("[data-toggle='treeview.'].is-expanded").parent().toggleClass('is-expanded');
 
-	//Activate bootstrip tooltips
-	$("[data-toggle='tooltip']").tooltip();
+    //Activate bootstrip tooltips
+    $("[data-toggle='tooltip']").tooltip();
 
 })();
 
@@ -30,32 +30,32 @@
 /**
  * funcion para cuando se realiza el submit de un formulario
  * **/
-$('.FormularioAjax').submit(function(e){
-        e.preventDefault(); //no se envíe el submit todavía
+$('.FormularioAjax').submit(function (e) {
+    e.preventDefault(); //no se envíe el submit todavía
 
-        var form=$(this);
+    var form = $(this);
 
-        var tipo=form.attr('data-form');
-        var accion=form.attr('action');
-        var metodo=form.attr('method');
-        var respuesta=form.children('.RespuestaAjax');
+    var tipo = form.attr('data-form');
+    var accion = form.attr('action');
+    var metodo = form.attr('method');
+    var respuesta = form.children('.RespuestaAjax');
 
-        var msjError="<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
-        var formdata = new FormData(this);
- 
+    var msjError = "<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
+    var formdata = new FormData(this);
 
-        var textoAlerta;
-        if(tipo==="save"){
-            textoAlerta="Los datos que enviaras quedaran almacenados en el sistema";
-        }else if(tipo==="delete"){
-            textoAlerta="Los datos serán eliminados completamente del sistema";
-        }else if(tipo==="update"){
-        	textoAlerta="Los datos del sistema serán actualizados";
-        }else if(tipo==="login"){
-        	textoAlerta="Acceder al sistema";
-        }else{
-            textoAlerta="Quieres realizar la operación solicitada";
-        }
+
+    var textoAlerta;
+    if (tipo === "save") {
+        textoAlerta = "Los datos que enviaras quedaran almacenados en el sistema";
+    } else if (tipo === "delete") {
+        textoAlerta = "Los datos serán eliminados completamente del sistema";
+    } else if (tipo === "update") {
+        textoAlerta = "Los datos del sistema serán actualizados";
+    } else if (tipo === "login") {
+        textoAlerta = "Acceder al sistema";
+    } else {
+        textoAlerta = "Quieres realizar la operación solicitada";
+    }
 
 
 //        swal({
@@ -66,35 +66,71 @@ $('.FormularioAjax').submit(function(e){
 //            confirmButtonText: "Aceptar",
 //            cancelButtonText: "Cancelar"
 //        }).then(function () {
-            $.ajax({
-                type: metodo,
-                url: accion,
-                data: formdata ? formdata : form.serialize(),
-                cache: false,
-                contentType: false,
-                processData: false,
-                /*xhr: function(){
-                    var xhr = new window.XMLHttpRequest();
-                    xhr.upload.addEventListener("progress", function(evt) {
-                      if (evt.lengthComputable) {
-                        var percentComplete = evt.loaded / evt.total;
-                        percentComplete = parseInt(percentComplete * 100);
-                        if(percentComplete<100){
-                        	respuesta.html('<p class="text-center">Procesado... ('+percentComplete+'%)</p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" style="width: '+percentComplete+'%;"></div></div>');
-                      	}else{
-                      		respuesta.html('<p class="text-center"></p>');
-                      	}
-                      }
-                    }, false);
-                    return xhr;
-                },*/
-                success: function (data) {
-                    respuesta.html(data);
-                },
-                error: function() {
-                    respuesta.html(msjError);
-                }
-            });
+    $.ajax({
+        type: metodo,
+        url: accion,
+        data: formdata ? formdata : form.serialize(),
+        cache: false,
+        contentType: false,
+        processData: false,
+        /*xhr: function(){
+         var xhr = new window.XMLHttpRequest();
+         xhr.upload.addEventListener("progress", function(evt) {
+         if (evt.lengthComputable) {
+         var percentComplete = evt.loaded / evt.total;
+         percentComplete = parseInt(percentComplete * 100);
+         if(percentComplete<100){
+         respuesta.html('<p class="text-center">Procesado... ('+percentComplete+'%)</p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" style="width: '+percentComplete+'%;"></div></div>');
+         }else{
+         respuesta.html('<p class="text-center"></p>');
+         }
+         }
+         }, false);
+         return xhr;
+         },*/
+        success: function (data) {
+            respuesta.html(data);
+        },
+        error: function () {
+            respuesta.html(msjError);
+        }
+    });
 //            return false;
 //        });
+});
+
+
+
+/**esta parte sirve para inciar sesion en el sistema y enviar encriptado la clave del user*/
+$('.FormLogin').submit(function (e) {
+    e.preventDefault(); //no se envíe el submit todavía
+
+//var textUsuario = $("#Usuario");
+    var textClave = document.querySelector("#Clave");
+    textClave.value = md5(textClave.value);
+    
+    var form = $(this);
+
+    var accion = form.attr('action');
+    var metodo = form.attr('method');
+    var respuesta = form.children('.RespuestaAjax');
+
+    var formdata = new FormData(this);
+
+    $.ajax({
+        type: metodo,
+        url: accion,
+        data: formdata ? formdata : form.serialize(),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            textClave.value = null;
+            respuesta.html(data);
+        },
+        error: function (error) {
+            textClave.value = null;
+            respuesta.html(error);
+        }
     });
+});

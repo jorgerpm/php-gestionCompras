@@ -1,39 +1,31 @@
 <?php
 
-if (is_file('./Utils/configUtil.php')) {
-    require_once './Utils/configUtil.php';
-} else {
-    require_once '../Utils/configUtil.php';
-}
+class loginControlador extends loginModelo {
 
-ob_start();
-session_start();
+    public function ingresar_sistema_controlador() {
+        if (isset($_POST['usuario']) && isset($_POST['clave'])) {
 
-if (isset($_POST['usuario']) && isset($_POST['clave'])) {
-    //require_once '../Models/serviciosWebModelo.php';
-    $array = [
-        'usuario' => $_POST['usuario'],
-        'clave' => $_POST['clave']
-    ];
+            $array = [
+                'usuario' => $_POST['usuario'],
+                'clave' => $_POST['clave']
+            ];
 
-    $servicio = new serviciosWebModelo();
-    $respuesta = $servicio->invocarPost('usuario/loginSistema', $array);
-    if (isset($respuesta) && $respuesta->id > 0) {
-        $_SESSION['Usuario'] = $respuesta;
-        header('Location: ../home');
-    } else {
-//        print_r($respuesta);
-        unset($_SESSION['Usuario']); //destruye la sesión
-//unset($_POST['usuario']);
-        $_SESSION['no'] = "no";
-        header('Location: ../');
+            $respuesta = loginModelo::ingresar_sistema_modelo($array);
+            
+            if (isset($respuesta) && $respuesta->id > 0) {
+                $_SESSION['Usuario'] = $respuesta;
+                return '<script>window.location.href = "home"</script>';
+            } elseif (isset($respuesta)) {
+//                print_r($respuesta);
+                unset($_SESSION['Usuario']); //destruye la sesión
+
+                return '<script>swal("", "Usuario y clave incorrectas.", "warning");</script>';
+            } else {
+                return '<script>swal("", "No existe conexion a la base de datos.", "error");</script>';
+            }
+        } else {
+            return '<script>swal("", "Los datos son requeridos.", "warning");</script>';
+        }
     }
-} else {
-    echo "<br>ddddddddddddd<br>";
-//unset($_POST['usuario']);
-//session_unset();
-//session_destroy();
-//header('Location: ./login');
+
 }
-//    }
-//}

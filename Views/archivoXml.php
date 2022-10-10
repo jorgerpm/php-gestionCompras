@@ -42,22 +42,23 @@
                     <form id="formEstado" class="login-form" action="" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                         <div class="row" style="padding-top: 20px">
                             <div class="col-md-3 col-12">
-                                <label>USUARIOS:</label>
+                                <label for="listUsers">Usuario:</label>
                                 <?php require_once './acciones/listarUsuarios.php'; ?>
-                                <select class="form-control" id="listUsers" name="listUsers" required="">
+                                <select class="form-control" id="listUsers" name="listUsers" >
+                                    <option value="">Seleccione</option>;
                                     <?php
                                     foreach ($listaUsuarios as $user) {
-                                        echo '<option value="' . $user->id . '">' . $user->nombre . '</option>';
+                                        echo '<option value="' . $user->id . '" '. ((isset($_POST['listUsers'])&&$_POST['listUsers']==$user->id) ? 'selected' : '').'>' . $user->nombre . '</option>';
                                     }?>
                                 </select>
                             </div>
                             <div class="col-md-3 col-12">
-                                <label>DESDE:</label>
-                                <input id="dtFechaIni" name="dtFechaIni" class="form-control" type="date" >
+                                <label for="dtFechaIni">Fecha desde:</label>
+                                <input id="dtFechaIni" name="dtFechaIni" class="form-control" type="date" value="<?php if(isset($_POST['dtFechaIni'])){echo $_POST['dtFechaIni'];}else{echo date("Y-m-d");} ?>">
                             </div>
                             <div class="col-md-3 col-12">
-                                <label>HASTA:</label>
-                                <input id="dtFechaFin" name="dtFechaFin" class="form-control" type="date" >
+                                <label for="dtFechaFin">Fecha hasta:</label>
+                                <input id="dtFechaFin" name="dtFechaFin" class="form-control" type="date" value="<?php if(isset($_POST['dtFechaFin'])){echo $_POST['dtFechaFin'];}else{echo date("Y-m-d");} ?>">
                             </div>
                             <div class="col-md-3 col-12" style="padding-top: 30px">
                                 <button class="btn btn-primary" id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
@@ -166,14 +167,18 @@
         // Toggle the visibility
         column.visible(!column.visible());
     });
+    
+    n =  new Date();
+//Año
+    y = n.getFullYear();
+    //Mes
+    m = n.getMonth() + 1;
+    //Día
+    d = n.getDate();
+    var dtFechaFin = document.querySelector('#dtFechaFin');
+//    alert(d + "/" + m + "/" + y);
+//    if(dtFechaFin.value === '')
+//        dtFechaFin.value = d + "/" + m + "/" + y;
+    
 </script>
 
-<!-- <script type="text/javascript">
-      //este es el metodo que lo mantendra actualizado 
-        $(document).ready(function() {
-          var refreshId =  setInterval( function(){
-         $('#tablaControl').load('archivoXml');//actualizas el div
-      }, 40000 );
-    });
-</script>
-tablas dinámicas: https://www.youtube.com/watch?v=52niJ-2TrQ0 -->

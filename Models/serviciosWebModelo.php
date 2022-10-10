@@ -3,7 +3,7 @@
 
 class serviciosWebModelo {
 
-    public function invocarPost($urlServicio, $datos) {
+    protected function invocarPost($urlServicio, $datos) {
         $url = constantesUtil::$URL_WEB_SERVICE . $urlServicio;
         $ch = curl_init();
 
@@ -24,7 +24,7 @@ class serviciosWebModelo {
         return $tipoArray;
     }
 
-    public function invocarGet($urlServicio, $datos) {
+    protected function invocarGet($urlServicio, $datos) {
         $url = constantesUtil::$URL_WEB_SERVICE . $urlServicio;
         $ch = curl_init();
 

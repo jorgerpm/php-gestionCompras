@@ -5,7 +5,6 @@
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">Menú</li>
             <li class="breadcrumb-item active"><a href="#">Cargar Xml</a></li>
         </ul>
     </div>

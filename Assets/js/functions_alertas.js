@@ -108,7 +108,7 @@ function uploadFile() {
         var xhttp = new XMLHttpRequest();
 
         // Set POST method and ajax file path
-        xhttp.open("POST", "./Controllers/cargarXmlControlador.php", true);
+        xhttp.open("POST", "./acciones/cargarArchivos.php", true);
 
         // call on request changes state
         xhttp.onreadystatechange = function () {

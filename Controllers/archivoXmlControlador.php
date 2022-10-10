@@ -4,11 +4,17 @@ class archivoXmlControlador extends archivoXmlModelo {
 
     public function listar_archivos_controlador($post) {
         if(isset($post) && isset($post['dtFechaIni']) && isset($post['dtFechaFin'])){
-            return archivoXmlModelo::listar_archivos($post['dtFechaIni'], $post['dtFechaFin'], $post['listUsers']);
+            $respuesta = archivoXmlModelo::listar_archivos($post['dtFechaIni'], $post['dtFechaFin'], isset($post['listUsers']) ? $post['listUsers'] : null);
         }
         else{
-            return archivoXmlModelo::listar_archivos(date("Y-m-d"), date("Y-m-d"), 1);
+            $respuesta = archivoXmlModelo::listar_archivos(date("Y-m-d"), date("Y-m-d"), null);
         }
+        
+        if(!isset($respuesta)){
+            $respuesta = [];
+        }
+        
+        return $respuesta;
     }
 
     public function crear_columnas($respuesta) {
