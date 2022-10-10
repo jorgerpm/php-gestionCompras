@@ -46,7 +46,7 @@
                                         <td><?php echo $menu->idEstado ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalMenu(variableMenu =<?php echo json_encode($menu); ?>);'></button>
+                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalMenu(variableMenu = <?php echo json_encode($menu); ?>);'></button>
                                             </div>
                                         </td>
                                     </tr>

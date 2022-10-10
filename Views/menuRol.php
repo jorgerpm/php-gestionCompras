@@ -10,66 +10,96 @@
         </ul>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="tile">
+                <?php
+                    //require_once './acciones/listarArchivos.php';
+                    $menuRolControlador = new menuRolControlador();
+                    
+                    if(isset($_GET['select'])){
+                        $idRolUsuario = $_GET['select'];
+                        $listaMenuPorRol = $menuRolControlador->listarMenusRolPorRol($idRolUsuario);
+                        
+                    } else{
+                        
+                    }
+                ?>
                 <div>
                     <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = ''">buscar</button></p>
                 </div>
+                <form name="f1" id="formMenuRol" action="">
                 <div class="btn-group mb-4" role="group">
-                    <select class="form-control" name="select">
-                        <option class="menuRol" value="value1" selected>SELECCIONE UN ROL</option>
+                    <select class="form-control" name="select" onchange="this.form.submit()" id="cbxListaRol">
+                        <option class="menuRol" value="" >SELECCIONE UN ROL</option>
                         <?php require_once './acciones/listarRoles.php';
                         foreach($listaRoles as $rol) { ?>
-                            <option class="menuRol" value="<?php echo $rol->id; ?>"><?php echo $rol->nombre; ?></option>
+                        <option class="menuRol" value="<?php echo $rol->id; ?>" <?php if(isset($_GET['select']) && $_GET['select'] == $rol->id) echo "selected"; ?> ><?php echo $rol->nombre; ?></option>
                         <?php } ?>
                     </select>
                 </div>
-                <?php require_once './acciones/listarMenuPorRol.php';
-                foreach ($listaMenuPorRol as $menu) {
+                
+                <?php require_once './acciones/listarMenus.php';
+                foreach ($listaMenus as $menu) {
+                    
                     if ($menu->idMenu == null) {
                         $menuPadre = $menu->id;
                         $arrayAux = [];
-                        foreach ($listaMenuPorRol as $menuHijo) {
+                        foreach ($listaMenus as $menuHijo) {
                             if ($menuHijo->idMenu == $menuPadre) {
                             array_push($arrayAux, $menuHijo);
                             }
                         }
                         if (count($arrayAux) > 0) { ?>
                             <div class="treeview">
-                                <div class="toggle">
+                                <span class="toggle">
                                     <label>
-                                        <input type="checkbox"><span class="button-indecator"></span>
+                                        <input type="checkbox" onchange="checkAll(this)" id="<?php $menu->id ?>"><span class="button-indecator"></span>
                                     </label>
-                                </div>
-                                <a class="itemsMenuRol" data-toggle="treeview">
-                                    <i class="app-menu__icon fa <?php echo $menu->imagen; ?>"></i>
+                                </span>
+                                <a class="app-menu__item" data-toggle="treeview" style="margin-top: -45px; margin-left: 20px;background: none;border-left-color: transparent;">
                                     <span class="app-menu__label"><?php echo $menu->titulo; ?></span>
                                     <i class="treeview-indicator fa fa-angle-right"></i>
                                 </a>
-                                <ul class="treeview-menu" style="background-color: white; padding-left: 50px">
+                                <ul class="treeview-menu" style="padding-left:50px; background:none">
                                 <?php foreach ($arrayAux as $menuHijoAux) { ?>
                                     <div class="toggle">
                                         <label>
-                                            <input type="checkbox"><span class="button-indecator"></span>
+                                            <input type="checkbox" id="<?php $menuHijoAux->id ?>" <?php if(isset($listaMenuPorRol)){
+                                                foreach ($listaMenuPorRol as $menuRol) {
+                                                    if($menuRol->idMenu == $menuHijoAux->id) {
+                                                        echo "checked";
+                                                    }
+                                                }
+                                            }?>><span class="button-indecator"></span>
                                         </label>
+                                        <label style="font-size: 16px"><?php echo " " . $menuHijoAux->titulo; ?></label>
                                     </div>
-                                    <a class="treeview-item" style="padding: 7px 0 7px 20px">
-                                        <label class="fa <?php echo $menuHijoAux->imagen; ?>"><?php echo $menuHijoAux->titulo; ?></label>
-                                    </a>
+                                        
                                 <?php } ?>
                                 </ul>
                             </div>
                         <?php }else { ?>
                             <div class="toggle">
                                 <label>
-                                    <input type="checkbox"><span class="button-indecator"></span>
+                                    <input type="checkbox" id="<?php $menu->id ?>" <?php if(isset($listaMenuPorRol)){
+                                        foreach ($listaMenuPorRol as $menuRol) {
+                                            if($menuRol->idMenu == $menu->id) {
+                                                echo "checked";
+                                            }
+                                        }
+                                    } ?>><span class="button-indecator"></span>
                                 </label>
+                                <label style="font-size: 16px"><?php echo " " . $menu->titulo; ?></label>
                             </div>
-                            <label class="fa <?php echo $menu->imagen; ?>"><?php echo $menu->titulo; ?></label>
                         <?php }
                     }
                 } ?>
+                </form>
             </div>
+            
         </div>
     </div>
 </main>
+<?php 
+echo '<script></script>' ?>
+<script src="./Assets/js/functions_menu_rol.js"></script>

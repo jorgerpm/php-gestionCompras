@@ -42,8 +42,8 @@ class menuControlador extends menuModelo {
         }
     }
 
-    public function listarMenusPorRol() {
-        $listaMenusPorRol = menuModelo::listar_menus_por_rol();
+    public function listarMenusPorRol($idRolUsuario) {
+        $listaMenusPorRol = menuModelo::listar_menus_por_rol($idRolUsuario);
         return $listaMenusPorRol;
     }
 }
