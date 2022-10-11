@@ -1,6 +1,5 @@
 <?php
 
-
 class serviciosWebModelo {
 
     protected function invocarPost($urlServicio, $datos) {

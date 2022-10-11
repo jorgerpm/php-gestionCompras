@@ -76,8 +76,8 @@
                 </li -->
                 <!-- User Menu-->
                 <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-                    <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                        <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
+                    <ul class="dropdown-menu settings-menu">
+                        <li><a class="dropdown-item" href="cambiarContraseña"><i class="fa fa-key fa-lg"></i>Cambio contraseña</a></li>
                         <li><a class="dropdown-item" href="logout"><i class="fa fa-sign-out fa-lg"></i> Salir</a></li>
                     </ul>
                 </li>
@@ -87,10 +87,8 @@
         <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
         <aside class="app-sidebar">
             <div class="app-sidebar__user fa fa-user-circle" style="text-align:center">
-                <div>
-                    <span class="app-sidebar__user-name tamañoTitulo"><?php echo $_SESSION['Usuario']->nombre ?></span>
-                    <!--<p class="app-sidebar__user-designation">Frontend Developer</p>-->
-                </div>
+                <span class="app-sidebar__user-name tamañoTitulo"><?php echo $_SESSION['Usuario']->nombre ?></span>
+                <!--<p class="app-sidebar__user-designation">Frontend Developer</p>-->
             </div>
             <ul class="app-menu">
                 <?php require_once './acciones/listarMenuPorRol.php';
