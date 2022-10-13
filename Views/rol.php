@@ -38,11 +38,7 @@
                                         <td><?php echo $rol->id; ?></td>
                                         <td><?php echo $rol->nombre; ?></td>
                                         <td>
-                                            <div class="toggle">
-                                                <label>
-                                                        <input type="checkbox" <?php echo ($rol->principal == 1) ? "checked" : ""?>><span class="button-indecator"></span>
-                                                </label>
-                                            </div>
+                                            <label><?php echo ($rol->principal == 1) ? "SÍ" : "NO" ?></label>
                                         </td>
                                         <td><?php echo ($rol->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
