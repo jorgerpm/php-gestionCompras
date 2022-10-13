@@ -26,6 +26,7 @@
                                 <tr>
                                     <th>Código</th>
                                     <th>Nombre</th>
+                                    <th>Principal</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
@@ -36,6 +37,13 @@
                                     <tr>
                                         <td><?php echo $rol->id; ?></td>
                                         <td><?php echo $rol->nombre; ?></td>
+                                        <td>
+                                            <div class="toggle">
+                                                <label>
+                                                        <input type="checkbox" <?php echo ($rol->principal == 1) ? "checked" : ""?>><span class="button-indecator"></span>
+                                                </label>
+                                            </div>
+                                        </td>
                                         <td><?php echo ($rol->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
