@@ -11,6 +11,7 @@
                 <form id="formUsuario" class="FormularioAjax login-form" action="acciones/guardarUsuario.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                     <input type="hidden" id="idUsuario" name="idUsuario" value="">
                     <p class="text-danger">Todos los campos son obligatorios.*</p>
+                    <input name="txtClaveAux" id="txtClaveAux" value="" hidden="">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label class="control-label">Nombre</label>
@@ -28,7 +29,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Correo</label>
-                            <input class="form-control" id="txtCorreo" name="txtCorreo" type="text" placeholder="Correo electrónico" required="">
+                            <input class="form-control" id="txtCorreo" name="txtCorreo" type="email" placeholder="Correo electrónico" required="">
                         </div>
                     </div>
                     <div class="form-row">

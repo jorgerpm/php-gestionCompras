@@ -7,7 +7,7 @@ class archivoXmlControlador extends archivoXmlModelo {
             $respuesta = archivoXmlModelo::listar_archivos($post['dtFechaIni'], $post['dtFechaFin'], isset($post['listUsers']) ? $post['listUsers'] : null);
         }
         else{
-            $respuesta = archivoXmlModelo::listar_archivos(date("Y-m-d"), date("Y-m-d"), null);
+            $respuesta = archivoXmlModelo::listar_archivos(date("Y-m-d"), date("Y-m-d"), ($_SESSION['Rol']->principal == 0) ? $_SESSION['Usuario']->id : null);
         }
         
         if(!isset($respuesta)){

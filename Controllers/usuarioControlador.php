@@ -55,16 +55,23 @@ class usuarioControlador extends usuarioModelo {
         $txtNombre = $_POST['txtNombre'];
         $txtUsuario = $_POST['txtUsuario'];
         $txtClave = $_POST['txtClave'];
+        $txtClaveOriginal = $_POST['txtClaveAux'];
         $txtCorreo = $_POST['txtCorreo'];
         $cbxListaRol = $_POST['cbxListaRol'];
         $cbxListaEstado = $_POST['cbxListaEstado'];
-
+        
+        $nuevaClave = $txtClaveOriginal;
+        
+        if($txtClave != $txtClaveOriginal) {
+            $nuevaClave = md5($txtClave);
+        }
+        
         if (isset($txtNombre) && isset($txtUsuario) && isset($txtClave) && isset($txtCorreo) && isset($cbxListaRol) && isset($cbxListaEstado)) {
             $datos = [
                 "id" => $id,
                 "nombre" => strtoupper($txtNombre),
                 "usuario" => $txtUsuario,
-                "clave" => $txtClave,
+                "clave" => $nuevaClave,
                 "correo" => $txtCorreo,
                 "idEstado" => $cbxListaEstado,
                 "idRol" => $cbxListaRol

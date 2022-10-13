@@ -8,6 +8,7 @@ function openModalUsuario(val_datos) {
         document.querySelector('#txtCorreo').value = val_datos.correo;
         document.querySelector('#cbxListaRol').value = val_datos.idRol;
         document.querySelector('#cbxListaEstado').value = val_datos.idEstado;
+        document.querySelector('#txtClaveAux').value = val_datos.clave;
     }
     else{
         document.querySelector('#idUsuario').value = null;

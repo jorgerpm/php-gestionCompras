@@ -44,11 +44,19 @@
                             <div class="col-md-3 col-12">
                                 <label for="listUsers">Usuario:</label>
                                 <?php require_once './acciones/listarUsuarios.php'; ?>
-                                <select class="form-control" id="listUsers" name="listUsers" >
-                                    <option value="">Seleccione</option>;
+                                <select class="form-control disable-selection" id="listUsers" name="listUsers" <?php echo ($_SESSION['Rol']->principal == 0) ? "" : "" ?>>
+                                    <?php if($_SESSION['Rol']->principal == 1) {?>
+                                        <option value="">Seleccione</option>;
+                                    <?php } ?>
                                     <?php
                                     foreach ($listaUsuarios as $user) {
-                                        echo '<option value="' . $user->id . '" '. ((isset($_POST['listUsers'])&&$_POST['listUsers']==$user->id) ? 'selected' : '').'>' . $user->nombre . '</option>';
+                                        if($_SESSION['Rol']->principal == 1){
+                                            echo '<option value="' . $user->id . '" '. ((isset($_POST['listUsers'])&&$_POST['listUsers']==$user->id) ? 'selected' : '').'>' . $user->nombre . '</option>';
+                                        } else {
+                                            if($_SESSION['Usuario']->id == $user->id) {
+                                                echo '<option value="' . $user->id . '" '. ((isset($_POST['listUsers'])&&$_POST['listUsers']==$user->id) ? 'selected' : '').'>' . $user->nombre . '</option>';
+                                            }
+                                        }
                                     }?>
                                 </select>
                             </div>
