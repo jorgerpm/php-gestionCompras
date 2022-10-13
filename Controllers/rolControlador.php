@@ -4,6 +4,9 @@ class rolControlador extends rolModelo {
 
     public function listarRoles() {
         $listaRoles = rolModelo::listar_roles();
+        if(!isset($listaRoles)) {
+            $listaRoles = [];
+        }
         return $listaRoles;
     }
 

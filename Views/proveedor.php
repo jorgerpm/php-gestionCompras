@@ -1,12 +1,12 @@
 <?php require_once 'Template/Modals/modalProveedor.php'; ?>
 <main class="app-content">
-    <div class="app-title">
+    <div class="app-title" style="height: 50px">
         <div>
-            <span class="tamañoTitulo"><i class="fa fa-dashboard"></i> Gestión de proveedores</span>
+            <span class="tamañoTitulo"><i class="fa fa-truck"></i> Gestión de proveedores</span>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">Cargar Xml</a></li>
+            <li class="breadcrumb-item"><a href="#">Gestión proveedores</a></li>
         </ul>
     </div>
     </div>

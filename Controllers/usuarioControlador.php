@@ -1,9 +1,11 @@
 <?php
-session_start();
 class usuarioControlador extends usuarioModelo {
 
     public function listarUsuarios() {
         $listaUsuarios = usuarioModelo::listar_usuarios();
+        if(!isset($listaUsuarios)) {
+            $listaUsuarios = [];
+        }
         return $listaUsuarios;
     }
 
@@ -21,12 +23,12 @@ class usuarioControlador extends usuarioModelo {
         $txtRepetirClave = $_POST['txtRepetirClave'];
         
         if($txtClaveActual == $claveActual) {
-            if($txtClaveActual == $txtRepetirClave){
+            if($txtClaveNueva == $txtRepetirClave){
                 $datos = [
                     "id" => $id,
                     "nombre" => $txtNombre,
                     "usuario" => $txtUsuario,
-                    "clave" => $txtClaveNueva,
+                    "clave" => md5($txtClaveNueva),
                     "correo" => $txtCorreo,
                     "idEstado" => $cbxListaEstado,
                     "idRol" => $cbxListaRol
@@ -34,9 +36,13 @@ class usuarioControlador extends usuarioModelo {
 
                 $respuesta = usuarioModelo::guardar_usuario_modelo($datos);
 
-                echo '<script>swal("", "Contraseña actualizada correctamente", "success");</script>';
+                echo '<script>swal("", "Contraseña actualizada correctamente", "success")
+                    .then((value) => {
+                        window.location.href="logout";
+                    });</script>';
+                
             } else {
-                echo '<script>swal("", "Repita bien la contraseña", "error");</script>';
+                echo '<script>swal("", "Las nuevas contraseñas no coinciden", "error");</script>';
             }
         } else {
             echo '<script>swal("", "Las contraseña ingresada no coincide con la registrada", "error");</script>';

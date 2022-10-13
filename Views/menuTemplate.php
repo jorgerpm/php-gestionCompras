@@ -110,7 +110,7 @@
                                 </a>
                                 <ul class="treeview-menu">
                                 <?php foreach ($arrayAux as $menuHijoAux) { ?>
-                                        <li>
+                                    <li style="padding-left: 20px">
                                             <a class="treeview-item" style="padding: 7px 0 7px 20px" href="<?php echo $menuHijoAux->link; ?>">
                                                 <i class="icon fa <?php echo $menuHijoAux->imagen; ?>">
                                                     <span class="app-menu__label"><?php echo $menuHijoAux->titulo; ?>

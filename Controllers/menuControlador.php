@@ -4,6 +4,9 @@ class menuControlador extends menuModelo {
 
     public function listarMenus() {
         $listaMenus = menuModelo::listar_menus();
+        if(!isset($listaMenus)) {
+            $listaMenus = [];
+        }
         return $listaMenus;
     }
 
@@ -44,6 +47,9 @@ class menuControlador extends menuModelo {
 
     public function listarMenusPorRol($idRolUsuario) {
         $listaMenusPorRol = menuModelo::listar_menus_por_rol($idRolUsuario);
+        if(!isset($listaMenusPorRol)) {
+            $listaMenusPorRol = [];
+        }
         return $listaMenusPorRol;
     }
 }

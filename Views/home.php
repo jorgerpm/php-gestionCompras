@@ -1,5 +1,5 @@
 <main class="app-content">
-    <div class="app-title">
+    <div class="app-title" style="height: 50px">
         <div>
             <h1><i class="fa fa-dashboard"></i> Blank Page</h1>
             <p>Start a beautiful journey here</p>

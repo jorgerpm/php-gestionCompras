@@ -1,12 +1,13 @@
 <?php require_once 'Template/Modals/modalUsuario.php'; ?>
 <main class="app-content">
-    <div class="app-title">
+    <div class="app-title" style="height: 50px">
         <div>
-            <span class="tamañoTitulo"><i class="fa fa-dashboard"></i> Gestión de usuarios</span>
+            <span class="tamañoTitulo"><i class="fa fa-user-o"></i> Gestión de usuarios</span>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">Gestión de usuarios</a></li>
+            <li class="breadcrumb-item">Administraci&oacute;n</li>
+            <li class="breadcrumb-item"><a href="#">Gestión usuarios</a></li>
         </ul>
     </div>
     </div>

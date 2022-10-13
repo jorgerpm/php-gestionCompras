@@ -4,6 +4,9 @@ class proveedorControlador extends proveedorModelo {
 
     public function listarProveedores() {
         $listaProveedores = proveedorModelo::listar_proveedores();
+        if(!isset($listaProveedores)) {
+            $listaProveedores = [];
+        }
         return $listaProveedores;
     }
 

@@ -1,6 +1,6 @@
 <?php include 'Template/Modals/modalEstado.php'; ?>
 <main class="app-content">
-    <div class="app-title">
+    <div class="app-title" style="height: 50px">
         <div>
             <span class="tamañoTitulo"><i class="fa fa-th-list"></i> Estados</span>
         </div>

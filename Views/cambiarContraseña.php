@@ -1,10 +1,7 @@
 <section class="login-content">
-    <div class="logo">
-        <h1 style="color: black">Cambio de contrase&ntilde;a</h1>
-    </div>
     <div class="login-box">
         <!-- sección para iniciar sesión -->
-        <form id="formUsuario" class="FormularioAjax login-form" action="acciones/cambiarClave.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
+        <form id="formUsuario" class="FormCambioClave login-form" action="acciones/cambiarClave.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
             
             <div>
                 <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href=''">buscar</button></p>
@@ -12,20 +9,20 @@
             
             <!-- Ingreso contraseña actual -->
             <div class="form-group">
-                <label class="control-label">CONTRASE&Ntilde;A ACTUAL</label>
-                <input class="form-control" type="password" name="txtClaveActual" placeholder="escriba la contrase&ntilde;a actual" id="clave" required>
+                <label class="control-label">Contrase&ntilde;a actual</label>
+                <input class="form-control" type="password" name="txtClaveActual" placeholder="escriba la contrase&ntilde;a actual" id="txtClaveActual" required>
             </div>
 
             <!-- Ingreso contraseña nueva -->
             <div class="form-group">
-                <label class="control-label">CONTRASE&Ntilde;A NUEVA</label>
-                <input class="form-control" type="password" name="txtClaveNueva" placeholder="ingrese la contrase&ntilde;a nueva" id="clave" required>
+                <label class="control-label">Contrase&ntilde;a nueva</label>
+                <input class="form-control" type="password" name="txtClaveNueva" placeholder="ingrese la contrase&ntilde;a nueva" id="txtClaveNueva" required>
             </div>
 
             <!-- Repetir contraseña nueva -->
             <div class="form-group">
-                <label class="control-label">REPETIR CONTRASE&Ntilde;A</label>
-                <input class="form-control" type="password" name="txtRepetirClave" placeholder="repita la contrase&ntilde;a nueva" id="clave" required>
+                <label class="control-label">Repetir contrase&ntilde;a</label>
+                <input class="form-control" type="password" name="txtRepetirClave" placeholder="repita la contrase&ntilde;a nueva" id="txtRepetirClave" required>
             </div>
 
             <!-- botón para iniciar sesión -->

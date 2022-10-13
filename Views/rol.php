@@ -1,13 +1,13 @@
 <?php include 'Template/Modals/modalRol.php'; ?>
 <main class="app-content">
-    <div class="app-title">
+    <div class="app-title" style="height: 50px">
         <div>
-            <span class="tamañoTitulo"><i class="fa fa-th-list"></i> Roles</span>
+            <span class="tamañoTitulo"><i class="fa fa-address-card-o"></i> Gestión de roles</span>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item">Administraci&oacute;n</li>
-            <li class="breadcrumb-item active"><a href="#">Gesti&oacute;n de roles</a></li>
+            <li class="breadcrumb-item active"><a href="#">Gesti&oacute;n roles</a></li>
         </ul>
     </div>
     <div class="row espacio">

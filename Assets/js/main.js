@@ -134,3 +134,37 @@ $('.FormLogin').submit(function (e) {
         }
     });
 });
+
+/**esta parte sirve para inciar sesion en el sistema y enviar encriptado la clave del user*/
+$('.FormCambioClave').submit(function (e) {
+    e.preventDefault(); //no se envíe el submit todavía
+
+//var textUsuario = $("#Usuario");
+    var textClave = document.querySelector("#txtClaveActual");
+    textClave.value = md5(textClave.value);
+    
+    var form = $(this);
+
+    var accion = form.attr('action');
+    var metodo = form.attr('method');
+    var respuesta = form.children('.RespuestaAjax');
+
+    var formdata = new FormData(this);
+
+    $.ajax({
+        type: metodo,
+        url: accion,
+        data: formdata ? formdata : form.serialize(),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            textClave.value = null;
+            respuesta.html(data);
+        },
+        error: function (error) {
+            textClave.value = null;
+            respuesta.html(error);
+        }
+    });
+});

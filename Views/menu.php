@@ -1,6 +1,6 @@
 <?php include 'Template/Modals/modalMenu.php'; ?>
 <main class="app-content">
-    <div class="app-title">
+    <div class="app-title" style="height: 50px">
         <div>
             <h1><i class="fa fa-dashboard"></i> Menús</h1>
             <p>Editar y crear menús</p>

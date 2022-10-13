@@ -7,6 +7,8 @@
 <script type="text/javascript" src="./Assets/js/plugins/sweetalert.min.js"></script>
 <!-- Page specific javascripts-->
 
+<script type="text/javascript" src="./Assets/js/md5.js"></script>
+
 <!-- Data table plugin-->
 <script type="text/javascript" src="./Assets/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="./Assets/js/plugins/dataTables.bootstrap.min.js"></script>

@@ -1,11 +1,11 @@
 <main class="app-content">
-    <div class="app-title">
+    <div class="app-title" style="height: 50px">
         <div>
-            <span class="tamañoTitulo"><i class="fa fa-th-list"></i> Cargar archivo Xml</span>
+            <span class="tamañoTitulo"><i class="fa fa-upload"></i> Cargar archivo xml</span>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item active"><a href="#">Cargar Xml</a></li>
+            <li class="breadcrumb-item active"><a href="#">Cargar xml</a></li>
         </ul>
     </div>
     <!-- Cargar archivo xml -->

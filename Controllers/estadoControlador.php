@@ -3,7 +3,11 @@
 class estadoControlador extends estadoModelo {
 
     public function listar_estados() {
-        return estadoModelo::listar_estados();
+        $listarEstados = estadoModelo::listar_estados();
+        if(!isset($listarEstados)) {
+            $listarEstados = [];
+        }
+        return $listarEstados;
     }
 
     //aqui la logica
