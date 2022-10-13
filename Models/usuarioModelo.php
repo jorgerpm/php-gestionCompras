@@ -12,4 +12,10 @@ class usuarioModelo extends serviciosWebModelo {
         $listaUsuarios = self::invocarGet('usuario/listarUsuarios', $array);
         return $listaUsuarios;
     }
+    
+    public function recuperar_clave_modelo($correo){
+        $array = [];
+        $respuesta = self::invocarGet('usuario/recuperarClave?correo='.$correo, $array);
+        return $respuesta;
+    }
 }

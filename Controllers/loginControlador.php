@@ -13,7 +13,14 @@ class loginControlador extends loginModelo {
             $respuesta = loginModelo::ingresar_sistema_modelo($array);
             
             if (isset($respuesta) && $respuesta->id > 0) {
+                //se envia a buscar el rol
+                $rolControl = new rolControlador();
+                $rolDto = $rolControl->buscar_rol_porId_controlador($respuesta->idRol);
+                //se guarda en sesion el rol
+                $_SESSION['Rol'] = $rolDto;
+                
                 $_SESSION['Usuario'] = $respuesta;
+                
                 return '<script>window.location.href = "home"</script>';
             } elseif (isset($respuesta)) {
 //                print_r($respuesta);

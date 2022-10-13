@@ -42,4 +42,8 @@ class rolControlador extends rolModelo {
         }
     }
 
+    public function buscar_rol_porId_controlador($idRol) {
+        $rolDto = rolModelo::buscar_rol_porId_modelo($idRol);
+        return $rolDto;
+    }
 }

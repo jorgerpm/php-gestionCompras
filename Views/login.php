@@ -61,7 +61,7 @@
                 </form>
 
                 <!-- Sección para recuperar la contraseña -->
-                <form class="forget-form" action="./Controllers/recuperarClaveControlador.php" method="post" name="FormEntrar">
+                <form class="FormularioAjax forget-form" action="./acciones/recuperarClave.php" method="post" name="FormEntrar">
                     <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>¿OLVID&Oacute; SU CONTRASEÑA?</h3> <!-- título sección -->
 
                     <!-- Ingreso de correo -->
@@ -75,6 +75,7 @@
                     <div class="form-group mt-3">
                         <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Iniciar sesión</a></p>
                     </div>
+                    <div class="RespuestaAjax"></div>
                 </form>
             </div>
         </section>

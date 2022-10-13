@@ -12,4 +12,10 @@ class rolModelo extends serviciosWebModelo {
         $listaRoles = self::invocarGet('rol/listarRoles', $array);
         return $listaRoles;
     }
+    
+    public function buscar_rol_porId_modelo($idRol) {
+        $array = [];
+        $rolDto = self::invocarGet('rol/buscarRolPorId?idRol='.$idRol, $array);
+        return $rolDto;
+    }
 }

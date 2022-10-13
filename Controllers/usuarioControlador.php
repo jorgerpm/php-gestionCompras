@@ -1,9 +1,10 @@
 <?php
+
 class usuarioControlador extends usuarioModelo {
 
     public function listarUsuarios() {
         $listaUsuarios = usuarioModelo::listar_usuarios();
-        if(!isset($listaUsuarios)) {
+        if (!isset($listaUsuarios)) {
             $listaUsuarios = [];
         }
         return $listaUsuarios;
@@ -17,13 +18,13 @@ class usuarioControlador extends usuarioModelo {
         $txtCorreo = $_SESSION['Usuario']->correo;
         $cbxListaRol = $_SESSION['Usuario']->idEstado;
         $cbxListaEstado = $_SESSION['Usuario']->idRol;
-        
+
         $txtClaveActual = $_POST['txtClaveActual'];
         $txtClaveNueva = $_POST['txtClaveNueva'];
         $txtRepetirClave = $_POST['txtRepetirClave'];
-        
-        if($txtClaveActual == $claveActual) {
-            if($txtClaveNueva == $txtRepetirClave){
+
+        if ($txtClaveActual == $claveActual) {
+            if ($txtClaveNueva == $txtRepetirClave) {
                 $datos = [
                     "id" => $id,
                     "nombre" => $txtNombre,
@@ -40,7 +41,6 @@ class usuarioControlador extends usuarioModelo {
                     .then((value) => {
                         window.location.href="logout";
                     });</script>';
-                
             } else {
                 echo '<script>swal("", "Las nuevas contraseñas no coinciden", "error");</script>';
             }
@@ -48,7 +48,7 @@ class usuarioControlador extends usuarioModelo {
             echo '<script>swal("", "Las contraseña ingresada no coincide con la registrada", "error");</script>';
         }
     }
-    
+
     //aqui la logica
     public function guardar_usuario_controlador() {
         $id = $_POST['idUsuario'];
@@ -80,9 +80,24 @@ class usuarioControlador extends usuarioModelo {
             } else {
                 return '<script>swal("", "Error al almacenar los datos.", "error");</script>';
             }
-            
         } else {
             return '<script>swal("", "Complete los campos requeridos del formulario.", "error");</script>';
+        }
+    }
+
+    public function recuperar_clave_controlador() {
+        $correo = $_POST['correo'];
+        $respuesta = usuarioModelo::recuperar_clave_modelo($correo);
+        if (isset($respuesta)) {
+            if ($respuesta->respuesta == "ENVIO EXITOSO") {
+                return '<script>swal("", "Se envió una nueva clave al correo ingresado.", "success");</script>';
+            } elseif(isset($respuesta->respuesta)) {
+                return '<script>swal("", " . Error en el envío del correo. . ", "error");</script>';
+            }else{
+                return '<script>swal("", "Error en el envío del correo.", "error");</script>';
+            }
+        } else {
+            return '<script>swal("", "Error en el envío del correo.", "error");</script>';
         }
     }
 

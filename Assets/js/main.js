@@ -91,8 +91,8 @@ $('.FormularioAjax').submit(function (e) {
         success: function (data) {
             respuesta.html(data);
         },
-        error: function () {
-            respuesta.html(msjError);
+        error: function (error) {
+            respuesta.html(error);
         }
     });
 //            return false;
