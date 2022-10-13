@@ -43,7 +43,7 @@
                                         <td><?php echo $usuario->usuario ?></td>
                                         <td><?php echo $usuario->correo ?></td>
                                         <td><?php echo $usuario->idRol ?></td>
-                                        <td><?php echo $usuario->idEstado ?></td>
+                                        <td><?php echo ($usuario->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                                 <button class="btn btn-info fa fa-edit" type="button" onclick='openModalUsuario(variableUsuario = <?php echo json_encode($usuario); ?>);'></button>

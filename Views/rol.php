@@ -36,7 +36,7 @@
                                     <tr>
                                         <td><?php echo $rol->id; ?></td>
                                         <td><?php echo $rol->nombre; ?></td>
-                                        <td><?php echo $rol->idEstado; ?></td>
+                                        <td><?php echo ($rol->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                                 <button class="btn btn-info fa fa-edit" type="button" onclick='openModalRol(variableRol = <?php echo json_encode($rol); ?>);'></button>
