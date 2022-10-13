@@ -9,6 +9,7 @@ class cargarXmlControlador extends cargarXmlModelo {
         $countfiles = count($_FILES['archivos']['name']); //Cuenta el total de archivos
         $upload_location = __DIR__ . 'Archivos_subidos/'; //cargar directorio
         $upload_location = str_replace("Controllers", "", $upload_location);
+//        $upload_location = constantesUtil::$ARCHIVOS_SUBIDOS;
         $count = 0;
 
         for ($i = 0; $i < $countfiles; $i++) {
@@ -32,7 +33,7 @@ class cargarXmlControlador extends cargarXmlModelo {
 
         $array = [
             'ubicacionArchivo' => constantesUtil::$ARCHIVOS_SUBIDOS . $archivo_xml,
-//    'ubicacionArchivo' => $upload_location . $archivo_xml,
+//            'ubicacionArchivo' => $upload_location . $archivo_xml,
             'nombreArchivoXml' => $archivo_xml,
             'nombreArchivoPdf' => isset($archivo_pdf) ? $archivo_pdf : null,
             'urlArchivo' => constantesUtil::$URL_ARCHIVOS,
