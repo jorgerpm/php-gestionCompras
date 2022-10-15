@@ -29,7 +29,7 @@
                                     <th>Nombre</th>
                                     <th>Usuario</th>
                                     <th>Correo</th>
-                                    <th>idRol</th>
+                                    <th>Rol</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
@@ -42,7 +42,7 @@
                                         <td><?php echo $usuario->nombre ?></td>
                                         <td><?php echo $usuario->usuario ?></td>
                                         <td><?php echo $usuario->correo ?></td>
-                                        <td><?php echo $usuario->idRol ?></td>
+                                        <td><?php echo $usuario->nombreRol ?></td>
                                         <td><?php echo ($usuario->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">

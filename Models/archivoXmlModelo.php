@@ -8,11 +8,11 @@ class archivoXmlModelo extends serviciosWebModelo {
     }
     
     
-    public function listar_archivos($fechaIni, $fechaFin, $idUser) {
-        $dateIni = strtotime($fechaIni) * 1000;
-        $dateFin = strtotime($fechaFin) * 1000;
+    public function listar_archivos($fechaIni, $fechaFin, $idUser, $desde, $hasta) {
+//        $dateIni = strtotime($fechaIni) * 1000;
+//        $dateFin = strtotime($fechaFin) * 1000;
         $array = [];
-        $listaArchivos = self::invocarGet('archivoXml/listarPorFecha?fechaInicio='.$fechaIni.'&fechaFinal='.$fechaFin.'&idUsuarioCarga='.$idUser.'&desde=0&hasta=10', $array);
+        $listaArchivos = self::invocarGet('archivoXml/listarPorFecha?fechaInicio='.$fechaIni.'&fechaFinal='.$fechaFin.'&idUsuarioCarga='.$idUser.'&desde='.$desde.'&hasta='.$hasta, $array);
         return $listaArchivos;
     }
 }

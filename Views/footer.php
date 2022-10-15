@@ -1,3 +1,5 @@
+
+
 <script src="./Assets/js/popper.min.js"></script>
 <script src="./Assets/js/bootstrap.min.js"></script>
 <script src="./Assets/js/main.js"></script>
@@ -17,11 +19,12 @@
         //scrollY: '34vh',
         //scrollCollapse: true,
         language: {
-            lengthMenu: 'Mostrar _MENU_ registros por pagina',
+            lengthMenu: 'Mostrar _MENU_ registros por p&aacute;gina',
             zeroRecords: 'No existen registros',
-            info: 'Mostrando pagina _PAGE_ de _PAGES_',
+            info: 'Mostrando p&aacute;gina _PAGE_ de _PAGES_',
             infoEmpty: 'No existen registros',
             infoFiltered: '(filtrados de los _MAX_ registros totales)',
+            search: 'Buscar',
         },
         lengthMenu: [
             [10, 25, 50, 100], //cantidad
@@ -40,5 +43,15 @@
     ga('send', 'pageview');
   }
 </script>
+
+<!-- para cuando se muestre el cargando, se oculte la imagen
+. es cuando se carga por completo la pagina -->
+<script type="text/javascript">
+window.addEventListener('load', (event) => {
+  console.log('page is fully loaded');
+  $(".loader").fadeOut("slow");
+});
+</script>
+
 </body>
 </html>

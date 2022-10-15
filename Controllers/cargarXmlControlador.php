@@ -24,25 +24,36 @@ class cargarXmlControlador extends cargarXmlModelo {
             }
             $valid_ext = array("xml", "pdf"); //Extensiones válidas
             if (in_array($file_extension, $valid_ext)) { //Verificar extensiones
-                if (move_uploaded_file($_FILES['archivos']['tmp_name'][$i], $path)) { //Cargar archivos
-                    $count += 1;
+                //verificar si ya existe el archivo
+                if(is_file($path)){
+                    return "Ya existe un archivo con el mismo nombre, no se puede cargar el mismo archivo.";
+                }
+                else{
+                    if (move_uploaded_file($_FILES['archivos']['tmp_name'][$i], $path)) { //Cargar archivos
+                        $count += 1;
+                    }
                 }
             }
         }
 //echo $count;
+        if($count > 0){
 
-        $array = [
-            'ubicacionArchivo' => constantesUtil::$ARCHIVOS_SUBIDOS . $archivo_xml,
-//            'ubicacionArchivo' => $upload_location . $archivo_xml,
-            'nombreArchivoXml' => $archivo_xml,
-            'nombreArchivoPdf' => isset($archivo_pdf) ? $archivo_pdf : null,
-            'urlArchivo' => constantesUtil::$URL_ARCHIVOS,
-            'idUsuarioCarga' => $_SESSION['Usuario']->id,
-            'tipoDocumento' => '01'
-        ];
-        
-        $respuesta = cargarXmlModelo::cargar_archivo_modelo($array);
-        return $respuesta;        
+            $array = [
+                'ubicacionArchivo' => constantesUtil::$ARCHIVOS_SUBIDOS . $archivo_xml,
+    //            'ubicacionArchivo' => $upload_location . $archivo_xml,
+                'nombreArchivoXml' => $archivo_xml,
+                'nombreArchivoPdf' => isset($archivo_pdf) ? $archivo_pdf : null,
+                'urlArchivo' => constantesUtil::$URL_ARCHIVOS,
+                'idUsuarioCarga' => $_SESSION['Usuario']->id,
+                'tipoDocumento' => '01'
+            ];
+
+            $respuesta = cargarXmlModelo::cargar_archivo_modelo($array);
+            return $respuesta;
+        }
+        else{
+            return "No se carg&oacute; el archivo.";
+        }
     }
 
 }

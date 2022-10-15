@@ -18,6 +18,7 @@
     
     </head>
     <body class="app sidebar-mini">
+        <div class="loader"></div>
         <!-- Barra de navegaciój-->
         <header class="app-header"><a class="app-header__logo" href="home">Inicio</a>
             <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>

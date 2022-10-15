@@ -7,12 +7,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Main CSS-->
         <link rel="stylesheet" type="text/css" href="./Assets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="./Assets/css/estilosExtra.css">
         <!-- Font-icon css-->
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Sistema para carga de facturas xml</title>
     </head>
 
     <body>
+        <div class="loader"></div>
         <!-- Color superior (Verde) -->
         <section class="material-half-bg">
             <div class="cover"></div>
@@ -67,7 +69,7 @@
                     <!-- Ingreso de correo -->
                     <div class="form-group">
                         <label class="control-label">CORREO</label>
-                        <input class="form-control" name="correo" id="correo" type="email" placeholder="Correo" required="">
+                        <input class="form-control" name="correo" id="correo" type="email" placeholder="Ingrese el correo" required="" autocomplete="false">
                     </div>
                     <div class="form-group btn-container">
                         <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RECUPERAR</button>
@@ -95,14 +97,14 @@
                 $('.login-box').toggleClass('flipped');
                 return false;
             });
-
-<?php
-//if (isset($_SESSION['no'])) {
-//    echo "swal('', 'Datos de usuario incorrectos.', 'error')";
-//    unset($_SESSION['no']);
-//}
-?>
-
+        </script>
+        <!-- para cuando se muestre el cargando, se oculte la imagen
+. es cuando se carga por completo la pagina -->
+        <script type="text/javascript">
+            window.addEventListener('load', (event) => {
+                console.log('page is fully loaded');
+                $(".loader").fadeOut("slow");
+            });
         </script>
     </body>
 

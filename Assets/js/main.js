@@ -31,6 +31,10 @@
  * funcion para cuando se realiza el submit de un formulario
  * **/
 $('.FormularioAjax').submit(function (e) {
+    console.log('inicia la cargaaaa');
+    const LOADING = document.querySelector('.loader');
+    LOADING.style = 'display: flex;';
+    
     e.preventDefault(); //no se envíe el submit todavía
 
     var form = $(this);
@@ -89,9 +93,13 @@ $('.FormularioAjax').submit(function (e) {
          return xhr;
          },*/
         success: function (data) {
+            LOADING.style = 'display: none;';
+            console.log('fiiiinnn   successss');
             respuesta.html(data);
         },
         error: function (error) {
+            LOADING.style = 'display: none;';
+            console.log('fiiiinnn   errrroooorr');
             respuesta.html(error);
         }
     });
