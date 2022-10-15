@@ -1,5 +1,9 @@
 <?php
-$paginas = $respuesta[0]->totalRegistros / $regsPagina; //el 3 es el numero de registros a mostrar por pagina
+$paginas = 0;
+if(isset($respuesta[0]->totalRegistros)){
+    $paginas = $respuesta[0]->totalRegistros / $regsPagina; //el 3 es el numero de registros a mostrar por pagina
+}
+
 $paginas = ceil($paginas);
 $activo = 1;
 if (isset($_POST['txtActivo'])) {
