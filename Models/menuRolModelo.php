@@ -12,4 +12,8 @@ class menuRolModelo extends serviciosWebModelo {
         $listaMenusRol = self::invocarGet('menuRol/listarMenuRolPorRol?idRol='.$idRol, $array);
         return $listaMenusRol;
     }
+    
+    public function actualizar_permisos($datos) {
+        self::invocarPost('menuRol/guardarPermisos', $datos);
+    }
 }

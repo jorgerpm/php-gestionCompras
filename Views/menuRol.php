@@ -19,7 +19,6 @@
                     if(isset($_GET['select'])){
                         $idRolUsuario = $_GET['select'];
                         $listaMenuPorRol = $menuRolControlador->listarMenusRolPorRol($idRolUsuario);
-                        
                     } else{
                         
                     }
@@ -27,6 +26,7 @@
                 <div>
                     <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = ''">buscar</button></p>
                 </div>
+                <!--<form id="formMenuRol" class="FormularioAjax login-form" action="acciones/actualizarPermisos.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">-->
                 <form name="f1" id="formMenuRol" action="">
                     <div class="btn-group mb-4" role="group">
                         <select class="form-control" name="select" onchange="this.form.submit()" id="cbxListaRol">
@@ -53,7 +53,7 @@
                                 <div class="treeview">
                                     <span class="toggle">
                                         <label>
-                                            <input style="border: 1px black solid;" type="checkbox" onchange="checkAll(this)" id="<?php $menu->id ?>"><span class="button-indecator"></span>
+                                            <input style="border: 1px black solid;" type="checkbox" onchange="checkAll(this)" name="<?php echo $menu->id ?>" id="<?php echo $menu->id ?>"><span class="button-indecator"></span>
                                         </label>
                                     </span>
                                     <a class="app-menu__item" data-toggle="treeview" style="margin-top: -45px; margin-left: 20px;background: none;border-left-color: transparent;">
@@ -64,7 +64,7 @@
                                     <?php foreach ($arrayAux as $menuHijoAux) { ?>
                                         <div class="toggle">
                                             <label>
-                                                <input type="checkbox" id="<?php $menuHijoAux->id ?>" <?php if(isset($listaMenuPorRol)){
+                                                <input type="checkbox" name="<?php echo $menuHijoAux->id ?>" id="<?php echo $menuHijoAux->id ?>" <?php if(isset($listaMenuPorRol)){
                                                     foreach ($listaMenuPorRol as $menuRol) {
                                                         if($menuRol->idMenu == $menuHijoAux->id) {
                                                             echo "checked";
@@ -81,7 +81,7 @@
                             <?php }else { ?>
                                 <div class="toggle">
                                     <label>
-                                        <input type="checkbox" id="<?php $menu->id ?>" <?php if(isset($listaMenuPorRol)){
+                                        <input type="checkbox" name="<?php echo $menu->id ?>" id="<?php echo $menu->id ?>" <?php if(isset($listaMenuPorRol)){
                                             foreach ($listaMenuPorRol as $menuRol) {
                                                 if($menuRol->idMenu == $menu->id) {
                                                     echo "checked";
@@ -94,6 +94,10 @@
                             <?php }
                         }
                     } ?>
+                    <div>
+                        <button id="btnActionForm" class="btn btn-primary" type="button" onclick="actualizarPermisos(this);"><i class="fa fa-fw fa-lg
+                                                                                            "></i><span id="btnText">Actualizar permisos</span></button>
+                    </div>
                 </form>
             </div>
             

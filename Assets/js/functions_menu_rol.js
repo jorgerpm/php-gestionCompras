@@ -41,3 +41,24 @@ function funcion(comboBox) {
         // Send request with data
         xhttp.send(formData);
 }
+
+function actualizarPermisos(boton) {
+    //alert("prueba alerta");
+    var form = boton.form;
+    //alert(form);
+    var formdata = new FormData(form);
+    $.ajax({
+        type: "POST",
+        url: "./acciones/actualizarPermisos.php",
+        data: formdata ? formdata : form.serialize(),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            swal("", "Permisos actualizados correctamente", "success");
+        },
+        error: function (error) {
+            swal("", "Error en la actualización de permisos.", "error");
+        }
+    });
+}
