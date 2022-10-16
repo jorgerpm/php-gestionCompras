@@ -13,9 +13,6 @@
         <!-- Font-icon css-->
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         
-        <!-- Essential javascripts for application to work-->
-        <script src="./Assets/js/jquery-3.3.1.min.js"></script>
-    
     </head>
     <body class="app sidebar-mini">
         <div class="loader"></div>
@@ -64,14 +61,11 @@
                                 </a>
                                 <ul class="treeview-menu">
                                 <?php foreach ($arrayAux as $menuHijoAux) { ?>
-                                    <li style="padding-left: 20px">
-                                            <a class="treeview-item" style="padding: 7px 0 7px 20px" href="<?php echo $menuHijoAux->link; ?>">
-                                                <i class="icon fa <?php echo $menuHijoAux->imagen; ?>">
-                                                    <span class="app-menu__label"><?php echo $menuHijoAux->titulo; ?>
-                                                    </span>
-                                                </i>
-                                            </a>
-                                        </li>
+                                    <li style="padding-left: 5px">
+                                        <a class="treeview-item" style="padding: 7px 0 7px 20px" href="<?php echo $menuHijoAux->link; ?>">
+                                            <i class="icon fa <?php echo $menuHijoAux->imagen; ?>"></i><?php echo $menuHijoAux->titulo; ?>
+                                        </a>
+                                    </li>
                                 <?php } ?>
                                 </ul>
                             </li>

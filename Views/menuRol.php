@@ -10,7 +10,7 @@
         </ul>
     </div>
     <div class="row espacio">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="tile">
                 <?php
                     //require_once './acciones/listarArchivos.php';
@@ -40,7 +40,6 @@
 
                     <?php require_once './acciones/listarMenus.php';
                     foreach ($listaMenus as $menu) {
-
                         if ($menu->idMenu == null) {
                             $menuPadre = $menu->id;
                             $arrayAux = [];
@@ -53,7 +52,7 @@
                                 <div class="treeview">
                                     <span class="toggle">
                                         <label>
-                                            <input style="border: 1px black solid;" type="checkbox" onchange="checkAll(this)" name="<?php echo $menu->id ?>" id="<?php echo $menu->id ?>"><span class="button-indecator"></span>
+                                            <input type="checkbox" onchange="checkAll(this)" name="<?php echo $menu->id ?>" id="<?php echo $menu->id ?>"><span class="button-indecator"></span>
                                         </label>
                                     </span>
                                     <a class="app-menu__item" data-toggle="treeview" style="margin-top: -45px; margin-left: 20px;background: none;border-left-color: transparent;">
