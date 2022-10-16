@@ -15,8 +15,10 @@
             <div class="tile-body">
                 <div >
                     <?php
-                    //require_once './acciones/listarArchivos.php';
-                    $regsPagina = 3;
+                    $regsPagina = 10;
+                    if($_POST['txtRegsPagina']){
+                        $regsPagina = $_POST['txtRegsPagina'];
+                    }
                     $archiCont = new archivoXmlControlador();
                     if (isset($_POST['btnSearch'])) {
                         $respuesta = $archiCont->listar_archivos_controlador($_POST, $regsPagina);
@@ -91,7 +93,7 @@
                             </div>
                             <div class="col-md-1 col-12" ></div>
                             <div class="col-md-2 col-12" style="text-align: right">
-                                <button style="width: 100%;position:absolute; right:0;bottom:0;" class="btn btn-primary btn-sm fa" type="button" onclick="exportTableToCSV('facturas-data')"><i class="fa fa-file-excel-o"></i><span id="btnText">Exportar csv</span></button>
+                                <button style="width: 100%;position:absolute; right:0;bottom:0;" class="btn btn-primary btn-sm fa" type="button" onclick="pruebaUno('facturas-data')"><i class="fa fa-file-excel-o"></i><span id="btnText">Exportar csv</span></button>
                             </div>
                         </div>
                         <div class="RespuestaAjax"></div>
@@ -105,10 +107,10 @@
                             </div>
                             <div class="col-3 col-sm-1 col-md-1" style="padding: 0px 0px 5px 0px">
                                 <select name="cmbRegsPagina" id="cmbRegsPagina" aria-controls="sampleTable" class="form-control form-control-sm" onchange="cambiarRegsPagina(this)">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
+                                    <option value="10" <?php echo $regsPagina==10 ? 'selected':'' ?>>10</option>
+                                    <option value="25" <?php echo $regsPagina==25 ? 'selected':'' ?>>25</option>
+                                    <option value="50" <?php echo $regsPagina==50 ? 'selected':'' ?>>50</option>
+                                    <option value="100" <?php echo $regsPagina==100 ? 'selected':'' ?>>100</option>
                                 </select>
                             </div>
                             <div class="col-6 col-sm-3 col-md-3" style="padding: 0px">
@@ -253,6 +255,54 @@ if (count($respuesta) > 0) {
         column.visible(!column.visible());
     });
 
+
+function pruebaUno(filename){
+        
+        //const form = document.forms[0];
+        const form = document.getElementById('formEstado');
+        
+        //alert(form);
+        
+//        var accion = form.attr('action');
+//    var metodo = form.attr('method');
+//        alert(metodo);
+        
+        var formdata = new FormData(form);
+        
+
+    $.ajax({
+        type: 'POST',
+        url: 'acciones/listarArchivos.php',
+        data: formdata ? formdata : form.serialize(),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            var csv = [];
+
+//data = JSON.stringify(data);
+
+            data = data.replaceAll("[", "").replaceAll("]", "").replaceAll('"', '').replaceAll(',', '').replaceAll('Array', '').replaceAll('(', '').replaceAll(')', '').replaceAll('\n', '');
+//            console.log(data);
+            
+            csv = data.split("~");
+
+            for(var i=0;i<csv.length;i++){
+                csv[i] = csv[i].toString().replaceAll(i+" => ", "").replaceAll("  ", "");
+            }
+//            console.log("success, ", csv);
+            
+            // Download CSV file
+    downloadCSV(csv.join("\n"), filename);
+//downloadCSV(csv, filename);
+    
+        },
+        error: function (error) {
+            console.log("error: ", error);
+        }
+    });
+        
+    }
 
 </script>
 

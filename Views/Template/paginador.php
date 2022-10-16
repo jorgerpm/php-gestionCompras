@@ -49,6 +49,8 @@ if (isset($_POST['txtActivo'])) {
 <?php echo '<input type="hidden" id="txtDesde" name="txtDesde" value="0">'; ?>
 <?php /* echo '<input type="text" id="txtHasta" name="txtHasta" value="'.$regsPagina.'">'; */ ?>
 <?php echo '<input type="hidden" id="txtActivo" name="txtActivo" value="1">'; ?>
+<?php echo '<input type="hidden" id="txtRegsPagina" name="txtRegsPagina" value="'.$regsPagina.'">'; ?>
+
 
 <script type="text/javascript">
     function paginar(pagina, regsPagina) {
@@ -72,5 +74,11 @@ if (isset($_POST['txtActivo'])) {
     
     function cambiarRegsPagina(cmb){
         //alert(cmb.value);
+        var regsPagina = document.querySelector("#txtRegsPagina"); //este para saber que pagina esta activa
+        regsPagina.value = cmb.value;
+        
+        var botonBuscar = document.querySelector("#btnSearch");
+        botonBuscar.click();
+        
     }
 </script>
