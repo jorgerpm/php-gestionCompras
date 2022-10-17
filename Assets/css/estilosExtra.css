@@ -28,3 +28,8 @@
     background: url('../imagenes/ajaxloadingbar.gif') 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
+
+.treeview1.is-expanded [data-toggle='treeview1'] {
+  border-left-color: #009688;
+  background: #0d1214;
+}

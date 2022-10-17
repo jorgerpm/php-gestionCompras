@@ -49,14 +49,14 @@
                                 }
                             }
                             if (count($arrayAux) > 0) { ?>
-                                <div class="treeview">
+                                <div class="treeview1">
                                     <span class="toggle">
                                         <label>
                                             <input type="checkbox" onchange="checkAll(this)" name="<?php echo $menu->id ?>" id="<?php echo $menu->id ?>"><span class="button-indecator"></span>
                                         </label>
                                     </span>
-                                    <a class="app-menu__item" data-toggle="treeview" style="margin-top: -45px; margin-left: 20px;background: none;border-left-color: transparent;">
-                                        <span class="app-menu__label"><?php echo $menu->titulo; ?></span>
+                                    <a class="app-menu__item" data-toggle="treeview1" style="margin-top: -45px; margin-left: 20px;background: none;border-left-color: transparent;">
+                                        <span class=""><?php echo $menu->titulo; ?></span>
                                         <i class="treeview-indicator fa fa-angle-right"></i>
                                     </a>
                                     <ul class="treeview-menu" style="padding-left:50px; background:none">
