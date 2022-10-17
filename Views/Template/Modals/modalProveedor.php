@@ -10,7 +10,11 @@
             <div class="modal-body">
                 <form id="formProveedor" class="FormularioAjax login-form" action="acciones/guardarProveedor.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                     <input type="hidden" id="idProveedor" name="idProveedor" value="">
-                    <p class="text-danger">Todos los campos son obligatorios.*</p>
+                    
+                    <div class="form-group">
+                        <label class="control-label">Ruc</label>
+                        <input class="form-control" id="txtRuc" name="txtRuc" type="number" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;">
+                    </div>
                     
                     <div class="form-group">
                         <label class="control-label">Nombre comercial</label>
@@ -21,25 +25,19 @@
                         <input class="form-control" id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Raz&oacute;n social del proveedor" required="" style="text-transform: uppercase;">
                     </div>
                     
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="control-label">Direcci&oacute;n</label>
-                            <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" style="text-transform: uppercase;">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="control-label">Tel&eacute;fono</label>
-                            <input class="form-control" id="txtTelefono" name="txtTelefono" type="text" placeholder="Tel&eacute;fono del proveedor" style="text-transform: uppercase;">
-                        </div>
+                    <div class="form-group">
+                        <label class="control-label">Direcci&oacute;n</label>
+                        <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" style="text-transform: uppercase;">
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label class="control-label">Correo</label>
-                            <input class="form-control" id="txtCorreo" name="txtCorreo" type="text" placeholder="Correo del proveedor" required="">
+                            <input class="form-control" id="txtCorreo" name="txtCorreo" type="email" placeholder="CORREO DEL PROVEEDOR" required="">
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="control-label">Ruc</label>
-                            <input class="form-control" id="txtRuc" name="txtRuc" type="text" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;">
+                            <label class="control-label">Tel&eacute;fono</label>
+                            <input class="form-control" id="txtTelefono" name="txtTelefono" type="number" placeholder="Tel&eacute;fono del proveedor" style="text-transform: uppercase;">
                         </div>
                     </div>
                     
