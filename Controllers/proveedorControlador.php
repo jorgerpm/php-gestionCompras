@@ -13,16 +13,26 @@ class proveedorControlador extends proveedorModelo {
     //aqui la logica
     public function guardar_proveedor_controlador() {
         $idProveedor = $_POST['idProveedor'];
-        $txtNombre = $_POST['txtNombre'];
+        $txtNombreComercial = $_POST['txtNombreComercial'];
+        $txtRazonSocial = $_POST['txtRazonSocial'];
+        $txtDireccion = $_POST['txtDireccion'];
+        $txtTelefono = $_POST['txtTelefono'];
+        $txtCorreo = $_POST['txtCorreo'];
         $txtRuc = $_POST['txtRuc'];
         $txtCodigoJD = $_POST['txtCodigoJD'];
+        $cbxIdEstado = $_POST['cbxListaEstado'];
 
-        if (isset($txtNombre) && isset($txtRuc) && isset($txtCodigoJD)) {
+        if (isset($txtNombreComercial) && isset($txtRazonSocial) && isset($txtCorreo) && isset($txtRuc) && isset($cbxIdEstado)) {
             $datos = [
                 "id" => $idProveedor,
-                "nombre" => strtoupper($txtNombre),
+                "nombreComercial" => strtoupper($txtNombreComercial),
+                "razonSocial" => strtoupper($txtRazonSocial),
+                "direccion" => strtoupper($txtDireccion),
+                "telefono" => strtoupper($txtTelefono),
+                "correo" => $txtCorreo,
                 "ruc" => strtoupper($txtRuc),
-                "codigoJD" => strtoupper($txtCodigoJD)
+                "codigoJD" => strtoupper($txtCodigoJD),
+                "idEstado" => strtoupper($cbxIdEstado)
             ];
 
             $respuesta = proveedorModelo::guardar_proveedor_modelo($datos);

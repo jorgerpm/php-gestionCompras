@@ -11,18 +11,53 @@
                 <form id="formProveedor" class="FormularioAjax login-form" action="acciones/guardarProveedor.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                     <input type="hidden" id="idProveedor" name="idProveedor" value="">
                     <p class="text-danger">Todos los campos son obligatorios.*</p>
+                    
                     <div class="form-group">
-                        <label class="control-label">Nombre</label>
-                        <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre del proveedor" required="" style="text-transform: uppercase;">
+                        <label class="control-label">Nombre comercial</label>
+                        <input class="form-control" id="txtNombreComercial" name="txtNombreComercial" type="text" placeholder="Nomber comercial del proveedor" required="" style="text-transform: uppercase;">
                     </div>
+                    <div class="form-group">
+                        <label class="control-label">Raz&oacute;n social</label>
+                        <input class="form-control" id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Raz&oacute;n social del proveedor" required="" style="text-transform: uppercase;">
+                    </div>
+                    
                     <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Direcci&oacute;n</label>
+                            <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Tel&eacute;fono</label>
+                            <input class="form-control" id="txtTelefono" name="txtTelefono" type="text" placeholder="Tel&eacute;fono del proveedor" style="text-transform: uppercase;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Correo</label>
+                            <input class="form-control" id="txtCorreo" name="txtCorreo" type="text" placeholder="Correo del proveedor" required="">
+                        </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Ruc</label>
                             <input class="form-control" id="txtRuc" name="txtRuc" type="text" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;">
                         </div>
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label class="control-label">C&oacute;digo JD</label>
-                            <input class="form-control" id="txtCodigoJD" name="txtCodigoJD" type="text" placeholder="C&oacute;digo JD del proveedor" required="" style="text-transform: uppercase;">
+                            <input class="form-control" id="txtCodigoJD" name="txtCodigoJD" type="text" placeholder="C&oacute;digo JD del proveedor" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="listaEstado">Estado</label>
+                            <?php require_once './acciones/listarEstados.php'; ?>
+                            <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
+                                <?php
+                                foreach ($listaEstados as $estado) {
+                                    echo '<option value="' . $estado->id . '">' . $estado->nombre . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="tile-footer" style="text-align: end;">
