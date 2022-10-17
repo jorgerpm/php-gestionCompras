@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header headerRegister">
-                <h5 class="modal-title" id="titleModal">Nuevo Parametro</h5>
+                <h5 class="modal-title" id="titleModal">Gesti&oacute;n de par&aacute;metro</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,16 +13,16 @@
                     <p class="text-danger">Todos los campos son obligatorios.*</p>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label class="control-label">Nombre</label>
-                            <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre del par&aacute;metro" required="" style="text-transform: uppercase;">
+                            <label class="control-label">Nombre:</label>
+                            <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="NOMBRE DEL PAR&Aacute;METRO" required="" style="text-transform: uppercase;">
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="control-label">Valor</label>
-                            <input class="form-control" id="txtValor" name="txtValor" type="text" placeholder="Valor del par&aacute;metro" required="">
+                            <label class="control-label">Valor:</label>
+                            <input class="form-control" id="txtValor" name="txtValor" type="text" placeholder="VALOR DEL PAR&Aacute;METRO" required="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleSelect1">Estado</label>
+                        <label for="exampleSelect1">Estado:</label>
                         <?php require_once './acciones/listarEstados.php'; ?>
                         <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
                             <?php

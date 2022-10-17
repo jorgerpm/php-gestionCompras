@@ -25,9 +25,9 @@
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                                 <tr>
-                                    <th>Código</th>
-                                    <th>nombre</th>
-                                    <th>valor</th>
+                                    <th>C&oacute;digo</th>
+                                    <th>Nombre</th>
+                                    <th>Valor</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>

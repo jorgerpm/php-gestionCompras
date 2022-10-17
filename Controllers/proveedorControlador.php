@@ -28,9 +28,9 @@ class proveedorControlador extends proveedorModelo {
                 "nombreComercial" => strtoupper($txtNombreComercial),
                 "razonSocial" => strtoupper($txtRazonSocial),
                 "direccion" => strtoupper($txtDireccion),
-                "telefono" => strtoupper($txtTelefono),
+                "telefono" => $txtTelefono,
                 "correo" => $txtCorreo,
-                "ruc" => strtoupper($txtRuc),
+                "ruc" => $txtRuc,
                 "codigoJD" => strtoupper($txtCodigoJD),
                 "idEstado" => strtoupper($cbxIdEstado)
             ];

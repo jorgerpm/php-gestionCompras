@@ -24,13 +24,13 @@
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                                 <tr>
+                                    <th>RUC</th>
                                     <th>Código</th>
                                     <th>Nombre comercial</th>
                                     <th>Razón social</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th>
                                     <th>Correo</th>
-                                    <th>Ruc</th>
                                     <th>Código JD</th>
                                     <th>Estado</th>
                                     <th></th>
@@ -40,13 +40,13 @@
                                 <?php require_once './acciones/listarProveedores.php';
                                 foreach ($listaProveedores as $proveedor) { ?>
                                     <tr>
+                                        <td><?php echo $proveedor->ruc ?></td>
                                         <td><?php echo $proveedor->id ?></td>
                                         <td><?php echo $proveedor->nombreComercial ?></td>
                                         <td><?php echo $proveedor->razonSocial ?></td>
                                         <td><?php echo $proveedor->direccion ?></td>
                                         <td><?php echo $proveedor->telefono ?></td>
                                         <td><?php echo $proveedor->correo ?></td>
-                                        <td><?php echo $proveedor->ruc ?></td>
                                         <td><?php echo $proveedor->codigoJD ?></td>
                                         <td><?php echo ($proveedor->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
