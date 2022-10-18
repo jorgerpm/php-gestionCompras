@@ -37,9 +37,7 @@
                                     <tr>
                                         <td><?php echo $rol->id; ?></td>
                                         <td><?php echo $rol->nombre; ?></td>
-                                        <td>
-                                            <label><?php echo ($rol->principal == 1) ? "SÍ" : "NO" ?></label>
-                                        </td>
+                                        <td><?php echo ($rol->principal == 1) ? "SÍ" : "NO" ?></td>
                                         <td><?php echo ($rol->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">

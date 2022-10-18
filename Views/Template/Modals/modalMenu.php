@@ -14,7 +14,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label class="control-label">T&iacute;tulo</label>
-                            <input class="form-control" id="txtTitulo" name="txtTitulo" type="text" placeholder="T&iacute;tulo del men&uacute;" required="" style="text-transform: uppercase;">
+                            <input class="form-control" id="txtTitulo" name="txtTitulo" type="text" placeholder="T&iacute;tulo del men&uacute;" required="">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Link</label>
