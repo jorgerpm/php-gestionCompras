@@ -15,23 +15,25 @@
                         <label class="control-label">Nombre:</label>
                         <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre del rol" required="" style="text-transform: uppercase;">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleSelect1">Estado:</label>
-                        <?php require_once './acciones/listarEstados.php'; ?>
-                        <select class="form-control" id="listStatus" name="listStatus" required="">
-                            <?php
-                            foreach ($listaEstados as $estado) {
-                                echo '<option value="' . $estado->id . '">' . $estado->nombre . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Listar todos los usuarios:</label>
-                        <div class="toggle">
-                            <label>
-                                <input type="checkbox" name="chkPrincipal" id="chkPrincipal"><span class="button-indecator"></span>
-                            </label>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleSelect1">Estado:</label>
+                            <?php require_once './acciones/listarEstados.php'; ?>
+                            <select class="form-control" id="listStatus" name="listStatus" required="">
+                                <?php
+                                foreach ($listaEstados as $estado) {
+                                    echo '<option value="' . $estado->id . '">' . $estado->nombre . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Listar todos los usuarios:</label>
+                            <div class="toggle">
+                                <label>
+                                    <input type="checkbox" name="chkPrincipal" id="chkPrincipal"><span class="button-indecator"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="tile-footer" style="text-align: end;">

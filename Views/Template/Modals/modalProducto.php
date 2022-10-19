@@ -1,5 +1,5 @@
 <div class="modal fade" id="modalFormProducto" tabindex="1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header headerRegister">
                 <h5 class="modal-title" id="titleModal">Gesti&oacute;n de producto</h5>
@@ -15,13 +15,15 @@
                         <label class="control-label">C&oacute;digo producto:</label>
                         <input class="form-control" id="txtCodigoProducto" name="txtCodigoProducto" type="text" placeholder="C&oacute;digo del producto" required="" style="text-transform: uppercase;">
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Nombre:</label>
-                        <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Valor unitario:</label>
-                        <input class="form-control" id="txtValorUnitario" name="txtValorUnitario" type="number" min="0" value="0" step="0.01" title="Currency" pattern="^\d+(?:\.\d{1,2})?$" placeholder="Valor unitario del producto" required="" style="text-transform: uppercase;">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Nombre:</label>
+                            <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Valor unitario:</label>
+                            <input class="form-control" id="txtValorUnitario" name="txtValorUnitario" type="number" min="0" value="0" step="0.01" title="Currency" pattern="^\d+(?:\.\d{1,2})?$" placeholder="Valor unitario del producto" required="" style="text-transform: uppercase;">
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">

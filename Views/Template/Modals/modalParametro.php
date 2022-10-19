@@ -1,5 +1,5 @@
 <div class="modal fade" id="modalFormParametro" tabindex="1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header headerRegister">
                 <h5 class="modal-title" id="titleModal">Gesti&oacute;n de par&aacute;metro</h5>
@@ -11,26 +11,26 @@
                 <form id="formParametro" class="FormularioAjax login-form" action="acciones/guardarParametro.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                     <input type="hidden" id="idParametro" name="idParametro" value="">
                     <p class="text-danger">Todos los campos son obligatorios.*</p>
+                    <div class="form-group">
+                        <label class="control-label">Nombre:</label>
+                        <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="NOMBRE DEL PAR&Aacute;METRO" required="" style="text-transform: uppercase;">
+                    </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="control-label">Nombre:</label>
-                            <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="NOMBRE DEL PAR&Aacute;METRO" required="" style="text-transform: uppercase;">
-                        </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Valor:</label>
                             <input class="form-control" id="txtValor" name="txtValor" type="text" placeholder="VALOR DEL PAR&Aacute;METRO" required="">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleSelect1">Estado:</label>
-                        <?php require_once './acciones/listarEstados.php'; ?>
-                        <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
-                            <?php
-                            foreach ($listaEstados as $estado) {
-                                echo '<option value="' . $estado->id . '">' . $estado->nombre . '</option>';
-                            }
-                            ?>
-                        </select>
+                        <div class="form-group col-md-6">
+                            <label for="exampleSelect1">Estado:</label>
+                            <?php require_once './acciones/listarEstados.php'; ?>
+                            <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
+                                <?php
+                                foreach ($listaEstados as $estado) {
+                                    echo '<option value="' . $estado->id . '">' . $estado->nombre . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
                     </div>
                     <div class="tile-footer" style="text-align: end;">
                         <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg
