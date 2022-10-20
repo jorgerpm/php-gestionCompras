@@ -14,6 +14,7 @@ class listasBlancasUtil {
         "producto",
         "ordenServicioProducto",
         "solicitudCotizacion",
-        "formularioCotizacion"
+        "formularioCotizacion",
+        "formaPago"
     ];
 }

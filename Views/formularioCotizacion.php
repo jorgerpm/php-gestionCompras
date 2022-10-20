@@ -63,8 +63,15 @@
                                 <input class="form-control btn-sm" value="1 MES" id="txtValidezCotizacion" name="txtValidezCotizacion" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-4">
-                                <label class="control-label btn-sm">FORMA DE PAGO:</label>
-                                <input class="form-control btn-sm" value="TARJETAS DE CRÉDITO O DÉBITO" id="txtFormaPago" name="txtFormaPago" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <label class="btn-sm" for="exampleSelect1">Forma de pago:</label>
+                                <?php require_once './acciones/listarFormasPago.php'; ?>
+                                <select class="form-control btn-sm" id="listFormaPago" name="listFormaPago" required="">
+                                    <?php
+                                    foreach ($listaFormasPago as $formaPago) {
+                                        echo '<option value="' . $formaPago->id . '">' . $formaPago->nombre . '</option>';
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
