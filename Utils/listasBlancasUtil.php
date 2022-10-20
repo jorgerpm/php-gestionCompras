@@ -4,16 +4,15 @@ class listasBlancasUtil {
         "home",
         "usuario",
         "rol",
-        "cargarXml",
         "menu",
         "proveedor",
         "parametro",
-        "archivoXml",
         "logout",
         "estado",
         "menuRol",
         "cambiarContraseña",
         "producto",
-        "ordenServicioProducto"
+        "ordenServicioProducto",
+        "solicitudCotizacion"
     ];
 }
