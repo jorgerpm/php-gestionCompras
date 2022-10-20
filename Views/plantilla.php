@@ -9,6 +9,8 @@ if ($vistas == "login" || $vistas == "index") {
     require_once './Views/login.php';
 } elseif ($vistas == "404") {
     echo "error 404";
+} elseif ($vistas == "formularioRegistroProveedor") {
+    require_once './Views/formularioRegistroProveedor.php';
 } else {
     
     if (isset($_SESSION['Usuario'])) {

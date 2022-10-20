@@ -22,7 +22,7 @@ class proveedorControlador extends proveedorModelo {
         $txtCodigoJD = $_POST['txtCodigoJD'];
         $cbxIdEstado = $_POST['cbxListaEstado'];
 
-        if (isset($txtNombreComercial) && isset($txtRazonSocial) && isset($txtCorreo) && isset($txtRuc) && isset($cbxIdEstado)) {
+        if (isset($txtRazonSocial) && isset($txtCorreo) && isset($txtRuc) && isset($cbxIdEstado)) {
             $datos = [
                 "id" => $idProveedor,
                 "nombreComercial" => strtoupper($txtNombreComercial),

@@ -2,12 +2,11 @@
 <main class="app-content">
     <div class="app-title" style="height: 50px">
         <div>
-            <span class="tamañoTitulo"><i class="fa fa-pagelines"></i> Orden de serivicio-Producto</span>
+            <span class="tamañoTitulo"><i class="fa fa-pagelines"></i> Orden Servicio-Producto</span>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">Administraci&oacute;n</li>
-            <li class="breadcrumb-item active"><a href="#">Gesti&oacute;n productos</a></li>
+            <li class="breadcrumb-item active"><a href="#">Orden servicio-producto</a></li>
         </ul>
     </div>
     <div class="row espacio">
@@ -70,7 +69,6 @@
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                                 <tr>
-                                    <th></th>
                                     <th>L&iacute;nea</th>
                                     <th>Cantidad</th>
                                     <th>C&oacute;digo producto</th>
@@ -85,7 +83,6 @@
                                 <?php require_once './acciones/listarProductos.php';
                                 foreach ($listaProductos as $producto) { ?>
                                     <tr>
-                                        <td><input type="checkbox"></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -104,7 +101,7 @@
                         </div>
                         <div>
                             <label class="control-label">Tot ord:</label>
-                            <input class="form-control" id="txtTotOrd" type="text" name="txtTotOrd" placeholder="Total de la orden">
+                            <input class="form-control" id="txtTotOrd" type="text" name="txtTotOrd" placeholder="Valor total de orden">
                         </div>
                     </div>
                 </div>

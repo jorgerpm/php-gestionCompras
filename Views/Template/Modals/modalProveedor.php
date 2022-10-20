@@ -15,29 +15,31 @@
                         <label class="control-label" for="txtRuc">RUC:</label>
                         <input class="form-control" id="txtRuc" name="txtRuc" type="number" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;">
                     </div>
-                    
-                    <div class="form-group">
-                        <label class="control-label">Nombre comercial:</label>
-                        <input class="form-control" id="txtNombreComercial" name="txtNombreComercial" type="text" placeholder="Nomber comercial del proveedor" required="" style="text-transform: uppercase;">
-                    </div>
                     <div class="form-group">
                         <label class="control-label">Raz&oacute;n social:</label>
                         <input class="form-control" id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Raz&oacute;n social del proveedor" required="" style="text-transform: uppercase;">
                     </div>
-                    
+                    <div class="form-group">
+                        <label class="control-label">Nombre comercial:</label>
+                        <input class="form-control" id="txtNombreComercial" name="txtNombreComercial" type="text" placeholder="Nomber comercial del proveedor" style="text-transform: uppercase;">
+                    </div>
                     <div class="form-group">
                         <label class="control-label">Direcci&oacute;n:</label>
                         <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" style="text-transform: uppercase;">
                     </div>
+                    <div class="form-group">
+                        <label class="control-label">Correo:</label>
+                        <input class="form-control" id="txtCorreo" name="txtCorreo" type="email" placeholder="CORREO DEL PROVEEDOR" required="">
+                    </div>
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label class="control-label">Correo:</label>
-                            <input class="form-control" id="txtCorreo" name="txtCorreo" type="email" placeholder="CORREO DEL PROVEEDOR" required="">
+                            <label class="control-label">Tel&eacute;fono 1:</label>
+                            <input class="form-control" id="txtTelefono1" name="txtTelefono1" type="number" placeholder="Tel&eacute;fono 1 del proveedor" required="">
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="control-label">Tel&eacute;fono:</label>
-                            <input class="form-control" id="txtTelefono" name="txtTelefono" type="number" placeholder="Tel&eacute;fono del proveedor" style="text-transform: uppercase;">
+                            <label class="control-label">Tel&eacute;fono 2:</label>
+                            <input class="form-control" id="txtTelefono2" name="txtTelefono2" type="number" placeholder="Tel&eacute;fono 2 del proveedor" style="text-transform: uppercase;">
                         </div>
                     </div>
                     

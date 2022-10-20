@@ -13,6 +13,7 @@
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>C&oacute;digo</th>
                                     <th>C&oacute;digo producto</th>
                                     <th>Nombre</th>
@@ -25,6 +26,7 @@
                                 <?php require_once './acciones/listarProductos.php';
                                 foreach ($listaProductos as $producto) { ?>
                                     <tr>
+                                        <td><input type="checkbox"></td>
                                         <td><?php echo $producto->id; ?></td>
                                         <td><?php echo $producto->codigoProducto; ?></td>
                                         <td><?php echo $producto->nombre; ?></td>
@@ -38,7 +40,7 @@
                     </div>
                     <div class="tile-footer" style="text-align: end;">
                         <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg
-                                                                                            fa-cloud-upload"></i><span id="btnText">Agregar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn
+                                                                                            fa-plus-circle"></i><span id="btnText">Agregar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn
                                                                                              btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                     </div>
                     <!--<div class="RespuestaAjax"></div>-->

@@ -11,6 +11,8 @@ class vistasModelo {
             }
         } elseif($vistas=="login" || $vistas=="index") {
             $contenido = "login";
+        } elseif($vistas=="formularioRegistroProveedor") {
+            $contenido = "formularioRegistroProveedor";
         } else {
             $contenido = "404";
         }

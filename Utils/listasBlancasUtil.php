@@ -13,6 +13,7 @@ class listasBlancasUtil {
         "cambiarContraseña",
         "producto",
         "ordenServicioProducto",
-        "solicitudCotizacion"
+        "solicitudCotizacion",
+        "formularioPorCotizacion"
     ];
 }
