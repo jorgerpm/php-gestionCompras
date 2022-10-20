@@ -74,11 +74,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="control-label">Usuario:</label>
-                                <input class="form-control" id="txtCodigoJD" name="txtCodigoJD" type="text" placeholder="Usuario es el mismo RUC" style="text-transform: uppercase;">
+                                <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Usuario es el mismo RUC" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="control-label">Contraseña:</label>
-                                <input class="form-control" id="txtCodigoJD" name="txtCodigoJD" type="password" placeholder="Contraseña" style="text-transform: uppercase;">
+                                <input class="form-control" id="txtClave" name="txtClave" type="password" placeholder="Contraseña" style="text-transform: uppercase;">
                             </div>
                         </div>
                         <div class="tile-footer" style="text-align: end;">

@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Direcci&oacute;n:</label>
-                        <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" style="text-transform: uppercase;">
+                        <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" required="" style="text-transform: uppercase;">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Correo:</label>

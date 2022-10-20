@@ -29,7 +29,8 @@
                                     <th>Nombre comercial</th>
                                     <th>Razón social</th>
                                     <th>Dirección</th>
-                                    <th>Teléfono</th>
+                                    <th>Teléfono1</th>
+                                    <th>Teléfono2</th>
                                     <th>Correo</th>
                                     <th>Código JD</th>
                                     <th>Estado</th>
@@ -45,7 +46,8 @@
                                         <td><?php echo $proveedor->nombreComercial ?></td>
                                         <td><?php echo $proveedor->razonSocial ?></td>
                                         <td><?php echo $proveedor->direccion ?></td>
-                                        <td><?php echo $proveedor->telefono ?></td>
+                                        <td><?php echo $proveedor->telefono1 ?></td>
+                                        <td><?php echo $proveedor->telefono2 ?></td>
                                         <td><?php echo $proveedor->correo ?></td>
                                         <td><?php echo $proveedor->codigoJD ?></td>
                                         <td><?php echo ($proveedor->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>

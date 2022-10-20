@@ -5,7 +5,8 @@ function openModalProveedor(val_datos) {
         document.querySelector('#txtNombreComercial').value = val_datos.nombreComercial;
         document.querySelector('#txtRazonSocial').value = val_datos.razonSocial;
         document.querySelector('#txtDireccion').value = val_datos.direccion;
-        document.querySelector('#txtTelefono').value = val_datos.telefono;
+        document.querySelector('#txtTelefono1').value = val_datos.telefono1;
+        document.querySelector('#txtTelefono2').value = val_datos.telefono2;
         document.querySelector('#txtCorreo').value = val_datos.correo;
         document.querySelector('#txtRuc').value = val_datos.ruc;
         document.querySelector('#txtCodigoJD').value = val_datos.codigoJD;

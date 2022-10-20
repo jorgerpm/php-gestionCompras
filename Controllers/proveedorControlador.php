@@ -16,19 +16,21 @@ class proveedorControlador extends proveedorModelo {
         $txtNombreComercial = $_POST['txtNombreComercial'];
         $txtRazonSocial = $_POST['txtRazonSocial'];
         $txtDireccion = $_POST['txtDireccion'];
-        $txtTelefono = $_POST['txtTelefono'];
+        $txtTelefono1 = $_POST['txtTelefono1'];
+        $txtTelefono2 = $_POST['txtTelefono2'];
         $txtCorreo = $_POST['txtCorreo'];
         $txtRuc = $_POST['txtRuc'];
         $txtCodigoJD = $_POST['txtCodigoJD'];
         $cbxIdEstado = $_POST['cbxListaEstado'];
 
-        if (isset($txtRazonSocial) && isset($txtCorreo) && isset($txtRuc) && isset($cbxIdEstado)) {
+        if (isset($txtRazonSocial) && isset($txtDireccion) && isset($txtTelefono1) && isset($txtCorreo) && isset($txtRuc) && isset($cbxIdEstado)) {
             $datos = [
                 "id" => $idProveedor,
                 "nombreComercial" => strtoupper($txtNombreComercial),
                 "razonSocial" => strtoupper($txtRazonSocial),
                 "direccion" => strtoupper($txtDireccion),
-                "telefono" => $txtTelefono,
+                "telefono1" => $txtTelefono1,
+                "telefono2" => $txtTelefono2,
                 "correo" => $txtCorreo,
                 "ruc" => $txtRuc,
                 "codigoJD" => strtoupper($txtCodigoJD),

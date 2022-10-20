@@ -1,7 +1,7 @@
 <main class="app-content">
     <div class="app-title" style="height: 50px">
         <div>
-            <span class="tamañoTitulo"><i class="fa fa-pagelines"></i> Formulario por cotizaci&oacute;n</span>
+            <span class="tamañoTitulo"><i class="fa fa-calculator"></i> Formulario por cotizaci&oacute;n</span>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -36,35 +36,35 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">RUC:</label>
-                                <input class="form-control btn-sm" value="1234567890001" disabled id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="1234567890001" disabled id="txtRuc" name="txtRuc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-8">
                                 <label class="control-label btn-sm">RAZ&Oacute;N SOCIAL:</label>
-                                <input class="form-control btn-sm" value="123456789001" disabled id="txtCodigoCotizacion" name="txtCodigoCotizacion" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="123456789001" disabled id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">TEL&Eacute;FONO:</label>
-                                <input class="form-control btn-sm" value="0987654321" disabled id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="0987654321" disabled id="txtTelefono" name="txtTelefono" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-8">
                                 <label class="control-label btn-sm">DIRECCI&Oacute;N:</label>
-                                <input class="form-control btn-sm" value="0912345678" disabled id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="0912345678" disabled id="txtDireccion" name="txtDireccion" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">TIEMPO DE ENTREGA:</label>
-                                <input class="form-control btn-sm" value="3 DÍAS" id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="3 DÍAS" id="txtTiempoEntrega" name="txtTiempoEntrega" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">VALIDEZ COTIZACI&Oacute;N:</label>
-                                <input class="form-control btn-sm" value="1 MES" id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="1 MES" id="txtValidezCotizacion" name="txtValidezCotizacion" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">FORMA DE PAGO:</label>
-                                <input class="form-control btn-sm" value="TARJETAS DE CRÉDITO O DÉBITO" id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="TARJETAS DE CRÉDITO O DÉBITO" id="txtFormaPago" name="txtFormaPago" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                         </div>
                     </div>
