@@ -15,13 +15,13 @@
                 <div class="tile-body">
                     <div class="row" style="padding-bottom: 5px">
                         <div class="col-md-2 col-sm-2 col-12">
-                            <label>N&uacute;mero de RC</label>
+                            <label>C&oacute;digo de RC</label>
                         </div>
                         <div class="col-md-2 col-sm-2 col-12">
                             <input class="form-control btn-sm">
                         </div>
                         <div class="col-md-2 col-sm-2 col-12">
-                            <label>N&uacute;mero de Cotizaci&oacute;n</label>
+                            <label>C&oacute;digo de solicitud</label>
                         </div>
                         <div class="col-md-2 col-sm-2 col-12">
                             <input class="form-control btn-sm">
@@ -127,11 +127,10 @@
         </div>
     </div>
 </main>
-<script src="./Assets/js/functions_ordenServicioProducto.js"></script>
 
 <script>
     function agregarFila(){
         let tabla = document.getElementById('tblDetSolicitud');
-        tabla.insertRow(-1).innerHTML = '<td><input></td><td><input style="width: 100%"></td><td><input type="button" value="x"></td>';
+        tabla.insertRow(-1).innerHTML = '<td><input style="width: 100%"></td><td><input style="width: 100%"></td><td><input type="button" value="x"></td>';
     }
 </script>

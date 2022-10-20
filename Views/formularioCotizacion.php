@@ -25,7 +25,7 @@
                                 <input class="form-control btn-sm" value="1HL2G4" disabled id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-4">
-                                <label class="control-label btn-sm">C&Oacute;DIGO DE COTIZACI&Oacute;N:</label>
+                                <label class="control-label btn-sm">C&Oacute;DIGO DE SOLICITUD:</label>
                                 <input class="form-control btn-sm" value="123456789001" disabled id="txtCodigoCotizacion" name="txtCodigoCotizacion" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-4">

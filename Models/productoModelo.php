@@ -6,9 +6,9 @@ class productoModelo extends serviciosWebModelo {
         return $respuesta;
     }
     
-    public function listar_productos() {
+    public function listar_productos($start, $length, $valBusq) {
         $array = [];
-        $listaProductos = self::invocarGet('producto/listarProductos', $array);
+        $listaProductos = self::invocarGet('producto/listarProductos?desde='.$start.'&hasta='.$length.'&valBusq='.$valBusq, $array);
         return $listaProductos;
     }
 }
