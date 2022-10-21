@@ -53,4 +53,45 @@ class proveedorControlador extends proveedorModelo {
         }
     }
 
+    public function guardar_proveedor_usuario_controlador() {
+        $idProveedor = $_POST['idProveedor'];
+        $txtRucProveedor = $_POST['txtRucProveedor'];
+        $txtRazonSocial = $_POST['txtRazonSocial'];
+        $txtNombreComercial = $_POST['txtNombreComercial'];
+        $txtDireccion = $_POST['txtDireccion'];
+        $txtCorreo = $_POST['txtCorreo'];
+        $txtTelefono1 = $_POST['txtTelefono1'];
+        $txtTelefono2 = $_POST['txtTelefono2'];
+        $txtClave = $_POST['txtClave'];
+        $cbxIdEstado = 1;
+
+        if (isset($txtRazonSocial) && isset($txtDireccion) && isset($txtTelefono1) && isset($txtCorreo) && isset($txtRucProveedor) && isset($txtClave) && isset($cbxIdEstado)) {
+            $datos = [
+                "id" => $idProveedor,
+                "ruc" => $txtRucProveedor,
+                "razonSocial" => strtoupper($txtRazonSocial),
+                "nombreComercial" => strtoupper($txtNombreComercial),
+                "direccion" => strtoupper($txtDireccion),
+                "correo" => $txtCorreo,
+                "telefono1" => $txtTelefono1,
+                "telefono2" => $txtTelefono2,
+                "clave" => md5($txtClave),
+                "idEstado" => strtoupper($cbxIdEstado)
+            ];
+
+            $respuesta = proveedorModelo::guardar_proveedor_usuario_modelo($datos);
+
+            if ($respuesta->id > 0) {
+                echo '<script>swal("", "Datos almacenados correctamente", "success")
+                    .then((value) => {
+                        $(`#btnBuscar`).click();
+                    });</script>';
+            } else {
+                echo '<script>swal("", "Error al almacenar los datos.", "error");</script>';
+            }
+            
+        } else {
+            echo '<script>swal("", "Complete los campos requeridos del formulario.", "error");</script>';
+        }
+    }
 }

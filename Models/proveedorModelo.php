@@ -6,6 +6,11 @@ class proveedorModelo extends serviciosWebModelo {
         return $respuesta;
     }
     
+    public function guardar_proveedor_usuario_modelo($datos){
+        $respuesta = self::invocarPost('proveedor/guardarProveedorUsuario', $datos);
+        return $respuesta;
+    }
+    
     
     public function listar_proveedores() {
         $array = [];
