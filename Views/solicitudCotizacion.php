@@ -38,18 +38,24 @@
                         <div class="col-md-2 col-sm-2 col-12">
                             <label>Proveedor</label>
                         </div>
-                        <div class="col-md-2 col-sm-2 col-12">
-                            <select class="form-control" contenteditable="true">
+                        <div class="col-md-4 col-sm-4 col-12">
+                            
+                            <?php require_once './Controllers/proveedorControlador.php'; 
+  $provCont = new proveedorControlador();
+  $listaProvs = $provCont->listarProveedores();
+                            ?>
+                            <select class="form-control" id="cmbProveed">
                                 <option class="menuRol" value="" >-Proveedores-</option>
-                                <option class="menuRol" value="" >PROVEEDOR UNO</option>
-                                <option class="menuRol" value="" >PROVEEDOR DOS</option>
+                                <?php foreach ($listaProvs as $proveedor){ ?>
+                                <option class="menuRol" value="<?php echo $proveedor->correo; ?>" ><?php echo $proveedor->razonSocial; ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="col-md-2 col-sm-2 col-12">
-                            <button class="btn btn-primary btn-sm fa" type="button" >
+                            <button class="btn btn-primary btn-sm fa" type="button" onclick="agregarCorreo();">
                                 <i class="fa fa-plus"></i></button>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-12">
+                        <div class="col-md-4 col-sm-4 col-12">
                             
                         </div>
                     </div>
@@ -58,10 +64,9 @@
                         <div class="col-md-2 col-sm-2 col-12">
                             <label>Lista de correos</label>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-12">
-                            <input class="form-control btn-sm">
+                        <div class="col-md-10 col-sm-10 col-12">
+                            <input id="txtCorreos" class="form-control btn-sm">
                         </div>
-                        <div class="col-md-4 col-sm-4 col-12"></div>
                     </div>
                     
                     <div class="row">
@@ -132,5 +137,17 @@
     function agregarFila(){
         let tabla = document.getElementById('tblDetSolicitud');
         tabla.insertRow(-1).innerHTML = '<td><input style="width: 100%"></td><td><input style="width: 100%"></td><td><input type="button" value="x"></td>';
+    }
+    
+    function agregarCorreo(){
+        var correoProv = document.getElementById('cmbProveed').value;
+        if(correoProv !== null && correoProv !== ''){
+            let correos = document.getElementById('txtCorreos');
+            correos.value = correos.value + correoProv + ';';
+            document.getElementById('cmbProveed').value = '';
+        }
+        else{
+            alert('Seleccione un proveedor');
+        }
     }
 </script>

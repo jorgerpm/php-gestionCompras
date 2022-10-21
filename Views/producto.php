@@ -58,7 +58,8 @@
 //            info: 'Mostrando p&aacute;gina _PAGE_ de _PAGES_',
 //            infoEmpty: 'No existen registros',
 //            infoFiltered: '(filtrados de los _MAX_ registros totales)',
-                                        search: 'Buscar por nombre: ',
+                                        search: 'Buscar: ',
+                                        //processing: 'cargando',
                                         paginate: {
                                             previous: '&laquo',
                                             next: '&raquo;',

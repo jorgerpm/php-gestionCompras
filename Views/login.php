@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="./Assets/css/estilosExtra.css">
         <!-- Font-icon css-->
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Sistema para carga de facturas xml</title>
+        <title>Sistema gesti&oacute;n de compras</title>
     </head>
 
     <body>

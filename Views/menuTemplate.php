@@ -3,7 +3,7 @@
     <head>
         <meta name="description" content="Sistema para carga de facturas xml">
         
-        <title>Sistema para carga de facturas xml</title>
+        <title>Sistema gesti&oacute;n de compras</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">

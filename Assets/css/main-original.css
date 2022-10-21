@@ -1668,7 +1668,7 @@ pre code {
 }
 
 .table {
-  width: 100%;
+  width: 100% !important;
   margin-bottom: 1rem;
   color: #212529;
 }
@@ -14922,7 +14922,7 @@ be a descendant of the grid when it is being dragged.
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #FFF;
+  background-color: #009688;
   z-index: 1030;
   padding-right: 15px;
 }
@@ -14959,7 +14959,7 @@ be a descendant of the grid when it is being dragged.
             flex: 0 0 auto;
     display: block;
     width: 230px;
-    background-color: #222d32;
+    background-color: #007d71;
   }
 }
 
@@ -14971,7 +14971,7 @@ be a descendant of the grid when it is being dragged.
 .app-sidebar__toggle {
   padding: 0 15px;
   font-family: fontAwesome;
-  color: black;
+  color: #fff;
   line-height: 2.4;
   -webkit-transition: background-color 0.3s ease;
   -o-transition: background-color 0.3s ease;
@@ -15019,7 +15019,7 @@ be a descendant of the grid when it is being dragged.
   display: block;
   padding: 15px;
   line-height: 20px;
-  color: black;
+  color: #fff;
   -webkit-transition: background-color 0.3s ease;
   -o-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
@@ -15466,16 +15466,11 @@ be a descendant of the grid when it is being dragged.
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background-color: #fff;
-  margin: -17px 0px 17px 0px;
+  background-color: #FFF;
+  margin: -30px -30px 30px;
   padding: 20px 30px;
-  /*-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);*/
-      text-align: center;
-    height: 40px !important;
-    border-radius: 3px;
-    
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 @media print {
@@ -15898,7 +15893,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .material-half-bg .cover {
-  background-color: #e7e7e7;
+  background-color: #009688;
   height: 50vh;
 }
 
