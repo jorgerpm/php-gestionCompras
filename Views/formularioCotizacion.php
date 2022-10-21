@@ -25,12 +25,10 @@
                                 <input class="form-control btn-sm" value="1HL2G4" disabled id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-4">
-                                <label class="control-label btn-sm">C&Oacute;DIGO DE SOLICITUD:</label>
-                                <input class="form-control btn-sm" value="123456789001" disabled id="txtCodigoCotizacion" name="txtCodigoCotizacion" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
-                            </div>
-                            <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">FECHA:</label>
                                 <input class="form-control btn-sm" value="<?php echo date('d-m-Y'); ?>" disabled id="txtFecha" name="txtFecha" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                            </div>
+                            <div class="form-group col-md-4">
                             </div>
                         </div>
                         <div class="form-row">
@@ -56,7 +54,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">TIEMPO DE ENTREGA:</label>
-                                <input class="form-control btn-sm" value="3 DÍAS" id="txtTiempoEntrega" name="txtTiempoEntrega" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <select class="form-control btn-sm" id="txtTiempoEntrega" name="txtTiempoEntrega" required="">
+                                    <?php for($i = 1; $i <= 60; $i++) {?>
+                                        <option value="<?php echo $i ?>"><?php echo $i . " D&Iacute;AS" ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">VALIDEZ COTIZACI&Oacute;N:</label>
@@ -78,41 +80,48 @@
                     <div style="font-size: 20px; text-align: center">
                         <span class="control-label">DETALLE</span>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-responsive btn-sm">
                         <table class="table table-hover table-bordered table-sm">
                             <thead>
                                 <tr style="font-weight: bold;">
                                     <th style="width:5%">CANTIDAD</th>
                                     <th>PRODUCTO</th>
                                     <th style="width:30%">DETALLES</th>
+                                    <th style="width:10%; text-align: center">APLICA IVA <br><input type="checkbox" onchange="toggle(this)"></th>
                                     <th style="width:10%">VALOR UNITARIO</th>
                                     <th style="width:10%">VALOR TOTAL</th>
                                 </tr>
+                           
                             </thead>
                                 <tr>
                                     <td>4</td>
                                     <td>FUNDAS DE CAFE MINERVA</td>
                                     <td><input style="width: 100%"></td>
+                                    <td style="text-align: center"><input type="checkbox"></td>
                                     <td style="text-align: end"><input style="width: 100%"></td>
                                     <td style="text-align: end"><input style="width: 100%"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"></td>
+                                    <td colspan="4"></td>
                                     <td style="font-weight: bold; text-align: end">SUBTOTAL:</td>
                                     <td style="font-weight: bold; text-align: end">341.00</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"></td>
+                                    <td colspan="4"></td>
                                     <td style="font-weight: bold; text-align: end">IVA:</td>
                                     <td style="font-weight: bold; text-align: end">3.60</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"></td>
+                                    <td colspan="4"></td>
                                     <td style="font-weight: bold; text-align: end">TOTAL:</td>
                                     <td style="font-weight: bold; text-align: end">344.60</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="mb-3">
+                            <label class="control-label">Rubros adicionales:</label>
+                            <input class="form-control" type="text" id="txtRubrosAdicionales" name="txtRubrosAdicionales" placeholder="Rubros adicionales">
+                        </div>
                         <div>
                             <label class="control-label">Observaciones:</label>
                             <textarea class="form-control" id="txtObservaciones" name="txtObservaciones" placeholder="Observaciones"></textarea>
@@ -128,3 +137,12 @@
         </div>
     </div>
 </main>
+<script>
+    function toggle(source) {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i] != source)
+                checkboxes[i].checked = source.checked;
+        }
+    }
+</script>

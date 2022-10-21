@@ -30,7 +30,7 @@
                                 <div class="tile-body">
                                     <form id="formProveedor" class="FormularioAjax login-form" action="acciones/guardarProveedorUsuario.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                                         <div>
-                                            <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = ''">buscar</button></p>
+                                            <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = 'index'">buscar</button></p>
                                         </div>
                                         <input type="hidden" id="idProveedor" name="idProveedor" value="">
                                         <div class="form-row">
