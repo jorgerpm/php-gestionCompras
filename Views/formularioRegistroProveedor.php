@@ -20,10 +20,10 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <div style="text-align: center; margin-top: 10px">
+                    <div class="app-title" style="text-align: center; margin-top: 10px">
                         <span class="tamañoTitulo"><i class="fa fa-address-card-o"></i> Formulario para registro de proveedores</span>
                     </div>
-                    <br>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="tile">
