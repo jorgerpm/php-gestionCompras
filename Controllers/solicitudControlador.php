@@ -15,4 +15,42 @@ class solicitudControlador extends solicitudModelo {
         
         return $respuesta;
     }
+    
+    public function guardar_solicitud($post){
+        session_start();
+        //generar la lista de detalles.
+        $registros = $post['registrosTabla'];
+        
+        $detalles = array();
+        
+        for($i=1;$i<$registros;$i++){
+            $dt = [
+                'id' => 0,
+                'cantidad' => $post['txtCantidad'.$i],
+                'detalle' => $post['txtDetalle'.$i]
+            ];
+            
+            $detalles[] = $dt;
+        }
+        
+        $data = array(
+            'id' => 0,
+            'fechaSolicitud' => $post['dtFechaSol'],
+            'codigoRC' => $post['txtCodRC'],
+            'estado' => 'ENVIADO',
+            'usuario' => $_SESSION['Usuario']->nombre,
+            'correos' => $post['txtCorreos'],
+            'observacion' => $post['txtObserv'],
+            'listaDetalles' => $detalles,
+        );
+        
+        $respuesta = solicitudModelo::guardar_solicitud_modelo($data);
+        
+        if($respuesta->id > 0){
+            return "Solicitud almacenada correctamente.";
+        }
+        else{
+            return "Error al guardar la solicitud.";
+        }
+    }
 }
