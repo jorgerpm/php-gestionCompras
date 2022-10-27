@@ -19,14 +19,15 @@
                         <div class="mb-2" style="font-size: 20px; text-align: center">
                             <span class="control-label">CABECERA</span>
                         </div>
+                        <?php require_once './acciones/buscarProveedorRuc.php'; ?>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">C&Oacute;DIGO RC:</label>
-                                <input class="form-control btn-sm" value="1HL2G4" disabled id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="" disabled id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="C&oacute;digo RC" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">FECHA:</label>
-                                <input class="form-control btn-sm" value="<?php echo date('d-m-Y'); ?>" disabled id="txtFecha" name="txtFecha" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="<?php echo date('d/m/y'); ?>" disabled id="txtFecha" name="txtFecha" type="text" placeholder="Fecha actual" required="">
                             </div>
                             <div class="form-group col-md-4">
                             </div>
@@ -34,21 +35,21 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">RUC:</label>
-                                <input class="form-control btn-sm" value="1234567890001" disabled id="txtRuc" name="txtRuc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="<?php echo $proveedor->ruc ?>" disabled id="txtRuc" name="txtRuc" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-8">
                                 <label class="control-label btn-sm">RAZ&Oacute;N SOCIAL:</label>
-                                <input class="form-control btn-sm" value="123456789001" disabled id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="<?php echo $proveedor->razonSocial ?>" disabled id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Razón social del proveedor" required="" style="text-transform: uppercase;">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">TEL&Eacute;FONO:</label>
-                                <input class="form-control btn-sm" value="0987654321" disabled id="txtTelefono" name="txtTelefono" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="<?php echo $proveedor->telefono1 ?>" disabled id="txtTelefono" name="txtTelefono" type="text" placeholder="Tel&eacute;fono del proveedor" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-8">
                                 <label class="control-label btn-sm">DIRECCI&Oacute;N:</label>
-                                <input class="form-control btn-sm" value="0912345678" disabled id="txtDireccion" name="txtDireccion" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="<?php echo $proveedor->direccion ?>" disabled id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" required="" style="text-transform: uppercase;">
                             </div>
                         </div>
                         <div class="form-row">
@@ -62,7 +63,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="control-label btn-sm">VALIDEZ COTIZACI&Oacute;N:</label>
-                                <input class="form-control btn-sm" value="1 MES" id="txtValidezCotizacion" name="txtValidezCotizacion" type="text" placeholder="Nombre del producto" required="" style="text-transform: uppercase;">
+                                <input class="form-control btn-sm" value="1 MES" id="txtValidezCotizacion" name="txtValidezCotizacion" type="text" placeholder="Validez de la cotizaci&oacute;n" required="" style="text-transform: uppercase;">
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="btn-sm" for="exampleSelect1">Forma de pago:</label>
@@ -91,30 +92,35 @@
                                     <th style="width:10%">VALOR UNITARIO</th>
                                     <th style="width:10%">VALOR TOTAL</th>
                                 </tr>
-                           
                             </thead>
-                                <tr>
-                                    <td>4</td>
-                                    <td>FUNDAS DE CAFE MINERVA</td>
-                                    <td><input style="width: 100%"></td>
-                                    <td style="text-align: center"><input type="checkbox"></td>
-                                    <td style="text-align: end"><input style="width: 100%"></td>
-                                    <td style="text-align: end"><input style="width: 100%"></td>
-                                </tr>
+                            <tbody>
+                                <?php require_once './acciones/listaDetalles.php';
+                                $listaDetalles = $listaSolicitudes[0]->listaDetalles;
+                                //foreach($listaDetalles as $detalle) {
+                                for($i=0; $i < $listaSolicitudes[0]->totalRegistros; $i++) {?>
+                                            <tr>
+                                                <td style="text-align: end"><label id="lblCantidad<?php echo $i + 1 ?>"><?php echo $listaDetalles[$i]->cantidad ?></label></td>
+                                                <td><?php echo $listaDetalles[$i]->detalle ?></td>
+                                                <td><input id="txtDetalles" style="width: 100%"></td>
+                                                <td style="text-align: center"><input id="chkIva<?php echo $i + 1 ?>" type="checkbox"></td>
+                                                <td style="text-align: end"><input id="txtValorUnitario<?php echo $i + 1 ?>" class="monto<?php echo $i + 1 ?>" name="txtValorUnitario<?php echo $i + 1 ?>" onkeyup="valorTotal();" style="width: 100%"></td>
+                                                <td style="text-align: end"><label id="lblValorTotal<?php echo $i + 1 ?>">0</label></td>
+                                            </tr>
+                                <?php } ?>
                                 <tr>
                                     <td colspan="4"></td>
                                     <td style="font-weight: bold; text-align: end">SUBTOTAL:</td>
-                                    <td style="font-weight: bold; text-align: end">341.00</td>
+                                    <td style="text-align: end"><label id="lblSubtotal">0</label></td>
                                 </tr>
                                 <tr>
                                     <td colspan="4"></td>
                                     <td style="font-weight: bold; text-align: end">IVA:</td>
-                                    <td style="font-weight: bold; text-align: end">3.60</td>
+                                    <td style="text-align: end"><label id="lblIva">0</label></td>
                                 </tr>
                                 <tr>
                                     <td colspan="4"></td>
                                     <td style="font-weight: bold; text-align: end">TOTAL:</td>
-                                    <td style="font-weight: bold; text-align: end">344.60</td>
+                                    <td style="text-align: end"><label id="lblTotal">0</label></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -139,10 +145,41 @@
 </main>
 <script>
     function toggle(source) {
-        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i] != source)
-                checkboxes[i].checked = source.checked;
+        for(j=1; j<3; j++){
+            var checkboxes = document.querySelectorAll('input[id="chkIva'+[j]+'"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i] != source)
+                    checkboxes[i].checked = source.checked;
+            }
         }
     }
+</script>
+<script>
+    function valorTotal() {
+        var total1 = parseFloat(document.getElementById('lblCantidad1').innerHTML);
+        $(".monto1").each(function() {
+          if (isNaN(parseFloat($(this).val()))) {
+            total1 *= 0;
+          } else {
+            total1 *= parseFloat($(this).val());
+          }
+        });
+        var total2 = parseFloat(document.getElementById('lblCantidad2').innerHTML);
+        $(".monto2").each(function() {
+          if (isNaN(parseFloat($(this).val()))) {
+            total2 *= 0;
+          } else {
+            total2 *= parseFloat($(this).val());
+          }
+        });
+        //alert(total);
+        document.getElementById('lblValorTotal1').innerHTML = total1;
+        document.getElementById('lblValorTotal2').innerHTML = total2;
+        var subtotal = total1 + total2;
+        document.getElementById('lblSubtotal').innerHTML = subtotal;
+        var iva = subtotal * 0.12;
+        document.getElementById('lblIva').innerHTML = iva;
+        var total = subtotal + iva;
+        document.getElementById('lblTotal').innerHTML = total;
+      }
 </script>

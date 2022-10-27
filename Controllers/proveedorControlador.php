@@ -2,6 +2,11 @@
 
 class proveedorControlador extends proveedorModelo {
 
+    public function buscarProveedorRuc($rucProveedor) {
+        $buscarProveedorRuc = proveedorModelo::buscar_proveedor_ruc($rucProveedor);
+        return $buscarProveedorRuc;
+    }
+    
     public function listarProveedores() {
         $listaProveedores = proveedorModelo::listar_proveedores();
         if(!isset($listaProveedores)) {
