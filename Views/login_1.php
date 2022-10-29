@@ -25,7 +25,7 @@
             <div class="logo">
                 <h1></h1>
             </div>
-            <div class="login-box" <?php if(isset($_GET['token'])){ echo 'style="height: 405px"';}?> >
+            <div class="login-box">
                 <!-- sección para iniciar sesión -->
                 <!--form class="login-form" action="" method="post" name="FormEntrar"-->
                 <form class="FormLogin login-form" action="./acciones/loginSistema.php" method="POST" data-form="login" autocomplete="off" enctype="multipart/form-data">
@@ -58,13 +58,6 @@
                     <!-- botón para iniciar sesión -->
                     <div class="form-group btn-container">
                         <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>INICIAR SESI&Oacute;N</button>
-                        <?php if(isset($_GET['token'])){
-                            $token = $_GET['token'];
-                            echo '<button class="btn btn-warning btn-block btn-sm" type="button" onclick="formRegProv(\''.$token.'\');">'
-                            . '<i class="fa fa-sign-in fa-lg fa-fw"></i>Registrarse como proveedor</button>';
-                            
-                            echo '<input id="txtToken" name="txtToken" type="hidden" value="'.$token.'">';
-                        } ?>
                     </div>
                     <div class="RespuestaAjax"></div>
                 </form>
@@ -112,10 +105,6 @@
                 console.log('page is fully loaded');
                 $(".loader").fadeOut("slow");
             });
-            
-            function formRegProv(token){
-                window.location.href = "formularioRegistroProveedor?token=" + token;
-            }
         </script>
     </body>
 

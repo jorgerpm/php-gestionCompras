@@ -7,7 +7,7 @@ class serviciosWebModelo {
         $ch = curl_init();
 
         $data = json_encode($datos);
-
+        //print_r($data);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -16,7 +16,13 @@ class serviciosWebModelo {
         curl_setopt($ch, CURLOPT_TIMEOUT, 20);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         $response = curl_exec($ch);
-
+        
+        //validar el codigohttp de respuesta
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        //print_r($httpcode);
+        if($httpcode != 200){
+            //print_r($response);
+        }
         $tipoArray = json_decode($response);
 
         curl_close($ch);

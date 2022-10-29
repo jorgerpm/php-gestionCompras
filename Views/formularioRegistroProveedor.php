@@ -1,3 +1,13 @@
+<?php
+
+if(isset($_GET['token'])){
+//    echo $numeroRC;
+}else{
+    echo "invalid link, no token found";
+    exit;
+}
+
+?>
 <html lang="en">
     <head>
         <meta name="description" content="Formulario para el registro de proveedores">
@@ -30,13 +40,13 @@
                                 <div class="tile-body">
                                     <form id="formProveedor" class="FormularioAjax login-form" action="acciones/guardarProveedorUsuario.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                                         <div>
-                                            <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = 'index'">buscar</button></p>
+                                            <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = 'index?token=<?php echo $_GET['token'] ?>'">buscar</button></p>
                                         </div>
                                         <input type="hidden" id="idProveedor" name="idProveedor" value="">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label class="control-label" for="txtRuc">RUC:</label>
-                                                <input class="form-control" id="txtRucProveedor" name="txtRucProveedor" type="number" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;">
+                                                <label class="control-label" for="txtRucProveedor">RUC:</label>
+                                                <input class="form-control" id="txtRucProveedor" name="txtRucProveedor" type="number" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;" min="0" minlength="13" maxlength="13">
                                             </div>
                                             <div class="form-group col-md-6">
                                             </div>
@@ -165,6 +175,9 @@
             $(document).ready(function() {
                 $("#txtRucProveedor").keyup(function() {
                     var value = $(this).val();
+                    if(value.length > 13)
+                        value = value.slice(0, 13);
+                    $("#txtRucProveedor").val(value);
                     $("#txtUsuarioProveedor").val(value);
                 });
             });

@@ -19,7 +19,7 @@
                                 <label>C&oacute;digo de RC</label>
                             </div>
                             <div class="col-md-2 col-sm-2 col-12">
-                                <input id="txtCodRC" name="txtCodRC" class="form-control btn-sm">
+                                <input id="txtCodRC" name="txtCodRC" class="form-control btn-sm" style="text-transform: uppercase;">
                             </div>
                             <div class="col-md-2 col-sm-2 col-12">
                                 <label>Fecha</label>
@@ -106,7 +106,7 @@
                         </div -->
                         <div>
                             <label class="control-label">Observaciones:</label>
-                            <textarea id="txtObserv" name="txtObserv" class="form-control" placeholder="Observaciones"></textarea>
+                            <textarea id="txtObserv" name="txtObserv" class="form-control" placeholder="Observaciones" style="text-transform: uppercase;"></textarea>
                         </div>
 
                         <br>
@@ -127,7 +127,28 @@
         //generar el id dinamico para el input del td nuevo que se crea
         let tabla = document.getElementById('tblDetSolicitud');
         let index = tabla.rows.length;
-        tabla.insertRow(-1).innerHTML = '<td><input id="txtCantidad' + index + '" style="width: 100%"></td><td><input id="txtDetalle' + index + '" style="width: 100%"></td><td><input type="button" value="x"></td>';
+        tabla.insertRow(-1).innerHTML = '<td><input type="number" id="txtCantidad' + index + '" style="width: 100%"></td><td><input id="txtDetalle' + index + '" style="width: 100%; text-transform: uppercase;"></td><td><input id="'+index+'" type="button" value="x" onclick="eliminarFila(this);"></td>';
+    }
+    
+    function eliminarFila(input){
+        let tabla = document.getElementById('tblDetSolicitud');
+        
+//        console.log(input.id);
+        
+        let index = input.id;
+        
+        tabla.deleteRow(index);
+        //alert(tabla.rows[index].innerHTML);
+        for(i=1;i<tabla.rows.length;i++){
+            tabla.rows[i].cells[0].children[0].id = 'txtCantidad'+i;
+            tabla.rows[i].cells[1].children[0].id = 'txtDetalle'+i;
+            tabla.rows[i].cells[2].children[0].id = i;
+            
+//            console.log(tabla.rows[i].cells[0].children[0].id);
+//            console.log(tabla.rows[i].cells[1].children[0].id);
+//            console.log(tabla.rows[i].cells[2].children[0].id);
+        }
+        
     }
 
     function agregarCorreo() {
@@ -181,12 +202,13 @@
             processData: false,
             success: function (data) {
                 LOADING.style = 'display: none;';
-                console.log('fiiiinnn   successss');
+                //console.log('fiiiinnn   successss');
                 respuesta.html(data);
+                document.getElementById("formSolicitud").reset();
             },
             error: function (error) {
                 LOADING.style = 'display: none;';
-                console.log('fiiiinnn   errrroooorr');
+                //console.log('fiiiinnn   errrroooorr: ', error);
                 respuesta.html(error);
             }
         });

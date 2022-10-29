@@ -3,7 +3,7 @@ class solicitudControlador extends solicitudModelo {
     
     public function listar_solicitud_controlador($post, $regsPagina) {
         if(isset($post) && isset($post['dtFechaIni']) && isset($post['dtFechaFin'])){
-            $respuesta = solicitudModelo::listar_solicitud_modelo($post['dtFechaIni'], $post['dtFechaFin'], isset($post['txtNumSol']) ? $post['txtNumSol'] : null, $post['txtDesde'], $regsPagina);
+            $respuesta = solicitudModelo::listar_solicitud_modelo($post['dtFechaIni'], $post['dtFechaFin'], isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null, $post['txtDesde'], $regsPagina);
         }
         else{
             $respuesta = solicitudModelo::listar_solicitud_modelo(date("Y-m-d"), date("Y-m-d"), null, 0, $regsPagina);
@@ -27,7 +27,7 @@ class solicitudControlador extends solicitudModelo {
             $dt = [
                 'id' => 0,
                 'cantidad' => $post['txtCantidad'.$i],
-                'detalle' => $post['txtDetalle'.$i]
+                'detalle' => strtoupper($post['txtDetalle'.$i])
             ];
             
             $detalles[] = $dt;
@@ -35,22 +35,33 @@ class solicitudControlador extends solicitudModelo {
         
         $data = array(
             'id' => 0,
-            'fechaSolicitud' => $post['dtFechaSol'],
-            'codigoRC' => $post['txtCodRC'],
+            'fechaTexto' => $post['dtFechaSol'],
+            'codigoRC' => strtoupper($post['txtCodRC']),
             'estado' => 'ENVIADO',
             'usuario' => $_SESSION['Usuario']->nombre,
             'correos' => $post['txtCorreos'],
-            'observacion' => $post['txtObserv'],
+            'observacion' => strtoupper($post['txtObserv']),
             'listaDetalles' => $detalles,
         );
         
         $respuesta = solicitudModelo::guardar_solicitud_modelo($data);
         
         if($respuesta->id > 0){
-            return "Solicitud almacenada correctamente.";
+            return '<script>swal("", "Solicitud enviada correctamente.", "success");</script>';
         }
         else{
-            return "Error al guardar la solicitud.";
+            return '<script>swal("", "Error al enviar la solicitud.", "error");</script>';
         }
+    }
+    
+    
+    public function buscar_solicitud_por_numero($numeroRC){
+        $solicitud = solicitudModelo::buscar_solicitud_por_numero($numeroRC);
+//        if(!isset($solicitud)){
+//            $solicitud = array();
+//            $solicitud->listaDetalles = [];
+//        }
+        
+        return $solicitud;
     }
 }

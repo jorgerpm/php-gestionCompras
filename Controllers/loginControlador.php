@@ -21,7 +21,14 @@ class loginControlador extends loginModelo {
                 
                 $_SESSION['Usuario'] = $respuesta;
                 
-                return '<script>window.location.href = "home"</script>';
+                if(isset($_POST['txtToken'])){
+                    return '<script>window.location.href = "formularioCotizacion?token='.$_POST['txtToken'].'"</script>';
+                }
+                elseif($rolDto->id == 2){//si es un proveedor
+                    return '<script>window.location.href = "formularioCotizacion"</script>';
+                }else{
+                    return '<script>window.location.href = "home"</script>';
+                }
             } elseif (isset($respuesta)) {
 //                print_r($respuesta);
                 unset($_SESSION['Usuario']); //destruye la sesión

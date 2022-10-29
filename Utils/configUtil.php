@@ -1,5 +1,6 @@
 <?php
 //require_once 'messages.php';
+date_default_timezone_set('America/Guayaquil');
 
 spl_autoload_register(function($class) {
 //    $parts = explode('_', $class);
