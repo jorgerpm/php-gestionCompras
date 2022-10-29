@@ -17,3 +17,24 @@ function openModalProveedor(val_datos) {
     }
     $('#modalFormProveedor').modal('show');
 }
+
+var inputFileCsv = document.querySelector("#inputFileCsv");
+var btnCargarArchivo = document.querySelector("#btnCargarArchivo");
+// Upload file
+btnCargarArchivo.addEventListener("click", () => {
+    if(inputFileCsv.files.length > 0 ) {
+        let formData = new FormData();
+        formData.append("archivo", inputFileCsv.files[0]); // En la posición 0; es decir, el primer elemento
+        fetch("./acciones/cargaMasivaProveedores.php", {
+            method: 'POST',
+            body: formData,
+        })
+        .then(respuesta => respuesta.text())
+            .then(decodificado => {
+                console.log(decodificado);
+            });
+    } else {
+        // El usuario no ha seleccionado archivos
+        alert("Selecciona un archivo");
+    }
+});

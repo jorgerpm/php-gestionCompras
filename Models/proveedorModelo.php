@@ -22,4 +22,9 @@ class proveedorModelo extends serviciosWebModelo {
         $listaProveedores = self::invocarGet('proveedor/listarProveedores', $array);
         return $listaProveedores;
     }
+    
+    public function carga_masiva_proveedores($datos){
+        $respuesta = self::invocarPost('proveedor/cargaMasivaProveedores', $datos);
+        return $respuesta;
+    }
 }

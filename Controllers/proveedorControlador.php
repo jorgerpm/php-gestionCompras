@@ -99,4 +99,17 @@ class proveedorControlador extends proveedorModelo {
             echo '<script>swal("", "Complete los campos requeridos del formulario.", "error");</script>';
         }
     }
+
+    public function cargaMasivaProveedores() {
+        $carpeta = "../Config/";
+        opendir($carpeta);
+        $destino = $carpeta.$_FILES['archivo']['name'];
+        copy($_FILES['archivo']['tmp_name'], $destino);
+        $archivoCsv = file_get_contents($destino);
+        $fileBase64 = base64_decode($archivoCsv);
+        $datos = [
+            "archivoBase64" => $fileBase64
+        ];
+        $respuesta = proveedorModelo::carga_masiva_proveedores($datos);
+    }
 }
