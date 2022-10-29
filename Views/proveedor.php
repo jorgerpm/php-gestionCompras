@@ -24,15 +24,14 @@
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                                 <tr>
+                                    <th>Código JD</th>
                                     <th>RUC</th>
-                                    <th>Código</th>
-                                    <th>Nombre comercial</th>
                                     <th>Razón social</th>
+                                    <th>Nombre comercial</th>
                                     <th>Dirección</th>
+                                    <th>Correo</th>
                                     <th>Teléfono1</th>
                                     <th>Teléfono2</th>
-                                    <th>Correo</th>
-                                    <th>Código JD</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
@@ -41,15 +40,14 @@
                                 <?php require_once './acciones/listarProveedores.php';
                                 foreach ($listaProveedores as $proveedor) { ?>
                                     <tr>
+                                        <td><?php echo $proveedor->codigoJD ?></td>
                                         <td><?php echo $proveedor->ruc ?></td>
-                                        <td><?php echo $proveedor->id ?></td>
-                                        <td><?php echo $proveedor->nombreComercial ?></td>
                                         <td><?php echo $proveedor->razonSocial ?></td>
+                                        <td><?php echo $proveedor->nombreComercial ?></td>
                                         <td><?php echo $proveedor->direccion ?></td>
+                                        <td><?php echo $proveedor->correo ?></td>
                                         <td><?php echo $proveedor->telefono1 ?></td>
                                         <td><?php echo $proveedor->telefono2 ?></td>
-                                        <td><?php echo $proveedor->correo ?></td>
-                                        <td><?php echo $proveedor->codigoJD ?></td>
                                         <td><?php echo ($proveedor->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">

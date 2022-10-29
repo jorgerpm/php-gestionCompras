@@ -10,10 +10,15 @@
             <div class="modal-body">
                 <form id="formProveedor" class="FormularioAjax login-form" action="acciones/guardarProveedor.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                     <input type="hidden" id="idProveedor" name="idProveedor" value="">
-                    
-                    <div class="form-group">
-                        <label class="control-label" for="txtRuc">RUC:</label>
-                        <input class="form-control" id="txtRuc" name="txtRuc" type="number" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">C&oacute;digo JD:</label>
+                            <input class="form-control" id="txtCodigoJD" name="txtCodigoJD" type="text" placeholder="C&oacute;digo JD del proveedor" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="txtRuc">RUC:</label>
+                            <input class="form-control" id="txtRuc" name="txtRuc" type="number" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Raz&oacute;n social:</label>
@@ -27,26 +32,23 @@
                         <label class="control-label">Direcci&oacute;n:</label>
                         <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" required="" style="text-transform: uppercase;">
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Correo:</label>
-                        <input class="form-control" id="txtCorreo" name="txtCorreo" type="email" placeholder="CORREO DEL PROVEEDOR" required="">
-                    </div>
                     
                     <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Correo:</label>
+                            <input class="form-control" id="txtCorreo" name="txtCorreo" type="email" placeholder="CORREO DEL PROVEEDOR" required="">
+                        </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Tel&eacute;fono 1:</label>
                             <input class="form-control" id="txtTelefono1" name="txtTelefono1" type="number" placeholder="Tel&eacute;fono 1 del proveedor" required="">
                         </div>
-                        <div class="form-group col-md-6">
-                            <label class="control-label">Tel&eacute;fono 2:</label>
-                            <input class="form-control" id="txtTelefono2" name="txtTelefono2" type="number" placeholder="Tel&eacute;fono 2 del proveedor" style="text-transform: uppercase;">
-                        </div>
+                        
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label class="control-label">C&oacute;digo JD:</label>
-                            <input class="form-control" id="txtCodigoJD" name="txtCodigoJD" type="text" placeholder="C&oacute;digo JD del proveedor" style="text-transform: uppercase;">
+                            <label class="control-label">Tel&eacute;fono 2:</label>
+                            <input class="form-control" id="txtTelefono2" name="txtTelefono2" type="number" placeholder="Tel&eacute;fono 2 del proveedor" style="text-transform: uppercase;">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="listaEstado">Estado:</label>
