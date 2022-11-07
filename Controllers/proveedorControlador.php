@@ -106,10 +106,25 @@ class proveedorControlador extends proveedorModelo {
         $destino = $carpeta.$_FILES['archivo']['name'];
         copy($_FILES['archivo']['tmp_name'], $destino);
         $archivoCsv = file_get_contents($destino);
-        $fileBase64 = base64_decode($archivoCsv);
-        $datos = [
-            "archivoBase64" => $fileBase64
-        ];
-        $respuesta = proveedorModelo::carga_masiva_proveedores($datos);
+        $fileBase64 = base64_encode($archivoCsv);
+        
+        if(isset($fileBase64)){
+            $datos = [
+                "archivoBase64" => $fileBase64
+            ];
+
+            $respuesta = proveedorModelo::carga_masiva_proveedores($datos);
+
+            if ($respuesta->id > 0) {
+                echo '<script>swal("", "Datos almacenados correctamente", "success")
+                    .then((value) => {
+                        $(`#btnBuscar`).click();
+                    });</script>';
+            } else {
+                echo '<script>swal("", "Error al almacenar los datos.", "error");</script>';
+            }
+        } else {
+            echo '<script>swal("", "Complete los campos requeridos del formulario.", "error");</script>';
+        }
     }
 }
