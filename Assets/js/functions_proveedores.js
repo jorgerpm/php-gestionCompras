@@ -35,6 +35,6 @@ btnCargarArchivo.addEventListener("click", () => {
             });
     } else {
         // El usuario no ha seleccionado archivos
-        alert("Selecciona un archivo");
+        swal("", "Seleccione un archivo para continuar", "warning");
     }
 });

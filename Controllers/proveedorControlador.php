@@ -103,19 +103,20 @@ class proveedorControlador extends proveedorModelo {
     public function cargaMasivaProveedores() {
         $carpeta = "../Config/";
         opendir($carpeta);
-        $destino = $carpeta.$_FILES['archivo']['name'];
-        copy($_FILES['archivo']['tmp_name'], $destino);
-        $archivoCsv = file_get_contents($destino);
-        $fileBase64 = base64_encode($archivoCsv);
-        
-        if(isset($fileBase64)){
+        $destino = $carpeta . $_FILES['archivo']['name'];
+        $file_extension = pathinfo($destino, PATHINFO_EXTENSION);
+        $file_extension = strtolower($file_extension); //String cambia las letras a minúsculas; strtoupper pone en mayúsculas
+        if($file_extension == "csv") {
+            copy($_FILES['archivo']['tmp_name'], $destino);
+            $archivoCsv = file_get_contents($destino);
+            $fileBase64 = base64_encode($archivoCsv);
             $datos = [
                 "archivoBase64" => $fileBase64
             ];
 
             $respuesta = proveedorModelo::carga_masiva_proveedores($datos);
-
-            if ($respuesta->id > 0) {
+            
+            if($respuesta->respuesta == "ok") {
                 echo '<script>swal("", "Datos almacenados correctamente", "success")
                     .then((value) => {
                         $(`#btnBuscar`).click();
@@ -124,7 +125,7 @@ class proveedorControlador extends proveedorModelo {
                 echo '<script>swal("", "Error al almacenar los datos.", "error");</script>';
             }
         } else {
-            echo '<script>swal("", "Complete los campos requeridos del formulario.", "error");</script>';
+            echo '<script>swal("", "Formato de archivo diferente a csv", "error");</script>';
         }
     }
 }

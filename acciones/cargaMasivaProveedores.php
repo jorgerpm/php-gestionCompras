@@ -7,4 +7,4 @@ else{
 }
 
 $proveedorControlador = new proveedorControlador();
-return $proveedorControlador->cargaMasivaProveedores();
+$proveedorControlador->cargaMasivaProveedores();
