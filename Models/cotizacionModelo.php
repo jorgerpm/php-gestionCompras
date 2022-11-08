@@ -12,4 +12,10 @@ class cotizacionModelo extends serviciosWebModelo {
         $listaSolicts = self::invocarGet('cotizacion/listarCotizaciones?fechaInicial='.$fechaIni.'&fechaFinal='.$fechaFin.'&codigoRC='.$codigoRC.'&desde='.$desde.'&hasta='.$hasta, $array);
         return $listaSolicts;
     }
+    
+    protected function buscar_cotizacion_codigorc_modelo($codigoRC, $ruc){
+        $array = [];
+        $cotizacion = self::invocarGet('cotizacion/buscarCotizacionRucNumeroRC?codigoRC='.$codigoRC.'&ruc='.$ruc, $array);
+        return $cotizacion;
+    }
 }

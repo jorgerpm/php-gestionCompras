@@ -1,3 +1,4 @@
+<?php include 'Template/Modals/cotizacionModal.php'; ?>
 <main class="app-content">
     <div class="app-title" style="height: 50px">
         <div>
@@ -70,6 +71,7 @@
                         <table class="table table-hover table-bordered" id="tablaCotizaciones">
                             <thead>
                                 <tr>
+                                    <th style="width: 5%"></th>
                                     <th>Código RC</th>
                                     <th>Fecha cotizacion</th>
                                     <th>RUC proveedor</th>
@@ -78,13 +80,18 @@
                                     <th>Subtotal sin iva</th>
                                     <th>IVA</th>
                                     <th>Total</th>
-                                    <th>Usuario</th>
+                                    <!-- th>Usuario</th -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
+                                if(count($respuesta)>0){
                                 foreach ($respuesta as $cotizacion) { ?>
                                     <tr>
+                                        <td>
+                                            <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" 
+                                                    onclick='abrirFormulario(variableSolicitud = <?php echo json_encode($cotizacion); ?>)'></button>
+                                        </td>
                                         <td><?php echo $cotizacion->codigoRC; ?></td>
                                         <td><?php echo date("d/m/Y H:i:s", $cotizacion->fechaCotizacion / 1000); ?></td>
                                         <td><?php echo $cotizacion->rucProveedor; ?></td>
@@ -93,9 +100,12 @@
                                         <td><?php echo $cotizacion->subtotalSinIva; ?></td>
                                         <td><?php echo $cotizacion->iva; ?></td>
                                         <td><?php echo $cotizacion->total; ?></td>
-                                        <td><?php echo $cotizacion->usuario; ?></td>
+                                        <!-- td><?php /*echo $cotizacion->usuario;*/ ?></td -->
                                     </tr>
-                                <?php } ?>
+                                <?php }
+                                } else{
+                                    echo '<td colspan="9">No existen registros.</td>';
+                                } ?>
                             </tbody>
                         </table>
                     </div>

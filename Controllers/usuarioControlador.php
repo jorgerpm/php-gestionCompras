@@ -16,8 +16,8 @@ class usuarioControlador extends usuarioModelo {
         $txtUsuario = $_SESSION['Usuario']->usuario;
         $claveActual = $_SESSION['Usuario']->clave;
         $txtCorreo = $_SESSION['Usuario']->correo;
-        $cbxListaRol = $_SESSION['Usuario']->idEstado;
-        $cbxListaEstado = $_SESSION['Usuario']->idRol;
+        $cbxListaRol = $_SESSION['Usuario']->idRol;
+        $cbxListaEstado = $_SESSION['Usuario']->idEstado;
 
         $txtClaveActual = $_POST['txtClaveActual'];
         $txtClaveNueva = $_POST['txtClaveNueva'];

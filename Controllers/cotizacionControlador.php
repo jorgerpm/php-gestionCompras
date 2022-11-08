@@ -29,7 +29,7 @@ class cotizacionControlador extends cotizacionModelo {
                 'fechaTexto' => DateTime::createFromFormat('d/m/Y',$_POST['txtFecha'])->format('Y-m-d'),
                 'codigoRC' => $_POST['txtCodigoRc'],
                 'codigoCotizacion' => $_POST['txtCodigoCotizacion'],
-                'estado' => 'ENVIADO',
+                'estado' => 'COTIZADO',
                 'usuario' => $_SESSION['Usuario']->nombre,
                 'rucProveedor' => $_POST['txtRuc'],
             
@@ -71,5 +71,17 @@ class cotizacionControlador extends cotizacionModelo {
         }
         
         return $respuesta;
+    }
+    
+    public function buscar_cotizacion_codigorc(){
+        session_start();
+        if(isset($_GET['codigoRC'])){
+            $codigoRC = $_GET['codigoRC'];
+            
+            $ruc = $_SESSION['Usuario']->usuario;
+            
+            $respuesta = cotizacionModelo::buscar_cotizacion_codigorc_modelo($codigoRC, $ruc);
+            return $respuesta;
+        }
     }
 }

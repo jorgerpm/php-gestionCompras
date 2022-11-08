@@ -23,9 +23,9 @@ class solicitudControlador extends solicitudModelo {
         
         $detalles = array();
         
-        for($i=1;$i<$registros;$i++){
+        for($i=0;$i<$registros;$i++){
             $dt = [
-                'id' => 0,
+                'id' => isset($post['txtIdDetalle'.$i]) ? $post['txtIdDetalle'.$i] : 0,
                 'cantidad' => $post['txtCantidad'.$i],
                 'detalle' => strtoupper($post['txtDetalle'.$i])
             ];
@@ -34,7 +34,7 @@ class solicitudControlador extends solicitudModelo {
         }
         
         $data = array(
-            'id' => 0,
+            'id' => isset($post['txtId']) ? $post['txtId'] : 0,
             'fechaTexto' => $post['dtFechaSol'],
             'codigoRC' => strtoupper($post['txtCodRC']),
             'estado' => 'ENVIADO',
@@ -61,7 +61,6 @@ class solicitudControlador extends solicitudModelo {
 //            $solicitud = array();
 //            $solicitud->listaDetalles = [];
 //        }
-        
         return $solicitud;
     }
 }
