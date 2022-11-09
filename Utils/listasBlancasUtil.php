@@ -16,7 +16,8 @@ class listasBlancasUtil {
         "solicitudCotizacion",
         "formularioCotizacion",
         "formaPago",
-        "solicitudes",
-        "cotizaciones"
+        "listaSolicitudes",
+        "listaCotizaciones",
+        'listaOrdenesCompra'
     ];
 }

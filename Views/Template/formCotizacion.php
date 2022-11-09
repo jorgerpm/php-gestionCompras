@@ -8,13 +8,13 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-<?php echo isset($token) ? '4' : '3' ?>">
+            <div id="divUno" class="form-group col-md-<?php echo isset($token) ? '4' : '3' ?>">
                 <label class="control-label btn-sm">C&Oacute;DIGO RC:</label>
                 <input class="form-control btn-sm" value="<?php echo $solicitud->codigoRC; ?>"  id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="C&oacute;digo RC" required="" style="text-transform: uppercase;" 
                        <?php echo isset($token) ? 'readonly' : '' ?> >
             </div>
             <?php if (!isset($token)) { ?>
-                <div class="form-group col-md-1" style="text-align: center; align-self: end;">
+                <div id="btnBusqCot" class="form-group col-md-1" style="text-align: center; align-self: end;">
                     <button class="btn btn-primary btn-sm" style="width: 100%" type="button" onclick="buscarCotizacion()"><i class="fa fa-search"></i></button>
                 </div>
             <?php } ?>
@@ -132,11 +132,11 @@
         </table>
         <div class="mb-3">
             <label class="control-label">Rubros adicionales:</label>
-            <input class="form-control" type="text" id="txtRubrosAdicionales" name="txtRubrosAdicionales" placeholder="Rubros adicionales">
+            <input class="form-control" type="text" id="txtRubrosAdicionales" name="txtRubrosAdicionales" placeholder="Rubros adicionales" style="text-transform: uppercase;">
         </div>
         <div>
             <label class="control-label">Observaciones:</label>
-            <textarea class="form-control" id="txtObservaciones" name="txtObservaciones" placeholder="Observaciones"></textarea>
+            <textarea class="form-control" id="txtObservaciones" name="txtObservaciones" placeholder="Observaciones" style="text-transform: uppercase;"></textarea>
         </div>
     </div>
     <br>

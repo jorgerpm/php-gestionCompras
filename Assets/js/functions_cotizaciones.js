@@ -198,10 +198,10 @@ function abrirFormulario(val_datos) {
         document.querySelector('#txtObservaciones').value = val_datos.observacion;
         
         document.querySelector('#txtCodigoCotizacion').value = val_datos.codigoCotizacion;
-        document.querySelector('#txtRuc').value = val_datos.observacion;
-        document.querySelector('#txtRazonSocial').value = val_datos.observacion;
-        document.querySelector('#txtTelefono').value = val_datos.observacion;
-        document.querySelector('#txtDireccion').value = val_datos.observacion;
+        document.querySelector('#txtRuc').value = val_datos.rucProveedor;
+        document.querySelector('#txtRazonSocial').value = val_datos.proveedorDto.razonSocial;
+        document.querySelector('#txtTelefono').value = val_datos.proveedorDto.telefono1;
+        document.querySelector('#txtDireccion').value = val_datos.proveedorDto.direccion;
         
         document.querySelector('#txtTiempoEntrega').value = val_datos.tiempoEntrega;
         document.querySelector('#txtValidezCotizacion').value = val_datos.validezCotizacion;
@@ -219,8 +219,20 @@ function abrirFormulario(val_datos) {
         if(document.querySelector('#registrosTabla')){
             document.querySelector('#registrosTabla').value = val_datos.listaDetalles.length;
         }
-        document.querySelector('#btnGeneraOC').style = '';
+        if(document.querySelector('#btnBusqCot')){
+            document.querySelector('#btnBusqCot').style = 'display: none;';
+        }
+        if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'GENERADO_OC'){
+            document.querySelector('#btnGeneraOC').style =  '';
+        }else{
+            document.querySelector('#btnGeneraOC').style =  'display: none;';
+            document.querySelector('#btnGeneraOC').setAttribute("onclick", "");
+        }
+        
         document.querySelector('#chkTodosIva').style = 'display: none;';
+        document.querySelector('#divUno').classList.remove('col-md-3');
+        document.querySelector('#divUno').classList.add('col-md-4');
+        document.querySelector('#txtCodigoRc').setAttribute("readonly", "")
         
 
         //generar la tabla

@@ -2,7 +2,13 @@
 class ordenCompraModelo extends serviciosWebModelo {
     
     protected function guardar_ordencompra_modelo($data){
-        $ordenCompra = self::invocarPost('ordenCompra/guardarOrdenCompra', $data);
+        $ordenCompra = self::invocarPost('ordenCompra/generarOrdenCompra', $data);
         return $ordenCompra;
+    }
+    
+    protected function listar_ordencompra_modelo($fechaIni, $fechaFin, $codigoRC, $desde, $hasta) {
+        $array = [];
+        $listaOrdenes = self::invocarGet('ordenCompra/listarOrdenesCompra?fechaInicial='.$fechaIni.'&fechaFinal='.$fechaFin.'&codigoRC='.$codigoRC.'&desde='.$desde.'&hasta='.$hasta, $array);
+        return $listaOrdenes;
     }
 }
