@@ -116,7 +116,7 @@ class proveedorControlador extends proveedorModelo {
 
             $respuesta = proveedorModelo::carga_masiva_proveedores($datos);
             
-            if($respuesta->respuesta == "ok") {
+            if(isset($respuesta) && $respuesta->respuesta == "ok") {
                 echo '<script>swal("", "Datos almacenados correctamente", "success")
                     .then((value) => {
                         $(`#btnBuscar`).click();
@@ -125,7 +125,7 @@ class proveedorControlador extends proveedorModelo {
                 echo '<script>swal("", "Error al almacenar los datos.", "error");</script>';
             }
         } else {
-            echo '<script>swal("", "Formato de archivo diferente a csv", "error");</script>';
+            echo '<script>swal("", "Formato de archivo diferente a csv", "warning");</script>';
         }
     }
 }

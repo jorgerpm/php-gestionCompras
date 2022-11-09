@@ -20,6 +20,7 @@ function openModalProveedor(val_datos) {
 
 var inputFileCsv = document.querySelector("#inputFileCsv");
 var btnCargarArchivo = document.querySelector("#btnCargarArchivo");
+var valorDiv = $('.RespuestaAjax');
 // Upload file
 btnCargarArchivo.addEventListener("click", () => {
     if(inputFileCsv.files.length > 0 ) {
@@ -31,10 +32,14 @@ btnCargarArchivo.addEventListener("click", () => {
         })
         .then(respuesta => respuesta.text())
             .then(decodificado => {
-                console.log(decodificado);
+                //console.log(decodificado);
+                //console.log(valorDiv);
+                valorDiv.html(decodificado);
+                
             });
+        
     } else {
         // El usuario no ha seleccionado archivos
-        swal("", "Seleccione un archivo para continuar", "warning");
+        swal("", "Ningún archivo seleccionado", "warning");
     }
 });

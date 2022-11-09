@@ -42,7 +42,7 @@ $('.FormularioAjax').submit(function (e) {
     var tipo = form.attr('data-form');
     var accion = form.attr('action');
     var metodo = form.attr('method');
-    var respuesta = form.children('.RespuestaAjax');
+    var valorDiv = form.children('.RespuestaAjax');
 
     var msjError = "<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
     var formdata = new FormData(this);
@@ -95,12 +95,12 @@ $('.FormularioAjax').submit(function (e) {
         success: function (data) {
             LOADING.style = 'display: none;';
             console.log('fiiiinnn   successss');
-            respuesta.html(data);
+            valorDiv.html(data);
         },
         error: function (error) {
             LOADING.style = 'display: none;';
             console.log('fiiiinnn   errrroooorr');
-            respuesta.html(error);
+            valorDiv.html(error);
         }
     });
 //            return false;

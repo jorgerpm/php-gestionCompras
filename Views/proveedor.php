@@ -63,6 +63,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="RespuestaAjax"></div>
                 </div>
             </div>
         </div>
