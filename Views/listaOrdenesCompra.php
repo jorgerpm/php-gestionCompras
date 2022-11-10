@@ -1,3 +1,5 @@
+<?php include 'Template/Modals/modalAutorizaciones.php'; ?>
+
 <?php include 'Template/Modals/modalOrdenCompra.php'; ?>
 <main class="app-content">
     <div class="app-title" style="height: 50px">
@@ -72,6 +74,7 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%"></th>
+                                    <th style="width: 5%"></th>
                                     <th>Código RC</th>
                                     <th>Fecha orden de compra</th>
                                     <th>RUC proveedor</th>
@@ -90,8 +93,14 @@
                                     <tr>
                                         <td>
                                             <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" 
-                                                    onclick='abrirFormulario(variableSolicitud = <?php echo json_encode($ordenCompra); ?>)'></button>
+                                                    onclick='abrirFormulario(variableOC = <?php echo json_encode($ordenCompra); ?>)'></button>
                                         </td>
+                                        
+                                        <td>
+                                            <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" 
+                                                    onclick='abrirFormularioAut(variableOC = <?php echo json_encode($ordenCompra); ?>)'></button>
+                                        </td>
+                                        
                                         <td><?php echo $ordenCompra->codigoRC; ?></td>
                                         <td><?php echo date("d/m/Y H:i:s", $ordenCompra->fechaOrdenCompra / 1000); ?></td>
                                         <td><?php echo $ordenCompra->rucProveedor; ?></td>

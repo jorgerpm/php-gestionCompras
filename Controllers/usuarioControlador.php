@@ -3,7 +3,7 @@
 class usuarioControlador extends usuarioModelo {
 
     public function listarUsuarios() {
-        $listaUsuarios = usuarioModelo::listar_usuarios();
+        $listaUsuarios = usuarioModelo::listar_usuarios_modelo();
         if (!isset($listaUsuarios)) {
             $listaUsuarios = [];
         }
@@ -108,4 +108,12 @@ class usuarioControlador extends usuarioModelo {
         }
     }
 
+    public function listar_usuarios_activos() {
+        $listaUsuarios = usuarioModelo::listar_usuarios_activos_modelo();
+        if (!isset($listaUsuarios)) {
+            $listaUsuarios = [];
+        }
+        return $listaUsuarios;
+    }
+    
 }

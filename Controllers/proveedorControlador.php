@@ -8,11 +8,52 @@ class proveedorControlador extends proveedorModelo {
     }
     
     public function listarProveedores() {
-        $listaProveedores = proveedorModelo::listar_proveedores();
-        if(!isset($listaProveedores)) {
-            $listaProveedores = [];
+        $start = $_POST['start']; //desde el numero de registro que empieza
+        $length = $_POST['length']; //el numero de registros a buscar
+        $valBusq = $_POST['search']['value']; //este es el valor que se ingresa en la busqueda
+        
+        $valBusq = $_POST['txtSearchRuc'];
+        
+        if(empty($valBusq)){
+            $respuesta = proveedorModelo::listar_proveedores_modelo($start, $length, null);
         }
-        return $listaProveedores;
+        elseif(strlen($valBusq) >=3 ){
+            $respuesta = proveedorModelo::listar_proveedores_modelo($start, $length, urlencode($valBusq));
+        }
+        
+        if(!isset($respuesta)) {
+            $returnLista = array();
+        }
+        else{
+            $listaProveedores = array();
+            foreach ($respuesta as $proveedor){
+                //$columnas[0] = $proveedor->id;
+                $columnas[0] = $proveedor->codigoJD;
+                $columnas[1] = $proveedor->ruc;
+                $columnas[2] = $proveedor->razonSocial;
+                $columnas[3] = $proveedor->nombreComercial;
+                $columnas[4] = $proveedor->direccion;
+                $columnas[5] = $proveedor->correo;
+                $columnas[6] = $proveedor->telefono1;
+                $columnas[7] = $proveedor->telefono2;
+                $columnas[8] = ($proveedor->idEstado == 1) ? "ACTIVO" : "INACTIVO";
+                
+                $columnas[9] = '<div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <button class="btn btn-info fa fa-edit" type="button" onclick=\'openModalProveedor(variableProveedor = '. json_encode($proveedor).');\'></button>
+                                            </div>';
+
+                $listaProveedores[] = $columnas;
+            }
+            
+            $returnLista = array(
+			"draw"            => isset ( $_POST['draw'] ) ? intval( $_POST['draw'] ) : 0,
+			"recordsTotal"    => $proveedor->totalRegistros,
+			"recordsFiltered" => $proveedor->totalRegistros,
+			"data"            => $listaProveedores
+    //[["1","2","3","4","5","6","7"]]
+		);
+        }
+        return $returnLista;
     }
 
     //aqui la logica

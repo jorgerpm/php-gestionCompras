@@ -46,7 +46,7 @@ function agregarCorreo() {
         correos.value = correos.value + correoProv + ';';
         document.getElementById('cmbProveed').value = '';
     } else {
-        alert('Seleccione un proveedor');
+        swal('','Seleccione un proveedor de la lista.','warning');
     }
 }
 
