@@ -1,4 +1,4 @@
-<?php include 'Template/Modals/cotizacionModal.php'; ?>
+<?php include 'Template/Modals/modalOrdenCompra.php'; ?>
 <main class="app-content">
     <div class="app-title" style="height: 50px">
         <div>
@@ -17,7 +17,7 @@
                     
                     <?php
                     $regsPagina = 10;
-                    if($_POST['txtRegsPagina']){
+                    if(isset($_POST['txtRegsPagina'])){
                         $regsPagina = $_POST['txtRegsPagina'];
                     }
                     $cotContr = new ordenCompraControlador();
@@ -93,7 +93,7 @@
                                                     onclick='abrirFormulario(variableSolicitud = <?php echo json_encode($ordenCompra); ?>)'></button>
                                         </td>
                                         <td><?php echo $ordenCompra->codigoRC; ?></td>
-                                        <td><?php echo date("d/m/Y H:i:s", $ordenCompra->fechaCotizacion / 1000); ?></td>
+                                        <td><?php echo date("d/m/Y H:i:s", $ordenCompra->fechaOrdenCompra / 1000); ?></td>
                                         <td><?php echo $ordenCompra->rucProveedor; ?></td>
                                         <td><?php echo $ordenCompra->estado; ?></td>
                                         <td><?php echo $ordenCompra->subtotal; ?></td>

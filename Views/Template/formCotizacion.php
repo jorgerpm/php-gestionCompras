@@ -92,20 +92,22 @@
             </thead>
             <tbody id="tbodySol">
                 <?php
-                $listaDetalles = $solicitud->listaDetalles;
-                if (isset($listaDetalles)) {
-                    echo '<input id="registrosTabla" type="hidden" value="' . count($listaDetalles) . '">';
-                    for ($i = 0; $i < count($listaDetalles); $i++) {
-                        ?>
-                        <tr>
-                            <td style="text-align: center"><label id="lblCantidad<?php echo $i + 1 ?>"><?php echo $listaDetalles[$i]->cantidad ?></label></td>
-                            <td><label id="lblDetalle<?php echo $i + 1 ?>"><?php echo $listaDetalles[$i]->detalle ?></label></td>
-                            <td><input id="txtObservDetalle<?php echo $i + 1 ?>" style="width: 100%"></td>
-                            <td style="text-align: center"><input id="chkIva<?php echo $i + 1 ?>" type="checkbox" onclick="valorTotal(<?php echo count($solicitud->listaDetalles); ?>);"></td>
-                            <td style="text-align: end"><input type="number" id="txtValorUnitario<?php echo $i + 1 ?>" class="monto<?php echo $i + 1 ?>" onkeyup="valorTotalDetalle(<?php echo ($i + 1) . ', ' . count($solicitud->listaDetalles); ?>);" style="width: 100%; text-align: end;"></td>
-                            <td style="text-align: end"><label id="lblValorTotal<?php echo $i + 1 ?>">0</label></td>
-                        </tr>
-                    <?php }
+                if(isset ($solicitud)){
+                    $listaDetalles = $solicitud->listaDetalles;
+                    if (isset($listaDetalles)) {
+                        echo '<input id="registrosTabla" type="hidden" value="' . count($listaDetalles) . '">';
+                        for ($i = 0; $i < count($listaDetalles); $i++) {
+                            ?>
+                            <tr>
+                                <td style="text-align: center"><label id="lblCantidad<?php echo $i + 1 ?>"><?php echo $listaDetalles[$i]->cantidad ?></label></td>
+                                <td><label id="lblDetalle<?php echo $i + 1 ?>"><?php echo $listaDetalles[$i]->detalle ?></label></td>
+                                <td><input id="txtObservDetalle<?php echo $i + 1 ?>" style="width: 100%"></td>
+                                <td style="text-align: center"><input id="chkIva<?php echo $i + 1 ?>" type="checkbox" onclick="valorTotal(<?php echo count($solicitud->listaDetalles); ?>);"></td>
+                                <td style="text-align: end"><input type="number" id="txtValorUnitario<?php echo $i + 1 ?>" class="monto<?php echo $i + 1 ?>" onkeyup="valorTotalDetalle(<?php echo ($i + 1) . ', ' . count($solicitud->listaDetalles); ?>);" style="width: 100%; text-align: end;"></td>
+                                <td style="text-align: end"><label id="lblValorTotal<?php echo $i + 1 ?>">0</label></td>
+                            </tr>
+                        <?php }
+                    }
                 }
                 ?>
                 <tr>
@@ -142,9 +144,9 @@
     <br>
     <div style="text-align: center">
         <?php if (isset($token)) { ?>
-        <button class="btn btn-primary btn-sm fa" type="submit" id="btnGuarCot">
+            <button class="btn btn-primary btn-sm fa" type="submit" id="btnGuarCot">
                 <i class="fa fa-floppy-o"></i> Guardar y enviar</button>
-<?php } ?>
+        <?php } ?>
         
         <button class="btn btn-primary btn-sm fa" type="button" id="btnGeneraOC" style="display: none" onclick="generarOC();">
                 <i class="fa fa-floppy-o"></i> Generar OC</button>
