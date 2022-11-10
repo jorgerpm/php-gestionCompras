@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalFormSolic" tabindex="1" role="dialog" aria-hidden="true" >
+<div class="modal fade" id="modalFormSolic" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 80%; ">
         <div class="modal-content">
             <div class="modal-header headerRegister">
