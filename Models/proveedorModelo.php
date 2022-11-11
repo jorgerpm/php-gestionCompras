@@ -27,4 +27,10 @@ class proveedorModelo extends serviciosWebModelo {
         $respuesta = self::invocarPost('proveedor/cargaMasivaProveedores', $datos);
         return $respuesta;
     }
+    
+    protected function listar_proveedores_activos_modelo($valBusq) {
+        $array = [];
+        $listaProveedores = self::invocarGet('proveedor/listarProveedoresActivosNombre?valBusq='.$valBusq, $array);
+        return $listaProveedores;
+    }
 }

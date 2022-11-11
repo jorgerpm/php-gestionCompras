@@ -26,7 +26,7 @@
             <?php
             require_once './Controllers/proveedorControlador.php';
             $provCont = new proveedorControlador();
-            $listaProvs = $provCont->listarProveedores();
+            $listaProvs = $provCont->listarProveedoresActivosNombre();
             ?>
             <select class="form-control" id="cmbProveed">
                 <option class="menuRol" value="" >-Proveedores-</option>

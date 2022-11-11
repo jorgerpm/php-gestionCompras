@@ -6,32 +6,29 @@ class proveedorControlador extends proveedorModelo {
         $buscarProveedorRuc = proveedorModelo::buscar_proveedor_ruc($rucProveedor);
         return $buscarProveedorRuc;
     }
-    
+
     public function listarProveedores() {
         $start = $_POST['start']; //desde el numero de registro que empieza
         $length = $_POST['length']; //el numero de registros a buscar
         $valBusq = $_POST['search']['value']; //este es el valor que se ingresa en la busqueda
-        
 //        $valBusq = $_POST['txtSearchRuc'];
-        
-        if(empty($valBusq)){
+
+        if (empty($valBusq)) {
             $respuesta = proveedorModelo::listar_proveedores_modelo($start, $length, null);
-        }
-        elseif(strlen($valBusq) >=3 ){
+        } elseif (strlen($valBusq) >= 3) {
             $respuesta = proveedorModelo::listar_proveedores_modelo($start, $length, urlencode($valBusq));
         }
-        
-        if(!isset($respuesta)) {
+
+        if (!isset($respuesta)) {
             $returnLista = array();
-        }
-        else{
+        } else {
             $listaProveedores = array();
-            foreach ($respuesta as $proveedor){
-                
+            foreach ($respuesta as $proveedor) {
+
                 $columnas[0] = '<div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button class="btn btn-info fa fa-edit btn-sm" type="button" onclick=\'openModalProveedor(variableProveedor = '. json_encode($proveedor).');\'></button>
+                                                <button class="btn btn-info fa fa-edit btn-sm" type="button" onclick=\'openModalProveedor(variableProveedor = ' . json_encode($proveedor) . ');\'></button>
                                             </div>';
-                
+
                 $columnas[1] = $proveedor->codigoJD;
                 $columnas[2] = $proveedor->ruc;
                 $columnas[3] = $proveedor->razonSocial;
@@ -41,19 +38,19 @@ class proveedorControlador extends proveedorModelo {
                 $columnas[7] = $proveedor->telefono1;
                 $columnas[8] = $proveedor->telefono2;
                 $columnas[9] = ($proveedor->idEstado == 1) ? "ACTIVO" : "INACTIVO";
-                
-                
+
+
 
                 $listaProveedores[] = $columnas;
             }
-            
+
             $returnLista = array(
-			"draw"            => isset ( $_POST['draw'] ) ? intval( $_POST['draw'] ) : 0,
-			"recordsTotal"    => $proveedor->totalRegistros,
-			"recordsFiltered" => $proveedor->totalRegistros,
-			"data"            => $listaProveedores
-    //[["1","2","3","4","5","6","7"]]
-		);
+                "draw" => isset($_POST['draw']) ? intval($_POST['draw']) : 0,
+                "recordsTotal" => $proveedor->totalRegistros,
+                "recordsFiltered" => $proveedor->totalRegistros,
+                "data" => $listaProveedores
+                    //[["1","2","3","4","5","6","7"]]
+            );
         }
         return $returnLista;
     }
@@ -95,7 +92,6 @@ class proveedorControlador extends proveedorModelo {
             } else {
                 return '<script>swal("", "Error al almacenar los datos.", "error");</script>';
             }
-            
         } else {
             return '<script>swal("", "Complete los campos requeridos del formulario.", "error");</script>';
         }
@@ -137,7 +133,6 @@ class proveedorControlador extends proveedorModelo {
             } else {
                 echo '<script>swal("", "Error al almacenar los datos.", "error");</script>';
             }
-            
         } else {
             echo '<script>swal("", "Complete los campos requeridos del formulario.", "error");</script>';
         }
@@ -149,7 +144,7 @@ class proveedorControlador extends proveedorModelo {
         $destino = $carpeta . $_FILES['archivo']['name'];
         $file_extension = pathinfo($destino, PATHINFO_EXTENSION);
         $file_extension = strtolower($file_extension); //String cambia las letras a minúsculas; strtoupper pone en mayúsculas
-        if($file_extension == "csv") {
+        if ($file_extension == "csv") {
             copy($_FILES['archivo']['tmp_name'], $destino);
             $archivoCsv = file_get_contents($destino);
             $fileBase64 = base64_encode($archivoCsv);
@@ -158,8 +153,8 @@ class proveedorControlador extends proveedorModelo {
             ];
 
             $respuesta = proveedorModelo::carga_masiva_proveedores($datos);
-            
-            if(isset($respuesta) && $respuesta->respuesta == "ok") {
+
+            if (isset($respuesta) && $respuesta->respuesta == "ok") {
                 echo '<script>swal("", "Datos almacenados correctamente", "success")
                     .then((value) => {
                         $(`#btnBuscar`).click();
@@ -171,4 +166,21 @@ class proveedorControlador extends proveedorModelo {
             echo '<script>swal("", "Formato de archivo diferente a csv", "warning");</script>';
         }
     }
+
+    public function listarProveedoresActivosNombre() {
+        $valBusq = $_POST['txtNombreProveedor']; //este es el valor que se ingresa en la busqueda
+
+        if (empty($valBusq)) {
+            $respuesta = proveedorModelo::listar_proveedores_activos_modelo($start, $length, null);
+        } elseif (strlen($valBusq) >= 3) {
+            $respuesta = proveedorModelo::listar_proveedores_activos_modelo($start, $length, urlencode($valBusq));
+        }
+
+        if (!isset($respuesta)) {
+            $respuesta = array();
+        }
+
+        return $respuesta;
+    }
+
 }
