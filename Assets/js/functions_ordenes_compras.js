@@ -9,7 +9,7 @@ function abrirFormulario(val_datos) {
 //        document.querySelector('#txtId').value = val_datos.id;
         document.querySelector('#txtCodigoRc').value = val_datos.codigoRC;
         document.querySelector('#txtFecha').value = new Date(val_datos.fechaOrdenCompra).toISOString().split('T')[0];
-        document.querySelector('#txtRubrosAdicionales').value = val_datos.adicionales;
+        //document.querySelector('#txtRubrosAdicionales').value = val_datos.adicionales;
         document.querySelector('#txtObservaciones').value = val_datos.observacion;
         
         document.querySelector('#txtUsuario').value = val_datos.usuario;

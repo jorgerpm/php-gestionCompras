@@ -151,7 +151,7 @@
         <button class="btn btn-primary btn-sm fa" type="button" id="btnGeneraOC" style="display: none" onclick="generarOC();">
                 <i class="fa fa-floppy-o"></i> Generar OC</button>
         
-        
+        <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
     </div>
     <div class="RespuestaAjax" id="idRespuestaAjax"></div>
 </form>

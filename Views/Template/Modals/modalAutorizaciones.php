@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalAutorizaciones" tabindex="1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalAutorizaciones" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 60%; ">
         <div class="modal-content">
             <div class="modal-header headerRegister">
@@ -113,10 +113,13 @@
             var fila = tbody.insertRow();
             
             var numRC = document.getElementById('txtNumRCModal').value;
-            
-            fila.insertCell().innerHTML = numRC;
-            fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserModal'+index+'" value="'+datuser[1]+'">';
-            fila.insertCell().innerHTML = '<input id="' + index + '" type="button" value="x" onclick="eliminarFilaModal(this);" class="btn btn-secondary btn-sm fa">';
+            if(index < 4){
+                fila.insertCell().innerHTML = numRC;
+                fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserModal'+index+'" value="'+datuser[1]+'">';
+                fila.insertCell().innerHTML = '<input id="' + index + '" type="button" value="x" onclick="eliminarFilaModal(this);" class="btn btn-secondary btn-sm fa">';
+            } else {
+                swal("", "solo se permite un máximo de 4 usuarios", "error")
+            }
             
             document.getElementById('cmbUserList').value = '';
         } else {
@@ -133,6 +136,5 @@
             tbody.rows[i].cells[1].children[0].id = "txtIdUserModal"+i;
             tbody.rows[i].cells[2].children[0].id = i;
         }
-
     }
 </script>
