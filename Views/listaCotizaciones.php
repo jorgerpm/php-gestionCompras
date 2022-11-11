@@ -41,7 +41,7 @@
                                 } else {
                                     echo date("Y-m-d");
                                 }
-                                ?>">
+                                ?>" >
                             </div>
                             <div class="col-md-2 col-12" style="padding: 0px 5px 0px 0px">
                                 <label class="btn-sm" for="dtFechaFin">Fecha hasta:</label>

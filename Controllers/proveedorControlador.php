@@ -12,7 +12,7 @@ class proveedorControlador extends proveedorModelo {
         $length = $_POST['length']; //el numero de registros a buscar
         $valBusq = $_POST['search']['value']; //este es el valor que se ingresa en la busqueda
         
-        $valBusq = $_POST['txtSearchRuc'];
+//        $valBusq = $_POST['txtSearchRuc'];
         
         if(empty($valBusq)){
             $respuesta = proveedorModelo::listar_proveedores_modelo($start, $length, null);
@@ -27,20 +27,22 @@ class proveedorControlador extends proveedorModelo {
         else{
             $listaProveedores = array();
             foreach ($respuesta as $proveedor){
-                //$columnas[0] = $proveedor->id;
-                $columnas[0] = $proveedor->codigoJD;
-                $columnas[1] = $proveedor->ruc;
-                $columnas[2] = $proveedor->razonSocial;
-                $columnas[3] = $proveedor->nombreComercial;
-                $columnas[4] = $proveedor->direccion;
-                $columnas[5] = $proveedor->correo;
-                $columnas[6] = $proveedor->telefono1;
-                $columnas[7] = $proveedor->telefono2;
-                $columnas[8] = ($proveedor->idEstado == 1) ? "ACTIVO" : "INACTIVO";
                 
-                $columnas[9] = '<div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button class="btn btn-info fa fa-edit" type="button" onclick=\'openModalProveedor(variableProveedor = '. json_encode($proveedor).');\'></button>
+                $columnas[0] = '<div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <button class="btn btn-info fa fa-edit btn-sm" type="button" onclick=\'openModalProveedor(variableProveedor = '. json_encode($proveedor).');\'></button>
                                             </div>';
+                
+                $columnas[1] = $proveedor->codigoJD;
+                $columnas[2] = $proveedor->ruc;
+                $columnas[3] = $proveedor->razonSocial;
+                $columnas[4] = $proveedor->nombreComercial;
+                $columnas[5] = $proveedor->direccion;
+                $columnas[6] = $proveedor->correo;
+                $columnas[7] = $proveedor->telefono1;
+                $columnas[8] = $proveedor->telefono2;
+                $columnas[9] = ($proveedor->idEstado == 1) ? "ACTIVO" : "INACTIVO";
+                
+                
 
                 $listaProveedores[] = $columnas;
             }

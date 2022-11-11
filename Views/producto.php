@@ -49,31 +49,32 @@
 <script type="text/javascript" src="./Assets/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="./Assets/js/plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
-                                $('#tableProductos').DataTable({
-                                    //scrollY: '34vh',
-                                    //scrollCollapse: true,
-                                    language: {
-                                        lengthMenu: 'Mostrar _MENU_ registros por p&aacute;gina',
+    $('#tableProductos').DataTable({
+        //scrollY: '34vh',
+        //scrollCollapse: true,
+        language: {
+            lengthMenu: 'Mostrar _MENU_ registros por p&aacute;gina',
 //            zeroRecords: 'No existen registros',
 //            info: 'Mostrando p&aacute;gina _PAGE_ de _PAGES_',
+            info: 'Mostrando del _START_ al _END_ de _MAX_',
 //            infoEmpty: 'No existen registros',
 //            infoFiltered: '(filtrados de los _MAX_ registros totales)',
-                                        search: 'Buscar: ',
-                                        //processing: 'cargando',
-                                        paginate: {
-                                            previous: '&laquo',
-                                            next: '&raquo;',
-                                        },
-                                    },
-                                    lengthMenu: [
-                                        [10, 25, 50, 100], //cantidad
-                                        [10, 25, 50, 100], //texto que se muestra
-                                    ],
-                                    processing: true, //indica el texto processing cuando se esta cargando la tabla
-                                    serverSide: true,
-                                    ajax: {
-                                        url: './acciones/listarProductos.php',
-                                        type: 'POST',
-                                    },
-                                });
+            search: 'Buscar: ',
+            //processing: 'cargando',
+            paginate: {
+                previous: '&laquo',
+                next: '&raquo;',
+            },
+        },
+        lengthMenu: [
+            [10, 25, 50, 100], //cantidad
+            [10, 25, 50, 100], //texto que se muestra
+        ],
+        processing: true, //indica el texto processing cuando se esta cargando la tabla
+        serverSide: true,
+        ajax: {
+            url: './acciones/listarProductos.php',
+            type: 'POST',
+        },
+    });
 </script>

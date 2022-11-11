@@ -19,7 +19,8 @@
         language: {
             lengthMenu: 'Mostrar _MENU_ registros por p&aacute;gina',
             zeroRecords: 'No existen registros',
-            info: 'Mostrando p&aacute;gina _PAGE_ de _PAGES_',
+//            info: 'Mostrando p&aacute;gina _PAGE_ de _PAGES_',
+            info: 'Mostrando del _START_ al _END_ de _MAX_',
             infoEmpty: 'No existen registros',
             infoFiltered: '(filtrados de los _MAX_ registros totales)',
             search: 'Buscar',
