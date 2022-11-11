@@ -42,6 +42,7 @@ class solicitudControlador extends solicitudModelo {
             'correos' => $post['txtCorreos'],
             'observacion' => strtoupper($post['txtObserv']),
             'listaDetalles' => $detalles,
+            'usuarioModifica' => $_SESSION['Usuario']->id,
         );
         
         $respuesta = solicitudModelo::guardar_solicitud_modelo($data);

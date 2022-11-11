@@ -2,7 +2,7 @@
 class cotizacionControlador extends cotizacionModelo {
     
     public function guardar_cotizacion(){
-        session_start();
+        //session_start();
         //generar la lista de detalles.
         
         $listaDetalles = json_decode($_POST['listaDetalles'], true);
@@ -44,7 +44,8 @@ class cotizacionControlador extends cotizacionModelo {
                 'tiempoEntrega' => $_POST['txtTiempoEntrega'],
                 'validezCotizacion' => $_POST['txtValidezCotizacion'],
                 'formaPago' => $_POST['listFormaPago'],
-                'listaDetalles' => $detalles
+                'listaDetalles' => $detalles,
+                'usuarioModifica' => $_SESSION['Usuario']->id,
             );
     
         $cotizacion = cotizacionModelo::guardar_cotizacion_modelo($data);
