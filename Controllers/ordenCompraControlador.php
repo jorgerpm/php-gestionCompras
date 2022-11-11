@@ -8,6 +8,7 @@ class ordenCompraControlador extends ordenCompraModelo {
                 'rucProveedor' => $_POST['txtRuc'],
                 'estado' => 'GENERADO_OC',
                 'usuario' => $_SESSION['Usuario']->nombre,
+                'idUsuario' => $_SESSION['Usuario']->id,
             );
     
         $ordenCompra = ordenCompraModelo::guardar_ordencompra_modelo($data);
