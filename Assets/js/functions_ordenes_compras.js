@@ -1,3 +1,4 @@
+var cbxEstado = document.querySelector('#cbxListaEstado');
 function abrirFormularioOrdenCompra(val_datos) {
 
     console.log(val_datos);
@@ -27,6 +28,30 @@ function abrirFormularioOrdenCompra(val_datos) {
         document.querySelector('#lblIva').innerHTML = val_datos.iva;
         document.querySelector('#lblTotal').innerHTML = val_datos.total;
 
+        //ocultar input y label razón rechazo
+        if(document.querySelector('#lblRazonRechazo')){
+            document.querySelector('#lblRazonRechazo').style = 'display: none;';
+        }
+        if(document.querySelector('#txtRazonRechazo')){
+            document.querySelector('#txtRazonRechazo').style = 'display: none;';
+        }
+        if(document.querySelector('#lblListaEstado')){
+            document.querySelector('#lblListaEstado').style = 'display: none;';
+        }
+        if(document.querySelector('#cbxListaEstado')){
+            document.querySelector('#cbxListaEstado').style = 'display: none;';
+        }
+        cbxEstado.addEventListener("change", function() {
+            var valor = cbxEstado.value
+            if(valor === "RECHAZADO"){
+                document.querySelector('#lblRazonRechazo').style = '';
+                document.querySelector('#txtRazonRechazo').style = '';
+            } else {
+                document.querySelector('#lblRazonRechazo').style = 'display: none;';
+                document.querySelector('#txtRazonRechazo').style = 'display: none';
+            }
+        });
+
         //ocultar los botones
         if(document.querySelector('#btnAutorizar')){
             document.querySelector('#btnAutorizar').style = 'display: none;';
@@ -39,6 +64,8 @@ function abrirFormularioOrdenCompra(val_datos) {
         }
         if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'AUTORIZADO'){
             document.querySelector('#btnAutorizar').style =  '';
+            document.querySelector('#lblListaEstado').style = '';
+            document.querySelector('#cbxListaEstado').style = '';
         }else{
             document.querySelector('#btnAutorizar').style =  'display: none;';
             document.querySelector('#btnAutorizar').setAttribute("onclick", "");
@@ -76,6 +103,16 @@ function abrirFormularioOrdenCompra(val_datos) {
     }
 
     $('#modalFormOrdCompra').modal('show');
+}
+
+function valorEstado() {
+    cbxEstado.addEventListener("change", function() {
+        var valor = cbxEstado.value
+        if(valor === "2"){
+            return document.querySelector('#txtRazonRechazo').style = '';
+            //return document.querySelector('#lblRazonRechazo').style = '';
+        }
+    });
 }
 
 function generarAutorizacion(){

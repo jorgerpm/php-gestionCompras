@@ -47,7 +47,7 @@
                 <input class="form-control btn-sm" value="<?php echo $proveedor->direccion ?>" readonly id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" required="" style="text-transform: uppercase;">
             </div>
         </div>
-        <input class="form-control btn-sm" value="" readonly id="txtId" name="txtId" type="text" required="" >
+        <input class="form-control btn-sm" hidden="" value="" readonly id="txtId" name="txtId" type="text" required="" >
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label class="btn-sm" >FORMA DE PAGO:</label>
@@ -129,13 +129,31 @@
     </div>
     <br>
     <div style="text-align: center">
+        <div class="form-row">
+            <div class="form-group col-md-3" style="text-align:end; margin-top: 10px">
+                <label for="exampleSelect1" id="lblListaEstado">Estado:</label>
+            </div>
+            <div class="form-group col-md-3 btn-sm">
+                <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="AUTORIZADO">Autorizar</option>
+                    <option value="RECHAZADO">Rechazar</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3" style="text-align:end; margin-top:10px;">
+                <label class="control-label btn-sm" id="lblRazonRechazo" style="display:none;">Razón rechazo:</label>
+            </div>
+            <div class="form-group col-md-3" style="margin-top:5px;">
+                <input class="form-control btn-sm" id="txtRazonRechazo" name="txtRazonRechazo" type="text" placeholder="Raz&oacute;n del rechazo" required="" style="text-transform: uppercase; display:none;">
+            </div>
+        </div>
         <?php if (isset($token)) { ?>
         <button class="btn btn-primary btn-sm fa" type="submit" id="btnGuarCot">
                 <i class="fa fa-floppy-o"></i> Guardar y enviar</button>
 <?php } ?>
         
         <button class="btn btn-primary btn-sm fa" type="button" id="btnAutorizar" style="display: none" onclick="generarAutorizacion();">
-                <i class="fa fa-floppy-o"></i> Autorizar</button>
+                <i class="fa fa-floppy-o"></i> Guardar</button>
         
         <a class="btn btn-secondary btn-sm" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
     </div>

@@ -25,21 +25,29 @@ class ordenCompraControlador extends ordenCompraModelo {
     // Posible cambio
     public function guardar_autorizacion(){
         
-        $data = array(
-                'idUsuario' => $_SESSION['Usuario']->id,
-                'observacion' => "",//Razon rechazo
-                'usuario' => $_SESSION['Usuario']->usuario,
-                'estado' => 'AUTORIZADO',//$_POST combo box
-                'id' => $_POST['txtId'],
-            );
-    
-        $ordenCompra = ordenCompraModelo::autorizar_ordencompra_modelo($data);
-        
-        if(isset($ordenCompra) && $ordenCompra->id > 0){
-            return '<script>swal("", "Autorización generada correctamente.", "success");</script>';
-        }
-        else{
-            return '<script>swal("", "Error al generar la autorización.", "error");</script>';
+        if(isset($_POST['cbxListaEstado'])) {
+            if(!empty($_POST['txtRazonRechazo'])){
+                $data = array(
+                        'idUsuario' => $_SESSION['Usuario']->id,
+                        'observacion' => $_POST['txtRazonRechazo'],
+                        'usuario' => $_SESSION['Usuario']->usuario,
+                        'estado' => $_POST['cbxListaEstado'],
+                        'id' => $_POST['txtId'],
+                    );
+
+                $ordenCompra = ordenCompraModelo::autorizar_ordencompra_modelo($data);
+
+                if(isset($ordenCompra) && $ordenCompra->id > 0){
+                    return '<script>swal("", "Autorización generada correctamente.", "success");</script>';
+                }
+                else{
+                    return '<script>swal("", "Error al generar la autorización.", "error");</script>';
+                }
+            } else{
+                return '<script>swal("", "Debe colocar la razón de rechazo.", "warning");</script>';
+            }
+        } else {
+            return '<script>swal("", "Debe seleccionar un estado.", "warning");</script>';
         }
     }
     //Posible cambio
