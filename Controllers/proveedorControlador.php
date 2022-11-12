@@ -168,12 +168,13 @@ class proveedorControlador extends proveedorModelo {
     }
 
     public function listarProveedoresActivosNombre() {
-        $valBusq = $_POST['txtNombreProveedor']; //este es el valor que se ingresa en la busqueda
+        //$valBusq = $_POST['txtNombreProveedor']; //este es el valor que se ingresa en la busqueda
+        $valBusq = ""; //este es el valor que se ingresa en la busqueda
 
         if (empty($valBusq)) {
-            $respuesta = proveedorModelo::listar_proveedores_activos_modelo($start, $length, null);
+            $respuesta = proveedorModelo::listar_proveedores_activos_modelo(null);
         } elseif (strlen($valBusq) >= 3) {
-            $respuesta = proveedorModelo::listar_proveedores_activos_modelo($start, $length, urlencode($valBusq));
+            $respuesta = proveedorModelo::listar_proveedores_activos_modelo(urlencode($valBusq));
         }
 
         if (!isset($respuesta)) {

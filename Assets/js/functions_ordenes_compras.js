@@ -1,4 +1,4 @@
-function abrirFormulario(val_datos) {
+function abrirFormularioOrdenCompra(val_datos) {
 
     console.log(val_datos);
 //    console.log("fechhaa::: ", new Date(val_datos.fechaSolicitud).toISOString().split('T')[0]);
@@ -6,7 +6,7 @@ function abrirFormulario(val_datos) {
     document.querySelector('#frmOrdenCompra').reset();
 
     if (val_datos !== null) {
-//        document.querySelector('#txtId').value = val_datos.id;
+        document.querySelector('#txtId').value = val_datos.id;
         document.querySelector('#txtCodigoRc').value = val_datos.codigoRC;
         document.querySelector('#txtFecha').value = new Date(val_datos.fechaOrdenCompra).toISOString().split('T')[0];
         //document.querySelector('#txtRubrosAdicionales').value = val_datos.adicionales;
@@ -28,8 +28,8 @@ function abrirFormulario(val_datos) {
         document.querySelector('#lblTotal').innerHTML = val_datos.total;
 
         //ocultar los botones
-        if(document.querySelector('#btnGuarCot')){
-            document.querySelector('#btnGuarCot').style = 'display: none;';
+        if(document.querySelector('#btnAutorizar')){
+            document.querySelector('#btnAutorizar').style = 'display: none;';
         }
         if(document.querySelector('#registrosTabla')){
             document.querySelector('#registrosTabla').value = val_datos.listaDetalles.length;
@@ -37,11 +37,11 @@ function abrirFormulario(val_datos) {
         if(document.querySelector('#btnBusqCot')){
             document.querySelector('#btnBusqCot').style = 'display: none;';
         }
-        if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'GENERADO_OC'){
-            document.querySelector('#btnGeneraOC').style =  '';
+        if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'AUTORIZADO'){
+            document.querySelector('#btnAutorizar').style =  '';
         }else{
-            document.querySelector('#btnGeneraOC').style =  'display: none;';
-            document.querySelector('#btnGeneraOC').setAttribute("onclick", "");
+            document.querySelector('#btnAutorizar').style =  'display: none;';
+            document.querySelector('#btnAutorizar').setAttribute("onclick", "");
         }
         
         document.querySelector('#chkTodosIva').style = 'display: none;';
@@ -76,4 +76,32 @@ function abrirFormulario(val_datos) {
     }
 
     $('#modalFormOrdCompra').modal('show');
+}
+
+function generarAutorizacion(){
+    var form = document.forms['frmOrdenCompra'];
+    var formdata = new FormData(form);
+    
+//    var respuesta = form.elements('.RespuestaAjax');
+    var respuesta = $('#idRespuestaAjax');
+    
+    console.log(respuesta);
+    
+    $.ajax({
+        type: 'POST',
+        url: 'acciones/generarAutorizacion.php',
+        data: formdata ? formdata : form.serialize(),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log(data);
+            respuesta.html(data);
+//            respuesta.html('<script>swal("", \''+data+'\', "error");</script>');
+        },
+        error: function (error) {
+            respuesta.html(error);
+//            respuesta.html('<script>swal("", "'+error+'", "error");</script>');
+        }
+    });
 }

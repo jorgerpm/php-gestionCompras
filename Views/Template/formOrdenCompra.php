@@ -47,6 +47,7 @@
                 <input class="form-control btn-sm" value="<?php echo $proveedor->direccion ?>" readonly id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" required="" style="text-transform: uppercase;">
             </div>
         </div>
+        <input class="form-control btn-sm" value="" readonly id="txtId" name="txtId" type="text" required="" >
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label class="btn-sm" >FORMA DE PAGO:</label>
@@ -133,10 +134,10 @@
                 <i class="fa fa-floppy-o"></i> Guardar y enviar</button>
 <?php } ?>
         
-        <button class="btn btn-primary btn-sm fa" type="button" id="btnGeneraOC" style="display: none" onclick="generarOC();">
-                <i class="fa fa-floppy-o"></i> Generar OC</button>
+        <button class="btn btn-primary btn-sm fa" type="button" id="btnAutorizar" style="display: none" onclick="generarAutorizacion();">
+                <i class="fa fa-floppy-o"></i> Autorizar</button>
         
-        <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+        <a class="btn btn-secondary btn-sm" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
     </div>
     <div class="RespuestaAjax" id="idRespuestaAjax"></div>
 </form>

@@ -93,7 +93,7 @@
                                     <tr>
                                         <td>
                                             <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" 
-                                                    onclick='abrirFormulario(variableOC = <?php echo json_encode($ordenCompra); ?>)'></button>
+                                                    onclick='abrirFormularioOrdenCompra(variableOC = <?php echo json_encode($ordenCompra); ?>)'></button>
                                         </td>
                                         
                                         <td>

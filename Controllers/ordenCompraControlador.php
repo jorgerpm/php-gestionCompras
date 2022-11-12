@@ -22,6 +22,28 @@ class ordenCompraControlador extends ordenCompraModelo {
         
     }
     
+    // Posible cambio
+    public function guardar_autorizacion(){
+        
+        $data = array(
+                'idUsuario' => $_SESSION['Usuario']->id,
+                'observacion' => "",//Razon rechazo
+                'usuario' => $_SESSION['Usuario']->usuario,
+                'estado' => 'AUTORIZADO',//$_POST combo box
+                'id' => $_POST['txtId'],
+            );
+    
+        $ordenCompra = ordenCompraModelo::autorizar_ordencompra_modelo($data);
+        
+        if(isset($ordenCompra) && $ordenCompra->id > 0){
+            return '<script>swal("", "Autorización generada correctamente.", "success");</script>';
+        }
+        else{
+            return '<script>swal("", "Error al generar la autorización.", "error");</script>';
+        }
+    }
+    //Posible cambio
+    
     public function listar_ordencompra_controlador($post, $regsPagina) {
         if(isset($post) && isset($post['dtFechaIni']) && isset($post['dtFechaFin'])){
             $respuesta = ordenCompraModelo::listar_ordencompra_modelo($post['dtFechaIni'], $post['dtFechaFin'], isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null, $post['txtDesde'], $regsPagina);
