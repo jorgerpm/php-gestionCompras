@@ -26,7 +26,7 @@ class ordenCompraControlador extends ordenCompraModelo {
     public function guardar_autorizacion(){
         
         if(isset($_POST['cbxListaEstado'])) {
-            if(!empty($_POST['txtRazonRechazo'])){
+            if(!empty($_POST['txtRazonRechazo']) || $_POST['cbxListaEstado'] == "AUTORIZADO"){
                 $data = array(
                         'idUsuario' => $_SESSION['Usuario']->id,
                         'observacion' => $_POST['txtRazonRechazo'],
