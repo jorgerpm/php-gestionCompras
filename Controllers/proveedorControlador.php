@@ -168,8 +168,8 @@ class proveedorControlador extends proveedorModelo {
     }
 
     public function listarProveedoresActivosNombre() {
-        //$valBusq = $_POST['txtNombreProveedor']; //este es el valor que se ingresa en la busqueda
-        $valBusq = ""; //este es el valor que se ingresa en la busqueda
+        //este es el valor que se ingresa en la busqueda
+        $valBusq = isset($_POST['txtNombreProveedor']) ? $_POST['txtNombreProveedor'] : ""; 
 
         if (empty($valBusq)) {
             $respuesta = proveedorModelo::listar_proveedores_activos_modelo(null);

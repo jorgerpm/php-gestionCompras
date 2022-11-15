@@ -148,14 +148,14 @@
             </div>
         </div>
         <?php if (isset($token)) { ?>
-        <button class="btn btn-primary btn-sm fa" type="submit" id="btnGuarCot">
+        <button class="btn btn-primary" type="submit" id="btnGuarCot">
                 <i class="fa fa-floppy-o"></i> Guardar y enviar</button>
 <?php } ?>
         
-        <button class="btn btn-primary btn-sm fa" type="button" id="btnAutorizar" style="display: none" onclick="generarAutorizacion();">
+        <button class="btn btn-primary" type="button" id="btnAutorizar" style="display: none" onclick="generarAutorizacion();">
                 <i class="fa fa-floppy-o"></i> Guardar</button>
         
-        <a class="btn btn-secondary btn-sm" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+        <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
     </div>
     <div class="RespuestaAjax" id="idRespuestaAjax"></div>
 </form>

@@ -1,4 +1,4 @@
-<form id="formSolicitud">
+<form id="formSolicitud" autocomplete="off">
     <div class="row" style="padding-bottom: 5px">
         <input type="hidden" value="<?php echo isset($solicitudGet) ? $solicitudGet->id : "0" ?>" id="txtId" name="txtId">
         <div class="col-md-2 col-sm-2 col-12">
@@ -14,7 +14,9 @@
             <input id="dtFechaSol" name="dtFechaSol" class="form-control btn-sm" type="date" value="<?php echo isset($solicitudGet) ? date("Y-m-d", $solicitudGet->fechaSolicitud / 1000) : date("Y-m-d"); ?>">
         </div>
 
-        <div class="col-md-4 col-sm-4 col-12"></div>
+        <div class="col-md-4 col-sm-4 col-12">
+            
+        </div>
     </div>
 
     <div class="row" style="padding-bottom: 5px">
@@ -24,16 +26,24 @@
         <div class="col-md-4 col-sm-4 col-12">
 
             <?php
-            require_once './Controllers/proveedorControlador.php';
-            $provCont = new proveedorControlador();
-            $listaProvs = $provCont->listarProveedoresActivosNombre();
+//            require_once './Controllers/proveedorControlador.php';
+//            $provCont = new proveedorControlador();
+//            $listaProvs = $provCont->listarProveedoresActivosNombre();
             ?>
-            <select class="form-control" id="cmbProveed">
-                <option class="menuRol" value="" >-Proveedores-</option>
-                <?php foreach ($listaProvs as $proveedor) { ?>
-                    <option class="menuRol" value="<?php echo $proveedor->correo; ?>" ><?php echo $proveedor->razonSocial; ?></option>
-                <?php } ?>
-            </select>
+            <input id="txtNombreProveedor" name="txtNombreProveedor" class="form-control"  onkeyup="cargarProveedor(this);">
+            <input type="hidden" id="correoHidden" value="">
+            <div id="losli" style="position: fixed; z-index: 1; background-color: white; border: solid 1px;"></div>
+            
+            <!-- <select class="form-control" id="cmbProveed" name="cmbProveed">
+                
+                <!-- <option class="menuRol" value="" >-Proveedores-</option>
+                <php foreach ($listaProvs as $proveedor) { ?>
+                    <option class="menuRol" value="<php echo $proveedor->correo; ?>" ><php echo $proveedor->razonSocial; ?></option>
+                <php } ?> --
+            </select> -->
+            
+            
+            
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <button class="btn btn-primary btn-sm fa" type="button" onclick="agregarCorreo();">
@@ -100,11 +110,12 @@
 
     <br>
     <div style="text-align: center">
-        <button class="btn btn-primary btn-sm fa" type="submit" id="btnGuardaSolic">
+        <button class="btn btn-primary" type="submit" id="btnGuardaSolic">
             <i class="fa fa-floppy-o"></i> Guardar y enviar</button>
-        <a class="btn btn-secondary btn-sm" href="#" data-dismiss="modal">
+        <a class="btn btn-secondary" href="#" data-dismiss="modal">
             <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
     </div>
     <div class="RespuestaAjax" ></div>
 </form>
 <script src="./Assets/js/functions_solicitudes.js"></script>
+

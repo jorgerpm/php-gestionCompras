@@ -40,11 +40,20 @@ function eliminarFila(input) {
 }
 
 function agregarCorreo() {
-    var correoProv = document.getElementById('cmbProveed').value;
-    if (correoProv !== null && correoProv !== '') {
+//    var correoProv = document.getElementById('cmbProveed').value;
+//    if (correoProv !== null && correoProv !== '') {
+//        let correos = document.getElementById('txtCorreos');
+//        correos.value = correos.value + correoProv + ';';
+//        document.getElementById('cmbProveed').value = '';
+//    } else {
+//        swal('','Seleccione un proveedor de la lista.','warning');
+//    }
+    var correo = document.querySelector("#correoHidden").value;
+    if(correo !== null && correo !== ''){
         let correos = document.getElementById('txtCorreos');
-        correos.value = correos.value + correoProv + ';';
-        document.getElementById('cmbProveed').value = '';
+        correos.value = correos.value + correo + ';';
+        document.querySelector("#correoHidden").value = null;
+        document.querySelector("#txtNombreProveedor").value = null;
     } else {
         swal('','Seleccione un proveedor de la lista.','warning');
     }
@@ -151,4 +160,61 @@ function abrirFormulario(val_datos) {
     }
 
     $('#modalFormSolic').modal('show');
+}
+
+
+function cargarProveedor(input){
+    console.log(input.value);
+
+    $.ajax({
+        type: 'POST',
+        url: 'acciones/buscarProveedorNombre.php',
+        data: {'txtNombreProveedor': input.value}
+    })
+    .done(function(listas_rep){
+
+        var tam = document.querySelector("#losli").childNodes.length;
+        console.log("dd:: ", tam);
+        for(let i=0;i<tam;i++){
+            document.querySelector("#losli").removeChild(document.querySelector("#losli").childNodes[0]);
+        }
+
+        if(listas_rep){
+        var proveedores = JSON.parse(listas_rep);
+            console.log(proveedores);
+            proveedores.forEach(prov => {
+//                const option = document.createElement('option');
+                const li = document.createElement('li');
+                li.setAttribute("id", prov.correo);
+                li.setAttribute("onclick", "seleccionProv(this);")
+                li.appendChild(document.createTextNode(prov.razonSocial));
+//                li.style = 'cursor: pointer; padding: 2px 10px 2px 10px; display: block';
+                li.setAttribute("class", "liProveedor");
+//                li.css("", "");
+                document.querySelector("#losli").appendChild(li);
+//                option.value = prov.correo;
+//                option.text = prov.razonSocial;
+//                $select.appendChild(option);
+            });
+        }
+//            $("#cmbProveed").attr("size", proveedores.length);
+//            $("#cmbProveed").css("position","fixed");
+    })
+    .fail(function(){
+      alert('Hubo un errror al cargar los vídeos')
+    });
+}
+
+function seleccionProv(li){
+    console.log("siii: ", li.id);
+    var tam = document.querySelector("#losli").childNodes.length;
+//        console.log("dd:: ", tam);
+
+    document.querySelector("#txtNombreProveedor").value = li.innerHTML;
+    document.querySelector("#correoHidden").value = li.id;
+
+    for(let i=0;i<tam;i++){
+        document.querySelector("#losli").removeChild(document.querySelector("#losli").childNodes[0]);
+    }
+
 }

@@ -17,7 +17,6 @@ class solicitudControlador extends solicitudModelo {
     }
     
     public function guardar_solicitud($post){
-        session_start();
         //generar la lista de detalles.
         $registros = $post['registrosTabla'];
         

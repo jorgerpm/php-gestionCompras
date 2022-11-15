@@ -18,6 +18,7 @@ class listasBlancasUtil {
         "formaPago",
         "listaSolicitudes",
         "listaCotizaciones",
-        'listaOrdenesCompra'
+        'listaOrdenesCompra',
+        'listaHistoricoDocumentos',
     ];
 }

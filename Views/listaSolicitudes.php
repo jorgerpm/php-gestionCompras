@@ -17,7 +17,7 @@
                     
                     <?php
                     $regsPagina = 10;
-                    if($_POST['txtRegsPagina']){
+                    if(isset($_POST['txtRegsPagina'])){
                         $regsPagina = $_POST['txtRegsPagina'];
                     }
                     $solContr = new solicitudControlador();

@@ -2,7 +2,6 @@
 class cotizacionControlador extends cotizacionModelo {
     
     public function guardar_cotizacion(){
-        //session_start();
         //generar la lista de detalles.
         
         $listaDetalles = json_decode($_POST['listaDetalles'], true);
@@ -75,7 +74,6 @@ class cotizacionControlador extends cotizacionModelo {
     }
     
     public function buscar_cotizacion_codigorc(){
-        session_start();
         if(isset($_GET['codigoRC'])){
             $codigoRC = $_GET['codigoRC'];
             
