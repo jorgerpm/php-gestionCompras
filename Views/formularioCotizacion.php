@@ -15,7 +15,10 @@
                     
                     <?php 
 if(isset($_GET['token'])){
-    $token = $_GET['token'];
+    $token = ($_GET['token']);
+    $token = str_replace(" ", "+", $token);
+    
+//    echo "<br>".$token.PHP_EOL;
     
     $key = "hashidebsystems1";
         

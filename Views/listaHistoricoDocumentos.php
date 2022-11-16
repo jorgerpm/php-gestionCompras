@@ -31,14 +31,14 @@
                     
                         <div class="row" style="padding-top: 10px">
                             <div class="col-md-3 col-12" style="padding: 0px 5px 0px 10px">
-                                <label class="btn-sm" for="txtNumeroRC">C&oacute;digo RC:</label>
-                                <input class="form-control btn-sm" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>">
+                                <label class="control-label" for="txtNumeroRC">C&oacute;digo RC:</label>
+                                <input type="search" class="form-control " id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>">
                             </div>
                             
                             <div class="col-md-3 col-12" style="padding: 0px 5px 0px 0px">
-                                <label class="btn-sm" for="txtTipoDocumento">Documento:</label>
+                                <label class="control-label" for="txtTipoDocumento">Documento:</label>
                                 
-                                <select class="form-control btn-sm" id="txtTipoDocumento" name="txtTipoDocumento">
+                                <select class="form-control " id="txtTipoDocumento" name="txtTipoDocumento">
                                     <option value="">- Seleccione un documento -</option>
                                     <option value="COTIZACION" <?php echo (isset($_POST['txtTipoDocumento']) && $_POST['txtTipoDocumento'] == "COTIZACION") ? "selected" : '';?> >COTIZACI&Oacute;N</option>
                                     <option value="ORDEN_COMPRA" <?php echo (isset($_POST['txtTipoDocumento']) && $_POST['txtTipoDocumento'] == "ORDEN_COMPRA") ? "selected" : '';?> >ORDEN DE COMPRA</option>
@@ -47,7 +47,8 @@
                             </div>
                             
                             <div class="col-md-2 col-12" style="padding: 0px 0px 0px 0px">
-                                <button style="width: 100%; position:absolute; right:0;bottom:0;" class="btn btn-primary btn-sm fa" id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
+                                <br>
+                                <button style="width: 100%; " class="btn btn-primary " id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
                             </div>
                             <div class="col-md-4 col-12" ></div>
                         </div>

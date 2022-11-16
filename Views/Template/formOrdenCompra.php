@@ -128,25 +128,27 @@
         </div>
     </div>
     <br>
-    <div style="text-align: center">
-        <div class="form-row">
-            <div class="form-group col-md-3" style="text-align:end; margin-top: 10px">
-                <label for="exampleSelect1" id="lblListaEstado">Estado:</label>
-            </div>
-            <div class="form-group col-md-3 btn-sm">
-                <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
-                    <option value="" disabled selected>Seleccione</option>
-                    <option value="AUTORIZADO">Autorizar</option>
-                    <option value="RECHAZADO">Rechazar</option>
-                </select>
-            </div>
-            <div class="form-group col-md-3" style="text-align:end; margin-top:10px;">
-                <label class="control-label btn-sm" id="lblRazonRechazo" style="display:none;">Razón rechazo:</label>
-            </div>
-            <div class="form-group col-md-3" style="margin-top:5px;">
-                <input class="form-control btn-sm" id="txtRazonRechazo" name="txtRazonRechazo" type="text" placeholder="Raz&oacute;n del rechazo" required="" style="text-transform: uppercase; display:none;">
-            </div>
+    <div class="form-row" style="border: solid 1px graytext">
+        <div class="form-group col-md-1" style="padding-top: 10px">
+            <label class="control-label" id="lblListaEstado">Estado:</label>
         </div>
+        <div class="form-group col-md-3" style="padding-top: 10px">
+            <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
+                <option value="" disabled selected>- Seleccione -</option>
+                <option value="AUTORIZADO">Autorizar</option>
+                <option value="RECHAZADO">Rechazar</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2" style="padding-top: 10px">
+            <label class="control-label" id="lblRazonRechazo" style="display:none;">Razón rechazo:</label>
+        </div>
+        <div class="form-group col-md-6" style="padding-top: 10px">
+            <input class="form-control" id="txtRazonRechazo" name="txtRazonRechazo" type="text" placeholder="Raz&oacute;n del rechazo" required="" style="text-transform: uppercase; display:none;">
+        </div>
+    </div>
+    
+    <br>
+    <div style="text-align: center">
         <?php if (isset($token)) { ?>
         <button class="btn btn-primary" type="submit" id="btnGuarCot">
                 <i class="fa fa-floppy-o"></i> Guardar y enviar</button>

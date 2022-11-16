@@ -22,7 +22,7 @@ class loginControlador extends loginModelo {
                 $_SESSION['Usuario'] = $respuesta;
                 
                 if(isset($_POST['txtToken'])){
-                    return '<script>window.location.href = "formularioCotizacion?token='.$_POST['txtToken'].'"</script>';
+                    return '<script>window.location.href = "formularioCotizacion?token='.urlencode($_POST['txtToken']).'"</script>';
                 }
                 elseif($rolDto->id == 2){//si es un proveedor
                     return '<script>window.location.href = "formularioCotizacion"</script>';

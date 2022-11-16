@@ -66,4 +66,22 @@ class ordenCompraControlador extends ordenCompraModelo {
         
         return $respuesta;
     }
+    
+    public function listar_ordenes_autorizar_controlador($post, $regsPagina) {
+        $rolPrincipal = $_SESSION['Rol']->principal == 1 ? "true" : "false";
+        $iduser = $_SESSION['Usuario']->id;
+        
+        if(isset($post)){
+            $respuesta = ordenCompraModelo::listar_ordenes_autorizar_modelo(isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null, $iduser, $rolPrincipal, $post['txtDesde'], $regsPagina);
+        }
+        else{
+            $respuesta = ordenCompraModelo::listar_ordenes_autorizar_modelo(null, $iduser, $rolPrincipal, 0, $regsPagina);
+        }
+        
+        if(!isset($respuesta)){
+            $respuesta = [];
+        }
+        
+        return $respuesta;
+    }
 }

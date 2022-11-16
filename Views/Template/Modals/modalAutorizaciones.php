@@ -8,7 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formAutorizaciones" class="FormularioAjax login-form" action="" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
+                <form id="formAutorizaciones" class="FormularioAutorizadores login-form" action="acciones/guardarAutorizadores.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
+                    
+                    <input type="hidden" value="" id="txtIdOrdenCompra" name="txtIdOrdenCompra">
                     
                     <div class="row" >
                         <div class="col-md-2">
@@ -66,6 +68,7 @@
                                 <tr>
                                     <th>N&uacute;mero RC</th>
                                     <th>Usuario</th>
+                                    <th>Estado</th>
                                     <th style="width: 5%"></th>
                                 </tr>
                             </thead>
@@ -75,7 +78,7 @@
                         </table>
                     </div>
                     <div class="tile-footer" style="text-align: end;">
-                        <button id="btnActionForm" class="btn btn-primary" type="button">
+                        <button id="btnActionForm" class="btn btn-primary" type="submit">
                             <i class="fa fa-fw fa-lg fa-check-circle"></i>
                             <span id="btnText">Guardar</span>
                         </button>&nbsp;&nbsp;&nbsp;
@@ -89,52 +92,4 @@
     </div>
 </div>
 
-<script>
-    function abrirFormularioAut(val_datos) {
-        document.getElementById('txtNumRCModal').value = val_datos.codigoRC;
-        
-        document.getElementById('txtEstadoModal').value = val_datos.estado;
-        document.getElementById('txtValTotalModal').value = val_datos.total;
-        document.getElementById('txtFechaOCModal').value = val_datos.fechaOrdenCompra;
-        
-        $('#modalAutorizaciones').modal('show');
-    }
-    
-    function agregarUserModal(){
-        var usuario = document.getElementById('cmbUserList').value;
-        if (usuario !== null && usuario !== '') {
-            
-            
-            var datuser = usuario.split("#"); //pos=0 es el nombre, en el 1 es el id del user
-                    console.log(datuser);
-            
-            var tbody = document.getElementById('tbodyAutor');
-            var index = tbody.rows.length; //este solo debe tener 4 maximo
-            var fila = tbody.insertRow();
-            
-            var numRC = document.getElementById('txtNumRCModal').value;
-            if(index < 4){
-                fila.insertCell().innerHTML = numRC;
-                fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserModal'+index+'" value="'+datuser[1]+'">';
-                fila.insertCell().innerHTML = '<input id="' + index + '" type="button" value="x" onclick="eliminarFilaModal(this);" class="btn btn-secondary btn-sm fa">';
-            } else {
-                swal("", "solo se permite un máximo de 4 usuarios", "error")
-            }
-            
-            document.getElementById('cmbUserList').value = '';
-        } else {
-            swal('','Seleccione un usuario de la lista.','warning');
-        }
-    }
-    
-
-    function eliminarFilaModal(input) {
-        var tbody = document.getElementById('tbodyAutor');
-        let index = input.id;
-        tbody.deleteRow(index);
-        for (i = 0; i < tbody.rows.length; i++) {
-            tbody.rows[i].cells[1].children[0].id = "txtIdUserModal"+i;
-            tbody.rows[i].cells[2].children[0].id = i;
-        }
-    }
-</script>
+<script src="./Assets/js/functions_autorizaciones.js"></script>

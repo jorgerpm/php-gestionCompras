@@ -20,5 +20,6 @@ class listasBlancasUtil {
         "listaCotizaciones",
         'listaOrdenesCompra',
         'listaHistoricoDocumentos',
+        'listaOrdenesPorAutorizar',
     ];
 }

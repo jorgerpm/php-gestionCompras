@@ -132,6 +132,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
         <div class="mb-3">
             <label class="control-label">Rubros adicionales:</label>
             <input class="form-control" type="text" id="txtRubrosAdicionales" name="txtRubrosAdicionales" placeholder="Rubros adicionales" style="text-transform: uppercase;">
@@ -140,7 +141,7 @@
             <label class="control-label">Observaciones:</label>
             <textarea class="form-control" id="txtObservaciones" name="txtObservaciones" placeholder="Observaciones" style="text-transform: uppercase;"></textarea>
         </div>
-    </div>
+    
     <br>
     <div style="text-align: center">
         <?php if (isset($token)) { ?>

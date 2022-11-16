@@ -34,7 +34,7 @@
                     
                         <div class="row" style="padding-top: 10px">
                             <div class="col-md-2 col-12" style="padding: 0px 5px 0px 5px">
-                                <label class="btn-sm" for="dtFechaIni">Fecha desde:</label>
+                                <label class="control-label" for="dtFechaIni">Fecha desde:</label>
                                 <input id="dtFechaIni" name="dtFechaIni" class="form-control btn-sm" type="date" value="<?php
                                 if (isset($_POST['dtFechaIni'])) {
                                     echo $_POST['dtFechaIni'];
@@ -44,7 +44,7 @@
                                 ?>" >
                             </div>
                             <div class="col-md-2 col-12" style="padding: 0px 5px 0px 0px">
-                                <label class="btn-sm" for="dtFechaFin">Fecha hasta:</label>
+                                <label class="control-label" for="dtFechaFin">Fecha hasta:</label>
                                 <input id="dtFechaFin" name="dtFechaFin" class="form-control btn-sm" type="date" value="<?php
                                 if (isset($_POST['dtFechaFin'])) {
                                     echo $_POST['dtFechaFin'];
@@ -54,15 +54,17 @@
                                 ?>">
                             </div>
                             <div class="col-md-3 col-12" style="padding: 0px 5px 0px 0px">
-                                <label class="btn-sm" for="txtNumeroRC">C&oacute;digo RC:</label>
-                                <input class="form-control btn-sm" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>">
+                                <label class="control-label" for="txtNumeroRC">C&oacute;digo RC:</label>
+                                <input type="search" class="form-control btn-sm" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>">
                             </div>
                             <div class="col-md-2 col-12" style="padding: 0px 0px 0px 0px">
-                                <button style="width: 100%; position:absolute; right:0;bottom:0;" class="btn btn-primary btn-sm fa" id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
+                                <br>
+                                <button style="width: 100%; " class="btn btn-primary" id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
                             </div>
                             <div class="col-md-1 col-12" ></div>
                             <div class="col-md-2 col-12" style="text-align: right">
-                                <button style="width: 100%;position:absolute; right:0;bottom:0;" class="btn btn-primary btn-sm fa" type="button" onclick="pruebaUno('facturas-data')"><i class="fa fa-file-excel-o"></i><span id="btnText">Exportar csv</span></button>
+                                <br>
+                                <button style="width: 100%;" class="btn btn-primary btn-sm fa" type="button" onclick="pruebaUno('facturas-data')"><i class="fa fa-file-excel-o"></i><span id="btnText">Exportar csv</span></button>
                             </div>
                         </div>
                         <div class="RespuestaAjax"></div>
@@ -71,7 +73,7 @@
                         <table class="table table-hover table-bordered" id="tablaCotizaciones">
                             <thead>
                                 <tr>
-                                    <th style="width: 5%"></th>
+                                    <th style="width: 5%">Ver</th>
                                     <th>Código RC</th>
                                     <th>Fecha cotizacion</th>
                                     <th>RUC proveedor</th>
@@ -89,7 +91,7 @@
                                 foreach ($respuesta as $cotizacion) { ?>
                                     <tr>
                                         <td>
-                                            <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" 
+                                            <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" title="Ver detalle cotizaci&oacute;n"
                                                     onclick='abrirFormulario(variableSolicitud = <?php echo json_encode($cotizacion); ?>)'></button>
                                         </td>
                                         <td><?php echo $cotizacion->codigoRC; ?></td>

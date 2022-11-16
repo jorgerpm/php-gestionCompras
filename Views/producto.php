@@ -22,8 +22,8 @@
                         <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = ''">buscar</button></p>
                     </div>
 
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="tableProductos" >
+                    <div class="">
+                        <table class="table-responsive table table-hover table-bordered" id="tableProductos" >
                             <thead>
                                 <tr>
                                     <!-- th>C&oacute;digo</th -->
