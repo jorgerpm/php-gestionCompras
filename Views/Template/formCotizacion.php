@@ -10,7 +10,7 @@
         <div class="form-row">
             <div id="divUno" class="form-group col-md-<?php echo isset($token) ? '4' : '3' ?>">
                 <label class="control-label btn-sm">C&Oacute;DIGO RC:</label>
-                <input class="form-control btn-sm" value="<?php echo $solicitud->codigoRC; ?>"  id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="C&oacute;digo RC" required="" style="text-transform: uppercase;" 
+                <input class="form-control btn-sm" value="<?php echo isset($solicitud->codigoRC) ? $solicitud->codigoRC : null; ?>"  id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="C&oacute;digo RC" required="" style="text-transform: uppercase;" 
                        <?php echo isset($token) ? 'readonly' : '' ?> >
             </div>
             <?php if (!isset($token)) { ?>

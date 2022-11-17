@@ -60,13 +60,13 @@
                                 <input type="search" class="form-control btn-sm" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>">
                             </div>
                             <div class="col-md-2 col-12" style="padding: 0px 0px 0px 0px">
-                                <br>
+                                <label class="control-label" >&nbsp;</label>
                                 <button style="width: 100%; " class="btn btn-primary " id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
                             </div>
                             <div class="col-md-1 col-12" ></div>
                             <div class="col-md-2 col-12" style="text-align: right">
-                                <br>
-                                <button style="width: 100%;" class="btn btn-primary " type="button" onclick="pruebaUno('facturas-data')"><i class="fa fa-file-excel-o"></i><span id="btnText">Exportar csv</span></button>
+                                <label class="control-label" >&nbsp;</label>
+                                <button style="width: 100%;" class="btn btn-primary btn-sm" type="button" onclick="pruebaUno('facturas-data')"><i class="fa fa-file-excel-o"></i><span id="btnText">Exportar csv</span></button>
                             </div>
                         </div>
                         <div class="RespuestaAjax"></div>
@@ -115,7 +115,7 @@
                                     </tr>
                                 <?php }
                                 } else{
-                                    echo '<td colspan="9">No existen registros.</td>';
+                                    echo '<td colspan="10">No existen registros.</td>';
                                 } ?>
                             </tbody>
                         </table>

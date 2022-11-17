@@ -147,6 +147,9 @@ $('#frmCotizacion').submit(function (e) {
 
 //funcion para buscar al cotizacion por codigoRC
 function buscarCotizacion() {
+    const LOADING = document.querySelector('.loader');
+    LOADING.style = 'display: flex;';
+    
     var codigoRC = document.getElementById('txtCodigoRc').value;
 
     var respuesta = document.getElementsByClassName('RespuestaAjax')[0];
@@ -157,7 +160,7 @@ function buscarCotizacion() {
 
     console.log(form);
 
-    var formdata = new FormData(document.querySelector('form'))
+    var formdata = new FormData(document.querySelector('form'));
 
 
 
@@ -169,14 +172,32 @@ function buscarCotizacion() {
         contentType: false,
         processData: false,
         success: function (data) {
-            //LOADING.style = 'display: none;';
-            console.log(JSON.parse(data));
-            console.log(JSON.parse(data).id);
-            //respuesta.html(data);
-//                    document.getElementById("frmCotizacion").reset();
+            LOADING.style = 'display: none;';
+            var cot = JSON.parse(data);
+            console.log(cot);
+            console.log(cot.id);
+            
+            if(cot.id > 0){
+                abrirFormulario(cot);
+            }
+            else{
+//                document.querySelector('#frmCotizacion').reset();
+//                var tbody = document.getElementById('tbodySol');
+//                let index = tbody.rows.length - 4; //se resta 4 porque es de los totales
+//                console.log("indexx: ", index);
+//                for (i = 0; i < index; i++) {
+//                    tbody.deleteRow(0);
+//                }
+//                document.querySelector('#lblSubtotal').innerHTML = 0;
+//                document.querySelector('#lblSubtotalSinIva').innerHTML = 0;
+//                document.querySelector('#lblIva').innerHTML = 0;
+//                document.querySelector('#lblTotal').innerHTML = 0;
+                swal("", "No existe cotización con el número de requisición ingresado.", "warning");
+            }
+            
         },
-        error: function (error) {
-            //LOADING.style = 'display: none;';
+        error: function (cot) {
+            LOADING.style = 'display: none;';
             //respuesta.html(error);
         }
     });
@@ -189,6 +210,8 @@ function abrirFormulario(val_datos) {
 //    console.log("fechhaa::: ", new Date(val_datos.fechaSolicitud).toISOString().split('T')[0]);
 
     document.querySelector('#frmCotizacion').reset();
+    
+    console.log("ssss: ", document.querySelector('#modalFormCotiz'));
 
     if (val_datos !== null) {
 //        document.querySelector('#txtId').value = val_datos.id;
@@ -219,20 +242,22 @@ function abrirFormulario(val_datos) {
         if(document.querySelector('#registrosTabla')){
             document.querySelector('#registrosTabla').value = val_datos.listaDetalles.length;
         }
-        if(document.querySelector('#btnBusqCot')){
-            document.querySelector('#btnBusqCot').style = 'display: none;';
-        }
         if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'GENERADO_OC'){
             document.querySelector('#btnGeneraOC').style =  '';
         }else{
             document.querySelector('#btnGeneraOC').style =  'display: none;';
             document.querySelector('#btnGeneraOC').setAttribute("onclick", "");
         }
+        if(document.querySelector('#modalFormCotiz')){
+            if(document.querySelector('#btnBusqCot')){
+                document.querySelector('#btnBusqCot').style = 'display: none;';
+            }
+            document.querySelector('#divUno').classList.remove('col-md-3');
+            document.querySelector('#divUno').classList.add('col-md-4');
+            document.querySelector('#txtCodigoRc').setAttribute("readonly", "");
+        }
         
         document.querySelector('#chkTodosIva').style = 'display: none;';
-        document.querySelector('#divUno').classList.remove('col-md-3');
-        document.querySelector('#divUno').classList.add('col-md-4');
-        document.querySelector('#txtCodigoRc').setAttribute("readonly", "")
         
 
         //generar la tabla

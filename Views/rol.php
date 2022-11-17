@@ -26,7 +26,7 @@
                                 <tr>
                                     <th>Código</th>
                                     <th>Nombre</th>
-                                    <th>Consultar todas las facturas</th>
+                                    <th>Rol principal</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
