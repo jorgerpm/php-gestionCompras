@@ -1,2 +1,0 @@
-Codigo JD;RUC;Razon social;Nombre comercial;Direccion;Correo;Telefono1;Telefono2
-22;22;Prueba subida;;prueba22;prueba@prueba;22;22

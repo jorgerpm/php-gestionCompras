@@ -152,8 +152,8 @@ class proveedorControlador extends proveedorModelo {
                 "archivoBase64" => $fileBase64
             ];
 
+            unlink($destino);
             $respuesta = proveedorModelo::carga_masiva_proveedores($datos);
-
             if (isset($respuesta) && $respuesta->respuesta == "ok") {
                 echo '<script>swal("", "Datos almacenados correctamente", "success")
                     .then((value) => {
