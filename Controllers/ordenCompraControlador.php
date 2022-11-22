@@ -14,7 +14,10 @@ class ordenCompraControlador extends ordenCompraModelo {
         $ordenCompra = ordenCompraModelo::guardar_ordencompra_modelo($data);
         
         if(isset($ordenCompra) && $ordenCompra->id > 0){
-            return '<script>swal("", "Orden de compra generada correctamente.", "success");</script>';
+            return '<script>swal("", "Orden de compra generada correctamente.", "success")'
+                    . '.then((value) => {
+                        $(`#btnSearch`).click(); 
+                    });</script>';
         }
         else{
             return '<script>swal("", "Error al generar la orden de compra.", "error");</script>';
@@ -29,7 +32,7 @@ class ordenCompraControlador extends ordenCompraModelo {
             if(!empty($_POST['txtRazonRechazo']) || $_POST['cbxListaEstado'] == "AUTORIZADO"){
                 $data = array(
                         'idUsuario' => $_SESSION['Usuario']->id,
-                        'observacion' => $_POST['txtRazonRechazo'],
+                        'observacion' => strtoupper($_POST['txtRazonRechazo']),
                         'usuario' => $_SESSION['Usuario']->usuario,
                         'estado' => $_POST['cbxListaEstado'],
                         'id' => $_POST['txtId'],
@@ -38,7 +41,10 @@ class ordenCompraControlador extends ordenCompraModelo {
                 $ordenCompra = ordenCompraModelo::autorizar_ordencompra_modelo($data);
 
                 if(isset($ordenCompra) && $ordenCompra->id > 0){
-                    return '<script>swal("", "Autorización generada correctamente.", "success");</script>';
+                    return '<script>swal("", "Autorización generada correctamente.", "success")'
+                    . '.then((value) => {
+                        $(`#btnSearch`).click(); 
+                    });</script>';
                 }
                 else{
                     return '<script>swal("", "Error al generar la autorización.", "error");</script>';

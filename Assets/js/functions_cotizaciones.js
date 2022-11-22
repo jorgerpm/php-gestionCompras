@@ -214,7 +214,7 @@ function abrirFormulario(val_datos) {
     console.log("ssss: ", document.querySelector('#modalFormCotiz'));
 
     if (val_datos !== null) {
-//        document.querySelector('#txtId').value = val_datos.id;
+        document.querySelector('#txtIdCot').value = val_datos.id;
         document.querySelector('#txtCodigoRc').value = val_datos.codigoRC;
         document.querySelector('#txtFecha').value = new Date(val_datos.fechaCotizacion).toISOString().split('T')[0];
         document.querySelector('#txtRubrosAdicionales').value = val_datos.adicionales;
@@ -234,6 +234,32 @@ function abrirFormulario(val_datos) {
         document.querySelector('#lblSubtotalSinIva').innerHTML = val_datos.subtotalSinIva;
         document.querySelector('#lblIva').innerHTML = val_datos.iva;
         document.querySelector('#lblTotal').innerHTML = val_datos.total;
+        
+        if(document.querySelector('#cbxListaEstado')){
+            
+            var cbxEstado = document.querySelector('#cbxListaEstado');
+            document.querySelector('#cbxListaEstado').style = 'display: none;';
+        
+            cbxEstado.addEventListener("change", function() {
+                var valor = cbxEstado.value;
+                if(valor === "RECHAZADO" || valor === "ANULADO"){
+                    document.querySelector('#lblRazonRechazo').style = '';
+                    document.querySelector('#txtRazonRechazo').style = 'text-transform: uppercase;';
+
+                    document.querySelector('#btnCambEst').style = '';
+                    if(document.querySelector('#btnGeneraOC'))
+                        document.querySelector('#btnGeneraOC').style =  'display: none;';
+                } else {
+                    document.querySelector('#lblRazonRechazo').style = 'display: none;';
+                    document.querySelector('#txtRazonRechazo').style = 'text-transform: uppercase;display: none';
+
+                    document.querySelector('#btnCambEst').style = 'display: none';
+                    if(document.querySelector('#btnGeneraOC'))
+                        document.querySelector('#btnGeneraOC').style =  '';
+                }
+            });
+        }
+        
 
         //ocultar los botones
         if(document.querySelector('#btnGuarCot')){
@@ -242,11 +268,18 @@ function abrirFormulario(val_datos) {
         if(document.querySelector('#registrosTabla')){
             document.querySelector('#registrosTabla').value = val_datos.listaDetalles.length;
         }
-        if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'GENERADO_OC'){
-            document.querySelector('#btnGeneraOC').style =  '';
+        if(val_datos.estado === 'COTIZADO'){ //RECHAZADO' && val_datos.estado !== 'GENERADO_OC'){
+            if(document.querySelector('#btnGeneraOC'))
+                document.querySelector('#btnGeneraOC').style =  '';
+            if(document.querySelector('#divEstado'))
+                document.querySelector('#divEstado').style = "border: solid 1px graytext;";
         }else{
-            document.querySelector('#btnGeneraOC').style =  'display: none;';
-            document.querySelector('#btnGeneraOC').setAttribute("onclick", "");
+            if(document.querySelector('#btnGeneraOC')){
+                document.querySelector('#btnGeneraOC').style =  'display: none;';
+                document.querySelector('#btnGeneraOC').setAttribute("onclick", "");
+            }
+            if(document.querySelector('#divEstado'))
+                document.querySelector('#divEstado').style = "display: none;";
         }
         if(document.querySelector('#modalFormCotiz')){
             if(document.querySelector('#btnBusqCot')){
@@ -258,6 +291,18 @@ function abrirFormulario(val_datos) {
         }
         
         document.querySelector('#chkTodosIva').style = 'display: none;';
+        
+        if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'AUTORIZADO'){
+//            document.querySelector('#btnAutorizar').style =  '';
+            if(document.querySelector('#lblListaEstado'))
+                document.querySelector('#lblListaEstado').style = '';
+            if(document.querySelector('#cbxListaEstado'))
+                document.querySelector('#cbxListaEstado').style = '';
+        }else{
+//            document.querySelector('#btnAutorizar').style =  'display: none;';
+//            document.querySelector('#btnAutorizar').setAttribute("onclick", "");
+        }
+        
         
 
         //generar la tabla
@@ -282,15 +327,17 @@ function abrirFormulario(val_datos) {
         }
 
     } else {
-//        document.querySelector('#txtId').value = null;
+        document.querySelector('#txtIdCot').value = null;
     }
 
     $('#modalFormCotiz').modal('show');
 }
 
 
-
 function generarOC(){
+    const LOADING = document.querySelector('.loader');
+    LOADING.style = 'display: flex;';
+    
     var numeroRC = document.querySelector('#txtCodigoRc').value;
     //var form = document.querySelector('#frmCotizacion');
     var form = document.forms['frmCotizacion'];
@@ -310,12 +357,43 @@ function generarOC(){
         processData: false,
         success: function (data) {
             console.log(data);
+            LOADING.style = 'display: none;';
             respuesta.html(data);
-//            respuesta.html('<script>swal("", \''+data+'\', "error");</script>');
         },
         error: function (error) {
+            LOADING.style = 'display: none;';
             respuesta.html(error);
-//            respuesta.html('<script>swal("", "'+error+'", "error");</script>');
+        }
+    });
+}
+
+function cambiarEstadoCotizacion(){
+    const LOADING = document.querySelector('.loader');
+    LOADING.style = 'display: flex;';
+    
+    var form = document.forms['frmCotizacion'];
+    var formdata = new FormData(form);
+    
+//    var respuesta = form.elements('.RespuestaAjax');
+    var respuesta = $('#idRespuestaAjax');
+    
+    console.log(respuesta);
+    
+    $.ajax({
+        type: 'POST',
+        url: 'acciones/cambiarEstadoCotizacion.php',
+        data: formdata ? formdata : form.serialize(),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log(data);
+            LOADING.style = 'display: none;';
+            respuesta.html(data);
+        },
+        error: function (error) {
+            LOADING.style = 'display: none;';
+            respuesta.html(error);
         }
     });
 }

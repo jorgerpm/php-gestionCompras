@@ -135,8 +135,9 @@
         <div class="form-group col-md-3" style="padding-top: 10px">
             <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">
                 <option value="" disabled selected>- Seleccione -</option>
-                <option value="AUTORIZADO">Autorizar</option>
-                <option value="RECHAZADO">Rechazar</option>
+                <option value="AUTORIZADO">AUTORIZAR</option>
+                <option value="RECHAZADO">RECHAZAR</option>
+                <!-- option value="ANULADO">ANULAR</option -->
             </select>
         </div>
         <div class="form-group col-md-2" style="padding-top: 10px">

@@ -18,4 +18,10 @@ class cotizacionModelo extends serviciosWebModelo {
         $cotizacion = self::invocarGet('cotizacion/buscarCotizacionRucNumeroRC?codigoRC='.$codigoRC.'&ruc='.$ruc, $array);
         return $cotizacion;
     }
+    
+    
+    protected function cambiar_estado_cotizacion_modelo($data){
+        $cotizacion = self::invocarPost('cotizacion/cambiarEstadoCotizacion', $data);
+        return $cotizacion;
+    }
 }

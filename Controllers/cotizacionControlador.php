@@ -14,11 +14,11 @@ class cotizacionControlador extends cotizacionModelo {
             $dt = [
                 'id' => 0,
                 'cantidad' => $valor['cantidad'],
-                'detalle' => $valor['detalle'],
+                'detalle' => strtoupper($valor['detalle']),
                 'valorUnitario' => $valor['valorUnitario'],
                 'valorTotal' => $valor['valorTotal'],
                 'tieneIva' => $valor['tieneIva'],
-                'observacion' => $valor['observDetalle'],
+                'observacion' => strtoupper($valor['observDetalle']),
             ];
             
             $detalles[] = $dt;
@@ -38,10 +38,10 @@ class cotizacionControlador extends cotizacionModelo {
                 'total' => $_POST['lblTotal'],
                 'descuento' => 0,
             
-                'observacion' => $_POST['txtObservaciones'],
-                'adicionales' => $_POST['txtRubrosAdicionales'],
+                'observacion' => strtoupper($_POST['txtObservaciones']),
+                'adicionales' => strtoupper($_POST['txtRubrosAdicionales']),
                 'tiempoEntrega' => $_POST['txtTiempoEntrega'],
-                'validezCotizacion' => $_POST['txtValidezCotizacion'],
+                'validezCotizacion' => strtoupper($_POST['txtValidezCotizacion']),
                 'formaPago' => $_POST['listFormaPago'],
                 'listaDetalles' => $detalles,
                 'usuarioModifica' => $_SESSION['Usuario']->id,
@@ -49,8 +49,13 @@ class cotizacionControlador extends cotizacionModelo {
     
         $cotizacion = cotizacionModelo::guardar_cotizacion_modelo($data);
         
-        if(isset($cotizacion) && $cotizacion->id > 0){
-            return '<script>swal("", "Cotizacion enviada correctamente.", "success");</script>';
+        if(isset($cotizacion)){
+            if($cotizacion->id > 0){
+                return '<script>swal("", "Cotizacion enviada correctamente.", "success");</script>';
+            }
+            if(isset($cotizacion->respuesta) && $cotizacion->respuesta != "OK"){
+                return '<script>swal("", "'.$cotizacion->respuesta.'", "error");</script>';
+            }
         }
         else{
             return '<script>swal("", "Error al enviar la cotizacion.", "error");</script>';
@@ -81,6 +86,34 @@ class cotizacionControlador extends cotizacionModelo {
             
             $respuesta = cotizacionModelo::buscar_cotizacion_codigorc_modelo($codigoRC, $ruc);
             return $respuesta;
+        }
+    }
+    
+    public function cambiar_estado_cotizacion_controlador(){
+ 
+        $data = array(
+            "id" => $_POST['txtIdCot'],
+            "estado" => $_POST['cbxListaEstado'],
+            "observacion" => strtoupper($_POST['txtRazonRechazo']),
+            "usuario" => $_SESSION['Usuario']->nombre,
+            "usuarioModifica" => $_SESSION['Usuario']->id,
+        );
+        
+        $cotizacion = cotizacionModelo::cambiar_estado_cotizacion_modelo($data);
+        
+        if(isset($cotizacion)){
+            if($cotizacion->id > 0){
+                return '<script>swal("", "Datos almacenados correctamente.", "success")'
+                    . '.then((value) => {
+                        $(`#btnSearch`).click(); 
+                    });</script>';
+            }
+            if(isset($cotizacion->respuesta) && $cotizacion->respuesta != "OK"){
+                return '<script>swal("", "'.$cotizacion->respuesta.'", "error");</script>';
+            }
+        }
+        else{
+            return '<script>swal("", "Error al guardar la cotizacion.", "error");</script>';
         }
     }
 }

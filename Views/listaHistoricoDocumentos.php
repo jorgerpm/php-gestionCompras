@@ -55,7 +55,7 @@
                         <div class="RespuestaAjax"></div>
                         <br>
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="tablaHistoricos">
+                        <table class="table table-hover table-bordered" id="tablaHistoricos" style="white-space: nowrap">
                             <thead>
                                 <tr>
                                     <th>Código RC</th>

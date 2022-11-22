@@ -70,14 +70,15 @@
                         <div class="RespuestaAjax"></div>
                         <br>
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="tablaCotizaciones">
+                        <table class="table table-hover table-bordered" id="tablaCotizaciones" style="white-space: nowrap">
                             <thead>
                                 <tr>
                                     <th style="width: 5%">Ver</th>
                                     <th>Código RC</th>
-                                    <th>Fecha cotizacion</th>
-                                    <th>RUC proveedor</th>
+                                    <th>Fecha cotizaci&oacute;n</th>
                                     <th>Estado</th>
+                                    <th>RUC proveedor</th>
+                                    <th>Raz&oacute;n social</th>
                                     <th>Subtotal</th>
                                     <th>Subtotal sin iva</th>
                                     <th>IVA</th>
@@ -96,8 +97,9 @@
                                         </td>
                                         <td><?php echo $cotizacion->codigoRC; ?></td>
                                         <td><?php echo date("d/m/Y H:i:s", $cotizacion->fechaCotizacion / 1000); ?></td>
-                                        <td><?php echo $cotizacion->rucProveedor; ?></td>
                                         <td><?php echo $cotizacion->estado; ?></td>
+                                        <td><?php echo $cotizacion->rucProveedor; ?></td>
+                                        <td><?php echo $cotizacion->proveedorDto->razonSocial; ?></td>
                                         <td><?php echo $cotizacion->subtotal; ?></td>
                                         <td><?php echo $cotizacion->subtotalSinIva; ?></td>
                                         <td><?php echo $cotizacion->iva; ?></td>

@@ -6,7 +6,7 @@
         <div class="mb-2" style="font-size: 16px; text-align: center">
             <span class="control-label">CABECERA</span>
         </div>
-
+        <input type="hidden" id="txtIdCot" name="txtIdCot" value="">
         <div class="form-row">
             <div id="divUno" class="form-group col-md-<?php echo isset($token) ? '4' : '3' ?>">
                 <label class="control-label btn-sm">C&Oacute;DIGO RC:</label>
@@ -101,9 +101,9 @@
                             <tr>
                                 <td style="text-align: center"><label id="lblCantidad<?php echo $i + 1 ?>"><?php echo $listaDetalles[$i]->cantidad ?></label></td>
                                 <td><label id="lblDetalle<?php echo $i + 1 ?>"><?php echo $listaDetalles[$i]->detalle ?></label></td>
-                                <td><input id="txtObservDetalle<?php echo $i + 1 ?>" style="width: 100%"></td>
+                                <td><input id="txtObservDetalle<?php echo $i + 1 ?>" style="width: 100%; text-transform: uppercase"></td>
                                 <td style="text-align: center"><input id="chkIva<?php echo $i + 1 ?>" type="checkbox" onclick="valorTotal(<?php echo count($solicitud->listaDetalles); ?>);"></td>
-                                <td style="text-align: end"><input type="number" id="txtValorUnitario<?php echo $i + 1 ?>" class="monto<?php echo $i + 1 ?>" onkeyup="valorTotalDetalle(<?php echo ($i + 1) . ', ' . count($solicitud->listaDetalles); ?>);" style="width: 100%; text-align: end;"></td>
+                                <td style="text-align: end"><input type="number" id="txtValorUnitario<?php echo $i + 1 ?>" class="monto<?php echo $i + 1 ?>" onkeyup="valorTotalDetalle(<?php echo ($i + 1) . ', ' . count($solicitud->listaDetalles); ?>);" style="width: 100%; text-align: end;" lang="en" min="0.00" step="any"></td>
                                 <td style="text-align: end"><label id="lblValorTotal<?php echo $i + 1 ?>">0</label></td>
                             </tr>
                         <?php }
@@ -143,15 +143,42 @@
         </div>
     
     <br>
+    <?php if($_SESSION['Rol']->id != 2){ ?>
+    <div class="form-row" style="border: solid 1px graytext; display: none" id="divEstado">
+        <div class="form-group col-md-1" style="padding-top: 10px">
+            <label class="control-label" id="lblListaEstado">Estado:</label>
+        </div>
+        <div class="form-group col-md-3" style="padding-top: 10px">
+            <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" >
+                <option value="" selected>- Seleccione -</option>
+                <!-- option value="AUTORIZADO">AUTORIZAR</option -->
+                <option value="RECHAZADO">RECHAZAR</option>
+                <!-- option value="ANULADO">ANULAR</option -->
+            </select>
+        </div>
+        <div class="form-group col-md-2" style="padding-top: 10px">
+            <label class="control-label" id="lblRazonRechazo" style="display:none;">Razón rechazo:</label>
+        </div>
+        <div class="form-group col-md-5" style="padding-top: 10px">
+            <input class="form-control" id="txtRazonRechazo" name="txtRazonRechazo" type="text" placeholder="Raz&oacute;n del rechazo" style="text-transform: uppercase; display:none;">
+        </div>
+        <div class="form-group col-md-1" style="padding-top: 10px; padding-left: 0px">
+            <button class="btn-primary btn-sm fa" type="button" id="btnCambEst" style="display: none" onclick="cambiarEstadoCotizacion();">
+                Guardar</button>
+        </div>
+    </div>
+    <br>
+    <?php } ?>
+    
     <div style="text-align: center">
         <?php if (isset($token)) { ?>
             <button class="btn btn-primary" type="submit" id="btnGuarCot">
                 <i class="fa fa-floppy-o"></i> Guardar y enviar</button>
         <?php } ?>
-        
+        <?php if($_SESSION['Rol']->id != 2){ ?>
         <button class="btn btn-primary" type="button" id="btnGeneraOC" style="display: none" onclick="generarOC();">
                 <i class="fa fa-floppy-o"></i> Generar OC</button>
-        
+        <?php } ?>
         <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
     </div>
     <div class="RespuestaAjax" id="idRespuestaAjax"></div>

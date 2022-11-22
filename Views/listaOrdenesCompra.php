@@ -72,15 +72,15 @@
                         <div class="RespuestaAjax"></div>
                         <br>
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="tablaCotizaciones">
+                        <table class="table table-hover table-bordered" id="tablaCotizaciones" style="white-space: nowrap">
                             <thead>
                                 <tr>
                                     <th style="width: 5%">Ver</th>
                                     <th style="width: 5%">Aut.</th>
                                     <th>Código RC</th>
                                     <th>Fecha orden de compra</th>
-                                    <th>RUC proveedor</th>
                                     <th>Estado</th>
+                                    <th>RUC proveedor</th>
                                     <th>Subtotal</th>
                                     <th>Subtotal sin iva</th>
                                     <th>IVA</th>
@@ -105,8 +105,8 @@
                                         
                                         <td><?php echo $ordenCompra->codigoRC; ?></td>
                                         <td><?php echo date("d/m/Y H:i:s", $ordenCompra->fechaOrdenCompra / 1000); ?></td>
-                                        <td><?php echo $ordenCompra->rucProveedor; ?></td>
                                         <td><?php echo $ordenCompra->estado; ?></td>
+                                        <td><?php echo $ordenCompra->rucProveedor; ?></td>
                                         <td><?php echo $ordenCompra->subtotal; ?></td>
                                         <td><?php echo $ordenCompra->subtotalSinIva; ?></td>
                                         <td><?php echo $ordenCompra->iva; ?></td>

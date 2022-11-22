@@ -1,4 +1,5 @@
 var cbxEstado = document.querySelector('#cbxListaEstado');
+
 function abrirFormularioOrdenCompra(val_datos) {
 
     console.log(val_datos);
@@ -42,13 +43,14 @@ function abrirFormularioOrdenCompra(val_datos) {
             document.querySelector('#cbxListaEstado').style = 'display: none;';
         }
         cbxEstado.addEventListener("change", function() {
-            var valor = cbxEstado.value
-            if(valor === "RECHAZADO"){
+            var valor = cbxEstado.value;
+            document.querySelector('#txtRazonRechazo').value = null;
+            if(valor === "RECHAZADO" || valor === "ANULADO"){
                 document.querySelector('#lblRazonRechazo').style = '';
-                document.querySelector('#txtRazonRechazo').style = '';
+                document.querySelector('#txtRazonRechazo').style = 'text-transform: uppercase;';
             } else {
                 document.querySelector('#lblRazonRechazo').style = 'display: none;';
-                document.querySelector('#txtRazonRechazo').style = 'display: none';
+                document.querySelector('#txtRazonRechazo').style = 'text-transform: uppercase;display: none';
             }
         });
 
@@ -116,6 +118,9 @@ function valorEstado() {
 }
 
 function generarAutorizacion(){
+    const LOADING = document.querySelector('.loader');
+    LOADING.style = 'display: flex;';
+    
     var form = document.forms['frmOrdenCompra'];
     var formdata = new FormData(form);
     
@@ -133,12 +138,12 @@ function generarAutorizacion(){
         processData: false,
         success: function (data) {
             console.log(data);
+            LOADING.style = 'display: none;';
             respuesta.html(data);
-//            respuesta.html('<script>swal("", \''+data+'\', "error");</script>');
         },
         error: function (error) {
+            LOADING.style = 'display: none;';
             respuesta.html(error);
-//            respuesta.html('<script>swal("", "'+error+'", "error");</script>');
         }
     });
 }
