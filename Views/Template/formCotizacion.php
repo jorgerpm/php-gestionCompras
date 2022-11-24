@@ -152,15 +152,15 @@
             <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" >
                 <option value="" selected>- Seleccione -</option>
                 <!-- option value="AUTORIZADO">AUTORIZAR</option -->
-                <option value="RECHAZADO">RECHAZAR</option>
-                <!-- option value="ANULADO">ANULAR</option -->
+                <!-- option value="RECHAZADO">RECHAZAR</option -->
+                <option value="ANULADO">ANULAR</option>
             </select>
         </div>
         <div class="form-group col-md-2" style="padding-top: 10px">
-            <label class="control-label" id="lblRazonRechazo" style="display:none;">Razón rechazo:</label>
+            <label class="control-label" id="lblRazonRechazo" style="display:none;">Razón anulaci&oacute;n:</label>
         </div>
         <div class="form-group col-md-5" style="padding-top: 10px">
-            <input class="form-control" id="txtRazonRechazo" name="txtRazonRechazo" type="text" placeholder="Raz&oacute;n del rechazo" style="text-transform: uppercase; display:none;">
+            <input class="form-control" id="txtRazonRechazo" name="txtRazonRechazo" type="text" style="text-transform: uppercase; display:none;">
         </div>
         <div class="form-group col-md-1" style="padding-top: 10px; padding-left: 0px">
             <button class="btn-primary btn-sm fa" type="button" id="btnCambEst" style="display: none" onclick="cambiarEstadoCotizacion();">

@@ -13,12 +13,14 @@ function abrirFormularioOrdenCompra(val_datos) {
         document.querySelector('#txtFecha').value = new Date(val_datos.fechaOrdenCompra).toISOString().split('T')[0];
         //document.querySelector('#txtRubrosAdicionales').value = val_datos.adicionales;
         document.querySelector('#txtObservaciones').value = val_datos.observacion;
+        document.querySelector('#txtEstado').value = val_datos.estado;
         
         document.querySelector('#txtUsuario').value = val_datos.usuario;
         document.querySelector('#txtRuc').value = val_datos.rucProveedor;
         document.querySelector('#txtRazonSocial').value = val_datos.proveedorDto.razonSocial;
         document.querySelector('#txtTelefono').value = val_datos.proveedorDto.telefono1;
         document.querySelector('#txtDireccion').value = val_datos.proveedorDto.direccion;
+        document.querySelector('#txtNomcomercial').value = val_datos.proveedorDto.nombreComercial;
         
         //document.querySelector('#txtTiempoEntrega').value = val_datos.tiempoEntrega;
         //document.querySelector('#txtValidezCotizacion').value = val_datos.validezCotizacion;
@@ -68,14 +70,16 @@ function abrirFormularioOrdenCompra(val_datos) {
             document.querySelector('#btnAutorizar').style =  '';
             document.querySelector('#lblListaEstado').style = '';
             document.querySelector('#cbxListaEstado').style = '';
+            document.querySelector('#divCmbEstados').style =  'border: solid 1px graytext';
         }else{
             document.querySelector('#btnAutorizar').style =  'display: none;';
             document.querySelector('#btnAutorizar').setAttribute("onclick", "");
+            document.querySelector('#divCmbEstados').style =  'border: none 1px graytext';
         }
         
         document.querySelector('#chkTodosIva').style = 'display: none;';
-        document.querySelector('#divUno').classList.remove('col-md-3');
-        document.querySelector('#divUno').classList.add('col-md-4');
+//        document.querySelector('#divUno').classList.remove('col-md-3');
+//        document.querySelector('#divUno').classList.add('col-md-4');
         document.querySelector('#txtCodigoRc').setAttribute("readonly", "")
         
 
@@ -99,6 +103,31 @@ function abrirFormularioOrdenCompra(val_datos) {
             rowAux.insertCell().innerHTML = '<label id="txtValorUnitario'+i+'" class="monto'+i+'" style="width: 100%; text-align: end;">'+val_datos.listaDetalles[i].valorUnitario+'</label>';
             rowAux.insertCell().innerHTML = '<label id="lblValorTotal'+i+'" style="width: 100%; text-align: end;">'+val_datos.listaDetalles[i].valorTotal+'</label>';
         }
+
+    //para la parte de los autorizadores, pero solo si ya esta autorizado la OC
+        var tbody = document.getElementById('tbodyAutorOC');
+        var ixb = tbody.rows.length;
+
+        //primero eliminar todo el tbodyautor
+        for (let i = 0; i < ixb; i++) {
+            tbody.deleteRow(0);
+        }
+        
+        if(val_datos.estado === 'AUTORIZADO'){
+            document.querySelector('#divAprovs').style = '';
+            var indexAuts = val_datos.listaAutorizaciones.length;
+            for (let i = 0; i < indexAuts; i++) {
+                var fila = tbody.insertRow();
+                fila.insertCell().innerHTML = val_datos.listaAutorizaciones[i].nombreUsuario + '<input type="hidden" id="txtIdUserModal' + i + '" value="' + val_datos.listaAutorizaciones[i].idUsuario + '">';
+                //fila.insertCell().innerHTML = usuariosAut[i].estado;
+                //fila.insertCell().innerHTML = '<input id="' + i + '" type="button" value="x" onclick="eliminarFilaModal(this);" class="btn btn-secondary btn-sm fa">';
+            }
+        }
+        else{
+            document.querySelector('#divAprovs').style = 'display: none;';
+        }
+
+
 
     } else {
 //        document.querySelector('#txtId').value = null;

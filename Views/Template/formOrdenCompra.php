@@ -3,56 +3,55 @@
         <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = ''">buscar</button></p>
     </div>
     <div class="mb-4">
-        <div class="mb-2" style="font-size: 16px; text-align: center">
+        <!-- div class="mb-2" style="font-size: 16px; text-align: center">
             <span class="control-label">CABECERA</span>
-        </div>
+        </div -->
 
         <div class="form-row">
-            <div id="divUno" class="form-group col-md-<?php echo isset($token) ? '4' : '3' ?>">
+            <div id="divUno" class="form-group col-md-3">
                 <label class="control-label btn-sm">C&Oacute;DIGO RC:</label>
-                <input class="form-control btn-sm" value="<?php echo $solicitud->codigoRC; ?>"  id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="C&oacute;digo RC" required="" style="text-transform: uppercase;" 
-                       <?php echo isset($token) ? 'readonly' : '' ?> >
+                <input class="form-control btn-sm" value="<?php echo $solicitud->codigoRC; ?>"  id="txtCodigoRc" name="txtCodigoRc" type="text" placeholder="C&oacute;digo RC" required="" style="text-transform: uppercase;" >
             </div>
-            <?php if (!isset($token)) { ?>
-                <div id="btnBusqCot" class="form-group col-md-1" style="text-align: center; align-self: end;">
-                    <button class="btn btn-primary btn-sm" style="width: 100%" type="button" onclick="buscarCotizacion()"><i class="fa fa-search"></i></button>
-                </div>
-            <?php } ?>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label class="control-label btn-sm">FECHA:</label>
                 <input class="form-control btn-sm" value="<?php echo date('d/m/Y'); ?>" readonly id="txtFecha" name="txtFecha" type="text" placeholder="Fecha actual" required="">
             </div>
-            <div class="form-group col-md-4">
-                <label class="control-label btn-sm">USUARIO:</label>
+            <div class="form-group col-md-3">
+                <label class="control-label btn-sm">GENERADO POR:</label>
                 <input class="form-control btn-sm" value="<?php echo $proveedor->usuario; ?>" readonly id="txtUsuario" name="txtUsuario" type="text" placeholder="Nombre de usuario del proveedor" required="">
+            </div>
+            <div class="form-group col-md-3">
+                <label class="control-label btn-sm">ESTADO:</label>
+                <input class="form-control btn-sm" value="<?php echo $solicitud->estado; ?>" readonly id="txtEstado" name="txtEstado" type="text" placeholder="Estado" required="">
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label class="control-label btn-sm">RUC:</label>
                 <input class="form-control btn-sm" value="<?php echo $proveedor->ruc ?>" readonly id="txtRuc" name="txtRuc" type="text" placeholder="RUC del proveedor" required="" style="text-transform: uppercase;">
             </div>
-            <div class="form-group col-md-8">
+            <div class="form-group col-md-6">
                 <label class="control-label btn-sm">RAZ&Oacute;N SOCIAL:</label>
                 <input class="form-control btn-sm" value="<?php echo $proveedor->razonSocial ?>" readonly id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Razón social del proveedor" required="" style="text-transform: uppercase;">
             </div>
+            <div class="form-group col-md-3">
+                <label class="control-label btn-sm">NOMBRE COMERCIAL:</label>
+                <input class="form-control btn-sm" value="<?php echo $proveedor->nombreComercial ?>" readonly id="txtNomcomercial" name="txtNomcomercial" type="text" required="" style="text-transform: uppercase;">
+            </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label class="control-label btn-sm">TEL&Eacute;FONO:</label>
                 <input class="form-control btn-sm" value="<?php echo $proveedor->telefono1 ?>" readonly id="txtTelefono" name="txtTelefono" type="text" placeholder="Tel&eacute;fono del proveedor" required="" style="text-transform: uppercase;">
             </div>
-            <div class="form-group col-md-8">
+            <div class="form-group col-md-6">
                 <label class="control-label btn-sm">DIRECCI&Oacute;N:</label>
                 <input class="form-control btn-sm" value="<?php echo $proveedor->direccion ?>" readonly id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" required="" style="text-transform: uppercase;">
             </div>
-        </div>
-        <input class="form-control btn-sm" hidden="" value="" readonly id="txtId" name="txtId" type="text" required="" >
-        <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <label class="btn-sm" >FORMA DE PAGO:</label>
                 <?php require_once './acciones/listarFormasPago.php'; ?>
-                <select class="form-control btn-sm" id="listFormaPago" name="listFormaPago" required="">
+                <select class="form-control btn-sm" id="listFormaPago" name="listFormaPago" required="" readonly>
                     <option value="">Seleccione</option>
                     <?php
                     foreach ($listaFormasPago as $formaPago) {
@@ -61,9 +60,9 @@
                     ?>
                 </select>
             </div>
-            <div class="form-group col-md-4"></div>
-            <div class="form-group col-md-4"></div>
         </div>
+        <input class="form-control btn-sm" hidden="" value="" readonly id="txtId" name="txtId" type="text" required="" >
+        
     </div>
     <div style="font-size: 16px; text-align: center">
         <span class="control-label">DETALLE</span>
@@ -128,7 +127,18 @@
         </div>
     </div>
     <br>
-    <div class="form-row" style="border: solid 1px graytext">
+    <div id="divAprovs">
+        <label class="control-label">Aprobado por:</label>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered table-sm">
+                
+                <tbody id="tbodyAutorOC">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div id="divCmbEstados" class="form-row" style="border: solid 1px graytext">
         <div class="form-group col-md-1" style="padding-top: 10px">
             <label class="control-label" id="lblListaEstado">Estado:</label>
         </div>
