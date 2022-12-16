@@ -20,14 +20,30 @@
                             <input class="form-control" id="txtRuc" name="txtRuc" type="number" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Raz&oacute;n social:</label>
-                        <input class="form-control" id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Raz&oacute;n social del proveedor" required="" style="text-transform: uppercase;">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Raz&oacute;n social:</label>
+                            <input class="form-control" id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Raz&oacute;n social del proveedor" required="" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Nombre comercial:</label>
+                            <input class="form-control" id="txtNombreComercial" name="txtNombreComercial" type="text" placeholder="Nomber comercial del proveedor" style="text-transform: uppercase;">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Nombre comercial:</label>
-                        <input class="form-control" id="txtNombreComercial" name="txtNombreComercial" type="text" placeholder="Nomber comercial del proveedor" style="text-transform: uppercase;">
+                    
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Contacto:</label>
+                            <input class="form-control" id="txtContacto" name="txtContacto" type="text" required="" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Correo:</label>
+                            <input class="form-control" id="txtCorreo" name="txtCorreo" type="email" placeholder="CORREO DEL PROVEEDOR" required="">
+                        </div>
                     </div>
+                    
+                    
                     <div class="form-group">
                         <label class="control-label">Direcci&oacute;n:</label>
                         <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" required="" style="text-transform: uppercase;">
@@ -35,20 +51,30 @@
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label class="control-label">Correo:</label>
-                            <input class="form-control" id="txtCorreo" name="txtCorreo" type="email" placeholder="CORREO DEL PROVEEDOR" required="">
+                            <label class="control-label">Tel&eacute;fono 1:</label>
+                            <input class="form-control" id="txtTelefono1" name="txtTelefono1" type="number" placeholder="Tel&eacute;fono 1 del proveedor" required="" style="text-transform: uppercase;">
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="control-label">Tel&eacute;fono 1:</label>
-                            <input class="form-control" id="txtTelefono1" name="txtTelefono1" type="number" placeholder="Tel&eacute;fono 1 del proveedor" required="">
+                            <label class="control-label">Tel&eacute;fono 2:</label>
+                            <input class="form-control" id="txtTelefono2" name="txtTelefono2" type="number" placeholder="Tel&eacute;fono 2 del proveedor" style="text-transform: uppercase;">
                         </div>
-                        
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label class="control-label">Tel&eacute;fono 2:</label>
-                            <input class="form-control" id="txtTelefono2" name="txtTelefono2" type="number" placeholder="Tel&eacute;fono 2 del proveedor" style="text-transform: uppercase;">
+                            <label class="control-label">Contabilidad:</label>
+                            <input class="form-control" id="txtContabilidad" name="txtContabilidad" type="text" required="" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Tel&eacute;fono contabilidad:</label>
+                            <input class="form-control" id="txtTelefonoContabilidad" name="txtTelefonoContabilidad" type="text" style="text-transform: uppercase;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Correo contabilidad:</label>
+                            <input class="form-control" id="txtCorreoContabilidad" name="txtCorreoContabilidad" type="email" required="">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="listaEstado">Estado:</label>

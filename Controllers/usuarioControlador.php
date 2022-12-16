@@ -116,4 +116,12 @@ class usuarioControlador extends usuarioModelo {
         return $listaUsuarios;
     }
     
+    public function listar_usuarios_activos_porrol($idRol) {
+        $listaUsuarios = usuarioModelo::listar_usuarios_activos_porrol_modelo($idRol);
+        if (!isset($listaUsuarios)) {
+            $listaUsuarios = [];
+        }
+        return $listaUsuarios;
+    }
+    
 }

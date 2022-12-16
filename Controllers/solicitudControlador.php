@@ -3,10 +3,10 @@ class solicitudControlador extends solicitudModelo {
     
     public function listar_solicitud_controlador($post, $regsPagina) {
         if(isset($post) && isset($post['dtFechaIni']) && isset($post['dtFechaFin'])){
-            $respuesta = solicitudModelo::listar_solicitud_modelo($post['dtFechaIni'], $post['dtFechaFin'], isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null, $post['txtDesde'], $regsPagina);
+            $respuesta = solicitudModelo::listar_solicitud_modelo($post['dtFechaIni'], $post['dtFechaFin'], (isset($post['txtNumSol']) ? $post['txtNumSol'] : null), (isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null), $post['txtDesde'], $regsPagina);
         }
         else{
-            $respuesta = solicitudModelo::listar_solicitud_modelo(date("Y-m-d"), date("Y-m-d"), null, 0, $regsPagina);
+            $respuesta = solicitudModelo::listar_solicitud_modelo(date("Y-m-d"), date("Y-m-d"), null, null, 0, $regsPagina);
         }
         
         if(!isset($respuesta)){
@@ -36,6 +36,7 @@ class solicitudControlador extends solicitudModelo {
             'id' => isset($post['txtId']) ? $post['txtId'] : 0,
             'fechaTexto' => $post['dtFechaSol'],
             'codigoRC' => strtoupper($post['txtCodRC']),
+            'codigoSolicitud' => strtoupper($post['txtCodsol']),
             'estado' => 'ENVIADO',
             'usuario' => $_SESSION['Usuario']->nombre,
             'correos' => $post['txtCorreos'],
@@ -55,8 +56,8 @@ class solicitudControlador extends solicitudModelo {
     }
     
     
-    public function buscar_solicitud_por_numero($numeroRC){
-        $solicitud = solicitudModelo::buscar_solicitud_por_numero($numeroRC);
+    public function buscar_solicitud_por_numero($numeroSolicitud){
+        $solicitud = solicitudModelo::buscar_solicitud_por_numero($numeroSolicitud);
 //        if(!isset($solicitud)){
 //            $solicitud = array();
 //            $solicitud->listaDetalles = [];

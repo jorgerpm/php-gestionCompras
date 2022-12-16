@@ -11,6 +11,11 @@ function openModalProveedor(val_datos) {
         document.querySelector('#txtRuc').value = val_datos.ruc;
         document.querySelector('#txtCodigoJD').value = val_datos.codigoJD;
         document.querySelector('#cbxListaEstado').value = val_datos.idEstado;
+        
+        document.querySelector('#txtContacto').value = val_datos.contacto;
+        document.querySelector('#txtContabilidad').value = val_datos.contabilidad;
+        document.querySelector('#txtTelefonoContabilidad').value = val_datos.telefonoContabilidad;
+        document.querySelector('#txtCorreoContabilidad').value = val_datos.correoContabilidad;
     }
     else{
         document.querySelector('#idProveedor').value = null;

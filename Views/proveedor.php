@@ -59,10 +59,14 @@
                                     <th>RUC</th>
                                     <th>Razón social</th>
                                     <th>Nombre comercial</th>
-                                    <th>Dirección</th>
+                                    <th>Contacto</th>
                                     <th>Correo</th>
                                     <th>Teléfono1</th>
                                     <th>Teléfono2</th>
+                                    <th>Dirección</th>
+                                    <th>Contabilidad</th>
+                                    <th>Tel&eacute;fono contabilidad</th>
+                                    <th>Correo contabilidad</th>
                                     <th>Estado</th>
                                     
                                 </tr>

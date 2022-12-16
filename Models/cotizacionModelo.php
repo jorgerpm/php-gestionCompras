@@ -7,15 +7,15 @@ class cotizacionModelo extends serviciosWebModelo {
         return $cotizacion;
     }
     
-    protected function listar_cotizacion_modelo($fechaIni, $fechaFin, $codigoRC, $desde, $hasta) {
+    protected function listar_cotizacion_modelo($fechaIni, $fechaFin, $codigoSol, $codigoRC, $desde, $hasta) {
         $array = [];
-        $listaSolicts = self::invocarGet('cotizacion/listarCotizaciones?fechaInicial='.$fechaIni.'&fechaFinal='.$fechaFin.'&codigoRC='.$codigoRC.'&desde='.$desde.'&hasta='.$hasta, $array);
+        $listaSolicts = self::invocarGet('cotizacion/listarCotizaciones?fechaInicial='.$fechaIni.'&fechaFinal='.$fechaFin.'&codigoSolicitud='.$codigoSol.'&codigoRC='.$codigoRC.'&desde='.$desde.'&hasta='.$hasta, $array);
         return $listaSolicts;
     }
     
-    protected function buscar_cotizacion_codigorc_modelo($codigoRC, $ruc){
+    protected function buscar_cotizacion_codigorc_modelo($codigoSol, $ruc){
         $array = [];
-        $cotizacion = self::invocarGet('cotizacion/buscarCotizacionRucNumeroRC?codigoRC='.$codigoRC.'&ruc='.$ruc, $array);
+        $cotizacion = self::invocarGet('cotizacion/buscarCotizacionRucNumeroSol?codigoSolicitud='.$codigoSol.'&ruc='.$ruc, $array);
         return $cotizacion;
     }
     
@@ -23,5 +23,11 @@ class cotizacionModelo extends serviciosWebModelo {
     protected function cambiar_estado_cotizacion_modelo($data){
         $cotizacion = self::invocarPost('cotizacion/cambiarEstadoCotizacion', $data);
         return $cotizacion;
+    }
+    
+    protected function get_cotizaciones_para_comparativo_modelo($codigoSolicitud){
+        $array = [];
+        $cotizaciones = self::invocarGet('cotizacion/getCotizacionesParaComparativo?codigoSolicitud='.$codigoSolicitud, $array);
+        return $cotizaciones;
     }
 }

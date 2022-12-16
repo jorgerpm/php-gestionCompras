@@ -7,5 +7,5 @@ else{
 }
 
 $cotcontr = new cotizacionControlador();
-$respuesta = $cotcontr->buscar_cotizacion_codigorc();
+$respuesta = $cotcontr->buscar_cotizacion_codigo_sol();
 print_r(json_encode($respuesta));

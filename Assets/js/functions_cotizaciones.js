@@ -48,35 +48,6 @@ function valorTotal(cantDetalles) {
     document.getElementById('lblIva').innerHTML = iva.toFixed(2);
     var total = subtotalSinIva + subtotal + iva;
     document.getElementById('lblTotal').innerHTML = total.toFixed(2);
-
-
-    /*
-     var total1 = parseFloat(document.getElementById('lblCantidad1').innerHTML);
-     $(".monto1").each(function() {
-     if (isNaN(parseFloat($(this).val()))) {
-     total1 *= 0;
-     } else {
-     total1 *= parseFloat($(this).val());
-     }
-     });
-     var total2 = parseFloat(document.getElementById('lblCantidad2').innerHTML);
-     $(".monto2").each(function() {
-     if (isNaN(parseFloat($(this).val()))) {
-     total2 *= 0;
-     } else {
-     total2 *= parseFloat($(this).val());
-     }
-     });
-     //alert(total);
-     document.getElementById('lblValorTotal1').innerHTML = total1.toFixed(2);
-     document.getElementById('lblValorTotal2').innerHTML = total2.toFixed(2);
-     var subtotal = total1 + total2;
-     document.getElementById('lblSubtotal').innerHTML = subtotal.toFixed(2);
-     var iva = subtotal * 0.12;
-     document.getElementById('lblIva').innerHTML = iva.toFixed(2);
-     var total = subtotal + iva;
-     document.getElementById('lblTotal').innerHTML = total.toFixed(2);
-     */
 }
 
 //enviar a guardar la cotizacion
@@ -150,7 +121,7 @@ function buscarCotizacion() {
     const LOADING = document.querySelector('.loader');
     LOADING.style = 'display: flex;';
     
-    var codigoRC = document.getElementById('txtCodigoRc').value;
+    var codigoSol = document.getElementById('txtCodSol').value;
 
     var respuesta = document.getElementsByClassName('RespuestaAjax')[0];
 
@@ -166,7 +137,7 @@ function buscarCotizacion() {
 
     $.ajax({
         type: 'GET',
-        url: 'acciones/buscarCotizacionPorNumero.php?codigoRC=' + codigoRC,
+        url: 'acciones/buscarCotizacionPorNumero.php?codigoSol=' + codigoSol,
         data: formdata ? formdata : form.serialize(),
         cache: false,
         contentType: false,
@@ -175,9 +146,9 @@ function buscarCotizacion() {
             LOADING.style = 'display: none;';
             var cot = JSON.parse(data);
             console.log(cot);
-            console.log(cot.id);
+//            console.log(cot.id);
             
-            if(cot.id > 0){
+            if(cot && cot.id > 0){
                 abrirFormulario(cot);
             }
             else{
@@ -192,7 +163,7 @@ function buscarCotizacion() {
 //                document.querySelector('#lblSubtotalSinIva').innerHTML = 0;
 //                document.querySelector('#lblIva').innerHTML = 0;
 //                document.querySelector('#lblTotal').innerHTML = 0;
-                swal("", "No existe cotización con el número de requisición ingresado.", "warning");
+                swal("", "No existe cotización con el código de solicitud ingresado.", "warning");
             }
             
         },
@@ -219,12 +190,15 @@ function abrirFormulario(val_datos) {
         document.querySelector('#txtFecha').value = new Date(val_datos.fechaCotizacion).toISOString().split('T')[0];
         document.querySelector('#txtRubrosAdicionales').value = val_datos.adicionales;
         document.querySelector('#txtObservaciones').value = val_datos.observacion;
+        document.querySelector('#txtDireccion').value = val_datos.proveedorDto.direccion;
+        document.querySelector('#txtCodSol').value = val_datos.codigoSolicitud;
         
         document.querySelector('#txtCodigoCotizacion').value = val_datos.codigoCotizacion;
         document.querySelector('#txtRuc').value = val_datos.rucProveedor;
         document.querySelector('#txtRazonSocial').value = val_datos.proveedorDto.razonSocial;
         document.querySelector('#txtTelefono').value = val_datos.proveedorDto.telefono1;
         document.querySelector('#txtDireccion').value = val_datos.proveedorDto.direccion;
+        document.querySelector('#txtCorreo').value = val_datos.proveedorDto.correo;
         
         document.querySelector('#txtTiempoEntrega').value = val_datos.tiempoEntrega;
         document.querySelector('#txtValidezCotizacion').value = val_datos.validezCotizacion;
@@ -285,9 +259,9 @@ function abrirFormulario(val_datos) {
             if(document.querySelector('#btnBusqCot')){
                 document.querySelector('#btnBusqCot').style = 'display: none;';
             }
-            document.querySelector('#divUno').classList.remove('col-md-3');
-            document.querySelector('#divUno').classList.add('col-md-4');
-            document.querySelector('#txtCodigoRc').setAttribute("readonly", "");
+            document.querySelector('#divUno').classList.remove('col-md-2');
+            document.querySelector('#divUno').classList.add('col-md-3');
+            document.querySelector('#txtCodSol').setAttribute("readonly", "");
         }
         
         document.querySelector('#chkTodosIva').style = 'display: none;';
@@ -336,35 +310,43 @@ function abrirFormulario(val_datos) {
 
 function generarOC(){
     const LOADING = document.querySelector('.loader');
-    LOADING.style = 'display: flex;';
-    
-    var numeroRC = document.querySelector('#txtCodigoRc').value;
-    //var form = document.querySelector('#frmCotizacion');
-    var form = document.forms['frmCotizacion'];
-    var formdata = new FormData(form);
-    
-//    var respuesta = form.elements('.RespuestaAjax');
-    var respuesta = $('#idRespuestaAjax');
-    
+    LOADING.style = 'display: flex;';    
+
+    var respuesta = $('.RespuestaAjax');
     console.log(respuesta);
     
-    $.ajax({
-        type: 'POST',
-        url: 'acciones/generarOrdenCompra.php',
-        data: formdata ? formdata : form.serialize(),
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            console.log(data);
-            LOADING.style = 'display: none;';
-            respuesta.html(data);
-        },
-        error: function (error) {
-            LOADING.style = 'display: none;';
-            respuesta.html(error);
-        }
-    });
+    //esto debe ir para el post
+//    ' => $_POST['txtNumSol'],
+//                'rucProveedor' => $_POST['txtRuc'],
+
+    var numeroSolicitud = document.querySelector('#txtCodSolComp').value;
+    var rucProveedor = document.querySelector('#txtRucProv').value;
+    var obsComparativo = document.querySelector('#txtObsComp').value;
+
+    if(obsComparativo !== null && obsComparativo !== ''){
+
+        $.ajax({
+            type: 'POST',
+            url: 'acciones/generarOrdenCompra.php',
+            data: {"txtNumSol": numeroSolicitud, "txtRuc": rucProveedor, "txtObsComp": obsComparativo},
+    //        cache: false,
+    //        contentType: false,
+    //        processData: false,
+            success: function (data) {
+                console.log(data);
+                LOADING.style = 'display: none;';
+                respuesta.html(data);
+            },
+            error: function (error) {
+                LOADING.style = 'display: none;';
+                respuesta.html(error);
+            }
+        });
+        
+    }else{
+        LOADING.style = 'display: none;';
+        swal("", "Debe ingresar una observación.", "warning");
+    }
 }
 
 function cambiarEstadoCotizacion(){
@@ -397,3 +379,76 @@ function cambiarEstadoCotizacion(){
         }
     });
 }
+
+function abrirComprativo(){
+    
+    var numeroSol = document.querySelector('#txtNumSol').value;
+    
+    console.log("numeroSol: ", numeroSol);
+    
+    if(numeroSol !== null && numeroSol !== ''){
+        
+        const LOADING = document.querySelector('.loader');
+        LOADING.style = 'display: flex;';
+
+        var respuesta = $('#divComparativo');
+
+        $.ajax({
+            type: 'POST',
+            url: 'acciones/mostrarComparativo.php',
+            data: {'txtNumSol': numeroSol},
+//            cache: false,
+//            contentType: false,
+//            processData: false,
+            success: function (data) {
+//                console.log(data);
+                LOADING.style = 'display: none;';
+                respuesta.html(data);
+                
+                if(!data.includes("warning"))
+                    $('#modalComparativo').modal('show');
+            },
+            error: function (error) {
+                LOADING.style = 'display: none;';
+                respuesta.html(error);
+            }
+        });
+    
+    }
+    else{
+        console.log("ingrese el codigo de solicitud.");
+        swal("", "Ingrese el número de solicitud.", "warning");
+    }
+    
+    
+}
+
+
+function selectCotizacion(source, ruc){
+//    console.log("el ruc: ", ruc);
+    var checkboxes = document.querySelectorAll('.chkCompart');
+//    console.log("los boxes:", checkboxes);
+//    console.log("el id:", checkboxes[0].id);
+    for (var i = 0; i < checkboxes.length; i++) {
+//        console.log("for: ", checkboxes[i]);
+//        console.log("el id:", checkboxes[i].id);
+        if (checkboxes[i].id === ruc){
+            checkboxes[i].checked = source.checked;
+        }
+        else{
+            checkboxes[i].checked = false;
+        }
+    }
+    
+    document.querySelector("#txtRucProv").value = null;
+    
+    if(source.checked){//para habilitar o desactivar el boton
+//        console.log("butt: ", document.querySelector("#btnActionForm"));
+        document.querySelector("#btnActionForm").disabled = false;
+        document.querySelector("#txtRucProv").value = ruc;
+    }
+    else{
+        document.querySelector("#btnActionForm").disabled = true;
+    }
+}
+

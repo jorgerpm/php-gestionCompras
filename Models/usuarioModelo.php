@@ -24,4 +24,10 @@ class usuarioModelo extends serviciosWebModelo {
         $listaUsuarios = self::invocarGet('usuario/listarUsuariosActivos', $array);
         return $listaUsuarios;
     }
+    
+    protected function listar_usuarios_activos_porrol_modelo($idRol){
+        $array = [];
+        $listaUsuarios = self::invocarGet('usuario/listarUsuariosActivosPorRol?idRol='.$idRol, $array);
+        return $listaUsuarios;
+    }
 }

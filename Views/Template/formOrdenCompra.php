@@ -169,6 +169,13 @@
                 <i class="fa fa-floppy-o"></i> Guardar</button>
         
         <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+        
+        &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-secondary" type="button" onclick="ejecutarReportePdf('ORDEN_COMPRA', document.querySelector('#txtId').value);" >
+            <i class="fa fa-fw fa-lg fa-print"></i>
+            <span id="btnText">Imprimir</span>
+        </button>
+        
     </div>
     <div class="RespuestaAjax" id="idRespuestaAjax"></div>
 </form>

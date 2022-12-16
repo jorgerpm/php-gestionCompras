@@ -1,6 +1,9 @@
 <?php include 'Template/Modals/modalAutorizaciones.php'; ?>
 
 <?php include 'Template/Modals/modalOrdenCompra.php'; ?>
+
+<?php include 'Template/Modals/modalRecepcion.php'; ?>
+
 <main class="app-content">
     <div class="app-title" style="height: 50px">
         <div>
@@ -55,15 +58,21 @@
                                 }
                                 ?>">
                             </div>
-                            <div class="col-md-3 col-12" style="padding: 0px 5px 0px 0px">
+                            <div class="col-md-2 col-12" style="padding: 0px 5px 0px 0px">
                                 <label class="control-label" for="txtNumeroRC">C&oacute;digo RC:</label>
-                                <input type="search" class="form-control btn-sm" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>">
+                                <input type="search" class="form-control btn-sm" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>" style="text-transform: uppercase;">
                             </div>
-                            <div class="col-md-2 col-12" style="padding: 0px 0px 0px 0px">
+                            
+                            <div class="col-md-2 col-12" style="padding: 0px 5px 0px 0px">
+                                <label class="control-label" for="txtNumeroSol">C&oacute;digo solicitud:</label>
+                                <input type="search" class="form-control btn-sm" id="txtNumeroSol" name="txtNumeroSol" value="<?php echo isset($_POST['txtNumeroSol']) ? $_POST['txtNumeroSol'] : '';?>" style="text-transform: uppercase;">
+                            </div>
+                            
+                            <div class="col-md-1 col-12" style="padding: 0px 0px 0px 0px">
                                 <label class="control-label" >&nbsp;</label>
-                                <button style="width: 100%; " class="btn btn-primary " id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
+                                <button style="width: 100%; " class="btn btn-primary btn-sm" id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
                             </div>
-                            <div class="col-md-1 col-12" ></div>
+                            <div class="col-md-1 col-12"></div>
                             <div class="col-md-2 col-12" style="text-align: right">
                                 <label class="control-label" >&nbsp;</label>
                                 <button style="width: 100%;" class="btn btn-primary btn-sm" type="button" onclick="pruebaUno('facturas-data')"><i class="fa fa-file-excel-o"></i><span id="btnText">Exportar csv</span></button>
@@ -77,8 +86,10 @@
                                 <tr>
                                     <th style="width: 5%">Ver</th>
                                     <th style="width: 5%">Aut.</th>
-                                    <th>Código RC</th>
+                                    <th style="width: 5%">Check.</th>
                                     <th>Fecha orden de compra</th>
+                                    <th>Código solicitud</th>
+                                    <th>Código RC</th>
                                     <th>Estado</th>
                                     <th>RUC proveedor</th>
                                     <th>Subtotal</th>
@@ -103,8 +114,16 @@
                                                     onclick='abrirFormularioAut(variableOC = <?php echo json_encode($ordenCompra); ?>)'></button>
                                         </td>
                                         
-                                        <td><?php echo $ordenCompra->codigoRC; ?></td>
+                                        <td>
+                                            <?php if($ordenCompra->estado == "AUTORIZADO") { ?>
+                                                <button class="btn btn-info fa fa-check-square-o " type="button" style="padding: 5px" title="Generar check-list recepción"
+                                                    onclick='abrirModalChecklist(variableOC = <?php echo json_encode($ordenCompra); ?>)'></button>
+                                            <?php } ?>
+                                        </td>
+                                        
                                         <td><?php echo date("d/m/Y H:i:s", $ordenCompra->fechaOrdenCompra / 1000); ?></td>
+                                        <td><?php echo $ordenCompra->codigoSolicitud; ?></td>
+                                        <td><?php echo $ordenCompra->codigoRC; ?></td>
                                         <td><?php echo $ordenCompra->estado; ?></td>
                                         <td><?php echo $ordenCompra->rucProveedor; ?></td>
                                         <td><?php echo $ordenCompra->subtotal; ?></td>
@@ -115,7 +134,7 @@
                                     </tr>
                                 <?php }
                                 } else{
-                                    echo '<td colspan="10">No existen registros.</td>';
+                                    echo '<td colspan="12">No existen registros.</td>';
                                 } ?>
                             </tbody>
                         </table>

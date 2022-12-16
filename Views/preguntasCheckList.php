@@ -1,13 +1,14 @@
-<?php include 'Template/Modals/modalRol.php'; ?>
+<?php include 'Template/Modals/modalPregunta.php'; ?>
+
 <main class="app-content">
     <div class="app-title" style="height: 50px">
         <div>
-            <span class="tamañoTitulo"><i class="fa fa-address-card-o"></i> Gestión de roles</span>
+            <span class="tamañoTitulo"><i class="fa fa-address-card-o"></i> Gestión de preguntas</span>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item">Administraci&oacute;n</li>
-            <li class="breadcrumb-item active"><a href="#">Gesti&oacute;n roles</a></li>
+            <li class="breadcrumb-item active"><a href="#">Gesti&oacute;n de preguntas</a></li>
         </ul>
     </div>
     <div class="row espacio">
@@ -15,7 +16,7 @@
             <div class="tile">
                 <div class="tile-body">
                     <div>
-                        <p><button class="btn btn-primary btn-sm fa" type="button" onclick="openModalRol(null);"><i class="fas fa-plus-circle"></i> Nuevo</button></p>
+                        <p><button class="btn btn-primary btn-sm fa" type="button" onclick="openModalPregunta(null);"><i class="fas fa-plus-circle"></i> Nuevo</button></p>
                     </div>
                     <div>
                         <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = ''">buscar</button></p>
@@ -25,25 +26,23 @@
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th>Nombre</th>
-                                    <th>Rol principal</th>
-                                    <th>CheckList recepci&oacute;n</th>
+                                    <th>Preguntas</th>
+                                    <th>Rol</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php require_once './acciones/listarRoles.php';
-                                foreach ($listaRoles as $rol) { ?>
+                                <?php require_once './acciones/listarPreguntas.php';
+                                foreach ($listaPreguntas as $pregunta) { ?>
                                     <tr>
-                                        <td><?php echo $rol->id; ?></td>
-                                        <td><?php echo $rol->nombre; ?></td>
-                                        <td><?php echo ($rol->principal == 1) ? "SÍ" : "NO" ?></td>
-                                        <td><?php echo ($rol->cheklistRecepcion == 1) ? "SÍ" : "NO" ?></td>
-                                        <td><?php echo ($rol->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
+                                        <td><?php echo $pregunta->id; ?></td>
+                                        <td><?php echo $pregunta->pregunta; ?></td>
+                                        <td><?php echo $pregunta->rol->nombre; ?></td>
+                                        <td><?php echo ($pregunta->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalRol(variableRol = <?php echo json_encode($rol); ?>);'></button>
+                                                <button class="btn btn-info fa fa-edit" type="button" onclick='openModalPregunta(variablePregunta = <?php echo json_encode($pregunta); ?>);'></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -56,4 +55,4 @@
         </div>
     </div>
 </main>
-<script src="./Assets/js/functions_roles.js"></script>
+<script src="./Assets/js/functions_preguntas.js"></script>

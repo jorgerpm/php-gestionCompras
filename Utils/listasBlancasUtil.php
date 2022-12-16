@@ -21,5 +21,8 @@ class listasBlancasUtil {
         'listaOrdenesCompra',
         'listaHistoricoDocumentos',
         'listaOrdenesPorAutorizar',
+        'listaComparativos',
+        'preguntasCheckList',
+        'listaCheckListRecepcion',
     ];
 }

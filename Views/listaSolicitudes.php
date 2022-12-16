@@ -53,15 +53,22 @@
                                 }
                                 ?>">
                             </div>
-                            <div class="col-md-3 col-12" style="padding: 0px 5px 0px 0px">
+                            <div class="col-md-2 col-12" style="padding: 0px 5px 0px 0px">
                                 <label class="control-label" for="txtNumeroRC">C&oacute;digo RC:</label>
-                                <input type="search" class="form-control btn-sm" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : ''; ?>">
+                                <input type="search" class="form-control btn-sm" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : ''; ?>" style="text-transform: uppercase;">
                             </div>
+                            
+                            
+                            <div class="col-md-2 col-12" style="padding: 0px 5px 0px 0px">
+                                <label class="control-label" for="txtNumSol">C&oacute;digo solicitud:</label>
+                                <input type="search" class="form-control btn-sm" id="txtNumSol" name="txtNumSol" value="<?php echo isset($_POST['txtNumSol']) ? $_POST['txtNumSol'] : ''; ?>" style="text-transform: uppercase;"> 
+                            </div>
+                            
                             <div class="col-md-2 col-12" style="padding: 0px 0px 0px 0px">
                                 <br>
                                 <button style="width: 100%; " class="btn btn-primary " id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
                             </div>
-                            <div class="col-md-1 col-12" ></div>
+                            
                             <div class="col-md-2 col-12" style="text-align: right">
                                 <br>
                                 <button style="width: 100%;" class="btn btn-primary btn-sm fa" type="button" onclick="pruebaUno('facturas-data')"><i class="fa fa-file-excel-o"></i><span id="btnText">Exportar csv</span></button>
@@ -74,8 +81,9 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%">Ver</th>
-                                    <th>Código de RC</th>
                                     <th>Fecha solicitud</th>
+                                    <th>Código solicitud</th>
+                                    <th>Código de RC</th>
                                     <th>Estado</th>
                                     <th>Usuario</th>
                                 </tr>
@@ -89,14 +97,15 @@
                                             <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" title="Ver detalle solicitud"
                                                     onclick='abrirFormulario(variableSolicitud = <?php echo json_encode($solicitud); ?>)'></button>
                                         </td>
-                                        <td><?php echo $solicitud->codigoRC; ?></td>
                                         <td><?php echo date("d/m/Y H:i:s", $solicitud->fechaSolicitud / 1000); ?></td>
+                                        <td><?php echo $solicitud->codigoSolicitud; ?></td>
+                                        <td><?php echo $solicitud->codigoRC; ?></td>
                                         <td><?php echo $solicitud->estado; ?></td>
                                         <td><?php echo $solicitud->usuario; ?></td>
                                     </tr>
                                 <?php }
                                 } else{
-                                    echo '<td colspan="5">No existen registros.</td>';
+                                    echo '<td colspan="6">No existen registros.</td>';
                                 } ?>
                             </tbody>
                         </table>

@@ -38,7 +38,7 @@ if(isset($_GET['token'])){
 //    echo '<br>';
 }
 else{
-    echo '<p style="font-size: 20px; color: red; text-align: center;">No existe solicitud sin n&uacute;mero de requisici&oacute;n</p>';
+    echo '<p style="font-size: 20px; color: red; text-align: center;">No existe solicitud sin n&uacute;mero de solicitud</p>';
 }
 
 require_once './acciones/buscarProveedorRuc.php';

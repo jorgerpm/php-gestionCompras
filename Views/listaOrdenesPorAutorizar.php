@@ -37,7 +37,7 @@
                                 <label class="control-label" for="txtNumeroRC">C&oacute;digo RC:</label>
                             </div>
                             <div class="col-md-3 col-12" >
-                                <input class="form-control" type="search" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>">
+                                <input class="form-control" type="search" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>" style="text-transform: uppercase;">
                             </div>
                             <div class="col-md-2 col-12" style="padding: 0px 0px 0px 0px; text-align: left">
                                 <button class="btn btn-primary " id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>

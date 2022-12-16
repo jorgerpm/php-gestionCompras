@@ -30,9 +30,13 @@
                           action="" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                     
                         <div class="row" style="padding-top: 10px">
-                            <div class="col-md-3 col-12" style="padding: 0px 5px 0px 10px">
+                            <div class="col-md-2 col-12" style="padding: 0px 5px 0px 10px">
                                 <label class="control-label" for="txtNumeroRC">C&oacute;digo RC:</label>
-                                <input type="search" class="form-control " id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>">
+                                <input type="search" class="form-control " id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>" style="text-transform: uppercase;">
+                            </div>
+                            <div class="col-md-2 col-12" style="padding: 0px 5px 0px 10px">
+                                <label class="control-label" for="txtNumeroRC">C&oacute;digo solicitud:</label>
+                                <input type="search" class="form-control " id="txtNumeroSol" name="txtNumeroSol" value="<?php echo isset($_POST['txtNumeroSol']) ? $_POST['txtNumeroSol'] : '';?>" style="text-transform: uppercase;">
                             </div>
                             
                             <div class="col-md-3 col-12" style="padding: 0px 5px 0px 0px">
@@ -50,7 +54,7 @@
                                 <br>
                                 <button style="width: 100%; " class="btn btn-primary " id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
                             </div>
-                            <div class="col-md-4 col-12" ></div>
+                            <div class="col-md-3 col-12" ></div>
                         </div>
                         <div class="RespuestaAjax"></div>
                         <br>
@@ -58,8 +62,9 @@
                         <table class="table table-hover table-bordered" id="tablaHistoricos" style="white-space: nowrap">
                             <thead>
                                 <tr>
-                                    <th>Código RC</th>
                                     <th>Fecha</th>
+                                    <th>Código solicitud</th>
+                                    <th>Código RC</th>
                                     <th>Documento</th>
                                     <th>Estado</th>
                                     <th>Total</th>
@@ -72,8 +77,9 @@
                                 if(isset($respuesta) && count($respuesta)>0){
                                 foreach ($respuesta as $historial) { ?>
                                     <tr>
-                                        <td><?php echo $historial->codigoRC; ?></td>
                                         <td><?php echo date("d/m/Y H:i:s", $historial->fechaCambio / 1000); ?></td>
+                                        <td><?php echo $historial->codigoSolicitud; ?></td>
+                                        <td><?php echo $historial->codigoRC; ?></td>
                                         <td><?php echo $historial->documento == "ORDEN_COMPRA" ? "ORDEN DE COMPRA" : $historial->documento ?></td>
                                         <td><?php echo $historial->estado; ?></td>
                                         <td><?php echo $historial->valorTotal; ?></td>
@@ -83,7 +89,7 @@
                                     </tr>
                                 <?php }
                                 } else{
-                                    echo '<td colspan="7">No existen registros.</td>';
+                                    echo '<td colspan="8">No existen registros.</td>';
                                 } ?>
                             </tbody>
                         </table>

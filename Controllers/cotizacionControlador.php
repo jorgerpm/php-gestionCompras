@@ -27,6 +27,7 @@ class cotizacionControlador extends cotizacionModelo {
         $data = array(
                 'fechaTexto' => DateTime::createFromFormat('d/m/Y',$_POST['txtFecha'])->format('Y-m-d'),
                 'codigoRC' => $_POST['txtCodigoRc'],
+                'codigoSolicitud' => $_POST['txtNumSol'],
                 'codigoCotizacion' => $_POST['txtCodigoCotizacion'],
                 'estado' => 'COTIZADO',
                 'usuario' => $_SESSION['Usuario']->nombre,
@@ -65,10 +66,10 @@ class cotizacionControlador extends cotizacionModelo {
     
     public function listar_cotizacion_controlador($post, $regsPagina) {
         if(isset($post) && isset($post['dtFechaIni']) && isset($post['dtFechaFin'])){
-            $respuesta = cotizacionModelo::listar_cotizacion_modelo($post['dtFechaIni'], $post['dtFechaFin'], isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null, $post['txtDesde'], $regsPagina);
+            $respuesta = cotizacionModelo::listar_cotizacion_modelo($post['dtFechaIni'], $post['dtFechaFin'], (isset($post['txtNumSol']) ? $post['txtNumSol'] : null), (isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null), $post['txtDesde'], $regsPagina);
         }
         else{
-            $respuesta = cotizacionModelo::listar_cotizacion_modelo(date("Y-m-d"), date("Y-m-d"), null, 0, $regsPagina);
+            $respuesta = cotizacionModelo::listar_cotizacion_modelo(date("Y-m-d"), date("Y-m-d"), null, null, 0, $regsPagina);
         }
         
         if(!isset($respuesta)){
@@ -78,13 +79,13 @@ class cotizacionControlador extends cotizacionModelo {
         return $respuesta;
     }
     
-    public function buscar_cotizacion_codigorc(){
-        if(isset($_GET['codigoRC'])){
-            $codigoRC = $_GET['codigoRC'];
+    public function buscar_cotizacion_codigo_sol(){
+        if(isset($_GET['codigoSol'])){
+            $codigoSol = $_GET['codigoSol'];
             
             $ruc = $_SESSION['Usuario']->usuario;
             
-            $respuesta = cotizacionModelo::buscar_cotizacion_codigorc_modelo($codigoRC, $ruc);
+            $respuesta = cotizacionModelo::buscar_cotizacion_codigorc_modelo($codigoSol, $ruc);
             return $respuesta;
         }
     }
@@ -115,5 +116,20 @@ class cotizacionControlador extends cotizacionModelo {
         else{
             return '<script>swal("", "Error al guardar la cotizacion.", "error");</script>';
         }
+    }
+    
+    
+    
+    public function get_cotizaciones_para_comparativo_controlador() {
+        
+        if(isset($_POST['txtNumSol'])){
+            $respuesta = cotizacionModelo::get_cotizaciones_para_comparativo_modelo($_POST['txtNumSol']);
+        }
+        
+        if(!isset($respuesta)){
+            $respuesta = [];
+        }
+        
+        return $respuesta;
     }
 }

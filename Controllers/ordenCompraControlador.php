@@ -4,11 +4,12 @@ class ordenCompraControlador extends ordenCompraModelo {
     public function guardar_orden_compra(){
         
         $data = array(
-                'codigoRC' => $_POST['txtCodigoRc'],
+                'codigoSolicitud' => $_POST['txtNumSol'],
                 'rucProveedor' => $_POST['txtRuc'],
                 'estado' => 'GENERADO_OC',
                 'usuario' => $_SESSION['Usuario']->nombre,
                 'idUsuario' => $_SESSION['Usuario']->id,
+                'observacion' => strtoupper($_POST['txtObsComp']), //esta es la observacion para el comparativo
             );
     
         $ordenCompra = ordenCompraModelo::guardar_ordencompra_modelo($data);

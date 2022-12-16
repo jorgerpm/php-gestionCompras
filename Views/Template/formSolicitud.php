@@ -8,14 +8,16 @@
             <input id="txtCodRC" name="txtCodRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->codigoRC : "" ?>">
         </div>
         <div class="col-md-2 col-sm-2 col-12">
+            <label>C&oacute;digo solicitud</label>
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <input id="txtCodsol" name="txtCodsol" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->codigoSolicitud : "" ?>">
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
             <label>Fecha</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <input id="dtFechaSol" name="dtFechaSol" class="form-control btn-sm" type="date" value="<?php echo isset($solicitudGet) ? date("Y-m-d", $solicitudGet->fechaSolicitud / 1000) : date("Y-m-d"); ?>">
-        </div>
-
-        <div class="col-md-4 col-sm-4 col-12">
-            
         </div>
     </div>
 

@@ -128,6 +128,7 @@ function abrirFormulario(val_datos) {
         document.querySelector('#dtFechaSol').value = new Date(val_datos.fechaSolicitud).toISOString().split('T')[0];
         document.querySelector('#txtCorreos').value = val_datos.correos;
         document.querySelector('#txtObserv').value = val_datos.observacion;
+        document.querySelector('#txtCodsol').value = val_datos.codigoSolicitud;
 
         //ocultar los botones
         document.querySelector('#btnGuardaSolic').style = 'display: none;';

@@ -17,18 +17,21 @@ class rolControlador extends rolModelo {
         $chkPrincipal = $_POST['chkPrincipal'];
         $chkPrincipal = ($chkPrincipal == null) ? false : true;
         $listStatus = $_POST['listStatus'];
+        
+        $cheklistRecepcion = ($_POST['checkList'] == null) ? false : true;
 
         if (isset($txtNombre) && isset($listStatus)) {
             $datos = [
                 "id" => $idRol,
                 "nombre" => strtoupper($txtNombre),
                 "principal" => $chkPrincipal,
+                "cheklistRecepcion" => $cheklistRecepcion,
                 "idEstado" => $listStatus
             ];
 
             $respuesta = rolModelo::guardar_rol_modelo($datos);
 
-            if ($respuesta->id > 0) {
+            if (isset($respuesta) && $respuesta->id > 0) {
                 return '<script>swal("", "Datos almacenados correctamente", "success")
                     .then((value) => {
                         $(`#btnBuscar`).click();
@@ -46,4 +49,14 @@ class rolControlador extends rolModelo {
         $rolDto = rolModelo::buscar_rol_porId_modelo($idRol);
         return $rolDto;
     }
+    
+    
+    public function roles_check_list_controlador() {
+        $listaRoles = rolModelo::roles_check_list_modelo();
+        if(!isset($listaRoles)) {
+            $listaRoles = [];
+        }
+        return $listaRoles;
+    }
+    
 }

@@ -19,8 +19,14 @@ class proveedorControlador extends proveedorModelo {
             $respuesta = proveedorModelo::listar_proveedores_modelo($start, $length, urlencode($valBusq));
         }
 
-        if (!isset($respuesta)) {
-            $returnLista = array();
+        if (!isset($respuesta) || empty($respuesta)) {
+//            $returnLista = array();
+            $returnLista = array(
+                "draw" => isset($_POST['draw']) ? intval($_POST['draw']) : 0,
+                "recordsTotal" => 0,
+                "recordsFiltered" => 0,
+                "data" => []
+            );
         } else {
             $listaProveedores = array();
             foreach ($respuesta as $proveedor) {
@@ -33,17 +39,21 @@ class proveedorControlador extends proveedorModelo {
                 $columnas[2] = $proveedor->ruc;
                 $columnas[3] = $proveedor->razonSocial;
                 $columnas[4] = $proveedor->nombreComercial;
-                $columnas[5] = $proveedor->direccion;
+                $columnas[5] = $proveedor->contacto;
                 $columnas[6] = $proveedor->correo;
                 $columnas[7] = $proveedor->telefono1;
                 $columnas[8] = $proveedor->telefono2;
-                $columnas[9] = ($proveedor->idEstado == 1) ? "ACTIVO" : "INACTIVO";
+                $columnas[9] = $proveedor->direccion;
+                $columnas[10] = $proveedor->contabilidad;
+                $columnas[11] = $proveedor->telefonoContabilidad;
+                $columnas[12] = $proveedor->correoContabilidad;
+                $columnas[13] = ($proveedor->idEstado == 1) ? "ACTIVO" : "INACTIVO";
 
 
 
                 $listaProveedores[] = $columnas;
+                
             }
-
             $returnLista = array(
                 "draw" => isset($_POST['draw']) ? intval($_POST['draw']) : 0,
                 "recordsTotal" => $proveedor->totalRegistros,
@@ -51,6 +61,8 @@ class proveedorControlador extends proveedorModelo {
                 "data" => $listaProveedores
                     //[["1","2","3","4","5","6","7"]]
             );
+
+            
         }
         return $returnLista;
     }
@@ -79,7 +91,12 @@ class proveedorControlador extends proveedorModelo {
                 "correo" => $txtCorreo,
                 "ruc" => $txtRuc,
                 "codigoJD" => strtoupper($txtCodigoJD),
-                "idEstado" => strtoupper($cbxIdEstado)
+                "idEstado" => strtoupper($cbxIdEstado),
+                
+                "contabilidad" => strtoupper($_POST['txtContabilidad']),
+                "telefonoContabilidad" => strtoupper($_POST['txtTelefonoContabilidad']),
+                "contacto" => strtoupper($_POST['txtContacto']),
+                "correoContabilidad" => strtoupper($_POST['txtCorreoContabilidad']),
             ];
 
             $respuesta = proveedorModelo::guardar_proveedor_modelo($datos);

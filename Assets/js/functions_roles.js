@@ -7,6 +7,7 @@ function openModalRol(val_datos) {
         document.querySelector('#txtNombre').value = val_datos.nombre;
         document.querySelector('#chkPrincipal').checked = val_datos.principal == 1 ? true : false;
         document.querySelector('#listStatus').value = val_datos.idEstado;
+        document.querySelector('#checkList').checked = val_datos.cheklistRecepcion == 1 ? true : false;
     }
     else{
         document.querySelector('#idRol').value = null;

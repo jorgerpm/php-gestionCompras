@@ -82,7 +82,7 @@ function eliminarFilaModal(input) {
     tbody.deleteRow(index);
     for (i = 0; i < tbody.rows.length; i++) {
         tbody.rows[i].cells[1].children[0].id = "txtIdUserModal" + i;
-        tbody.rows[i].cells[2].children[0].id = i;
+        tbody.rows[i].cells[3].children[0].id = i;
     }
 }
 
@@ -139,3 +139,64 @@ $('.FormularioAutorizadores').submit(function (e) {
         }
     });
 });
+
+
+
+function abrirModalChecklist(val_datos) {
+    document.getElementById('txtIdOrdenCompra').value = val_datos.id;
+    document.getElementById('txtNumRCRecep').value = val_datos.codigoRC;
+
+    document.getElementById('txtEstadoRecep').value = val_datos.estado;
+    document.getElementById('txtValTotalRecep').value = val_datos.total;
+    document.getElementById('txtFechaOCRecep').value = new Date(val_datos.fechaOrdenCompra).toISOString().split('T')[0];
+    
+    //si tiene detalle mostrar los detalles
+//    console.log("ago");
+//    console.log(val_datos.listaAutorizaciones);
+    //cargarUsuariosInit(val_datos.listaAutorizaciones, val_datos.codigoRC);
+
+    $('#modalRecepcion').modal('show');
+}
+
+
+function agregarUserCheckList() {
+    var usuario = document.getElementById('cmbUserList').value;
+    if (usuario !== null && usuario !== '') {
+
+
+        var datuser = usuario.split("#"); //pos=0 es el nombre, en el 1 es el id del user
+        console.log(datuser);
+
+        var tbody = document.getElementById('tbodyAutor');
+        var index = tbody.rows.length; //este solo debe tener 4 maximo
+
+        //validar si ya existe el usuario en la tala
+        var existe = false;
+        for (let i = 0; i < index; i++) {
+            var iduser = document.getElementById('txtIdUserModal' + i).value;
+            if (iduser === datuser[1]) {
+                existe = true;
+            }
+        }
+
+        if (existe) {
+            swal("", "El usuario seleccionado ya se encuentra en la lista.", "error")
+        } else {
+            var fila = tbody.insertRow();
+
+            var numRC = document.getElementById('txtNumRCModal').value;
+            if (index < 4) {
+                fila.insertCell().innerHTML = numRC;
+                fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserModal' + index + '" value="' + datuser[1] + '">';
+                fila.insertCell().innerHTML = "";
+                fila.insertCell().innerHTML = '<input id="' + index + '" type="button" value="x" onclick="eliminarFilaModal(this);" class="btn btn-secondary btn-sm fa">';
+            } else {
+                swal("", "Solo se permite un máximo de 4 usuarios.", "error")
+            }
+        }
+
+        document.getElementById('cmbUserList').value = '';
+    } else {
+        swal('', 'Seleccione un usuario de la lista.', 'warning');
+    }
+}
