@@ -42,14 +42,14 @@ echo    '<div class="row">
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label form-control-sm">MONTO APROBADO</label>
-                            <input class="form-control form-control-sm" readonly>
+                            <input class="form-control form-control-sm" readonly value="'.$respuesta[0]->solicitudDto->montoAprobado.'">
                         </div>
                     </div>
                     <br>
                     <div class="table-responsive">';
     
 
-echo '<table class="table table-hover table-bordered table-sm" id="tablaComparativo" style="white-space: nowrap; border: 1px solid">
+echo '<table class="table table-hover table-bordered table-sm" id="tablaComparativo" style=" border: 1px solid">
         <thead>
             <tr>
                 <th></th>

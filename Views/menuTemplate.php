@@ -16,6 +16,10 @@
         
         <script src="./Assets/js/functions_reportes.js"></script>
         
+        <script src="./Assets/js/plugins/jspdf/jspdf.umd.js"></script>
+        <script src="./Assets/js/plugins/jspdf/html2canvas.js"></script>
+        
+        
         
     </head>
     <body class="app sidebar-mini">
