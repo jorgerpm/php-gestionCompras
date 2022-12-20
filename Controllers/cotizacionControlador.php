@@ -27,8 +27,8 @@ class cotizacionControlador extends cotizacionModelo {
         $data = array(
                 'fechaTexto' => DateTime::createFromFormat('d/m/Y',$_POST['txtFecha'])->format('Y-m-d'),
                 'codigoRC' => $_POST['txtCodigoRc'],
-                'codigoSolicitud' => $_POST['txtNumSol'],
-                'codigoCotizacion' => $_POST['txtCodigoCotizacion'],
+                'codigoSolicitud' => $_POST['txtCodSol'],
+                'codigoCotizacion' => $_POST['txtCodSol'] . "-" . $_POST['txtRuc'], //$_POST['txtCodigoCotizacion'],
                 'estado' => 'COTIZADO',
                 'usuario' => $_SESSION['Usuario']->nombre,
                 'rucProveedor' => $_POST['txtRuc'],
@@ -52,7 +52,10 @@ class cotizacionControlador extends cotizacionModelo {
         
         if(isset($cotizacion)){
             if($cotizacion->id > 0){
-                return '<script>swal("", "Cotizacion enviada correctamente.", "success");</script>';
+                return '<script>swal("", "Cotizacion enviada correctamente.", "success")'
+                . '.then((value) => {
+                        window.location.href = "formularioCotizacion"; 
+                    });</script>';
             }
             if(isset($cotizacion->respuesta) && $cotizacion->respuesta != "OK"){
                 return '<script>swal("", "'.$cotizacion->respuesta.'", "error");</script>';

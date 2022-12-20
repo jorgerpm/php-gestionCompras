@@ -41,9 +41,11 @@
                             $listaUser = $userContr->listar_usuarios_activos(); ?>
                             <select class="form-control btn-sm" id="cmbUserList" name="cmbUserList">
                                 <option value="">- Usuarios -</option>
-                                <?php foreach ($listaUser as $userModal){ ?>
+                                <?php foreach ($listaUser as $userModal){ 
+                                    if($userModal->idRol != 2) {?>
                                 <option value="<?php echo $userModal->nombre.'#'.$userModal->id; ?>"><?php echo $userModal->nombre; ?></option>
-                                <?php } ?>
+                                    <?php }
+                                    } ?>
                             </select>
                         </div>
                         <div class="col-md-2">
@@ -86,10 +88,15 @@
                             <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                     </div>
                     <div class="RespuestaAjax"></div>
+                    
+                    <input type="hidden" id="txtEliminaUser" name="txtEliminaUser">
+                    
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <script src="./Assets/js/functions_autorizaciones.js"></script>

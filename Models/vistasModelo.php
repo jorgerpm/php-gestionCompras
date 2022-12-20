@@ -7,14 +7,14 @@ class vistasModelo {
             if(is_file("./Views/" . $vistas . ".php")) {
                 $contenido = "./Views/" . $vistas . ".php";
             }else {
-                $contenido = "404";
+                $contenido = "404x".$vistas;
             }
         } elseif($vistas=="login" || $vistas=="index") {
             $contenido = "login";
         } elseif($vistas=="formularioRegistroProveedor") {
             $contenido = "formularioRegistroProveedor";
         } else {
-            $contenido = "404";
+            $contenido = "404--".$vistas;
         }
         return $contenido;
     }

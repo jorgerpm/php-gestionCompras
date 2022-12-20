@@ -9,7 +9,8 @@ class vistasControlador extends vistasModelo {
     public function obtener_vistas_controlador() {
         if(isset($_GET['url'])) {
             $ruta = explode("/", $_GET['url']);
-            $respuesta = vistasModelo::obtener_vistas_modelo($ruta[0]);
+            
+            $respuesta = vistasModelo::obtener_vistas_modelo($ruta[count($ruta)-1]);
         }else {
             $respuesta = "login";
         }

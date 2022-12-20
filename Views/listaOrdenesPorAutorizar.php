@@ -36,13 +36,21 @@
                             <div class="col-md-1 col-12" style="padding: 0px 0px 0px 10px">
                                 <label class="control-label" for="txtNumeroRC">C&oacute;digo RC:</label>
                             </div>
-                            <div class="col-md-3 col-12" >
+                            <div class="col-md-2 col-12" >
                                 <input class="form-control" type="search" id="txtNumeroRC" name="txtNumeroRC" value="<?php echo isset($_POST['txtNumeroRC']) ? $_POST['txtNumeroRC'] : '';?>" style="text-transform: uppercase;">
                             </div>
+                            
+                            <div class="col-md-1 col-12" style="padding: 0px 0px 0px 10px">
+                                <label class="control-label" for="txtNumeroSolB">C&oacute;digo solicitud:</label>
+                            </div>
+                            <div class="col-md-2 col-12" >
+                                <input class="form-control" type="search" id="txtNumeroSolB" name="txtNumeroSolB" value="<?php echo isset($_POST['txtNumeroSolB']) ? $_POST['txtNumeroSolB'] : '';?>" style="text-transform: uppercase;">
+                            </div>
+                            
                             <div class="col-md-2 col-12" style="padding: 0px 0px 0px 0px; text-align: left">
                                 <button class="btn btn-primary " id="btnSearch" name="btnSearch" type="submit" ><i class="fa fa-search"></i><span id="btnText">Buscar</span></button>
                             </div>
-                            <div class="col-md-6 col-12" ></div>
+                            <div class="col-md-4 col-12" ></div>
                         </div>
                         <div class="RespuestaAjax"></div>
                         <br>

@@ -37,7 +37,15 @@ if(isset($_GET['token'])){
 //    print_r($solicitud->listaDetalles);
 //    echo '<br>';
 }
-else{
+elseif(isset ($_GET['txtCodSol'])){
+    $solContr = new solicitudControlador();
+    $solicitud = $solContr->buscar_solicitud_por_numero($_GET['txtCodSol']);
+    
+    if(!isset($solicitud)){
+        echo '<p style="font-size: 20px; color: red; text-align: center;">La solicitud con n&uacute;mero: '.$_GET['txtCodSol'].' ya fue enviada por el mismo proveedor.</p>';
+    }
+}
+else{    
     echo '<p style="font-size: 20px; color: red; text-align: center;">No existe solicitud sin n&uacute;mero de solicitud</p>';
 }
 

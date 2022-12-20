@@ -43,6 +43,9 @@ class solicitudControlador extends solicitudModelo {
             'observacion' => strtoupper($post['txtObserv']),
             'listaDetalles' => $detalles,
             'usuarioModifica' => $_SESSION['Usuario']->id,
+            "montoAprobado" => $post['txtMontoAprob'],
+            "fechaAutorizaRC" => $post['dtFechaAprobRC'],
+            "estadoRC" => strtoupper($post['txtEstadoRC']),
         );
         
         $respuesta = solicitudModelo::guardar_solicitud_modelo($data);

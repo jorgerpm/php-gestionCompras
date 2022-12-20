@@ -4,8 +4,8 @@ $plantilla = new vistasControlador();
 $vistas = $plantilla->obtener_vistas_controlador();
 if ($vistas == "login" || $vistas == "index") {
     require_once './Views/login.php';
-} elseif ($vistas == "404") {
-    echo "error 404";
+} elseif ($vistas == "404" || $vistas == "404x" || strpos($vistas, "404") !== false) {
+    echo "error :-:".$vistas;
 } elseif ($vistas == "formularioRegistroProveedor") {
     require_once './Views/formularioRegistroProveedor.php';
 } else {

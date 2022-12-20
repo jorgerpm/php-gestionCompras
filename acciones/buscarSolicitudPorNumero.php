@@ -7,5 +7,5 @@ else{
 }
 
 $solCont = new solicitudControlador();
-$solicitudGet = $solCont->buscar_solicitud_por_numero($_GET['numeroRC']);
+$solicitudGet = $solCont->buscar_solicitud_por_numero($_POST['txtCodSol']);
 print_r(json_encode($solicitudGet));

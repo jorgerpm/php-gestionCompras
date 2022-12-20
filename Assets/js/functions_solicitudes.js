@@ -61,7 +61,7 @@ function agregarCorreo() {
 
 
 $('#formSolicitud').submit(function (e) {
-    console.log('inicia la cargaaaa');
+    console.log('inicia la cargaaaaxxxxxxxxxxxx');
     const LOADING = document.querySelector('.loader');
     LOADING.style = 'display: flex;';
 
@@ -103,16 +103,30 @@ $('#formSolicitud').submit(function (e) {
         processData: false,
         success: function (data) {
             LOADING.style = 'display: none;';
-            //console.log('fiiiinnn   successss');
+            console.log('fiiiinnn   successss', data);
             respuesta.html(data);
             document.getElementById("formSolicitud").reset();
         },
         error: function (error) {
             LOADING.style = 'display: none;';
-            //console.log('fiiiinnn   errrroooorr: ', error);
+            console.log('fiiiinnn   errrroooorr: ', error);
             respuesta.html(error);
+        },
+        statusCode: {
+            404: function() {
+//              alert( "page not found" );
+            }
         }
-    });
+    }).done(function(data) {
+//        console.log("se hixxoooo", data);//tambien
+    })
+    .fail(function() {
+//    alert( "error" );
+  })
+  .always(function() {
+//    alert( "complete" );
+  });
+;
 });
 
 function abrirFormulario(val_datos) {
@@ -129,6 +143,10 @@ function abrirFormulario(val_datos) {
         document.querySelector('#txtCorreos').value = val_datos.correos;
         document.querySelector('#txtObserv').value = val_datos.observacion;
         document.querySelector('#txtCodsol').value = val_datos.codigoSolicitud;
+        
+        document.querySelector('#txtMontoAprob').value = val_datos.montoAprobado;
+        document.querySelector('#dtFechaAprobRC').value = new Date(val_datos.fechaAutorizaRC).toISOString().split('T')[0];
+        document.querySelector('#txtEstadoRC').value = val_datos.estadoRC;
 
         //ocultar los botones
         document.querySelector('#btnGuardaSolic').style = 'display: none;';
@@ -218,4 +236,70 @@ function seleccionProv(li){
         document.querySelector("#losli").removeChild(document.querySelector("#losli").childNodes[0]);
     }
 
+}
+
+
+///// para cargar los detalles
+const fileSelector = document.getElementById('fileDetalles');
+  fileSelector.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    
+    let reader = new FileReader();
+  reader.onload = (e) => {
+    // Cuando el archivo se terminó de cargar
+    let lines = parseCSV(e.target.result);
+    let output = reverseMatrix(lines);
+    let lineas = output[0];
+    console.log("la respuesta: ", lineas);
+    
+    //ahora agreagr a la pagina
+    for(i=1;i<lineas.length;i++){
+        if(lineas[i] !== null && lineas[i] !== ""){
+            var tbody = document.getElementById('tbodySol');
+            var index = tbody.rows.length;
+
+            let columnas = lineas[i].split(";");
+
+            console.log("lineas: ", columnas);
+
+            tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + index + '" style="width: 100%" value="'+columnas[0]+'"></td>'
+                    +'<td><input id="txtDetalle' + index + '" style="width: 100%; text-transform: uppercase;" value="'+columnas[1]+'"></td>'
+                    +'<td><input id="' + index + '" type="button" value="x" onclick="eliminarFila(this);">'
+                    + '<input type="hidden" id="txtIdDetalle' + index + '" name="txtIdDetalle' + index + '" value="0"></td>';
+        }
+    }
+    
+    
+  };
+  // Leemos el contenido del archivo seleccionado
+  reader.readAsBinaryString(file);
+  
+  fileSelector.value = null;
+    
+  });
+  
+  
+  function parseCSV(text) {
+  // Obtenemos las lineas del texto
+  let lines = text.replace(/\r/g, '').split('\n');
+  return lines.map(line => {
+    // Por cada linea obtenemos los valores
+    let values = line.split(',');
+    return values;
+  });
+}
+
+function reverseMatrix(matrix){
+  let output = [];
+  // Por cada fila
+  matrix.forEach((values, row) => {
+    // Vemos los valores y su posicion
+    values.forEach((value, col) => {
+      // Si la posición aún no fue creada
+      if (output[col] === undefined) output[col] = [];
+      output[col][row] = value;
+    });
+  });
+  return output;
 }

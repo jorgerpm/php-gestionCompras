@@ -20,9 +20,9 @@ class ordenCompraModelo extends serviciosWebModelo {
     }
     
     
-    protected function listar_ordenes_autorizar_modelo($codigoRC, $idUsuario, $rolPrincipal, $desde, $hasta) {
+    protected function listar_ordenes_autorizar_modelo($codigoRC, $codigoSolicitud, $idUsuario, $rolPrincipal, $desde, $hasta) {
         $array = [];
-        $listaOrdenes = self::invocarGet('ordenCompra/listarOrdenesPorAutorizar?codigoRC='.$codigoRC.'&idUsuario='.$idUsuario.'&rolPrincipal='.$rolPrincipal.'&desde='.$desde.'&hasta='.$hasta, $array);
+        $listaOrdenes = self::invocarGet('ordenCompra/listarOrdenesPorAutorizar?codigoRC='.$codigoRC.'&codigoSolicitud='.$codigoSolicitud.'&idUsuario='.$idUsuario.'&rolPrincipal='.$rolPrincipal.'&desde='.$desde.'&hasta='.$hasta, $array);
         return $listaOrdenes;
     }
 }

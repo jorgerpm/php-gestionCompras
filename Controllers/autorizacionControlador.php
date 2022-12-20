@@ -14,6 +14,7 @@ class autorizacionControlador extends autorizacionModelo {
                     "idOrdenCompra" => $_POST['txtIdOrdenCompra'],
                     "idUsuario" => $_POST['txtIdUserModal'.$i],
                     "usuarioModifica" => $_SESSION['Usuario']->id,
+                    "usuariosEliminar" => $_POST['txtEliminaUser'],
                 );
             }
             

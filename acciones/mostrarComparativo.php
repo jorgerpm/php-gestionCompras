@@ -82,7 +82,7 @@ foreach ($respuesta[0]->listaDetalles as $detalle){
     foreach ($respuesta as $cotizacion){
             //<!-- esto cambia por cada proveedor, y se debe repetir por cada proveedor -->
         foreach ($cotizacion->listaDetalles as $detCot){    
-            if($detalle->id == $detCot->id){
+            if($detalle->detalle == $detCot->detalle){
     
                 echo   '<td style="border: 1px solid; text-align:end;">$ '.$detCot->valorUnitario.'</td>
                     <td style="border: 1px solid; text-align:end;">$ '.$detCot->valorTotal.'</td>
@@ -99,14 +99,15 @@ foreach ($respuesta[0]->listaDetalles as $detalle){
     foreach ($respuesta as $cotizacion){
             //<!-- esto cambia por cada proveedor, y se debe repetir por cada proveedor -->
         foreach ($cotizacion->listaDetalles as $detCot){    
-            if($detalle->id == $detCot->id){
+            if($detalle->detalle == $detCot->detalle){
                 echo '<td colspan="3" style="border: 1px solid; text-align:center;">'.$detCot->observacion.'</td>';
             }
         }
     }
     echo   '
-            </tr>
-            <tr>
+            </tr>';
+}
+ echo '           <tr>
                 <td></td>
                 <td></td>';
     foreach ($respuesta as $cot){
@@ -149,9 +150,21 @@ foreach ($respuesta[0]->listaDetalles as $detalle){
         echo   '<td colspan="2" style="border: 1px solid; text-align:center;">FORMA DE PAGO</td>
                 <td style="border: 1px solid; text-align:center;">'.$cot->formaPago.'</td>';
     }
+    
+    echo      '
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>';
+    foreach ($respuesta as $cot){
+        echo   '<td colspan="3" style="border: 1px solid; text-align:center;">';
+        echo ($cot->adicionales != null && $cot->adicionales != "") ? ($cot->adicionales." - ") : "";
+        echo ($cot->observacion != null && $cot->observacion != "") ? $cot->observacion : "";
+        echo '</td>';
+    }
     echo      '
             </tr>';
-}
+
 echo   '</tbody>
     </table>';
 

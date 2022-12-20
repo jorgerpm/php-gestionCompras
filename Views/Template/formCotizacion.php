@@ -10,12 +10,15 @@
         <div class="form-row">
             <div id="divUno" class="form-group col-md-<?php echo isset($token) ? '3' : '2' ?>">
                 <label class="control-label btn-sm">C&Oacute;DIGO SOLICITUD:</label>
-                <input class="form-control btn-sm" value="<?php echo isset($token) ? $solicitud->codigoSolicitud : ''; ?>"  id="txtCodSol" name="txtCodSol" type="text" required="" style="text-transform: uppercase;"
+                <input class="form-control btn-sm" value="<?php echo isset($token) ? $solicitud->codigoSolicitud : (isset($_GET['txtCodSol']) ? $_GET['txtCodSol'] : ''); ?>"  id="txtCodSol" name="txtCodSol" type="text" required="" style="text-transform: uppercase;"
                        <?php echo isset($token) ? 'readonly' : '' ?> >
             </div>
             <?php if (!isset($token)) { ?>
                 <div id="btnBusqCot" class="form-group col-md-1" style="text-align: center; align-self: end;">
-                    <button class="btn btn-primary btn-sm" style="width: 100%" type="button" onclick="buscarCotizacion()"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-primary btn-sm" style="width: 100%" type="button"  id="btnBuscarSolicitud" name="btnBuscarSolicitud"
+                            onclick="<?php echo $_SESSION['Rol']->id == 2 ? 'buscarCotizacion();' : 'buscarSolicitudPorNumeroSol();'; ?>">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </div>
             <?php } ?>
             
@@ -34,10 +37,18 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-<?php echo (isset($token) || $_SESSION['Rol']->id == 2) ? '3' : '2' ?>">
                 <label class="control-label btn-sm">RUC:</label>
-                <input class="form-control btn-sm" value="<?php echo $proveedor->ruc ?>" readonly id="txtRuc" name="txtRuc" type="text" placeholder="RUC del proveedor" required="" style="text-transform: uppercase;">
+                <input class="form-control btn-sm" value="<?php echo $proveedor->ruc ?>" id="txtRuc" name="txtRuc" type="text" placeholder="RUC del proveedor" required="" style="text-transform: uppercase;"
+                       <?php echo $_SESSION['Rol']->id == 2 ? 'readonly' : '' ?>>
             </div>
+            
+            <?php if (!isset($token) && $_SESSION['Rol']->id != 2) { ?>
+                <div id="btnBusqProvv" class="form-group col-md-1" style="text-align: center; align-self: end;">
+                    <button class="btn btn-primary btn-sm" style="width: 100%" type="button" onclick="buscarProvPorRuc()"><i class="fa fa-search"></i></button>
+                </div>
+            <?php } ?>
+            
             <div class="form-group col-md-6">
                 <label class="control-label btn-sm">RAZ&Oacute;N SOCIAL:</label>
                 <input class="form-control btn-sm" value="<?php echo $proveedor->razonSocial ?>" readonly id="txtRazonSocial" name="txtRazonSocial" type="text" placeholder="Razón social del proveedor" required="" style="text-transform: uppercase;">
@@ -184,7 +195,7 @@
     <?php } ?>
     
     <div style="text-align: center">
-        <?php if (isset($token)) { ?>
+        <?php if (isset($token) || isset ($_GET['txtCodSol'])) { ?>
             <button class="btn btn-primary" type="submit" id="btnGuarCot">
                 <i class="fa fa-floppy-o"></i> Guardar y enviar</button>
         <?php } ?>
@@ -193,13 +204,16 @@
         <?php } ?>
         <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
         
+        <?php if($_SESSION['Rol']->id != 2){ ?>
         &nbsp;&nbsp;&nbsp;
         <button class="btn btn-secondary" type="button" onclick="ejecutarReportePdf('COTIZACION', document.querySelector('#txtIdCot').value);" >
             <i class="fa fa-fw fa-lg fa-print"></i>
             <span id="btnText">Imprimir</span>
         </button>
+        <?php }?>
         
     </div>
     <div class="RespuestaAjax" id="idRespuestaAjax"></div>
 </form>
 
+<script src="./Assets/js/functions_cotizaciones.js"></script>

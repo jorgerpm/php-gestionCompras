@@ -79,10 +79,10 @@ class ordenCompraControlador extends ordenCompraModelo {
         $iduser = $_SESSION['Usuario']->id;
         
         if(isset($post)){
-            $respuesta = ordenCompraModelo::listar_ordenes_autorizar_modelo(isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null, $iduser, $rolPrincipal, $post['txtDesde'], $regsPagina);
+            $respuesta = ordenCompraModelo::listar_ordenes_autorizar_modelo(isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null, isset($post['txtNumeroSolB']) ? $post['txtNumeroSolB'] : null, $iduser, $rolPrincipal, $post['txtDesde'], $regsPagina);
         }
         else{
-            $respuesta = ordenCompraModelo::listar_ordenes_autorizar_modelo(null, $iduser, $rolPrincipal, 0, $regsPagina);
+            $respuesta = ordenCompraModelo::listar_ordenes_autorizar_modelo(null, null, $iduser, $rolPrincipal, 0, $regsPagina);
         }
         
         if(!isset($respuesta)){

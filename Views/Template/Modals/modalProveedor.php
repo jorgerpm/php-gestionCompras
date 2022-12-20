@@ -62,7 +62,7 @@
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label class="control-label">Contabilidad:</label>
+                            <label class="control-label">Contacto contabilidad:</label>
                             <input class="form-control" id="txtContabilidad" name="txtContabilidad" type="text" required="" style="text-transform: uppercase;">
                         </div>
                         <div class="form-group col-md-6">

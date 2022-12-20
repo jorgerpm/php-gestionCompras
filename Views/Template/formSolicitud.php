@@ -20,6 +20,33 @@
             <input id="dtFechaSol" name="dtFechaSol" class="form-control btn-sm" type="date" value="<?php echo isset($solicitudGet) ? date("Y-m-d", $solicitudGet->fechaSolicitud / 1000) : date("Y-m-d"); ?>">
         </div>
     </div>
+    
+    
+    
+    
+    <div class="row" style="padding-bottom: 5px">
+        <div class="col-md-2 col-sm-2 col-12">
+            <label class="control-label">Monto aprobado</label>
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <input type="number" id="txtMontoAprob" name="txtMontoAprob" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->montoAprobado : "" ?>" >
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <label class="control-label">Fecha autorizaci&oacute;n RC</label>
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <input id="dtFechaAprobRC" name="dtFechaAprobRC" class="form-control btn-sm" type="date" value="<?php echo isset($solicitudGet) ? date("Y-m-d", $solicitudGet->fechaAutorizaRC / 1000) : date("Y-m-d"); ?>" >
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <label class="control-label">Estado RC</label>
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <input id="txtEstadoRC" name="txtEstadoRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->estadoRC : "" ?>" >
+        </div>
+    </div>
+    
+    
+    
 
     <div class="row" style="padding-bottom: 5px">
         <div class="col-md-2 col-sm-2 col-12">
@@ -66,11 +93,15 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-sm-6 col-12">
+        <div class="col-md-12 col-sm-12 col-12">
             <button class="btn btn-primary btn-sm fa" type="button" onclick="agregarFila();" id="btnAniadir">
                 <i class="fa fa-plus"></i> A&ntilde;adir producto</button>
+                
+                <div style="text-align: end; margin-top: -30px">
+                    <input type="file" name="" class="btn btn-primary btn-sm fa" id="fileDetalles" accept=".csv" >
+                </div>
+
         </div>
-        <div class="col-md-6 col-sm-6 col-12"></div>
 
     </div>
 

@@ -46,7 +46,7 @@ if(isset($_GET['token'])){
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label class="control-label" for="txtRucProveedor">RUC:</label>
-                                                <input class="form-control" id="txtRucProveedor" name="txtRucProveedor" type="number" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;" min="0" minlength="13" maxlength="13">
+                                                <input class="form-control" id="txtRucProveedor" name="txtRucProveedor" type="text" placeholder="Ruc del proveedor" required="" style="text-transform: uppercase;" minlength="13" maxlength="13">
                                             </div>
                                             <div class="form-group col-md-6">
                                             </div>
@@ -61,26 +61,55 @@ if(isset($_GET['token'])){
                                                 <input class="form-control" id="txtNombreComercial" name="txtNombreComercial" type="text" placeholder="Nomber comercial del proveedor" style="text-transform: uppercase;">
                                             </div>
                                         </div>
+                                        
+                                        
+                                        
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label class="control-label">Direcci&oacute;n:</label>
-                                                <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" style="text-transform: uppercase;">
+                                                <label class="control-label">Contacto:</label>
+                                                <input class="form-control" id="txtContacto" name="txtContacto" type="text" placeholder="NOMBRE PERSONA PARA CONTACTO INTERNO" required="" style="text-transform: uppercase;">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class="control-label">Correo:</label>
                                                 <input class="form-control" id="txtCorreo" name="txtCorreo" type="email" placeholder="CORREO DEL PROVEEDOR" required="">
                                             </div>
                                         </div>
+                                        
+                                        
+                                        
                                         <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">Direcci&oacute;n:</label>
+                                                <input class="form-control" id="txtDireccion" name="txtDireccion" type="text" placeholder="Direcci&oacute;n del proveedor" style="text-transform: uppercase;" required="">
+                                            </div>
                                             <div class="form-group col-md-6">
                                                 <label class="control-label">Tel&eacute;fono 1:</label>
                                                 <input class="form-control" id="txtTelefono1" name="txtTelefono1" type="number" placeholder="TEL&Eacute;FONO (OBLIGATORIO)" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">Contacto contabilidad:</label>
+                                                <input class="form-control" id="txtContabilidad" name="txtContabilidad" type="text" placeholder="NOMBRE PERSONA CONTABILIDAD" required="" style="text-transform: uppercase;">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">Tel&eacute;fono contabilidad:</label>
+                                                <input class="form-control" id="txtTelefonoContabilidad" name="txtTelefonoContabilidad" type="text" placeholder="TEL&Eacute;FONO DE CONTABILIDAD" required="" style="text-transform: uppercase;">
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label">Correo contabilidad:</label>
+                                                <input class="form-control" id="txtCorreoContabilidad" name="txtCorreoContabilidad" type="email" placeholder="CORREO DE CONTABILIDAD"required="">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class="control-label">Tel&eacute;fono 2:</label>
                                                 <input class="form-control" id="txtTelefono2" name="txtTelefono2" type="number" placeholder="TEL&Eacute;FONO (OPCIONAL)">
                                             </div>
                                         </div>
+                                        
 
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
@@ -177,7 +206,7 @@ if(isset($_GET['token'])){
                     var value = $(this).val();
                     if(value.length > 13)
                         value = value.slice(0, 13);
-                    $("#txtRucProveedor").val(value);
+//                    $("#txtRucProveedor").val(value);
                     $("#txtUsuarioProveedor").val(value);
                 });
             });

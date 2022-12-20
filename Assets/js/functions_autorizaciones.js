@@ -27,7 +27,7 @@ function cargarUsuariosInit(usuariosAut, numRC){
     for (let i = 0; i < index; i++) {
         var fila = tbody.insertRow();
         fila.insertCell().innerHTML = numRC;
-        fila.insertCell().innerHTML = usuariosAut[i].nombreUsuario + '<input type="hidden" id="txtIdUserModal' + i + '" value="' + usuariosAut[i].idUsuario + '">';
+        fila.insertCell().innerHTML = usuariosAut[i].nombreUsuario + '<input type="hidden" id="txtIdUserModal' + i + '" value="' + usuariosAut[i].idUsuario + '">' + '<input type="hidden" id="txtIdAutorModal' + i + '" value="' + usuariosAut[i].id + '">';
         fila.insertCell().innerHTML = usuariosAut[i].estado;
         fila.insertCell().innerHTML = '<input id="' + i + '" type="button" value="x" onclick="eliminarFilaModal(this);" class="btn btn-secondary btn-sm fa">';
     }
@@ -61,11 +61,11 @@ function agregarUserModal() {
             var numRC = document.getElementById('txtNumRCModal').value;
             if (index < 4) {
                 fila.insertCell().innerHTML = numRC;
-                fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserModal' + index + '" value="' + datuser[1] + '">';
+                fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserModal' + index + '" value="' + datuser[1] + '">' + '<input type="hidden" id="txtIdAutorModal' + index + '" value="">';
                 fila.insertCell().innerHTML = "";
                 fila.insertCell().innerHTML = '<input id="' + index + '" type="button" value="x" onclick="eliminarFilaModal(this);" class="btn btn-secondary btn-sm fa">';
             } else {
-                swal("", "Solo se permite un máximo de 4 usuarios.", "error")
+                swal("", "Solo se permite un máximo de 4 usuarios.", "error");
             }
         }
 
@@ -79,9 +79,23 @@ function agregarUserModal() {
 function eliminarFilaModal(input) {
     var tbody = document.getElementById('tbodyAutor');
     let index = input.id;
+    
+    //colocar en una lista para enviar a elimimnar en la base de datos
+    var idAutorElimn = document.querySelector('#txtIdAutorModal'+index).value;
+    console.log("usr a elimnar : ", idAutorElimn);
+    //solo si tiene ya un id desde la base se manda a eliminar al servicio
+    if(idAutorElimn !== null && idAutorElimn !== ""){
+        var txtElimina = document.querySelector('#txtEliminaUser').value;
+        txtElimina = txtElimina !== null ? txtElimina : "";
+        txtElimina = txtElimina + "" + idAutorElimn + ",";
+        document.querySelector('#txtEliminaUser').value = txtElimina;
+    }
+    //
+    
     tbody.deleteRow(index);
     for (i = 0; i < tbody.rows.length; i++) {
         tbody.rows[i].cells[1].children[0].id = "txtIdUserModal" + i;
+        tbody.rows[i].cells[1].children[1].id = "txtIdAutorModal" + i;
         tbody.rows[i].cells[3].children[0].id = i;
     }
 }
@@ -159,44 +173,44 @@ function abrirModalChecklist(val_datos) {
 }
 
 
-function agregarUserCheckList() {
-    var usuario = document.getElementById('cmbUserList').value;
-    if (usuario !== null && usuario !== '') {
-
-
-        var datuser = usuario.split("#"); //pos=0 es el nombre, en el 1 es el id del user
-        console.log(datuser);
-
-        var tbody = document.getElementById('tbodyAutor');
-        var index = tbody.rows.length; //este solo debe tener 4 maximo
-
-        //validar si ya existe el usuario en la tala
-        var existe = false;
-        for (let i = 0; i < index; i++) {
-            var iduser = document.getElementById('txtIdUserModal' + i).value;
-            if (iduser === datuser[1]) {
-                existe = true;
-            }
-        }
-
-        if (existe) {
-            swal("", "El usuario seleccionado ya se encuentra en la lista.", "error")
-        } else {
-            var fila = tbody.insertRow();
-
-            var numRC = document.getElementById('txtNumRCModal').value;
-            if (index < 4) {
-                fila.insertCell().innerHTML = numRC;
-                fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserModal' + index + '" value="' + datuser[1] + '">';
-                fila.insertCell().innerHTML = "";
-                fila.insertCell().innerHTML = '<input id="' + index + '" type="button" value="x" onclick="eliminarFilaModal(this);" class="btn btn-secondary btn-sm fa">';
-            } else {
-                swal("", "Solo se permite un máximo de 4 usuarios.", "error")
-            }
-        }
-
-        document.getElementById('cmbUserList').value = '';
-    } else {
-        swal('', 'Seleccione un usuario de la lista.', 'warning');
-    }
-}
+//function agregarUserCheckList() {
+//    var usuario = document.getElementById('cmbUserList').value;
+//    if (usuario !== null && usuario !== '') {
+//
+//
+//        var datuser = usuario.split("#"); //pos=0 es el nombre, en el 1 es el id del user
+//        console.log(datuser);
+//
+//        var tbody = document.getElementById('tbodyAutor');
+//        var index = tbody.rows.length; //este solo debe tener 4 maximo
+//
+//        //validar si ya existe el usuario en la tala
+//        var existe = false;
+//        for (let i = 0; i < index; i++) {
+//            var iduser = document.getElementById('txtIdUserModal' + i).value;
+//            if (iduser === datuser[1]) {
+//                existe = true;
+//            }
+//        }
+//
+//        if (existe) {
+//            swal("", "El usuario seleccionado ya se encuentra en la lista.", "error")
+//        } else {
+//            var fila = tbody.insertRow();
+//
+//            var numRC = document.getElementById('txtNumRCModal').value;
+//            if (index < 4) {
+//                fila.insertCell().innerHTML = numRC;
+//                fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserModal' + index + '" value="' + datuser[1] + '">';
+//                fila.insertCell().innerHTML = "";
+//                fila.insertCell().innerHTML = '<input id="' + index + '" type="button" value="x" onclick="eliminarFilaModal(this);" class="btn btn-secondary btn-sm fa">';
+//            } else {
+//                swal("", "Solo se permite un máximo de 4 usuarios.", "error")
+//            }
+//        }
+//
+//        document.getElementById('cmbUserList').value = '';
+//    } else {
+//        swal('', 'Seleccione un usuario de la lista.', 'warning');
+//    }
+//}

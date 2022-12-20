@@ -21,6 +21,8 @@ class loginControlador extends loginModelo {
                 
                 $_SESSION['Usuario'] = $respuesta;
                 
+                $_SESSION['tiempo'] = time();
+                
                 if(isset($_POST['txtToken'])){
                     return '<script>window.location.href = "formularioCotizacion?token='.urlencode($_POST['txtToken']).'"</script>';
                 }

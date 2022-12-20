@@ -120,7 +120,7 @@ $('#frmCotizacion').submit(function (e) {
 function buscarCotizacion() {
     const LOADING = document.querySelector('.loader');
     LOADING.style = 'display: flex;';
-    
+
     var codigoSol = document.getElementById('txtCodSol').value;
 
     var respuesta = document.getElementsByClassName('RespuestaAjax')[0];
@@ -147,11 +147,10 @@ function buscarCotizacion() {
             var cot = JSON.parse(data);
             console.log(cot);
 //            console.log(cot.id);
-            
-            if(cot && cot.id > 0){
+
+            if (cot && cot.id > 0) {
                 abrirFormulario(cot);
-            }
-            else{
+            } else {
 //                document.querySelector('#frmCotizacion').reset();
 //                var tbody = document.getElementById('tbodySol');
 //                let index = tbody.rows.length - 4; //se resta 4 porque es de los totales
@@ -165,7 +164,7 @@ function buscarCotizacion() {
 //                document.querySelector('#lblTotal').innerHTML = 0;
                 swal("", "No existe cotización con el código de solicitud ingresado.", "warning");
             }
-            
+
         },
         error: function (cot) {
             LOADING.style = 'display: none;';
@@ -181,7 +180,7 @@ function abrirFormulario(val_datos) {
 //    console.log("fechhaa::: ", new Date(val_datos.fechaSolicitud).toISOString().split('T')[0]);
 
     document.querySelector('#frmCotizacion').reset();
-    
+
     console.log("ssss: ", document.querySelector('#modalFormCotiz'));
 
     if (val_datos !== null) {
@@ -190,94 +189,95 @@ function abrirFormulario(val_datos) {
         document.querySelector('#txtFecha').value = new Date(val_datos.fechaCotizacion).toISOString().split('T')[0];
         document.querySelector('#txtRubrosAdicionales').value = val_datos.adicionales;
         document.querySelector('#txtObservaciones').value = val_datos.observacion;
-        document.querySelector('#txtDireccion').value = val_datos.proveedorDto.direccion;
         document.querySelector('#txtCodSol').value = val_datos.codigoSolicitud;
-        
+
         document.querySelector('#txtCodigoCotizacion').value = val_datos.codigoCotizacion;
         document.querySelector('#txtRuc').value = val_datos.rucProveedor;
+
+        document.querySelector('#txtDireccion').value = val_datos.proveedorDto.direccion;
         document.querySelector('#txtRazonSocial').value = val_datos.proveedorDto.razonSocial;
         document.querySelector('#txtTelefono').value = val_datos.proveedorDto.telefono1;
         document.querySelector('#txtDireccion').value = val_datos.proveedorDto.direccion;
         document.querySelector('#txtCorreo').value = val_datos.proveedorDto.correo;
-        
+
         document.querySelector('#txtTiempoEntrega').value = val_datos.tiempoEntrega;
         document.querySelector('#txtValidezCotizacion').value = val_datos.validezCotizacion;
         document.querySelector('#listFormaPago').value = val_datos.formaPago;
-        
+
         document.querySelector('#lblSubtotal').innerHTML = val_datos.subtotal;
         document.querySelector('#lblSubtotalSinIva').innerHTML = val_datos.subtotalSinIva;
         document.querySelector('#lblIva').innerHTML = val_datos.iva;
         document.querySelector('#lblTotal').innerHTML = val_datos.total;
-        
-        if(document.querySelector('#cbxListaEstado')){
-            
+
+        if (document.querySelector('#cbxListaEstado')) {
+
             var cbxEstado = document.querySelector('#cbxListaEstado');
             document.querySelector('#cbxListaEstado').style = 'display: none;';
-        
-            cbxEstado.addEventListener("change", function() {
+
+            cbxEstado.addEventListener("change", function () {
                 var valor = cbxEstado.value;
-                if(valor === "RECHAZADO" || valor === "ANULADO"){
+                if (valor === "RECHAZADO" || valor === "ANULADO") {
                     document.querySelector('#lblRazonRechazo').style = '';
                     document.querySelector('#txtRazonRechazo').style = 'text-transform: uppercase;';
 
                     document.querySelector('#btnCambEst').style = '';
-                    if(document.querySelector('#btnGeneraOC'))
-                        document.querySelector('#btnGeneraOC').style =  'display: none;';
+                    if (document.querySelector('#btnGeneraOC'))
+                        document.querySelector('#btnGeneraOC').style = 'display: none;';
                 } else {
                     document.querySelector('#lblRazonRechazo').style = 'display: none;';
                     document.querySelector('#txtRazonRechazo').style = 'text-transform: uppercase;display: none';
 
                     document.querySelector('#btnCambEst').style = 'display: none';
-                    if(document.querySelector('#btnGeneraOC'))
-                        document.querySelector('#btnGeneraOC').style =  '';
+                    if (document.querySelector('#btnGeneraOC'))
+                        document.querySelector('#btnGeneraOC').style = '';
                 }
             });
         }
-        
+
 
         //ocultar los botones
-        if(document.querySelector('#btnGuarCot')){
+        if (document.querySelector('#btnGuarCot')) {
             document.querySelector('#btnGuarCot').style = 'display: none;';
         }
-        if(document.querySelector('#registrosTabla')){
+        if (document.querySelector('#registrosTabla')) {
             document.querySelector('#registrosTabla').value = val_datos.listaDetalles.length;
         }
-        if(val_datos.estado === 'COTIZADO'){ //RECHAZADO' && val_datos.estado !== 'GENERADO_OC'){
-            if(document.querySelector('#btnGeneraOC'))
-                document.querySelector('#btnGeneraOC').style =  '';
-            if(document.querySelector('#divEstado'))
+        if (val_datos.estado === 'COTIZADO') { //RECHAZADO' && val_datos.estado !== 'GENERADO_OC'){
+            if (document.querySelector('#btnGeneraOC'))
+                document.querySelector('#btnGeneraOC').style = '';
+            if (document.querySelector('#divEstado'))
                 document.querySelector('#divEstado').style = "border: solid 1px graytext;";
-        }else{
-            if(document.querySelector('#btnGeneraOC')){
-                document.querySelector('#btnGeneraOC').style =  'display: none;';
+        } else {
+            if (document.querySelector('#btnGeneraOC')) {
+                document.querySelector('#btnGeneraOC').style = 'display: none;';
                 document.querySelector('#btnGeneraOC').setAttribute("onclick", "");
             }
-            if(document.querySelector('#divEstado'))
+            if (document.querySelector('#divEstado'))
                 document.querySelector('#divEstado').style = "display: none;";
         }
-        if(document.querySelector('#modalFormCotiz')){
-            if(document.querySelector('#btnBusqCot')){
+        if (document.querySelector('#modalFormCotiz')) {
+            if (document.querySelector('#btnBusqCot')) {
                 document.querySelector('#btnBusqCot').style = 'display: none;';
             }
             document.querySelector('#divUno').classList.remove('col-md-2');
             document.querySelector('#divUno').classList.add('col-md-3');
             document.querySelector('#txtCodSol').setAttribute("readonly", "");
         }
-        
+
         document.querySelector('#chkTodosIva').style = 'display: none;';
-        
-        if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'AUTORIZADO'){
+
+        if (val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'AUTORIZADO') {
 //            document.querySelector('#btnAutorizar').style =  '';
-            if(document.querySelector('#lblListaEstado'))
+            if (document.querySelector('#lblListaEstado'))
                 document.querySelector('#lblListaEstado').style = '';
-            if(document.querySelector('#cbxListaEstado'))
+            if (document.querySelector('#cbxListaEstado'))
                 document.querySelector('#cbxListaEstado').style = '';
-        }else{
+        } else {
 //            document.querySelector('#btnAutorizar').style =  'display: none;';
 //            document.querySelector('#btnAutorizar').setAttribute("onclick", "");
         }
-        
-        
+
+
 
         //generar la tabla
 //        let tabla = document.getElementById('tblDetSolicitud');
@@ -291,13 +291,13 @@ function abrirFormulario(val_datos) {
         for (i = 0; i < val_datos.listaDetalles.length; i++) {
             console.log(val_datos.listaDetalles[i]);
             var rowAux = tbody.insertRow(0);
-            
-            rowAux.insertCell().innerHTML = '<label id="lblCantidad'+i+'" style="width: 100%; text-align: center;">'+val_datos.listaDetalles[i].cantidad+'</label>';
-            rowAux.insertCell().innerHTML = '<label id="lblDetalle'+i+'">'+val_datos.listaDetalles[i].detalle+'</label>';
-            rowAux.insertCell().innerHTML = '<label id="txtObservDetalle'+i+'" style="width: 100%">'+val_datos.listaDetalles[i].observacion+'</label>';
-            rowAux.insertCell().innerHTML = '<label id="chkIva'+i+'" style="width: 100%; text-align: center;">'+(val_datos.listaDetalles[i].tieneIva ? 'SI' : 'NO')+'</label>';
-            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario'+i+'" class="monto'+i+'" style="width: 100%; text-align: end;">'+val_datos.listaDetalles[i].valorUnitario+'</label>';
-            rowAux.insertCell().innerHTML = '<label id="lblValorTotal'+i+'" style="width: 100%; text-align: end;">'+val_datos.listaDetalles[i].valorTotal+'</label>';
+
+            rowAux.insertCell().innerHTML = '<label id="lblCantidad' + i + '" style="width: 100%; text-align: center;">' + val_datos.listaDetalles[i].cantidad + '</label>';
+            rowAux.insertCell().innerHTML = '<label id="lblDetalle' + i + '">' + val_datos.listaDetalles[i].detalle + '</label>';
+            rowAux.insertCell().innerHTML = '<label id="txtObservDetalle' + i + '" style="width: 100%">' + val_datos.listaDetalles[i].observacion + '</label>';
+            rowAux.insertCell().innerHTML = '<label id="chkIva' + i + '" style="width: 100%; text-align: center;">' + (val_datos.listaDetalles[i].tieneIva ? 'SI' : 'NO') + '</label>';
+            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario' + i + '" class="monto' + i + '" style="width: 100%; text-align: end;">' + val_datos.listaDetalles[i].valorUnitario + '</label>';
+            rowAux.insertCell().innerHTML = '<label id="lblValorTotal' + i + '" style="width: 100%; text-align: end;">' + val_datos.listaDetalles[i].valorTotal + '</label>';
         }
 
     } else {
@@ -308,13 +308,13 @@ function abrirFormulario(val_datos) {
 }
 
 
-function generarOC(){
+function generarOC() {
     const LOADING = document.querySelector('.loader');
-    LOADING.style = 'display: flex;';    
+    LOADING.style = 'display: flex;';
 
     var respuesta = $('.RespuestaAjax');
     console.log(respuesta);
-    
+
     //esto debe ir para el post
 //    ' => $_POST['txtNumSol'],
 //                'rucProveedor' => $_POST['txtRuc'],
@@ -323,15 +323,15 @@ function generarOC(){
     var rucProveedor = document.querySelector('#txtRucProv').value;
     var obsComparativo = document.querySelector('#txtObsComp').value;
 
-    if(obsComparativo !== null && obsComparativo !== ''){
+    if (obsComparativo !== null && obsComparativo !== '') {
 
         $.ajax({
             type: 'POST',
             url: 'acciones/generarOrdenCompra.php',
             data: {"txtNumSol": numeroSolicitud, "txtRuc": rucProveedor, "txtObsComp": obsComparativo},
-    //        cache: false,
-    //        contentType: false,
-    //        processData: false,
+            //        cache: false,
+            //        contentType: false,
+            //        processData: false,
             success: function (data) {
                 console.log(data);
                 LOADING.style = 'display: none;';
@@ -342,25 +342,25 @@ function generarOC(){
                 respuesta.html(error);
             }
         });
-        
-    }else{
+
+    } else {
         LOADING.style = 'display: none;';
         swal("", "Debe ingresar una observación.", "warning");
     }
 }
 
-function cambiarEstadoCotizacion(){
+function cambiarEstadoCotizacion() {
     const LOADING = document.querySelector('.loader');
     LOADING.style = 'display: flex;';
-    
+
     var form = document.forms['frmCotizacion'];
     var formdata = new FormData(form);
-    
+
 //    var respuesta = form.elements('.RespuestaAjax');
     var respuesta = $('#idRespuestaAjax');
-    
+
     console.log(respuesta);
-    
+
     $.ajax({
         type: 'POST',
         url: 'acciones/cambiarEstadoCotizacion.php',
@@ -380,14 +380,14 @@ function cambiarEstadoCotizacion(){
     });
 }
 
-function abrirComprativo(){
-    
+function abrirComprativo() {
+
     var numeroSol = document.querySelector('#txtNumSol').value;
-    
+
     console.log("numeroSol: ", numeroSol);
-    
-    if(numeroSol !== null && numeroSol !== ''){
-        
+
+    if (numeroSol !== null && numeroSol !== '') {
+
         const LOADING = document.querySelector('.loader');
         LOADING.style = 'display: flex;';
 
@@ -404,8 +404,8 @@ function abrirComprativo(){
 //                console.log(data);
                 LOADING.style = 'display: none;';
                 respuesta.html(data);
-                
-                if(!data.includes("warning"))
+
+                if (!data.includes("warning"))
                     $('#modalComparativo').modal('show');
             },
             error: function (error) {
@@ -413,18 +413,17 @@ function abrirComprativo(){
                 respuesta.html(error);
             }
         });
-    
-    }
-    else{
+
+    } else {
         console.log("ingrese el codigo de solicitud.");
-        swal("", "Ingrese el número de solicitud.", "warning");
+        swal("", "Ingrese el código de solicitud.", "warning");
     }
-    
-    
+
+
 }
 
 
-function selectCotizacion(source, ruc){
+function selectCotizacion(source, ruc) {
 //    console.log("el ruc: ", ruc);
     var checkboxes = document.querySelectorAll('.chkCompart');
 //    console.log("los boxes:", checkboxes);
@@ -432,23 +431,68 @@ function selectCotizacion(source, ruc){
     for (var i = 0; i < checkboxes.length; i++) {
 //        console.log("for: ", checkboxes[i]);
 //        console.log("el id:", checkboxes[i].id);
-        if (checkboxes[i].id === ruc){
+        if (checkboxes[i].id === ruc) {
             checkboxes[i].checked = source.checked;
-        }
-        else{
+        } else {
             checkboxes[i].checked = false;
         }
     }
-    
+
     document.querySelector("#txtRucProv").value = null;
-    
-    if(source.checked){//para habilitar o desactivar el boton
+
+    if (source.checked) {//para habilitar o desactivar el boton
 //        console.log("butt: ", document.querySelector("#btnActionForm"));
         document.querySelector("#btnActionForm").disabled = false;
         document.querySelector("#txtRucProv").value = ruc;
-    }
-    else{
+    } else {
         document.querySelector("#btnActionForm").disabled = true;
     }
 }
 
+
+function buscarProvPorRuc() {
+    var ruc = document.querySelector('#txtRuc').value;
+    if (ruc !== null && ruc !== '') {
+        $.ajax({
+            type: 'POST',
+            url: 'acciones/buscarProveedorRuc.php',
+            data: {'txtRucProv': ruc},
+//            cache: false,
+//            contentType: false,
+//            processData: false,
+            success: function (data) {
+                console.log(JSON.parse(data));
+                data = JSON.parse(data);
+//                LOADING.style = 'display: none;';
+                document.querySelector("#txtRazonSocial").value = data.razonSocial;
+                document.querySelector("#txtTelefono").value = data.telefono1;
+                document.querySelector("#txtCorreo").value = data.correo;
+                document.querySelector("#txtDireccion").value = data.direccion;
+                
+//                document.querySelector("#txtDireccion").value = data.direccion;
+
+            },
+            error: function (error) {
+//                LOADING.style = 'display: none;';
+//                respuesta.html(error);
+            }
+        });
+    } else {
+
+    }
+}
+
+
+
+
+function buscarSolicitudPorNumeroSol() {
+    var codSol = document.querySelector('#txtCodSol').value;
+
+    if (codSol !== null && codSol !== '') {
+
+        window.location.href = "formularioCotizacion?txtCodSol=" + codSol;
+
+    } else {
+
+    }
+}
