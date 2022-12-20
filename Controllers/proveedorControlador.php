@@ -97,16 +97,23 @@ class proveedorControlador extends proveedorModelo {
                 "telefonoContabilidad" => strtoupper($_POST['txtTelefonoContabilidad']),
                 "contacto" => strtoupper($_POST['txtContacto']),
                 "correoContabilidad" => strtoupper($_POST['txtCorreoContabilidad']),
+                
+                "carpeta" => strtoupper($_POST['txtCarpeta']),
+                "servicioProducto" => strtoupper($_POST['txtServicioProducto']),
+                "credito" => strtoupper($_POST['txtCredito']),
             ];
 
             $respuesta = proveedorModelo::guardar_proveedor_modelo($datos);
 
-            if ($respuesta->id > 0) {
+            if (isset($respuesta) && $respuesta->id > 0) {
                 return '<script>swal("", "Datos almacenados correctamente", "success")
                     .then((value) => {
                         $(`#btnBuscar`).click();
                     });</script>';
-            } else {
+            } elseif(isset($respuesta)) {
+                return '<script>swal("", "'.$respuesta->respuesta.'", "error");</script>';
+            }
+            else{
                 return '<script>swal("", "Error al almacenar los datos.", "error");</script>';
             }
         } else {

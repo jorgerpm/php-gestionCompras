@@ -20,4 +20,10 @@ class solicitudModelo extends serviciosWebModelo {
         return $solicitud;
     }
     
+    protected function getUltimoCodigoSolicitud(){
+        $array = [];
+        $solicitud = self::invocarGet('solicitud/getUltimoCodigoSolicitud', $array);
+        return $solicitud;
+    }
+    
 }

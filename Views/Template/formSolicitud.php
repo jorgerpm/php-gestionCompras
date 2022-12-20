@@ -1,23 +1,29 @@
+<?php 
+$contr1sol = new solicitudControlador();
+$numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
+?>
+
 <form id="formSolicitud" autocomplete="off">
     <div class="row" style="padding-bottom: 5px">
         <input type="hidden" value="<?php echo isset($solicitudGet) ? $solicitudGet->id : "0" ?>" id="txtId" name="txtId">
+        
         <div class="col-md-2 col-sm-2 col-12">
             <label>C&oacute;digo de RC</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input id="txtCodRC" name="txtCodRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->codigoRC : "" ?>">
+            <input id="txtCodRC" name="txtCodRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->codigoRC : "" ?>" required="">
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <label>C&oacute;digo solicitud</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input id="txtCodsol" name="txtCodsol" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->codigoSolicitud : "" ?>">
+            <input id="txtCodsol" name="txtCodsol" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($numSolicitud) ? $numSolicitud->codigoSolicitud : (isset($solicitudGet) ? $solicitudGet->codigoSolicitud : "") ?>" required="">
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <label>Fecha</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input id="dtFechaSol" name="dtFechaSol" class="form-control btn-sm" type="date" value="<?php echo isset($solicitudGet) ? date("Y-m-d", $solicitudGet->fechaSolicitud / 1000) : date("Y-m-d"); ?>">
+            <input id="dtFechaSol" name="dtFechaSol" class="form-control btn-sm" type="date" value="<?php echo isset($solicitudGet) ? date("Y-m-d", $solicitudGet->fechaSolicitud / 1000) : date("Y-m-d"); ?>" required="">
         </div>
     </div>
     
@@ -88,7 +94,7 @@
             <label>Lista de correos</label>
         </div>
         <div class="col-md-10 col-sm-10 col-12">
-            <input id="txtCorreos" name="txtCorreos" class="form-control btn-sm" value="<?php echo isset($solicitudGet) ? $solicitudGet->correos : "" ?>">
+            <input id="txtCorreos" name="txtCorreos" class="form-control btn-sm" value="<?php echo isset($solicitudGet) ? $solicitudGet->correos : "" ?>" required="">
         </div>
     </div>
 

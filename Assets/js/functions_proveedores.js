@@ -16,6 +16,10 @@ function openModalProveedor(val_datos) {
         document.querySelector('#txtContabilidad').value = val_datos.contabilidad;
         document.querySelector('#txtTelefonoContabilidad').value = val_datos.telefonoContabilidad;
         document.querySelector('#txtCorreoContabilidad').value = val_datos.correoContabilidad;
+        
+        document.querySelector('#txtCarpeta').value = val_datos.carpeta;
+        document.querySelector('#txtServicioProducto').value = val_datos.servicioProducto;
+        document.querySelector('#txtCredito').value = val_datos.credito;
     }
     else{
         document.querySelector('#idProveedor').value = null;

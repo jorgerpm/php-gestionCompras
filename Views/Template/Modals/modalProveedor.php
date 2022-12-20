@@ -77,6 +77,29 @@
                             <input class="form-control" id="txtCorreoContabilidad" name="txtCorreoContabilidad" type="email" required="">
                         </div>
                         <div class="form-group col-md-6">
+                            
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Carpeta:</label>
+                            <input class="form-control" id="txtCarpeta" name="txtCarpeta" type="text" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Servicio / Producto:</label>
+                            <input class="form-control" id="txtServicioProducto" name="txtServicioProducto" type="text" style="text-transform: uppercase;">
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Cr&eacute;dito:</label>
+                            <input class="form-control" id="txtCredito" name="txtCredito" type="text" style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="listaEstado">Estado:</label>
                             <?php require_once './acciones/listarEstados.php'; ?>
                             <select class="form-control" id="cbxListaEstado" name="cbxListaEstado" required="">

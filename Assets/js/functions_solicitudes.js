@@ -105,7 +105,8 @@ $('#formSolicitud').submit(function (e) {
             LOADING.style = 'display: none;';
             console.log('fiiiinnn   successss', data);
             respuesta.html(data);
-            document.getElementById("formSolicitud").reset();
+//            if(data.includes("success"))
+//                window.location.href = "solicitudCotizacion";
         },
         error: function (error) {
             LOADING.style = 'display: none;';

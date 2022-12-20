@@ -50,10 +50,15 @@ class solicitudControlador extends solicitudModelo {
         
         $respuesta = solicitudModelo::guardar_solicitud_modelo($data);
         
-        if($respuesta->id > 0){
-            return '<script>swal("", "Solicitud enviada correctamente.", "success");</script>';
+        if(isset($respuesta) && $respuesta->id > 0){
+            return '<script>swal("", "Solicitud enviada correctamente.", "success")'
+            . '.then((value) => {
+                        window.location.href = "solicitudCotizacion"; 
+                    });</script>';
         }
-        else{
+        elseif(isset($respuesta)){
+            return '<script>swal("", "'.$respuesta->respuesta.'", "error");</script>';
+        }else{
             return '<script>swal("", "Error al enviar la solicitud.", "error");</script>';
         }
     }
@@ -66,5 +71,10 @@ class solicitudControlador extends solicitudModelo {
 //            $solicitud->listaDetalles = [];
 //        }
         return $solicitud;
+    }
+    
+    public function getUltimoCodigoSolicitud(){
+        $numSolicitud = solicitudModelo::getUltimoCodigoSolicitud();
+        return $numSolicitud;
     }
 }
