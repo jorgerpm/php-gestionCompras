@@ -33,6 +33,9 @@ var valorDiv = $('.RespuestaAjax');
 // Upload file
 btnCargarArchivo.addEventListener("click", () => {
     if(inputFileCsv.files.length > 0 ) {
+        const LOADING = document.querySelector('.loader');
+        LOADING.style = 'display: flex;';
+    
         let formData = new FormData();
         formData.append("archivo", inputFileCsv.files[0]); // En la posición 0; es decir, el primer elemento
         fetch("./acciones/cargaMasivaProveedores.php", {
@@ -43,6 +46,8 @@ btnCargarArchivo.addEventListener("click", () => {
             .then(decodificado => {
                 //console.log(decodificado);
                 //console.log(valorDiv);
+                LOADING.style = 'display: none;';
+                
                 valorDiv.html(decodificado);
                 
             });

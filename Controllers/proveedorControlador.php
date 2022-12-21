@@ -189,7 +189,12 @@ class proveedorControlador extends proveedorModelo {
                     .then((value) => {
                         $(`#btnBuscar`).click();
                     });</script>';
-            } else {
+            } elseif(isset($respuesta) && $respuesta->respuesta != "ok") {
+                echo '<script>swal("", "'.$respuesta->respuesta.'", "error")
+                    .then((value) => {
+                        $(`#btnBuscar`).click();
+                    });</script>';
+            }else{
                 echo '<script>swal("", "Error al almacenar los datos.", "error");</script>';
             }
         } else {
