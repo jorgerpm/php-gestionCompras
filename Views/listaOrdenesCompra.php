@@ -126,10 +126,10 @@
                                         <td><?php echo $ordenCompra->codigoRC; ?></td>
                                         <td><?php echo $ordenCompra->estado; ?></td>
                                         <td><?php echo $ordenCompra->rucProveedor; ?></td>
-                                        <td><?php echo $ordenCompra->subtotal; ?></td>
-                                        <td><?php echo $ordenCompra->subtotalSinIva; ?></td>
-                                        <td><?php echo $ordenCompra->iva; ?></td>
-                                        <td><?php echo $ordenCompra->total; ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->subtotal, 2); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->subtotalSinIva, 2); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->iva, 2); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->total, 2); ?></td>
                                         <!-- td>?php /*echo $ordenCompra->usuario;*/ ?></td -->
                                     </tr>
                                 <?php }

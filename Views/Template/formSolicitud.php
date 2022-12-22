@@ -67,7 +67,7 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
             ?>
             <input id="txtNombreProveedor" name="txtNombreProveedor" class="form-control"  onkeyup="cargarProveedor(this);">
             <input type="hidden" id="correoHidden" value="">
-            <div id="losli" style="position: fixed; z-index: 1; background-color: white; border: solid 1px;"></div>
+            <div id="losli" style="position: absolute; z-index: 1; background-color: white; border: solid 1px;"></div>
             
             <!-- <select class="form-control" id="cmbProveed" name="cmbProveed">
                 

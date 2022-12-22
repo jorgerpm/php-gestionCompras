@@ -22,7 +22,7 @@ function pruebajspdf(reporte, id) {
         callback: function (doc) {
             LOADING.style = 'display: none;';
             // Save the PDF
-            doc.save('sample-document.pdf');
+            doc.save('comparativo.pdf');
         },
         margin: [10, 5, 10, 5],
         autoPaging: 'text',
@@ -32,4 +32,19 @@ function pruebajspdf(reporte, id) {
         windowWidth: 1366 //window width in CSS pixels
     });
 
+}
+
+
+
+const formatNumberES = (n, d=0) => {
+    n=new Intl.NumberFormat("en-US").format(parseFloat(n).toFixed(d));
+//    n=new Intl.NumberFormat("en-US",  { style: 'currency', currency: 'USD' }).format(parseFloat(n).toFixed(d));
+    if (d>0) {
+        // Obtenemos la cantidad de decimales que tiene el numero
+        const decimals=n.indexOf(".")>-1 ? n.length-1-n.indexOf(".") : 0;
+ 
+        // añadimos los ceros necesios al numero
+        n = (decimals===0) ? n+"."+"0".repeat(d) : n+"0".repeat(d-decimals);
+    }
+    return n;
 }

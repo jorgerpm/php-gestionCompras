@@ -108,18 +108,20 @@
                                         <td><?php echo $comparativo->listaDetalles[0]->cotizacion->codigoRC; ?></td>
                                         <td><?php echo $comparativo->estado; ?></td>
                                         
-                                        <td><?php 
+                                        <?php 
                                             foreach($comparativo->listaDetalles as $detalle){
                                                 if($detalle->seleccionada){
-                                                    echo $detalle->proveedorDto->razonSocial; 
+                                                    echo '<td>'.$detalle->proveedorDto->razonSocial.'</td>';
+                                                    
+                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->subtotal, 2).'</td>';
+                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->subtotalSinIva, 2).'</td>';
+                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->iva, 2).'</td>';
+                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->total, 2).'</td>';
                                                 }
                                             }
-                                            ?></td>
+                                            ?>
                                         
-                                        <td><?php echo $comparativo->listaDetalles[0]->cotizacion->subtotal; ?></td>
-                                        <td><?php echo $comparativo->listaDetalles[0]->cotizacion->subtotalSinIva; ?></td>
-                                        <td><?php echo $comparativo->listaDetalles[0]->cotizacion->iva; ?></td>
-                                        <td><?php echo $comparativo->listaDetalles[0]->cotizacion->total; ?></td>
+                                        
                                         <!-- td>?php /*echo $comparativo->usuario;*/ ?></td -->
                                     </tr>
                                 <?php }

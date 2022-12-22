@@ -15,8 +15,8 @@ class cotizacionControlador extends cotizacionModelo {
                 'id' => 0,
                 'cantidad' => $valor['cantidad'],
                 'detalle' => strtoupper($valor['detalle']),
-                'valorUnitario' => $valor['valorUnitario'],
-                'valorTotal' => $valor['valorTotal'],
+                'valorUnitario' => str_replace(",", "", $valor['valorUnitario']),
+                'valorTotal' => str_replace(",", "", $valor['valorTotal']),
                 'tieneIva' => $valor['tieneIva'],
                 'observacion' => strtoupper($valor['observDetalle']),
             ];
@@ -33,10 +33,10 @@ class cotizacionControlador extends cotizacionModelo {
                 'usuario' => $_SESSION['Usuario']->nombre,
                 'rucProveedor' => $_POST['txtRuc'],
             
-                'subtotal' => $_POST['lblSubtotal'],
-                'subtotalSinIva' => $_POST['lblSubtotalSinIva'],
-                'iva' => $_POST['lblIva'],
-                'total' => $_POST['lblTotal'],
+                'subtotal' => str_replace(",", "", $_POST['lblSubtotal']),
+                'subtotalSinIva' => str_replace(",", "", $_POST['lblSubtotalSinIva']),
+                'iva' => str_replace(",", "", $_POST['lblIva']),
+                'total' => str_replace(",", "", $_POST['lblTotal']),
                 'descuento' => 0,
             
                 'observacion' => strtoupper($_POST['txtObservaciones']),
@@ -47,7 +47,7 @@ class cotizacionControlador extends cotizacionModelo {
                 'listaDetalles' => $detalles,
                 'usuarioModifica' => $_SESSION['Usuario']->id,
             );
-    
+            
         $cotizacion = cotizacionModelo::guardar_cotizacion_modelo($data);
         
         if(isset($cotizacion)){

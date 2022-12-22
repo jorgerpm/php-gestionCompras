@@ -16,58 +16,62 @@ function eliminarFilaRecep(input) {
 
 
 $('.FormularioRecepciones').submit(function (e) {
-    console.log('inicia la cargaaaa');
-    const LOADING = document.querySelector('.loader');
-    LOADING.style = 'display: flex;';
-    
     e.preventDefault(); //no se envíe el submit todavía
-
-    var form = $(this);
-
     
-    var accion = form.attr('action');
-    var metodo = form.attr('method');
-    var valorDiv = form.children('.RespuestaAjaxRecep');
-
-    
-    var formdata = new FormData(this);
-
-//leer la tabla de los usuarios para enviar a guardar la lista de users.
+    //leer la tabla de los usuarios para enviar a guardar la lista de users.
     var tbody = document.getElementById('tbodyRecep');
+    
+    if(tbody.rows.length > 0){
 
-    formdata.append('registrosTabla', tbody.rows.length);
+        console.log('inicia la cargaaaa');
+        const LOADING = document.querySelector('.loader');
+        LOADING.style = 'display: flex;';
 
-    for (i = 0; i < tbody.rows.length; i++) {
-        let txtIdUsuario = 'txtIdUserRecep' + i;
-        let idUser = document.getElementById(txtIdUsuario).value;
-        formdata.append(txtIdUsuario, idUser);
-        
-        //para el rol que tambien se guarde
-        let txtIdRolRecep = 'txtIdRolRecep' + i;
-        let idRol = document.getElementById(txtIdRolRecep).value;
-        formdata.append(txtIdRolRecep, idRol);
-    }
+        var form = $(this);
 
-    $.ajax({
-        type: metodo,
-        url: accion,
-        data: formdata ? formdata : form.serialize(),
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            LOADING.style = 'display: none;';
-            console.log('fiiiinnn   successss');
-            valorDiv.html(data);
-            //cerrar el popup
-//            $('#modalAutorizaciones').modal('hide');
-        },
-        error: function (error) {
-            LOADING.style = 'display: none;';
-            console.log('fiiiinnn   errrroooorr');
-            valorDiv.html(error);
+        var accion = form.attr('action');
+        var metodo = form.attr('method');
+        var valorDiv = form.children('.RespuestaAjaxRecep');
+
+        var formdata = new FormData(this);
+
+        formdata.append('registrosTabla', tbody.rows.length);
+
+        for (i = 0; i < tbody.rows.length; i++) {
+            let txtIdUsuario = 'txtIdUserRecep' + i;
+            let idUser = document.getElementById(txtIdUsuario).value;
+            formdata.append(txtIdUsuario, idUser);
+
+            //para el rol que tambien se guarde
+            let txtIdRolRecep = 'txtIdRolRecep' + i;
+            let idRol = document.getElementById(txtIdRolRecep).value;
+            formdata.append(txtIdRolRecep, idRol);
         }
-    });
+
+        $.ajax({
+            type: metodo,
+            url: accion,
+            data: formdata ? formdata : form.serialize(),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                LOADING.style = 'display: none;';
+                console.log('fiiiinnn   successss');
+                valorDiv.html(data);
+                //cerrar el popup
+    //            $('#modalAutorizaciones').modal('hide');
+            },
+            error: function (error) {
+                LOADING.style = 'display: none;';
+                console.log('fiiiinnn   errrroooorr');
+                valorDiv.html(error);
+            }
+        });
+    }
+    else{
+        swal("", "Debe ingresar al menos un usuario a la lista.", "warning");
+    }
 });
 
 

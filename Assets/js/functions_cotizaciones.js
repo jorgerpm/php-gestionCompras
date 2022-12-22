@@ -19,7 +19,7 @@ function valorTotalDetalle(index, cantDetalles) {
         valUnit = parseFloat(txtValUnit);
     }
     var valTotalDet = cantidad * valUnit;
-    document.getElementById('lblValorTotal' + index).innerHTML = valTotalDet.toFixed(4);
+    document.getElementById('lblValorTotal' + index).innerHTML = formatNumberES(valTotalDet.toFixed(2), 2); //aqui estaba con 4 decimales
 
     valorTotal(cantDetalles);
 }
@@ -31,23 +31,25 @@ function valorTotal(cantDetalles) {
     for (j = 1; j <= cantDetalles; j++) {
 
         var lblValTotal = document.getElementById('lblValorTotal' + j).innerHTML;
-
+        lblValTotal = lblValTotal.replace(",", "");
+        
         var tieneIva = document.getElementById('chkIva' + j).checked;
 
         if (!isNaN(lblValTotal) && lblValTotal !== '') {
+            
             if (tieneIva)
                 subtotal += parseFloat(lblValTotal);
             else
                 subtotalSinIva += parseFloat(lblValTotal);
         }
     }
-    document.getElementById('lblSubtotal').innerHTML = subtotal.toFixed(2);
-    document.getElementById('lblSubtotalSinIva').innerHTML = subtotalSinIva.toFixed(2);
+    document.getElementById('lblSubtotal').innerHTML = formatNumberES(subtotal.toFixed(2), 2);
+    document.getElementById('lblSubtotalSinIva').innerHTML = formatNumberES(subtotalSinIva.toFixed(2), 2);
 
     var iva = subtotal * 0.12;
-    document.getElementById('lblIva').innerHTML = iva.toFixed(2);
+    document.getElementById('lblIva').innerHTML = formatNumberES(iva.toFixed(2), 2);
     var total = subtotalSinIva + subtotal + iva;
-    document.getElementById('lblTotal').innerHTML = total.toFixed(2);
+    document.getElementById('lblTotal').innerHTML = formatNumberES(total.toFixed(2), 2);
 }
 
 //enviar a guardar la cotizacion
@@ -151,17 +153,6 @@ function buscarCotizacion() {
             if (cot && cot.id > 0) {
                 abrirFormulario(cot);
             } else {
-//                document.querySelector('#frmCotizacion').reset();
-//                var tbody = document.getElementById('tbodySol');
-//                let index = tbody.rows.length - 4; //se resta 4 porque es de los totales
-//                console.log("indexx: ", index);
-//                for (i = 0; i < index; i++) {
-//                    tbody.deleteRow(0);
-//                }
-//                document.querySelector('#lblSubtotal').innerHTML = 0;
-//                document.querySelector('#lblSubtotalSinIva').innerHTML = 0;
-//                document.querySelector('#lblIva').innerHTML = 0;
-//                document.querySelector('#lblTotal').innerHTML = 0;
                 swal("", "No existe cotización con el código de solicitud ingresado.", "warning");
             }
 
@@ -204,10 +195,12 @@ function abrirFormulario(val_datos) {
         document.querySelector('#txtValidezCotizacion').value = val_datos.validezCotizacion;
         document.querySelector('#listFormaPago').value = val_datos.formaPago;
 
-        document.querySelector('#lblSubtotal').innerHTML = val_datos.subtotal;
-        document.querySelector('#lblSubtotalSinIva').innerHTML = val_datos.subtotalSinIva;
-        document.querySelector('#lblIva').innerHTML = val_datos.iva;
-        document.querySelector('#lblTotal').innerHTML = val_datos.total;
+        document.querySelector('#lblSubtotal').innerHTML = formatNumberES(val_datos.subtotal, 2);
+        document.querySelector('#lblSubtotalSinIva').innerHTML = formatNumberES(val_datos.subtotalSinIva, 2);
+        document.querySelector('#lblIva').innerHTML = formatNumberES(val_datos.iva, 2);
+        document.querySelector('#lblTotal').innerHTML = formatNumberES(val_datos.total, 2);
+        
+        document.querySelector('#txtobssol').value = val_datos.solicitudDto.observacion;
 
         if (document.querySelector('#cbxListaEstado')) {
 
@@ -296,8 +289,8 @@ function abrirFormulario(val_datos) {
             rowAux.insertCell().innerHTML = '<label id="lblDetalle' + i + '">' + val_datos.listaDetalles[i].detalle + '</label>';
             rowAux.insertCell().innerHTML = '<label id="txtObservDetalle' + i + '" style="width: 100%">' + val_datos.listaDetalles[i].observacion + '</label>';
             rowAux.insertCell().innerHTML = '<label id="chkIva' + i + '" style="width: 100%; text-align: center;">' + (val_datos.listaDetalles[i].tieneIva ? 'SI' : 'NO') + '</label>';
-            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario' + i + '" class="monto' + i + '" style="width: 100%; text-align: end;">' + val_datos.listaDetalles[i].valorUnitario + '</label>';
-            rowAux.insertCell().innerHTML = '<label id="lblValorTotal' + i + '" style="width: 100%; text-align: end;">' + val_datos.listaDetalles[i].valorTotal + '</label>';
+            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario' + i + '" class="monto' + i + '" style="width: 100%; text-align: end;">' + formatNumberES(val_datos.listaDetalles[i].valorUnitario, 2) + '</label>';
+            rowAux.insertCell().innerHTML = '<label id="lblValorTotal' + i + '" style="width: 100%; text-align: end;">' + formatNumberES(val_datos.listaDetalles[i].valorTotal, 2) + '</label>';
         }
 
     } else {
@@ -496,3 +489,4 @@ function buscarSolicitudPorNumeroSol() {
 
     }
 }
+

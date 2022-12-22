@@ -110,10 +110,10 @@
                                         <td><?php echo $cotizacion->estado; ?></td>
                                         <td><?php echo $cotizacion->rucProveedor; ?></td>
                                         <td><?php echo $cotizacion->proveedorDto->razonSocial; ?></td>
-                                        <td><?php echo $cotizacion->subtotal; ?></td>
-                                        <td><?php echo $cotizacion->subtotalSinIva; ?></td>
-                                        <td><?php echo $cotizacion->iva; ?></td>
-                                        <td><?php echo $cotizacion->total; ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($cotizacion->subtotal, 2); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($cotizacion->subtotalSinIva, 2); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($cotizacion->iva, 2); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($cotizacion->total, 2); ?></td>
                                         <!-- td><?php /*echo $cotizacion->usuario;*/ ?></td -->
                                     </tr>
                                 <?php }

@@ -26,10 +26,10 @@ function abrirFormularioOrdenCompra(val_datos) {
         //document.querySelector('#txtValidezCotizacion').value = val_datos.validezCotizacion;
         document.querySelector('#listFormaPago').value = val_datos.formaPago;
         
-        document.querySelector('#lblSubtotal').innerHTML = val_datos.subtotal;
-        document.querySelector('#lblSubtotalSinIva').innerHTML = val_datos.subtotalSinIva;
-        document.querySelector('#lblIva').innerHTML = val_datos.iva;
-        document.querySelector('#lblTotal').innerHTML = val_datos.total;
+        document.querySelector('#lblSubtotal').innerHTML = formatNumberES(val_datos.subtotal, 2);
+        document.querySelector('#lblSubtotalSinIva').innerHTML = formatNumberES(val_datos.subtotalSinIva, 2);
+        document.querySelector('#lblIva').innerHTML = formatNumberES(val_datos.iva, 2);
+        document.querySelector('#lblTotal').innerHTML = formatNumberES(val_datos.total, 2);
 
         //ocultar input y label razón rechazo
         if(document.querySelector('#lblRazonRechazo')){
@@ -100,8 +100,8 @@ function abrirFormularioOrdenCompra(val_datos) {
             rowAux.insertCell().innerHTML = '<label id="lblDetalle'+i+'">'+val_datos.listaDetalles[i].detalle+'</label>';
             rowAux.insertCell().innerHTML = '<label id="txtObservDetalle'+i+'" style="width: 100%">'+val_datos.listaDetalles[i].observacion+'</label>';
             rowAux.insertCell().innerHTML = '<label id="chkIva'+i+'" style="width: 100%; text-align: center;">'+(val_datos.listaDetalles[i].tieneIva ? 'SI' : 'NO')+'</label>';
-            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario'+i+'" class="monto'+i+'" style="width: 100%; text-align: end;">'+val_datos.listaDetalles[i].valorUnitario+'</label>';
-            rowAux.insertCell().innerHTML = '<label id="lblValorTotal'+i+'" style="width: 100%; text-align: end;">'+val_datos.listaDetalles[i].valorTotal+'</label>';
+            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario'+i+'" class="monto'+i+'" style="width: 100%; text-align: end;">'+formatNumberES(val_datos.listaDetalles[i].valorUnitario, 2)+'</label>';
+            rowAux.insertCell().innerHTML = '<label id="lblValorTotal'+i+'" style="width: 100%; text-align: end;">'+formatNumberES(val_datos.listaDetalles[i].valorTotal, 2)+'</label>';
         }
 
     //para la parte de los autorizadores, pero solo si ya esta autorizado la OC
