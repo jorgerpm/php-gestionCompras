@@ -14,11 +14,11 @@ class cotizacionControlador extends cotizacionModelo {
             $dt = [
                 'id' => 0,
                 'cantidad' => $valor['cantidad'],
-                'detalle' => strtoupper($valor['detalle']),
+                'detalle' => mb_strtoupper($valor['detalle'], 'utf-8'),
                 'valorUnitario' => str_replace(",", "", $valor['valorUnitario']),
                 'valorTotal' => str_replace(",", "", $valor['valorTotal']),
                 'tieneIva' => $valor['tieneIva'],
-                'observacion' => strtoupper($valor['observDetalle']),
+                'observacion' => mb_strtoupper($valor['observDetalle'], 'utf-8'),
             ];
             
             $detalles[] = $dt;
@@ -39,10 +39,10 @@ class cotizacionControlador extends cotizacionModelo {
                 'total' => str_replace(",", "", $_POST['lblTotal']),
                 'descuento' => 0,
             
-                'observacion' => strtoupper($_POST['txtObservaciones']),
-                'adicionales' => strtoupper($_POST['txtRubrosAdicionales']),
+                'observacion' => mb_strtoupper($_POST['txtObservaciones'], 'utf-8'),
+                'adicionales' => mb_strtoupper($_POST['txtRubrosAdicionales'], 'utf-8'),
                 'tiempoEntrega' => $_POST['txtTiempoEntrega'],
-                'validezCotizacion' => strtoupper($_POST['txtValidezCotizacion']),
+                'validezCotizacion' => mb_strtoupper($_POST['txtValidezCotizacion'], 'utf-8'),
                 'formaPago' => $_POST['listFormaPago'],
                 'listaDetalles' => $detalles,
                 'usuarioModifica' => $_SESSION['Usuario']->id,
@@ -98,7 +98,7 @@ class cotizacionControlador extends cotizacionModelo {
         $data = array(
             "id" => $_POST['txtIdCot'],
             "estado" => $_POST['cbxListaEstado'],
-            "observacion" => strtoupper($_POST['txtRazonRechazo']),
+            "observacion" => mb_strtoupper($_POST['txtRazonRechazo'], 'utf-8'),
             "usuario" => $_SESSION['Usuario']->nombre,
             "usuarioModifica" => $_SESSION['Usuario']->id,
         );

@@ -9,7 +9,7 @@ class ordenCompraControlador extends ordenCompraModelo {
                 'estado' => 'GENERADO_OC',
                 'usuario' => $_SESSION['Usuario']->nombre,
                 'idUsuario' => $_SESSION['Usuario']->id,
-                'observacion' => strtoupper($_POST['txtObsComp']), //esta es la observacion para el comparativo
+                'observacion' => mb_strtoupper($_POST['txtObsComp'], 'utf-8'), //esta es la observacion para el comparativo
             );
     
         $ordenCompra = ordenCompraModelo::guardar_ordencompra_modelo($data);
@@ -33,7 +33,7 @@ class ordenCompraControlador extends ordenCompraModelo {
             if(!empty($_POST['txtRazonRechazo']) || $_POST['cbxListaEstado'] == "AUTORIZADO"){
                 $data = array(
                         'idUsuario' => $_SESSION['Usuario']->id,
-                        'observacion' => strtoupper($_POST['txtRazonRechazo']),
+                        'observacion' => mb_strtoupper($_POST['txtRazonRechazo'], 'utf-8'),
                         'usuario' => $_SESSION['Usuario']->usuario,
                         'estado' => $_POST['cbxListaEstado'],
                         'id' => $_POST['txtId'],

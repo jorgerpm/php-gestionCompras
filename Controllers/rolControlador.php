@@ -23,7 +23,7 @@ class rolControlador extends rolModelo {
         if (isset($txtNombre) && isset($listStatus)) {
             $datos = [
                 "id" => $idRol,
-                "nombre" => strtoupper($txtNombre),
+                "nombre" => mb_strtoupper($txtNombre, 'utf-8'),
                 "principal" => $chkPrincipal,
                 "cheklistRecepcion" => $cheklistRecepcion,
                 "idEstado" => $listStatus

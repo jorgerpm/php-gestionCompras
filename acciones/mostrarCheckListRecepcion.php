@@ -64,17 +64,20 @@ if(isset($_POST['dataChecklistRecep'])){
             <div class="col-md-3">
                 <label class="control-label">Fecha de recepci&oacute;n</label>
                 <input type="date" class="form-control form-control-sm" id="txtFechaRecepta" name="txtFechaRecepta"
-                       value="<?php echo ($respuesta->fechaRecepcionBodega != null ? date('Y-m-d', $respuesta->fechaRecepcionBodega / 1000) : null ); ?>" >
+                       value="<?php echo ($respuesta->fechaRecepcionBodega != null ? date('Y-m-d', $respuesta->fechaRecepcionBodega / 1000) : null ); ?>" 
+                       <?php echo ($respuesta->fechaRecepcionBodega!=null && $respuesta->fechaRecepcionBodega!="") ? "readonly" : "" ?> required="">
             </div>
             <div class="col-md-3">
                 <label class="control-label">C&oacute;digo del material</label>
                 <input type="text" class="form-control form-control-sm" id="txtCodMaterialRecep" name="txtCodMaterialRecep"
-                       value="<?php echo $respuesta->codigoMaterial; ?>" style="text-transform: uppercase" >
+                       value="<?php echo $respuesta->codigoMaterial; ?>" style="text-transform: uppercase" 
+                       <?php echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? "readonly" : "" ?> required="">
             </div>
             <div class="col-md-3">
                 <label class="control-label">CANTIDAD RECIBIDA</label>
                 <input type="number" class="form-control form-control-sm" id="txtCantidadRecep" name="txtCantidadRecep"
-                       value="<?php echo $respuesta->cantidadRecibida; ?>" >
+                       value="<?php echo $respuesta->cantidadRecibida; ?>" min="1"
+                           <?php echo ($respuesta->cantidadRecibida!=null && $respuesta->cantidadRecibida!="" && $respuesta->cantidadRecibida>0) ? "readonly" : "" ?> required="">
             </div>
         </div>
         <br>
@@ -85,7 +88,7 @@ if(isset($_POST['dataChecklistRecep'])){
         <?php $observ = null;
         $idObs = 0;
         foreach ($respuesta->listaDetalles as $pregunta) {
-            if($pregunta->idRol == $rrol['idRol']){ 
+            if($pregunta->idRol == $rrol['idRol']){
                 $idObs = $pregunta->id;
                 ?>
 
@@ -94,7 +97,8 @@ if(isset($_POST['dataChecklistRecep'])){
                 <label class="control-label"><?php echo $pregunta->pregunta;?></label>
             </div>
             <div class="col-md-2">
-                <select class="form-control form-control-sm" required="" id="cmbPreg<?php echo $pregunta->id; ?>" name="cmbPreg<?php echo $pregunta->id; ?>" >
+                <select class="form-control form-control-sm" required="" id="cmbPreg<?php echo $pregunta->id; ?>" name="cmbPreg<?php echo $pregunta->id; ?>" 
+                    <?php echo ($pregunta->respuesta!=null && $pregunta->respuesta!="") ? "disabled" : "" ?> >
                     <option value="">- Seleccione -</option>
                     <?php 
                     echo '<option value="NO" '.($pregunta->respuesta=="NO" ? 'selected' : '').'>NO</option>';
@@ -118,10 +122,13 @@ if(isset($_POST['dataChecklistRecep'])){
             <div class="col-md-12">
                 <label class="control-label">EN EL CASO DE TENER NOVEDADES, ESPECIFÍQUELO</label>
                 <input type="text" class="form-control form-control-sm" value="<?php echo $observ ?>" 
-                       id="txtNovedad<?php echo $idObs; ?>" name="txtNovedad<?php echo $idObs; ?>" style="text-transform: uppercase">
+                       id="txtNovedad<?php echo $idObs; ?>" name="txtNovedad<?php echo $idObs; ?>" style="text-transform: uppercase"
+                       <?php echo ($observ!=null && $observ!="") ? "readonly" : "" ?> >
             </div>
         </div>
         
         <?php }?>
     
+        
+        
 <?php }

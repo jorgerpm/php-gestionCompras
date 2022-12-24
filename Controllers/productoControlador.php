@@ -59,7 +59,7 @@ class productoControlador extends productoModelo {
             $datos = [
                 "id" => $idProducto,
                 "codigoProducto" => $txtCodigoProducto,
-                "nombre" => strtoupper($txtNombre),
+                "nombre" => mb_strtoupper($txtNombre, 'utf-8'),
                 "valorUnitario" => $txtValorUnitario,
                 "tieneIva" => $chkTieneIva,
                 "idEstado" => $listStatus

@@ -26,7 +26,7 @@ class solicitudControlador extends solicitudModelo {
             $dt = [
                 'id' => isset($post['txtIdDetalle'.$i]) ? $post['txtIdDetalle'.$i] : 0,
                 'cantidad' => $post['txtCantidad'.$i],
-                'detalle' => strtoupper($post['txtDetalle'.$i])
+                'detalle' => mb_strtoupper($post['txtDetalle'.$i], 'utf-8')
             ];
             
             $detalles[] = $dt;
@@ -35,17 +35,17 @@ class solicitudControlador extends solicitudModelo {
         $data = array(
             'id' => isset($post['txtId']) ? $post['txtId'] : 0,
             'fechaTexto' => $post['dtFechaSol'],
-            'codigoRC' => strtoupper($post['txtCodRC']),
-            'codigoSolicitud' => strtoupper($post['txtCodsol']),
+            'codigoRC' => mb_strtoupper($post['txtCodRC'], 'utf-8'),
+            'codigoSolicitud' => mb_strtoupper($post['txtCodsol'], 'utf-8'),
             'estado' => 'ENVIADO',
             'usuario' => $_SESSION['Usuario']->nombre,
             'correos' => $post['txtCorreos'],
-            'observacion' => strtoupper($post['txtObserv']),
+            'observacion' => mb_strtoupper($post['txtObserv'], 'utf-8'),
             'listaDetalles' => $detalles,
             'usuarioModifica' => $_SESSION['Usuario']->id,
             "montoAprobado" => $post['txtMontoAprob'],
             "fechaAutorizaRC" => $post['dtFechaAprobRC'],
-            "estadoRC" => strtoupper($post['txtEstadoRC']),
+            "estadoRC" => mb_strtoupper($post['txtEstadoRC'], 'utf-8'),
         );
         
         $respuesta = solicitudModelo::guardar_solicitud_modelo($data);

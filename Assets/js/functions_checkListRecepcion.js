@@ -165,6 +165,12 @@ function abrirModalRecepcion(val_datos){
             LOADING.style = 'display: none;';
             console.log('fiiiinnn   successss');
             valorDiv.innerHTML = (data);
+            
+            //bloquear el boton guardar si el estado ya es COMPLETO
+            document.querySelector('#btnActionForm').style = '';
+            if(val_datos.estado === "COMPLETO"){
+                document.querySelector('#btnActionForm').style = 'display: none;';
+            }
             //cerrar el popup
 //            $('#modalAutorizaciones').modal('hide');
         },

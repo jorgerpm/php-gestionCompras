@@ -21,7 +21,7 @@ class preguntaControlador extends preguntaModelo {
         if (isset($txtPregunta) && isset($listStatus)) {
             $datos = [
                 "id" => $idPregunta,
-                "pregunta" => strtoupper($txtPregunta),
+                "pregunta" => mb_strtoupper($txtPregunta, 'utf-8'),
                 "idRol" => $idRol,
                 "idEstado" => $listStatus,
                 "usuarioModifica" => $_SESSION['Usuario']->id,

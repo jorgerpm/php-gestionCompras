@@ -19,7 +19,7 @@ class formaPagoControlador extends formaPagoModelo {
         if (isset($txtNombre) && isset($listStatus)) {
             $datos = [
                 "id" => $idFormaPago,
-                "nombre" => strtoupper($txtNombre),
+                "nombre" => mb_strtoupper($txtNombre, 'utf-8'),
                 "idEstado" => $listStatus
             ];
 

@@ -69,7 +69,7 @@ class usuarioControlador extends usuarioModelo {
         if (isset($txtNombre) && isset($txtUsuario) && isset($txtClave) && isset($txtCorreo) && isset($cbxListaRol) && isset($cbxListaEstado)) {
             $datos = [
                 "id" => $id,
-                "nombre" => strtoupper($txtNombre),
+                "nombre" => mb_strtoupper($txtNombre, 'utf-8'),
                 "usuario" => $txtUsuario,
                 "clave" => $nuevaClave,
                 "correo" => $txtCorreo,

@@ -75,7 +75,8 @@ class checkListRecepcionControlador extends checkListRecepcionModelo {
                 $detalle = array(
                     "id" => $idDetalle,
                     "respuesta" => $v,
-                    "observacion" => isset($_POST['txtNovedad'.$idDetalle]) ? strtoupper($_POST['txtNovedad'.$idDetalle]) : null,
+                    "observacion" => isset($_POST['txtNovedad'.$idDetalle]) ? mb_strtoupper($_POST['txtNovedad'.$idDetalle], 'utf-8') : null,
+                    "idRol" => $_SESSION['Rol']->id,
                 );
                 
                 $detalles[] = $detalle;

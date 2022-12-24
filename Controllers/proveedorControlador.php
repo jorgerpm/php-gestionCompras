@@ -83,24 +83,24 @@ class proveedorControlador extends proveedorModelo {
         if (isset($txtRazonSocial) && isset($txtDireccion) && isset($txtTelefono1) && isset($txtCorreo) && isset($txtRuc) && isset($cbxIdEstado)) {
             $datos = [
                 "id" => $idProveedor,
-                "nombreComercial" => strtoupper($txtNombreComercial),
-                "razonSocial" => strtoupper($txtRazonSocial),
-                "direccion" => strtoupper($txtDireccion),
+                "nombreComercial" => mb_strtoupper($txtNombreComercial, 'utf-8'),
+                "razonSocial" => mb_strtoupper($txtRazonSocial, 'utf-8'),
+                "direccion" => mb_strtoupper($txtDireccion, 'utf-8'),
                 "telefono1" => $txtTelefono1,
                 "telefono2" => $txtTelefono2,
                 "correo" => $txtCorreo,
                 "ruc" => $txtRuc,
-                "codigoJD" => strtoupper($txtCodigoJD),
-                "idEstado" => strtoupper($cbxIdEstado),
+                "codigoJD" => mb_strtoupper($txtCodigoJD, 'utf-8'),
+                "idEstado" => mb_strtoupper($cbxIdEstado, 'utf-8'),
                 
-                "contabilidad" => strtoupper($_POST['txtContabilidad']),
-                "telefonoContabilidad" => strtoupper($_POST['txtTelefonoContabilidad']),
-                "contacto" => strtoupper($_POST['txtContacto']),
-                "correoContabilidad" => strtoupper($_POST['txtCorreoContabilidad']),
+                "contabilidad" => mb_strtoupper($_POST['txtContabilidad'], 'utf-8'),
+                "telefonoContabilidad" => mb_strtoupper($_POST['txtTelefonoContabilidad'], 'utf-8'),
+                "contacto" => mb_strtoupper($_POST['txtContacto'], 'utf-8'),
+                "correoContabilidad" => mb_strtoupper($_POST['txtCorreoContabilidad'], 'utf-8'),
                 
-                "carpeta" => strtoupper($_POST['txtCarpeta']),
-                "servicioProducto" => strtoupper($_POST['txtServicioProducto']),
-                "credito" => strtoupper($_POST['txtCredito']),
+                "carpeta" => mb_strtoupper($_POST['txtCarpeta'], 'utf-8'),
+                "servicioProducto" => mb_strtoupper($_POST['txtServicioProducto'], 'utf-8'),
+                "credito" => mb_strtoupper($_POST['txtCredito'], 'utf-8'),
             ];
 
             $respuesta = proveedorModelo::guardar_proveedor_modelo($datos);
@@ -137,18 +137,18 @@ class proveedorControlador extends proveedorModelo {
             $datos = [
                 "id" => $idProveedor,
                 "ruc" => $txtRucProveedor,
-                "razonSocial" => strtoupper($txtRazonSocial),
-                "nombreComercial" => strtoupper($txtNombreComercial),
-                "direccion" => strtoupper($txtDireccion),
+                "razonSocial" => mb_strtoupper($txtRazonSocial, 'utf-8'),
+                "nombreComercial" => mb_strtoupper($txtNombreComercial, 'utf-8'),
+                "direccion" => mb_strtoupper($txtDireccion, 'utf-8'),
                 "correo" => $txtCorreo,
                 "telefono1" => $txtTelefono1,
                 "telefono2" => $txtTelefono2,
                 "clave" => md5($txtClave),
-                "idEstado" => strtoupper($cbxIdEstado),
-                "contabilidad" => strtoupper($_POST['txtContabilidad']),
-                "telefonoContabilidad" => strtoupper($_POST['txtTelefonoContabilidad']),
-                "contacto" => strtoupper($_POST['txtContacto']),
-                "correoContabilidad" => strtoupper($_POST['txtCorreoContabilidad']),
+                "idEstado" => mb_strtoupper($cbxIdEstado, 'utf-8'),
+                "contabilidad" => mb_strtoupper($_POST['txtContabilidad'], 'utf-8'),
+                "telefonoContabilidad" => mb_strtoupper($_POST['txtTelefonoContabilidad'], 'utf-8'),
+                "contacto" => mb_strtoupper($_POST['txtContacto'], 'utf-8'),
+                "correoContabilidad" => mb_strtoupper($_POST['txtCorreoContabilidad'], 'utf-8'),
             ];
 
             $respuesta = proveedorModelo::guardar_proveedor_usuario_modelo($datos);

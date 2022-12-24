@@ -16,10 +16,13 @@
                         <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="NOMBRE DEL PAR&Aacute;METRO" required="" style="text-transform: uppercase;">
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label class="control-label">Valor:</label>
-                            <input class="form-control" id="txtValor" name="txtValor" type="text" placeholder="VALOR DEL PAR&Aacute;METRO" required="">
+                            <textarea class="form-control" id="txtValor" name="txtValor" type="text" placeholder="VALOR DEL PAR&Aacute;METRO" required=""></textarea>
                         </div>
+                        
+                    </div>
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="exampleSelect1">Estado:</label>
                             <?php require_once './acciones/listarEstados.php'; ?>
@@ -31,6 +34,7 @@
                                 ?>
                             </select>
                         </div>
+                        <div class="form-group col-md-6"></div>
                     </div>
                     <div class="tile-footer" style="text-align: end;">
                         <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg
