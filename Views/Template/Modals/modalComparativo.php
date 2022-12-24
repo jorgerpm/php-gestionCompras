@@ -30,6 +30,12 @@
                             <span id="btnText">Imprimir</span>
                         </button>
                         
+                        &nbsp;&nbsp;&nbsp;
+                        <button id="btnRechazar" class="btn btn-warning" type="button" onclick="rechazarTodas();" >
+                            <i class="fa fa-fw fa-lg fa-times"></i>
+                            <span id="btnText">Rechazar todas</span>
+                        </button>
+                        
                     </div>
                     <div class="RespuestaAjax"></div>
                 </form>

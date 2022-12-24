@@ -27,6 +27,8 @@ if(isset($respuesta) && $respuesta != null){
     
     echo '<input type="hidden" id="txtRucProv" name="txtRucProv" value="">';
     
+    echo '<input type="hidden" id="txtCodRcComp" name="txtCodRcComp" value="'.$respuesta[0]->solicitudDto->codigoRC.'">';
+    
 echo    '<div class="row">
                         <div class="col-sm-3">
                             <label class="control-label form-control-sm">FECHA SOLICITUD:</label>

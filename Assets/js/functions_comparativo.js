@@ -13,6 +13,8 @@ function abrirModalComparativo(val_datos){
 
         //ocultar el boton generarOC
         document.querySelector('#btnActionForm').style = 'display: none';
+        document.querySelector('#btnRechazar').style = 'display: none';
+        
 
         var respuesta = $('#divComparativo');
 

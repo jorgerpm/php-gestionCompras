@@ -490,3 +490,45 @@ function buscarSolicitudPorNumeroSol() {
     }
 }
 
+
+function rechazarTodas(){
+    
+    var obsComparativo = document.querySelector('#txtObsComp').value;
+
+    if (obsComparativo !== null && obsComparativo !== '') {
+
+        const LOADING = document.querySelector('.loader');
+        LOADING.style = 'display: flex;';
+
+        var numeroSolicitud = document.querySelector('#txtCodSolComp').value;
+        var numeroRC = document.querySelector('#txtCodRcComp').value;
+
+        var respuesta = $('.RespuestaAjax');
+
+        $.ajax({
+                type: 'POST',
+                url: 'acciones/rechazarTodasCotizaciones.php',
+                data: {
+                    'codigoSolicitud': numeroSolicitud,
+                    "codigoRC": numeroRC,
+                    "obsRechazo": obsComparativo
+                },
+    //            cache: false,
+    //            contentType: false,
+    //            processData: false,
+                success: function (data) {
+                    LOADING.style = 'display: none;';
+                    respuesta.html(data);
+                },
+                error: function (error) {
+                    LOADING.style = 'display: none;';
+                    respuesta.html(error);
+                }
+            });
+            
+    }
+    else{
+        swal("", "Debe ingresar una observación del rechazo.", "warning");
+    }
+}
+

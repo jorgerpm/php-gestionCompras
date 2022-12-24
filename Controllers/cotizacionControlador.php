@@ -135,4 +135,31 @@ class cotizacionControlador extends cotizacionModelo {
         
         return $respuesta;
     }
+    
+    public function rechazar_todas_cotizaciones_controlador(){
+        if(isset($_POST['codigoSolicitud']) && isset($_POST['codigoRC'])){
+            
+            $data = array(
+                "codigoSolicitud" => $_POST['codigoSolicitud'],
+                "codigoRC" => $_POST['codigoRC'],
+                "usuarioModifica" => $_SESSION['Usuario']->id,
+                "observacion" => mb_strtoupper($_POST['obsRechazo'], 'utf-8'),
+            );
+            
+            $respuesta = cotizacionModelo::rechazar_todas_cotizaciones_modelo($data);
+            
+            if(isset($respuesta) && $respuesta->respuesta == "OK"){
+                return '<script>swal("", "Cotizaciones rechazadas correctamente.", "success")'
+                    . '.then((value) => {
+                        $(`#btnSearch`).click(); 
+                    });</script>';
+            }
+            elseif(isset($respuesta)){
+                return '<script>swal("", "'.$respuesta->respuesta.'", "error");</script>';
+            }
+            else{
+                return '<script>swal("", "Error al rechazar las cotizaciones.", "error");</script>';
+            }
+        }
+    }
 }

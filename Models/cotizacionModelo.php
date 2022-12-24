@@ -30,4 +30,9 @@ class cotizacionModelo extends serviciosWebModelo {
         $cotizaciones = self::invocarGet('cotizacion/getCotizacionesParaComparativo?codigoSolicitud='.$codigoSolicitud, $array);
         return $cotizaciones;
     }
+    
+    protected function rechazar_todas_cotizaciones_modelo($data){
+        $respuesta = self::invocarPost('cotizacion/rechazarTodasCotizaciones', $data);
+        return $respuesta;
+    }
 }
