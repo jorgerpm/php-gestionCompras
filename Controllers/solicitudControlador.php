@@ -51,7 +51,7 @@ class solicitudControlador extends solicitudModelo {
         $respuesta = solicitudModelo::guardar_solicitud_modelo($data);
         
         if(isset($respuesta) && $respuesta->id > 0){
-            return '<script>swal("", "Solicitud enviada correctamente.", "success")'
+            return '<script>swal("", "Solicitud enviada correctamente con código solicitud: '.$respuesta->codigoSolicitud.'", "success")'
             . '.then((value) => {
                         window.location.href = "solicitudCotizacion"; 
                     });</script>';

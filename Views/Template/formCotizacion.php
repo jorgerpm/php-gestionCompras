@@ -159,7 +159,7 @@
         </div>
         <div class="mb-3">
             <label class="control-label">Observaciones solicitud:</label>
-            <textarea class="form-control" id="txtobssol" name="txtobssol" style="text-transform: uppercase;" readonly="" ><?php echo $solicitud->observacion; ?></textarea>
+            <textarea class="form-control" id="txtobssol" name="txtobssol" style="text-transform: uppercase;" readonly="" ><?php echo isset($solicitud) ? $solicitud->observacion : ""; ?></textarea>
         </div>
         <div class="mb-3">
             <label class="control-label">Rubros adicionales:</label>
