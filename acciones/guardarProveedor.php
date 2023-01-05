@@ -8,4 +8,4 @@ else{
 
 $proveedorCont = new proveedorControlador();
 $respuesta = $proveedorCont->guardar_proveedor_controlador();
-echo $respuesta . "<script>$('#modalFormProveedor').modal('hide');</script>";
+echo $respuesta;// . "<script>$('#modalFormProveedor').modal('hide');</script>";

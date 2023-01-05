@@ -5,6 +5,16 @@ function ejecutarReportePdf(reporte, id) {
 
 }
 
+function ejecutarReporteCsv(reporte, fechaIni, fechaFin) {
+
+console.log("fechaIni: ", fechaIni);
+console.log("fechaFin: ", fechaFin);
+
+    window.open('http://192.168.100.74:8080/ServiciosWebGestionCompras/ReporteServicio?reporte=' + reporte
+            + '&tipo=xls&fechaIni=' + fechaIni +"&fechaFin="+fechaFin, '_blank', 'height=450,width=375,resizable=1');
+
+}
+
 function pruebajspdf(reporte, id) {
     const LOADING = document.querySelector('.loader');
     LOADING.style = 'display: flex;';

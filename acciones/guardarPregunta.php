@@ -8,5 +8,5 @@ else{
 
 $contrl = new preguntaControlador();
 $respuesta = $contrl->guardar_pregunta_controlador();
-echo $respuesta . "<script>$('#modalFormRol').modal('hide');</script>";
+echo $respuesta ;//. "<script>$('#modalFormRol').modal('hide');</script>";
 

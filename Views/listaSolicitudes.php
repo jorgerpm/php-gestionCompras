@@ -71,7 +71,9 @@
                             
                             <div class="col-md-2 col-12" style="text-align: right">
                                 <br>
-                                <button style="width: 100%;" class="btn btn-primary btn-sm fa" type="button" onclick="pruebaUno('facturas-data')"><i class="fa fa-file-excel-o"></i><span id="btnText">Exportar csv</span></button>
+                                <button style="width: 100%;" class="btn btn-primary btn-sm fa" type="button" 
+                                        onclick="ejecutarReporteCsv('XLSSOLICITUD', document.querySelector('#dtFechaIni').value, document.querySelector('#dtFechaFin').value);">
+                                    <i class="fa fa-file-excel-o"></i><span id="btnText">Exportar xls</span></button>
                             </div>
                         </div>
                         <div class="RespuestaAjax"></div>

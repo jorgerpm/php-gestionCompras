@@ -8,4 +8,4 @@ else{
 
 $productoCont = new productoControlador();
 $respuesta = $productoCont->guardar_producto_controlador();
-echo $respuesta . "<script>$('#modalFormProducto').modal('hide');</script>";
+echo $respuesta;// . "<script>$('#modalFormProducto').modal('hide');</script>";
