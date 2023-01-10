@@ -77,6 +77,16 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
                                     <i class="fa fa-file-excel-o"></i><span id="btnText">Exportar xls</span></button>
                             </div>
                         </div>
+                        
+                        <div class="row" style="padding-top: 10px">
+                            <div class="col-md-2 col-12">
+                                <button class="btn btn-primary btn-sm" type="button" 
+                                            onclick="ejecutarReporteCsv('XLSBITACORA', document.querySelector('#dtFechaIni').value, document.querySelector('#dtFechaFin').value);">
+                                    <i class="fa fa-file-excel-o"></i><span id="btnText">Exportar bit&aacute;cora</span></button>
+                            </div>
+                        </div>
+                            
+                            
                         <div class="RespuestaAjax"></div>
                         <br>
                     <div class="table-responsive">
@@ -88,6 +98,8 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
                                     <th>Código solicitud</th>
                                     <th>Código RC</th>
                                     <th>Estado</th>
+                                    <th>Proveedor asignado</th>
+                                    <th>Material solicitado</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -104,7 +116,8 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
                                         <td><?php echo $recepcion->solicitud->codigoSolicitud; ?></td>
                                         <td><?php echo $recepcion->solicitud->codigoRC; ?></td>
                                         <td><?php echo $recepcion->estado; ?></td>
-                                        
+                                        <td><?php echo $recepcion->ordenCompra->proveedorDto->nombreComercial == null ? $recepcion->ordenCompra->proveedorDto->razonSocial : $recepcion->ordenCompra->proveedorDto->nombreComercial; ?></td>
+                                        <td><?php echo $recepcion->ordenCompra->listaDetalles[0]->detalle; ?></td>
                                     </tr>
                                 <?php }
                                 } else{

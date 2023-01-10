@@ -14,11 +14,9 @@ class rolControlador extends rolModelo {
     public function guardar_rol_controlador() {
         $idRol = $_POST['idRol'];
         $txtNombre = $_POST['txtNombre'];
-        $chkPrincipal = $_POST['chkPrincipal'];
-        $chkPrincipal = ($chkPrincipal == null) ? false : true;
+        $chkPrincipal = isset($_POST['chkPrincipal']) ? true : false;
         $listStatus = $_POST['listStatus'];
-        
-        $cheklistRecepcion = ($_POST['checkList'] == null) ? false : true;
+        $cheklistRecepcion = isset($_POST['checkList']) ? true : false;
 
         if (isset($txtNombre) && isset($listStatus)) {
             $datos = [
@@ -26,7 +24,8 @@ class rolControlador extends rolModelo {
                 "nombre" => mb_strtoupper($txtNombre, 'utf-8'),
                 "principal" => $chkPrincipal,
                 "cheklistRecepcion" => $cheklistRecepcion,
-                "idEstado" => $listStatus
+                "idEstado" => $listStatus,
+                "autorizador" => isset($_POST['chkAutorizador']) ? true : false
             ];
 
             $respuesta = rolModelo::guardar_rol_modelo($datos);

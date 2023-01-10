@@ -28,6 +28,7 @@
                                     <th>Nombre</th>
                                     <th>Rol principal</th>
                                     <th>CheckList recepci&oacute;n</th>
+                                    <th>Autorizador</th>
                                     <th>Estado</th>
                                     <th></th>
                                 </tr>
@@ -40,6 +41,7 @@
                                         <td><?php echo $rol->nombre; ?></td>
                                         <td><?php echo ($rol->principal == 1) ? "SÍ" : "NO" ?></td>
                                         <td><?php echo ($rol->cheklistRecepcion == 1) ? "SÍ" : "NO" ?></td>
+                                        <td><?php echo ($rol->autorizador == 1) ? "SÍ" : "NO" ?></td>
                                         <td><?php echo ($rol->idEstado == 1) ? "ACTIVO" : "INACTIVO"; ?></td>
                                         <td>
                                             <div class="btn-group mr-2" role="group" aria-label="First group">

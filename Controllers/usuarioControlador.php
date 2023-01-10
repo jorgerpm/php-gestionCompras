@@ -124,4 +124,13 @@ class usuarioControlador extends usuarioModelo {
         return $listaUsuarios;
     }
     
+    
+    public function listar_usuarios_rol_autorizador() {
+        $listaUsuarios = usuarioModelo::listar_usuarios_rol_autorizador();
+        if (!isset($listaUsuarios)) {
+            $listaUsuarios = [];
+        }
+        return $listaUsuarios;
+    }
+    
 }

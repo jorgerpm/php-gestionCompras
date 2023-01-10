@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-md-4" style="padding: 0px">
                             <?php $userContr = new usuarioControlador(); 
-                            $listaUser = $userContr->listar_usuarios_activos(); ?>
+                            $listaUser = $userContr->listar_usuarios_rol_autorizador(); ?>
                             <select class="form-control btn-sm" id="cmbUserList" name="cmbUserList">
                                 <option value="">- Usuarios -</option>
                                 <?php foreach ($listaUser as $userModal){ 

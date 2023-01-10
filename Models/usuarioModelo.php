@@ -30,4 +30,11 @@ class usuarioModelo extends serviciosWebModelo {
         $listaUsuarios = self::invocarGet('usuario/listarUsuariosActivosPorRol?idRol='.$idRol, $array);
         return $listaUsuarios;
     }
+    
+    
+    protected function listar_usuarios_rol_autorizador(){
+        $array = [];
+        $listaUsuarios = self::invocarGet('usuario/listarUsuariosActivador', $array);
+        return $listaUsuarios;
+    }
 }

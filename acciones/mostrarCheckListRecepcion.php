@@ -43,6 +43,14 @@ if(isset($_POST['dataChecklistRecep'])){
                 <label class="control-label">Proveedor asignado</label>
                 <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->rucProveedor; ?>" readonly="">
             </div>
+            <div class="col-md-3">
+                <label class="control-label">Raz&oacute;n social</label>
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->proveedorDto->razonSocial; ?>" readonly="">
+            </div>
+            <div class="col-md-3">
+                <label class="control-label">Nombre comercial</label>
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->proveedorDto->nombreComercial; ?>" readonly="">
+            </div>
         </div>
 
 

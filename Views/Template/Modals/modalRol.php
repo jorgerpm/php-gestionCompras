@@ -16,6 +16,33 @@
                         <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre del rol" required="" style="text-transform: uppercase;">
                     </div>
                     <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Rol principal:</label>
+                            <div class="toggle">
+                                <label>
+                                    <input type="checkbox" name="chkPrincipal" id="chkPrincipal"><span class="button-indecator"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">CheckList recepci&oacute;n:</label>
+                            <div class="toggle">
+                                <label>
+                                    <input type="checkbox" name="checkList" id="checkList"><span class="button-indecator"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Autorizador:</label>
+                            <div class="toggle">
+                                <label>
+                                    <input type="checkbox" name="chkAutorizador" id="chkAutorizador"><span class="button-indecator"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="exampleSelect1">Estado:</label>
                             <?php require_once './acciones/listarEstados.php'; ?>
@@ -27,23 +54,8 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label class="control-label">Rol principal:</label>
-                            <div class="toggle">
-                                <label>
-                                    <input type="checkbox" name="chkPrincipal" id="chkPrincipal"><span class="button-indecator"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label class="control-label">CheckList recepci&oacute;n:</label>
-                            <div class="toggle">
-                                <label>
-                                    <input type="checkbox" name="checkList" id="checkList"><span class="button-indecator"></span>
-                                </label>
-                            </div>
-                        </div>
                     </div>
+                    
                     <div class="tile-footer" style="text-align: end;">
                         <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg
                                                                                             fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn
