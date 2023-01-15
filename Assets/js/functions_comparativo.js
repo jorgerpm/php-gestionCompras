@@ -10,10 +10,6 @@ function abrirModalComparativo(val_datos){
         
         const LOADING = document.querySelector('.loader');
         LOADING.style = 'display: flex;';
-
-        //ocultar el boton generarOC
-        document.querySelector('#btnActionForm').style = 'display: none';
-        document.querySelector('#btnRechazar').style = 'display: none';
         
 
         var respuesta = $('#divComparativo');
@@ -31,6 +27,10 @@ function abrirModalComparativo(val_datos){
                 respuesta.html(data);
 
                 $('#modalComparativo').modal('show');
+                
+                //ocultar el boton generarOC
+        document.querySelector('#btnActionForm').style = 'display: none';
+        document.querySelector('#btnRechazar').style = 'display: none';
             },
             error: function (error) {
                 LOADING.style = 'display: none;';

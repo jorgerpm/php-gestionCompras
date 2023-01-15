@@ -1,5 +1,5 @@
 function ejecutarReportePdf(reporte, id) {
-
+//192.168.8.66
     window.open('http://192.168.100.74:8080/ServiciosWebGestionCompras/ReporteServicio?reporte=' + reporte
             + '&tipo=pdf&id=' + id, '_blank', 'height=450,width=375,resizable=1');
 
@@ -9,38 +9,63 @@ function ejecutarReporteCsv(reporte, fechaIni, fechaFin) {
 
 console.log("fechaIni: ", fechaIni);
 console.log("fechaFin: ", fechaFin);
-
+//192.168.8.66
     window.open('http://192.168.100.74:8080/ServiciosWebGestionCompras/ReporteServicio?reporte=' + reporte
             + '&tipo=xls&fechaIni=' + fechaIni +"&fechaFin="+fechaFin, '_blank', 'height=450,width=375,resizable=1');
 
 }
 
-function pruebajspdf(reporte, id) {
+function pruebajspdf(val_datos) {
     const LOADING = document.querySelector('.loader');
     LOADING.style = 'display: flex;';
-//    var html1 = document.getElementById('divComparativo').innerHTML;
-    var elementHTML = document.querySelector("#divComparativo");
+    
+    var elementHTML = document.querySelector("#divImprimeComparativo");
+    
+    console.log(elementHTML);
+    
+    console.log(val_datos);
+    
+    $.ajax({
+            type: 'POST',
+            url: 'acciones/imprimirComparativo.php',
+            data: {'comparativoSelect': val_datos},
+//            cache: false,
+//            contentType: false,
+//            processData: false,
+            success: function (data) {
+                LOADING.style = 'display: none;';
+                
+                elementHTML.innerHTML = data;
+                
+            console.log(elementHTML);
+            
+                window.jsPDF = window.jspdf.jsPDF;
+                window.html2canvas = html2canvas;
 
-//    console.log("es: ", elementHTML);
+                var doc = new jsPDF({orientation: 'landscape', });
 
-    window.jsPDF = window.jspdf.jsPDF;
-    window.html2canvas = html2canvas;
+                doc.html(elementHTML, {
+                    callback: function (doc) {
+//                        LOADING.style = 'display: none;';
+                        // Save the PDF
+                        doc.save('comparativo.pdf');
+                    },
+                    margin: [10, 5, 10, 5],
+                    autoPaging: 'text',
+                    x: 0,
+                    y: 0,
+                    width: 287, //target width in the PDF document
+                    windowWidth: 1366 //window width in CSS pixels
+                });
+                
+            },
+            error: function (error) {
+                LOADING.style = 'display: none;';
+                
+            }
+        });
 
-    var doc = new jsPDF({orientation: 'landscape', });
-
-    doc.html(elementHTML, {
-        callback: function (doc) {
-            LOADING.style = 'display: none;';
-            // Save the PDF
-            doc.save('comparativo.pdf');
-        },
-        margin: [10, 5, 10, 5],
-        autoPaging: 'text',
-        x: 0,
-        y: 0,
-        width: 287, //target width in the PDF document
-        windowWidth: 1366 //window width in CSS pixels
-    });
+    
 
 }
 

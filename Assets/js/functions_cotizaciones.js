@@ -398,7 +398,7 @@ function abrirComprativo() {
                 LOADING.style = 'display: none;';
                 respuesta.html(data);
 
-                if (!data.includes("warning"))
+                if (!data.includes("\"warning\""))
                     $('#modalComparativo').modal('show');
             },
             error: function (error) {

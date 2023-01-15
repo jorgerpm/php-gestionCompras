@@ -138,7 +138,7 @@
         </div>
     </div>
     <br>
-    <div id="divCmbEstados" class="form-row" style="border: solid 1px graytext">
+    <div id="divCmbEstados" class="form-row" style="border: solid 1px graytext; display: <?php echo $_SESSION['Rol']->autorizador == 1 ? '' : 'none'; ?>">
         <div class="form-group col-md-1" style="padding-top: 10px">
             <label class="control-label" id="lblListaEstado">Estado:</label>
         </div>

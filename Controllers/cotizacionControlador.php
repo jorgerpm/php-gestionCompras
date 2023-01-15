@@ -69,10 +69,10 @@ class cotizacionControlador extends cotizacionModelo {
     
     public function listar_cotizacion_controlador($post, $regsPagina) {
         if(isset($post) && isset($post['dtFechaIni']) && isset($post['dtFechaFin'])){
-            $respuesta = cotizacionModelo::listar_cotizacion_modelo($post['dtFechaIni'], $post['dtFechaFin'], (isset($post['txtNumSol']) ? $post['txtNumSol'] : null), (isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null), $post['txtDesde'], $regsPagina);
+            $respuesta = cotizacionModelo::listar_cotizacion_modelo($post['dtFechaIni'], $post['dtFechaFin'], (isset($post['txtNumSol']) ? $post['txtNumSol'] : null), (isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null), $post['txtDesde'], $regsPagina, $_SESSION['Rol']->id, $_SESSION['Usuario']->usuario);
         }
         else{
-            $respuesta = cotizacionModelo::listar_cotizacion_modelo(date("Y-m-d"), date("Y-m-d"), null, null, 0, $regsPagina);
+            $respuesta = cotizacionModelo::listar_cotizacion_modelo(date("Y-m-d"), date("Y-m-d"), null, null, 0, $regsPagina, $_SESSION['Rol']->id, $_SESSION['Usuario']->usuario);
         }
         
         if(!isset($respuesta)){

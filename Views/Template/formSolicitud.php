@@ -11,7 +11,7 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
             <label>C&oacute;digo de RC</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input id="txtCodRC" name="txtCodRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->codigoRC : "" ?>" required="">
+            <input id="txtCodRC" name="txtCodRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->codigoRC : ""; ?>" required="" >
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <label>C&oacute;digo solicitud</label>
@@ -69,23 +69,18 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
             <input type="hidden" id="correoHidden" value="">
             <div id="losli" style="position: absolute; z-index: 1; background-color: white; border: solid 1px;"></div>
             
-            <!-- <select class="form-control" id="cmbProveed" name="cmbProveed">
-                
-                <!-- <option class="menuRol" value="" >-Proveedores-</option>
-                <php foreach ($listaProvs as $proveedor) { ?>
-                    <option class="menuRol" value="<php echo $proveedor->correo; ?>" ><php echo $proveedor->razonSocial; ?></option>
-                <php } ?> --
-            </select> -->
-            
-            
             
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <button class="btn btn-primary btn-sm fa" type="button" onclick="agregarCorreo();">
                 <i class="fa fa-plus"></i></button>
         </div>
-        <div class="col-md-4 col-sm-4 col-12">
-
+        
+        <div class="col-md-2 col-sm-2 col-12">
+            <label class="control-label">Unidad de negocio</label>
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <input id="txtUnidadNegoRC" name="txtUnidadNegoRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->unidadNegocioRC : "" ?>" >
         </div>
     </div>
 

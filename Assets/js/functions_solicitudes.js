@@ -156,9 +156,24 @@ function abrirFormulario(val_datos) {
         document.querySelector('#txtMontoAprob').value = val_datos.montoAprobado;
         document.querySelector('#dtFechaAprobRC').value = new Date(val_datos.fechaAutorizaRC).toISOString().split('T')[0];
         document.querySelector('#txtEstadoRC').value = val_datos.estadoRC;
+        document.querySelector('#txtUnidadNegoRC').value = val_datos.unidadNegocioRC;
+        
+        //poner a todos como readonly
+        document.querySelector('#txtUnidadNegoRC').readOnly = true;
+        document.querySelector('#txtCodRC').readOnly = true;
+        document.querySelector('#txtCodsol').readOnly = true;
+        document.querySelector('#dtFechaSol').readOnly = true;
+        document.querySelector('#txtMontoAprob').readOnly = true;
+        document.querySelector('#dtFechaAprobRC').readOnly = true;
+        document.querySelector('#txtEstadoRC').readOnly = true;
+        
 
         //ocultar los botones
-        document.querySelector('#btnGuardaSolic').style = 'display: none;';
+        if(val_datos.estado === "ENVIADO" || val_datos.estado === "COTIZADO")
+            document.querySelector('#btnGuardaSolic').style = '';
+        else
+            document.querySelector('#btnGuardaSolic').style = 'display: none;';
+    
         document.querySelector('#btnAniadir').style = 'display: none;';
         document.querySelector('#fileDetalles').style = 'display: none;';
 
@@ -173,16 +188,15 @@ function abrirFormulario(val_datos) {
             tbody.deleteRow(0);
         }
 
-        for (i = 0; i < val_datos.listaDetalles.length; i++) {
+        for (let i = 0; i < val_datos.listaDetalles.length; i++) {
 //            console.log(val_datos.listaDetalles[i]);
-            tbody.insertRow().innerHTML = '<td>' + val_datos.listaDetalles[i].cantidad + '</td>'
-                    + '<td>' + val_datos.listaDetalles[i].detalle + '</td>'
-                    + '<td></td>';
+//            tbody.insertRow().innerHTML = '<td>' + val_datos.listaDetalles[i].cantidad + '</td>'
+//                    + '<td>' + val_datos.listaDetalles[i].detalle + '</td>'
+//                    + '<td></td>';
 
-//            tbody.insertRow(-1).innerHTML = '<td><input type="number" id="txtCantidad' + (index + i) + '" style="width: 100%" value="' + val_datos.listaDetalles[i].cantidad + '"></td>'
-//                    + '<td><input id="txtDetalle' + (index + i) + '" style="width: 100%; text-transform: uppercase;" value="' + val_datos.listaDetalles[i].detalle + '"></td>'
-//                    + '<td><input id="' + (index + i) + '" type="button" value="x" onclick="eliminarFila(this);">'
-//                    + '<input type="hidden" id="txtIdDetalle' + (index + i) + '" name="txtIdDetalle' + (index + i) + '" value="' + val_datos.listaDetalles[i].id + '"></td>';
+            tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + i + '" value="'+val_datos.listaDetalles[i].cantidad+'" style="width: 100%" readonly></td>\n\
+<td><input id="txtDetalle' + i + '" value="'+val_datos.listaDetalles[i].detalle+'" style="width: 100%; text-transform: uppercase;" readonly></td>\n\
+<td><input type="hidden" id="txtIdDetalle' + i + '" name="txtIdDetalle' + i + '" value="'+val_datos.listaDetalles[i].id+'"></td>';
         }
 
     } else {

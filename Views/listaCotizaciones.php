@@ -72,9 +72,13 @@
                             
                             <div class="col-md-2 col-12" style="text-align: right">
                                 <br>
+                                <?php
+                                if($_SESSION['Rol']->id != 2) {
+                                    ?>
                                 <button style="width: 100%;" class="btn btn-primary btn-sm fa" type="button" 
                                         onclick="ejecutarReporteCsv('XLSCOTIZACION', document.querySelector('#dtFechaIni').value, document.querySelector('#dtFechaFin').value);">
                                     <i class="fa fa-file-excel-o"></i><span id="btnText">Exportar xls</span></button>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="RespuestaAjax"></div>
@@ -127,8 +131,12 @@
                     </div>
                         <?php include 'Template/paginador.php'; ?>
                         
+                        <?php
+                        if($_SESSION['Rol']->id != 2) {
+                            ?>
                         <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" title="Comparar cotizaciones"
                                                     onclick="abrirComprativo();">Comparar</button>
+                                <?php } ?>
                         
                     </form>
                 </div>

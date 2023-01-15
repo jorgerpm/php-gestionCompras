@@ -7,9 +7,9 @@ class cotizacionModelo extends serviciosWebModelo {
         return $cotizacion;
     }
     
-    protected function listar_cotizacion_modelo($fechaIni, $fechaFin, $codigoSol, $codigoRC, $desde, $hasta) {
+    protected function listar_cotizacion_modelo($fechaIni, $fechaFin, $codigoSol, $codigoRC, $desde, $hasta, $idRol, $rucProveedor) {
         $array = [];
-        $listaSolicts = self::invocarGet('cotizacion/listarCotizaciones?fechaInicial='.$fechaIni.'&fechaFinal='.$fechaFin.'&codigoSolicitud='.$codigoSol.'&codigoRC='.$codigoRC.'&desde='.$desde.'&hasta='.$hasta, $array);
+        $listaSolicts = self::invocarGet('cotizacion/listarCotizaciones?fechaInicial='.$fechaIni.'&fechaFinal='.$fechaFin.'&codigoSolicitud='.$codigoSol.'&codigoRC='.$codigoRC.'&desde='.$desde.'&hasta='.$hasta.'&idRol='.$idRol.'&rucProveedor='.$rucProveedor, $array);
         return $listaSolicts;
     }
     

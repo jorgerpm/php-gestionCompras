@@ -46,15 +46,16 @@ class solicitudControlador extends solicitudModelo {
             "montoAprobado" => $post['txtMontoAprob'],
             "fechaAutorizaRC" => $post['dtFechaAprobRC'],
             "estadoRC" => mb_strtoupper($post['txtEstadoRC'], 'utf-8'),
+            "unidadNegocioRC" => mb_strtoupper($post['txtUnidadNegoRC'], 'utf-8'),
         );
         
         $respuesta = solicitudModelo::guardar_solicitud_modelo($data);
         
         if(isset($respuesta) && $respuesta->id > 0){
             return '<script>swal("", "Solicitud enviada correctamente con código solicitud: '.$respuesta->codigoSolicitud.'", "success")'
-            . '.then((value) => {
-                        window.location.href = "solicitudCotizacion"; 
-                    });</script>';
+            . '.then((value) => {'
+                    .(isset($post['txtId']) && $post['txtId']>0 ? '$(`#btnSearch`).click();' : 'window.location.href = "solicitudCotizacion";')
+                    .'});</script>';
         }
         elseif(isset($respuesta)){
             return '<script>swal("", "'.$respuesta->respuesta.'", "error");</script>';

@@ -108,7 +108,7 @@
                                     <tr>
                                         <td>
                                             <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" title="Ver detalle OC"
-                                                    onclick='abrirFormularioOrdenCompra(variableOC = <?php echo json_encode($ordenCompra); ?>)'></button>
+                                                    onclick='abrirFormularioOrdenCompra(variableOC = <?php echo json_encode($ordenCompra); ?>, varRolAuto = <?php echo ($_SESSION['Rol']->autorizador == "") ? 0 : 1; ?>)'></button>
                                         </td>
                                         
                                         <td>

@@ -1,6 +1,6 @@
 var cbxEstado = document.querySelector('#cbxListaEstado');
 
-function abrirFormularioOrdenCompra(val_datos) {
+function abrirFormularioOrdenCompra(val_datos, rolAutoriza) {
 
     console.log(val_datos);
 //    console.log("fechhaa::: ", new Date(val_datos.fechaSolicitud).toISOString().split('T')[0]);
@@ -66,15 +66,20 @@ function abrirFormularioOrdenCompra(val_datos) {
         if(document.querySelector('#btnBusqCot')){
             document.querySelector('#btnBusqCot').style = 'display: none;';
         }
+        console.log("auto: ", rolAutoriza);
+        var display = "display: none;";
+        if(rolAutoriza === 1)
+            display = "";
+            
         if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'AUTORIZADO'){
             document.querySelector('#btnAutorizar').style =  '';
             document.querySelector('#lblListaEstado').style = '';
             document.querySelector('#cbxListaEstado').style = '';
-            document.querySelector('#divCmbEstados').style =  'border: solid 1px graytext';
+            document.querySelector('#divCmbEstados').style =  'border: solid 1px graytext; ' + display;
         }else{
             document.querySelector('#btnAutorizar').style =  'display: none;';
             document.querySelector('#btnAutorizar').setAttribute("onclick", "");
-            document.querySelector('#divCmbEstados').style =  'border: none 1px graytext';
+            document.querySelector('#divCmbEstados').style =  'border: none 1px graytext: ' + display;
         }
         
         document.querySelector('#chkTodosIva').style = 'display: none;';

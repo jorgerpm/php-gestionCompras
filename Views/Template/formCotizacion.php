@@ -208,13 +208,13 @@
         <?php } ?>
         <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
         
-        <?php if($_SESSION['Rol']->id != 2){ ?>
+        <?php /*if($_SESSION['Rol']->id != 2){*/ ?>
         &nbsp;&nbsp;&nbsp;
         <button class="btn btn-secondary" type="button" onclick="ejecutarReportePdf('COTIZACION', document.querySelector('#txtIdCot').value);" >
             <i class="fa fa-fw fa-lg fa-print"></i>
             <span id="btnText">Imprimir</span>
         </button>
-        <?php }?>
+        <?php /*}*/ ?>
         
     </div>
     <div class="RespuestaAjax" id="idRespuestaAjax"></div>

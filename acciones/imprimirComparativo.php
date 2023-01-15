@@ -25,6 +25,46 @@ else{
 //print_r($respuesta);
 if(isset($respuesta) && $respuesta != null){
     
+    //aqui la cabecera
+    ?>
+
+<table style="width: 100%; text-align: center; border: 1px solid; padding: 0px; border-collapse: collapse;">
+    <tbody>
+        <tr>
+            <td style="border: 1px solid; width: 200px;"><image src="Assets/imagenes/garcos.png" style="height: 50px;" ></image></td>
+            <td style="border: 1px solid; padding: 0px;">
+                <table style="width: 100%; text-align: center; border: 1px solid; padding: 0px; border-collapse: collapse; height: 75px;">
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid;"><strong>SERVICIOS ADMINISTRATIVOS</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid;"><strong>COMPARATIVO DE COMPRA</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td style="border: 1px solid; padding: 0px; width: 200px;">
+                <table style="width: 100%; text-align: center; border: 1px solid; padding: 0px; border-collapse: collapse; height: 75px;">
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid;">Codigo RC:</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid;">Versión 1.0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+
+    <?php
     echo '<input type="hidden" id="txtRucProv" name="txtRucProv" value="">';
     
     echo '<input type="hidden" id="txtCodRcComp" name="txtCodRcComp" value="'.$respuesta[0]->solicitudDto->codigoRC.'">';
@@ -205,32 +245,7 @@ echo '</div>
                         </div>
                     </div>';
 
-?>
 
-<br>
-                    <div class="tile-footer" style="text-align: center;">
-                        <button id="btnActionForm" class="btn btn-primary" type="button" onclick="generarOC();" disabled="true">
-                            <i class="fa fa-fw fa-lg fa-check-circle"></i>
-                            <span id="btnText">Generar OC</span>
-                        </button>&nbsp;&nbsp;&nbsp;
-                            
-                        <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
-                        
-                        &nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-secondary" type="button" onclick='pruebajspdf(variableComp = <?php echo json_encode($_POST['comparativoSelect']); ?>);' >
-                            <i class="fa fa-fw fa-lg fa-print"></i>
-                            <span id="btnText">Imprimir</span>
-                        </button>
-                        
-                        &nbsp;&nbsp;&nbsp;
-                        <button id="btnRechazar" class="btn btn-warning" type="button" onclick="rechazarTodas();" >
-                            <i class="fa fa-fw fa-lg fa-times"></i>
-                            <span id="btnText">Rechazar todas</span>
-                        </button>
-                        
-                    </div>
-
-<?php
 }
 else{
     echo '<script>swal("", "No existen cotizaciones en estado COTIZADO para comparar.", "warning");</script>';

@@ -10,12 +10,12 @@
             <div class="modal-body">
                 <form id="formComparativo" class="FormularioAjax" action="acciones/guardarComparativo.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
                     
-                    <div id="divComparativo">    
+                    <div id="divComparativo">
                         <!-- aqui el html, que se genera dinamicamente desde la respuesta PHP -->
                     </div>
                         
                     
-                    <br>
+                    <!-- br>
                     <div class="tile-footer" style="text-align: center;">
                         <button id="btnActionForm" class="btn btn-primary" type="button" onclick="generarOC();" disabled="true">
                             <i class="fa fa-fw fa-lg fa-check-circle"></i>
@@ -25,7 +25,7 @@
                         <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                         
                         &nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-secondary" type="button" onclick="pruebajspdf('COMPARATIVO', document.querySelector('#txtRucProv').value);" >
+                        <button class="btn btn-secondary" type="button" onclick="pruebajspdf(variableComp = <php echo json_encode($comparativo); ?>);" >
                             <i class="fa fa-fw fa-lg fa-print"></i>
                             <span id="btnText">Imprimir</span>
                         </button>
@@ -36,8 +36,12 @@
                             <span id="btnText">Rechazar todas</span>
                         </button>
                         
-                    </div>
+                    </div -->
+                    
                     <div class="RespuestaAjax"></div>
+                    
+                    <div style="display: none"><div id="divImprimeComparativo"> </div></div>
+                    
                 </form>
             </div>
         </div>
