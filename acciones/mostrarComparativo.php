@@ -209,7 +209,11 @@ echo '</div>
 
 <br>
                     <div class="tile-footer" style="text-align: center;">
-                        <button id="btnActionForm" class="btn btn-primary" type="button" onclick="generarOC();" disabled="true">
+                        
+                        <!-- onclick="generarOC();"-->
+                        
+                        <button id="btnActionForm" class="btn btn-primary" type="button" 
+                                onclick='abrirModalCodigoProducto(varComp = <?php echo json_encode($respuesta); ?>);' disabled="true">
                             <i class="fa fa-fw fa-lg fa-check-circle"></i>
                             <span id="btnText">Generar OC</span>
                         </button>&nbsp;&nbsp;&nbsp;
@@ -229,6 +233,8 @@ echo '</div>
                         </button>
                         
                     </div>
+
+<script src="./Assets/js/functions_comparativo.js"></script>
 
 <?php
 }

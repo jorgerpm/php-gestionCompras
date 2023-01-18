@@ -126,12 +126,19 @@ function agregarUserCheckList() {
         } else {
             var fila = tbody.insertRow();
 
-            var numRC = document.getElementById('txtNumRCRecep').value;
+            var tieneCamposBodega = document.getElementById('chkCampoBodega').checked;
+            
+            console.log("campos:: ", tieneCamposBodega);
+
+            //var numRC = document.getElementById('txtNumRCRecep').value;
 //            if (index < 4) {
                 fila.insertCell().innerHTML = datuser[3] + '<input type="hidden" id="txtIdRolRecep' + index + '" value="' + rolid + '">';
                 fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserRecep' + index + '" value="' + datuser[1] + '">';
                 fila.insertCell().innerHTML = datuser[2];
-                fila.insertCell().innerHTML = '<input id="i' + index + '" type="button" value="x" onclick="eliminarFilaRecep(this);" class="btn btn-secondary btn-sm fa">';
+                fila.insertCell().innerHTML = '<input id="i' + index + '" type="button" value="x" onclick="eliminarFilaRecep(this);" class="btn btn-secondary btn-sm fa">'
+                +'<input id="txtCampoBodega' + index + '" name="txtCampoBodega' + index + '" type="hidden" value="'+(tieneCamposBodega === true ? 'SI' : 'NO')+'">';                
+                
+                
 //            } else {
 //                swal("", "Solo se permite un máximo de 4 usuarios.", "error")
 //            }
@@ -139,6 +146,7 @@ function agregarUserCheckList() {
 
         document.getElementById('cmbRolListRecep').value = '';
         document.getElementById('cmbUserListRecep').value = '';
+        document.getElementById('chkCampoBodega').checked = false;
     } else {
         swal('', 'Seleccione un usuario de la lista.', 'warning');
     }

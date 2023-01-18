@@ -13,9 +13,9 @@ class ordenCompraModelo extends serviciosWebModelo {
     }
     // posible cambio
     
-    protected function listar_ordencompra_modelo($fechaIni, $fechaFin, $codigoRC, $desde, $hasta) {
+    protected function listar_ordencompra_modelo($fechaIni, $fechaFin, $codigoRC, $codigoSolicitud, $desde, $hasta) {
         $array = [];
-        $listaOrdenes = self::invocarGet('ordenCompra/listarOrdenesCompras?fechaInicial='.$fechaIni.'&fechaFinal='.$fechaFin.'&codigoRC='.$codigoRC.'&desde='.$desde.'&hasta='.$hasta, $array);
+        $listaOrdenes = self::invocarGet('ordenCompra/listarOrdenesCompras?fechaInicial='.$fechaIni.'&fechaFinal='.$fechaFin.'&codigoRC='.$codigoRC.'&codigoSolicitud='.$codigoSolicitud.'&desde='.$desde.'&hasta='.$hasta, $array);
         return $listaOrdenes;
     }
     

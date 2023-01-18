@@ -301,7 +301,7 @@ function abrirFormulario(val_datos) {
 }
 
 
-function generarOC() {
+function generarOC(val_datos) {
     const LOADING = document.querySelector('.loader');
     LOADING.style = 'display: flex;';
 
@@ -317,11 +317,35 @@ function generarOC() {
     var obsComparativo = document.querySelector('#txtObsComp').value;
 
     if (obsComparativo !== null && obsComparativo !== '') {
+        
+        //validar los datos del formulario
+//        var cant = val_datos.listaDetalles.length;
+//        console.log("val_datos.listaDetalles.length:: ", val_datos.listaDetalles.length, cant);
+        var detsCodigos = [];
+        var datosCompletos = true;
+        val_datos.listaDetalles.forEach(dt => {
+            var codProd = document.querySelector('#txtCodProdOC'+dt.id).value;
+            var nomProd = document.querySelector('#txtNomProdOC'+dt.id).value;
+            
+            if((codProd === null || codProd.length === 0) || nomProd.length === 0){
+//                console.log("esta vacciioooo");
+                datosCompletos = false;
+            }
+//            console.log("codProd: ", codProd);
+//            console.log("nomProd: ", nomProd);
+            detsCodigos.push({"id": dt.id, "codigoProducto": codProd.toUpperCase(), "detalle": nomProd.toUpperCase()});
+        });
+        
+        if(!datosCompletos){
+            LOADING.style = 'display: none;';
+            swal("", "Complete los datos de los productos.", "warning");
+            return;
+        }
 
         $.ajax({
             type: 'POST',
             url: 'acciones/generarOrdenCompra.php',
-            data: {"txtNumSol": numeroSolicitud, "txtRuc": rucProveedor, "txtObsComp": obsComparativo},
+            data: {"txtNumSol": numeroSolicitud, "txtRuc": rucProveedor, "txtObsComp": obsComparativo, "detallesProd": detsCodigos},
             //        cache: false,
             //        contentType: false,
             //        processData: false,
@@ -329,6 +353,7 @@ function generarOC() {
                 console.log(data);
                 LOADING.style = 'display: none;';
                 respuesta.html(data);
+                //document.querySelector('#modalCodigoProducto').style = 'background: rgba(0, 0, 0, .5);';
             },
             error: function (error) {
                 LOADING.style = 'display: none;';

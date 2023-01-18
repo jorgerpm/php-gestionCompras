@@ -37,11 +37,13 @@ if(isset($_POST['dataChecklistRecep'])){
         <div class="row">
             <div class="col-md-3">
                 <label class="control-label">Material solicitado</label>
-                <input class="form-control form-control-sm" value="<?php echo $respuesta->solicitud->listaDetalles[0]->detalle; ?>" readonly="">
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->listaDetalles[0]->detalle; ?>" readonly="">
             </div>
             <div class="col-md-3">
-                <label class="control-label">Proveedor asignado</label>
-                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->rucProveedor; ?>" readonly="">
+                <label class="control-label">Cantidad solicitada</label>
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->listaDetalles[0]->cantidad; ?>" readonly="">
+                <!--label class="control-label">Proveedor asignado</label>
+                <input class="form-control form-control-sm" value="<php echo $respuesta->ordenCompra->rucProveedor; ?>" readonly="" -->
             </div>
             <div class="col-md-3">
                 <label class="control-label">Raz&oacute;n social</label>
@@ -52,6 +54,7 @@ if(isset($_POST['dataChecklistRecep'])){
                 <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->proveedorDto->nombreComercial; ?>" readonly="">
             </div>
         </div>
+        
 
 
         <?php 
@@ -59,6 +62,7 @@ if(isset($_POST['dataChecklistRecep'])){
         foreach ($respuesta->listaDetalles as $deta) { 
             $rols[$deta->idUsuario]['nombreRol'] = $deta->nombreRol;
             $rols[$deta->idUsuario]['idRol'] = $deta->idRol;
+            $rols[$deta->idUsuario]['camposBodega'] = $deta->camposBodega;
         }
         
         foreach($rols as $rrol){
@@ -66,20 +70,17 @@ if(isset($_POST['dataChecklistRecep'])){
 <hr>
 <div style="text-align: center;"><label class="control-label">INFORMACIÓN A LLENAR POR <?php echo $rrol['nombreRol']; ?></label></div>
 
-        <?php if($rrol['nombreRol'] == "BODEGA"){ ?>
+        <?php if($rrol['idRol'] == 5 || $rrol['camposBodega'] == 'SI'){ ?>
 
         <div class="row">
             <div class="col-md-3">
-                <label class="control-label">Fecha de recepci&oacute;n</label>
-                <input type="date" class="form-control form-control-sm" id="txtFechaRecepta" name="txtFechaRecepta"
-                       value="<?php echo ($respuesta->fechaRecepcionBodega != null ? date('Y-m-d', $respuesta->fechaRecepcionBodega / 1000) : null ); ?>" 
-                       <?php echo ($respuesta->fechaRecepcionBodega!=null && $respuesta->fechaRecepcionBodega!="") ? "readonly" : "" ?> required="">
-            </div>
-            <div class="col-md-3">
                 <label class="control-label">C&oacute;digo del material</label>
                 <input type="text" class="form-control form-control-sm" id="txtCodMaterialRecep" name="txtCodMaterialRecep"
-                       value="<?php echo $respuesta->codigoMaterial; ?>" style="text-transform: uppercase" 
-                       <?php echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? "readonly" : "" ?> required="">
+                       value="<?php echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? 
+                       $respuesta->codigoMaterial : $respuesta->ordenCompra->listaDetalles[0]->codigoProducto; ?>" 
+                       style="text-transform: uppercase" 
+                       readonly=""
+                       <?php /*echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? "readonly" : "";*/ ?> required="">
             </div>
             <div class="col-md-3">
                 <label class="control-label">CANTIDAD RECIBIDA</label>
@@ -87,9 +88,29 @@ if(isset($_POST['dataChecklistRecep'])){
                        value="<?php echo $respuesta->cantidadRecibida; ?>" min="1"
                            <?php echo ($respuesta->cantidadRecibida!=null && $respuesta->cantidadRecibida!="" && $respuesta->cantidadRecibida>0) ? "readonly" : "" ?> required="">
             </div>
+            <div class="col-md-3">
+                <label class="control-label">Fecha de recepci&oacute;n</label>
+                <input type="date" class="form-control form-control-sm" id="txtFechaRecepta" name="txtFechaRecepta"
+                       value="<?php echo ($respuesta->fechaRecepcionBodega != null ? date('Y-m-d', $respuesta->fechaRecepcionBodega / 1000) : null ); ?>" 
+                       <?php echo ($respuesta->fechaRecepcionBodega!=null && $respuesta->fechaRecepcionBodega!="") ? "readonly" : "" ?> required="">
+            </div>
+            
         </div>
         <br>
 
+        <?php } ?>
+        
+        <!-- para asitente compras y coordinador compras -->
+        <?php if($rrol['idRol'] == 7 || $rrol['idRol'] == 8){ ?>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label">MONTO TOTAL FACTURA</label>
+                <input type="number" class="form-control form-control-sm" id="txtMontoFactRecep" name="txtMontoFactRecep"
+                       value="<?php echo $respuesta->montoTotalFactura; ?>" min="1"
+                           <?php echo ($respuesta->montoTotalFactura!=null && $respuesta->montoTotalFactura!="" && $respuesta->montoTotalFactura>0) ? "readonly" : "" ?> required="">
+            </div>
+        </div>
+        <br>
         <?php } ?>
 
 

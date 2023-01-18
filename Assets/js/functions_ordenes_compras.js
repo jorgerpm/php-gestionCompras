@@ -71,14 +71,19 @@ function abrirFormularioOrdenCompra(val_datos, rolAutoriza) {
         if(rolAutoriza === 1)
             display = "";
             
-        if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'AUTORIZADO'){
-            document.querySelector('#btnAutorizar').style =  '';
+        if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'AUTORIZADO' && val_datos.estado !== 'COMPLETO'
+                && val_datos.estado !== 'PENDIENTE_RECEPCION'){
+            if(document.querySelector('#btnAutorizar')){
+                document.querySelector('#btnAutorizar').style =  '';
+            }
             document.querySelector('#lblListaEstado').style = '';
             document.querySelector('#cbxListaEstado').style = '';
             document.querySelector('#divCmbEstados').style =  'border: solid 1px graytext; ' + display;
         }else{
-            document.querySelector('#btnAutorizar').style =  'display: none;';
-            document.querySelector('#btnAutorizar').setAttribute("onclick", "");
+            if(document.querySelector('#btnAutorizar')){
+                document.querySelector('#btnAutorizar').style =  'display: none;';
+//                document.querySelector('#btnAutorizar').setAttribute("onclick", "");
+            }
             document.querySelector('#divCmbEstados').style =  'border: none 1px graytext: ' + display;
         }
         
@@ -102,6 +107,9 @@ function abrirFormularioOrdenCompra(val_datos, rolAutoriza) {
             var rowAux = tbody.insertRow(0);
             
             rowAux.insertCell().innerHTML = '<label id="lblCantidad'+i+'" style="width: 100%; text-align: center;">'+val_datos.listaDetalles[i].cantidad+'</label>';
+            
+            rowAux.insertCell().innerHTML = '<label>'+ (val_datos.listaDetalles[i].codigoProducto === null ? '' : val_datos.listaDetalles[i].codigoProducto) +'</label></td>';
+            
             rowAux.insertCell().innerHTML = '<label id="lblDetalle'+i+'">'+val_datos.listaDetalles[i].detalle+'</label>';
             rowAux.insertCell().innerHTML = '<label id="txtObservDetalle'+i+'" style="width: 100%">'+val_datos.listaDetalles[i].observacion+'</label>';
             rowAux.insertCell().innerHTML = '<label id="chkIva'+i+'" style="width: 100%; text-align: center;">'+(val_datos.listaDetalles[i].tieneIva ? 'SI' : 'NO')+'</label>';
@@ -118,7 +126,7 @@ function abrirFormularioOrdenCompra(val_datos, rolAutoriza) {
             tbody.deleteRow(0);
         }
         
-        if(val_datos.estado === 'AUTORIZADO'){
+        if(val_datos.estado === 'AUTORIZADO' || val_datos.estado === 'COMPLETO' || val_datos.estado === 'PENDIENTE_RECEPCION'){
             document.querySelector('#divAprovs').style = '';
             var indexAuts = val_datos.listaAutorizaciones.length;
             for (let i = 0; i < indexAuts; i++) {

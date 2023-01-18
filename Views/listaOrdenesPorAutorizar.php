@@ -59,10 +59,12 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%">Ver</th>
-                                    <th>Código RC</th>
                                     <th>Fecha orden de compra</th>
+                                    <th>Código solicitud</th>
+                                    <th>Código RC</th>
                                     <th>Estado</th>
                                     <th>Usuario autoriza</th>
+                                    <th>Unidad de negocio</th>
                                     <th>RUC proveedor</th>
                                     <th>Subtotal</th>
                                     <th>Subtotal sin iva</th>
@@ -78,12 +80,14 @@
                                     <tr>
                                         <td>
                                             <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" title="Ver detalle OC"
-                                                    onclick='abrirFormularioOrdenCompra(variableOC = <?php echo json_encode($ordenCompra); ?>)'></button>
+                                                    onclick='abrirFormularioOrdenCompra(variableOC = <?php echo json_encode($ordenCompra); ?>, varRolAuto = <?php echo ($_SESSION['Rol']->id == 1) ? 1 : ( ($_SESSION['Rol']->autorizador == "") ? 0 : 1); ?>)'></button>
                                         </td>
-                                        <td><?php echo $ordenCompra->codigoRC; ?></td>
                                         <td><?php echo date("d/m/Y H:i:s", $ordenCompra->fechaOrdenCompra / 1000); ?></td>
+                                        <td><?php echo $ordenCompra->codigoSolicitud; ?></td>
+                                        <td><?php echo $ordenCompra->codigoRC; ?></td>
                                         <td><?php echo $ordenCompra->estado; ?></td>
                                         <td><?php echo $ordenCompra->autorizador; ?></td>
+                                        <td><?php echo $ordenCompra->unidadNegocioRC; ?></td>
                                         <td><?php echo $ordenCompra->rucProveedor; ?></td>
                                         <td style="text-align: end;"><?php echo number_format($ordenCompra->subtotal, 2); ?></td>
                                         <td style="text-align: end;"><?php echo number_format($ordenCompra->subtotalSinIva, 2); ?></td>

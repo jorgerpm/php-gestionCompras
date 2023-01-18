@@ -72,17 +72,21 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
                             <div class="col-md-1 col-12"></div>
                             <div class="col-md-2 col-12" style="text-align: right">
                                 <label class="control-label" >&nbsp;</label>
+                                <?php if($_SESSION['Rol']->principal === true || $_SESSION['Rol']->id ==1){ ?>
                                 <button style="width: 100%;" class="btn btn-primary btn-sm" type="button" 
                                         onclick="ejecutarReporteCsv('XLSCHECKLISTRECEPCION', document.querySelector('#dtFechaIni').value, document.querySelector('#dtFechaFin').value);">
                                     <i class="fa fa-file-excel-o"></i><span id="btnText">Exportar xls</span></button>
+                                <?php } ?>
                             </div>
                         </div>
                         
                         <div class="row" style="padding-top: 10px">
                             <div class="col-md-2 col-12">
+                                <?php if($_SESSION['Rol']->principal === true || $_SESSION['Rol']->id ==1){ ?>
                                 <button class="btn btn-primary btn-sm" type="button" 
                                             onclick="ejecutarReporteCsv('XLSBITACORA', document.querySelector('#dtFechaIni').value, document.querySelector('#dtFechaFin').value);">
                                     <i class="fa fa-file-excel-o"></i><span id="btnText">Exportar bit&aacute;cora</span></button>
+                                <?php } ?>
                             </div>
                         </div>
                             
@@ -98,6 +102,9 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
                                     <th>Código solicitud</th>
                                     <th>Código RC</th>
                                     <th>Estado</th>
+                                    
+                                    <!--th>iduser</th -->
+                                    
                                     <th>Proveedor asignado</th>
                                     <th>Material solicitado</th>
                                 </tr>
@@ -116,6 +123,9 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
                                         <td><?php echo $recepcion->solicitud->codigoSolicitud; ?></td>
                                         <td><?php echo $recepcion->solicitud->codigoRC; ?></td>
                                         <td><?php echo $recepcion->estado; ?></td>
+                                        
+                                        <!-- td><php foreach($recepcion->listaDetalles as $dtg){ echo $dtg->idUsuario; }?></td -->
+                                        
                                         <td><?php echo $recepcion->ordenCompra->proveedorDto->nombreComercial == null ? $recepcion->ordenCompra->proveedorDto->razonSocial : $recepcion->ordenCompra->proveedorDto->nombreComercial; ?></td>
                                         <td><?php echo $recepcion->ordenCompra->listaDetalles[0]->detalle; ?></td>
                                     </tr>

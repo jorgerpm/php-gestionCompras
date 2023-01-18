@@ -1,5 +1,5 @@
 <div class="modal fade" id="modalRecepcion" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 60%; ">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 70%; ">
         <div class="modal-content">
             <div class="modal-header headerRegister">
                 <h5 class="modal-title" id="titleModal">Generar check-list de recepci&oacute;n</h5>
@@ -51,11 +51,22 @@
                             
                         </div>
                         
-                        <div class="col-md-2">
+                        <div class="col-md-1" style="">
+                            <div class="row" style="padding: 0px;">
+                                <div class="col-md-6" style="padding: 0px">
+                                    <span>Campos bodega?</span>
+                                </div>
+                                <div class="col-md-6" >
+                                    <input id="chkCampoBodega" name="chkCampoBodega" class="form-control-sm" type="checkbox" style="padding: 0px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
                             <button class="btn btn-primary btn-sm fa" type="button" onclick="agregarUserCheckList();">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
+                        
                         <div class="col-md-2">
                             <label class="control-label btn-sm">Estado</label>
                         </div>

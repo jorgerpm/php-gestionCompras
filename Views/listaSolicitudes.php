@@ -87,6 +87,7 @@
                                     <th>Código solicitud</th>
                                     <th>Código de RC</th>
                                     <th>Estado</th>
+                                    <th>Unidad de negocio</th>
                                     <th>Usuario</th>
                                 </tr>
                             </thead>
@@ -103,11 +104,12 @@
                                         <td><?php echo $solicitud->codigoSolicitud; ?></td>
                                         <td><?php echo $solicitud->codigoRC; ?></td>
                                         <td><?php echo $solicitud->estado; ?></td>
+                                        <td><?php echo $solicitud->unidadNegocioRC; ?></td>
                                         <td><?php echo $solicitud->usuario; ?></td>
                                     </tr>
                                 <?php }
                                 } else{
-                                    echo '<td colspan="6">No existen registros.</td>';
+                                    echo '<td colspan="7">No existen registros.</td>';
                                 } ?>
                             </tbody>
                         </table>

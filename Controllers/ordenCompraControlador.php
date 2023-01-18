@@ -10,7 +10,10 @@ class ordenCompraControlador extends ordenCompraModelo {
                 'usuario' => $_SESSION['Usuario']->nombre,
                 'idUsuario' => $_SESSION['Usuario']->id,
                 'observacion' => mb_strtoupper($_POST['txtObsComp'], 'utf-8'), //esta es la observacion para el comparativo
+                "listaDetalles" => $_POST['detallesProd'],
             );
+        
+//            print_r($_POST['detallesProd']);
     
         $ordenCompra = ordenCompraModelo::guardar_ordencompra_modelo($data);
         
@@ -61,10 +64,11 @@ class ordenCompraControlador extends ordenCompraModelo {
     
     public function listar_ordencompra_controlador($post, $regsPagina) {
         if(isset($post) && isset($post['dtFechaIni']) && isset($post['dtFechaFin'])){
-            $respuesta = ordenCompraModelo::listar_ordencompra_modelo($post['dtFechaIni'], $post['dtFechaFin'], isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null, $post['txtDesde'], $regsPagina);
+            $respuesta = ordenCompraModelo::listar_ordencompra_modelo($post['dtFechaIni'], $post['dtFechaFin'], isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null, 
+                    isset($post['txtNumeroSol']) ? $post['txtNumeroSol'] : null, $post['txtDesde'], $regsPagina);
         }
         else{
-            $respuesta = ordenCompraModelo::listar_ordencompra_modelo(date("Y-m-d"), date("Y-m-d"), null, 0, $regsPagina);
+            $respuesta = ordenCompraModelo::listar_ordencompra_modelo(date("Y-m-d"), date("Y-m-d"), null, null, 0, $regsPagina);
         }
         
         if(!isset($respuesta)){
