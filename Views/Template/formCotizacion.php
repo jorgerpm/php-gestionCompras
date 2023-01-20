@@ -16,7 +16,7 @@
             <?php if (!isset($token)) { ?>
                 <div id="btnBusqCot" class="form-group col-md-1" style="text-align: center; align-self: end;">
                     <button class="btn btn-primary btn-sm" style="width: 100%" type="button"  id="btnBuscarSolicitud" name="btnBuscarSolicitud"
-                            onclick="<?php echo $_SESSION['Rol']->id == 2 ? 'buscarCotizacion();' : 'buscarSolicitudPorNumeroSol();'; ?>">
+                            onclick="<?php echo $_SESSION['Rol']->id == 2 ? 'buscarSolicitudPorNumeroSol();' : 'buscarSolicitudPorNumeroSol();'; ?>">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>

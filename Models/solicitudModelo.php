@@ -14,9 +14,9 @@ class solicitudModelo extends serviciosWebModelo {
         return $solicitud;
     }
     
-    protected function buscar_solicitud_por_numero($numeroSolicitud){
+    protected function buscar_solicitud_por_numero_modelo($numeroSolicitud, $idUsuario){
         $array = [];
-        $solicitud = self::invocarGet('solicitud/buscarSolicitudPorNumero?numeroSolicitud='.$numeroSolicitud, $array);
+        $solicitud = self::invocarGet('solicitud/buscarSolicitudPorNumero?numeroSolicitud='.$numeroSolicitud.'&idUsuario='.$idUsuario, $array);
         return $solicitud;
     }
     

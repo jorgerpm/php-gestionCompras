@@ -42,7 +42,7 @@ elseif(isset ($_GET['txtCodSol'])){
     $solicitud = $solContr->buscar_solicitud_por_numero($_GET['txtCodSol']);
     
     if(!isset($solicitud)){
-        echo '<p style="font-size: 20px; color: red; text-align: center;">La solicitud con n&uacute;mero: '.$_GET['txtCodSol'].' ya fue enviada por el mismo proveedor.</p>';
+        echo '<p style="font-size: 20px; color: red; text-align: center;">La solicitud con n&uacute;mero '.$_GET['txtCodSol'].' no existe para el proveedor.</p>';
     }
 }
 else{    

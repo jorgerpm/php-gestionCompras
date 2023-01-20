@@ -66,7 +66,7 @@ class solicitudControlador extends solicitudModelo {
     
     
     public function buscar_solicitud_por_numero($numeroSolicitud){
-        $solicitud = solicitudModelo::buscar_solicitud_por_numero($numeroSolicitud);
+        $solicitud = solicitudModelo::buscar_solicitud_por_numero_modelo($numeroSolicitud, $_SESSION['Usuario']->id);
 //        if(!isset($solicitud)){
 //            $solicitud = array();
 //            $solicitud->listaDetalles = [];
