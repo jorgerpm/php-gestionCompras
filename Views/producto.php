@@ -54,10 +54,10 @@
         //scrollCollapse: true,
         language: {
             lengthMenu: 'Mostrar _MENU_ registros por p&aacute;gina',
-//            zeroRecords: 'No existen registros',
+            zeroRecords: 'No existen registros',
 //            info: 'Mostrando p&aacute;gina _PAGE_ de _PAGES_',
             info: 'Mostrando del _START_ al _END_ de _MAX_',
-//            infoEmpty: 'No existen registros',
+            infoEmpty: 'No existen registros',
 //            infoFiltered: '(filtrados de los _MAX_ registros totales)',
             search: 'Buscar: ',
             //processing: 'cargando',
@@ -70,7 +70,7 @@
             [10, 25, 50, 100], //cantidad
             [10, 25, 50, 100], //texto que se muestra
         ],
-        processing: true, //indica el texto processing cuando se esta cargando la tabla
+//        processing: true, //indica el texto processing cuando se esta cargando la tabla
         serverSide: true,
         ajax: {
             url: './acciones/listarProductos.php',

@@ -36,14 +36,8 @@ if(isset($_POST['dataChecklistRecep'])){
         </div>
         <div class="row">
             <div class="col-md-3">
-                <label class="control-label">Material solicitado</label>
-                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->listaDetalles[0]->detalle; ?>" readonly="">
-            </div>
-            <div class="col-md-3">
-                <label class="control-label">Cantidad solicitada</label>
-                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->listaDetalles[0]->cantidad; ?>" readonly="">
-                <!--label class="control-label">Proveedor asignado</label>
-                <input class="form-control form-control-sm" value="<php echo $respuesta->ordenCompra->rucProveedor; ?>" readonly="" -->
+                <label class="control-label">Proveedor asignado</label>
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->rucProveedor; ?>" readonly="" >
             </div>
             <div class="col-md-3">
                 <label class="control-label">Raz&oacute;n social</label>
@@ -53,6 +47,29 @@ if(isset($_POST['dataChecklistRecep'])){
                 <label class="control-label">Nombre comercial</label>
                 <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->proveedorDto->nombreComercial; ?>" readonly="">
             </div>
+            <div class="col-md-3"></div>
+        </div>
+
+<div class="row">
+            <div class="col-md-3">
+                <label class="control-label">C&oacute;digo del material</label>
+                <input type="text" class="form-control form-control-sm" id="txtCodMaterialRecep" name="txtCodMaterialRecep"
+                       value="<?php echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? 
+                       $respuesta->codigoMaterial : $respuesta->ordenCompra->listaDetalles[0]->codigoProducto; ?>" 
+                       style="text-transform: uppercase" 
+                       readonly=""
+                       <?php /*echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? "readonly" : "";*/ ?> required="">
+            </div>
+            <div class="col-md-3">
+                <label class="control-label">Material solicitado</label>
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->listaDetalles[0]->detalle; ?>" readonly="">
+            </div>
+            <div class="col-md-3">
+                <label class="control-label">Cantidad solicitada</label>
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->listaDetalles[0]->cantidad; ?>" readonly="">
+            </div>
+            
+            <div class="col-md-3"></div>
         </div>
         
 
@@ -73,15 +90,15 @@ if(isset($_POST['dataChecklistRecep'])){
         <?php if($rrol['idRol'] == 5 || $rrol['camposBodega'] == 'SI'){ ?>
 
         <div class="row">
-            <div class="col-md-3">
+            <!-- div class="col-md-3">
                 <label class="control-label">C&oacute;digo del material</label>
                 <input type="text" class="form-control form-control-sm" id="txtCodMaterialRecep" name="txtCodMaterialRecep"
-                       value="<?php echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? 
+                       value="<php echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? 
                        $respuesta->codigoMaterial : $respuesta->ordenCompra->listaDetalles[0]->codigoProducto; ?>" 
                        style="text-transform: uppercase" 
                        readonly=""
-                       <?php /*echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? "readonly" : "";*/ ?> required="">
-            </div>
+                       <php /*echo ($respuesta->codigoMaterial!=null && $respuesta->codigoMaterial!="") ? "readonly" : "";*/ ?> required="">
+            </div -->
             <div class="col-md-3">
                 <label class="control-label">CANTIDAD RECIBIDA</label>
                 <input type="number" class="form-control form-control-sm" id="txtCantidadRecep" name="txtCantidadRecep"

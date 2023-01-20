@@ -14,8 +14,13 @@ class productoControlador extends productoModelo {
             $respuesta = productoModelo::listar_Productos($start, $length, $valBusq);
         }
         
-        if(!isset($respuesta)) {
-            $returnLista = array();
+        if(!isset($respuesta) || empty($respuesta)) {
+            $returnLista = array(
+                "draw" => isset($_POST['draw']) ? intval($_POST['draw']) : 0,
+                "recordsTotal" => 0,
+                "recordsFiltered" => 0,
+                "data" => []
+            );
         }
         else{
             $listaProductos = array();
