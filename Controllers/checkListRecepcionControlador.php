@@ -15,6 +15,7 @@ class checkListRecepcionControlador extends checkListRecepcionModelo {
                     "idUsuario" => $_POST['txtIdUserRecep'.$i],
                     "idRol" => $_POST['txtIdRolRecep'.$i],
                     "camposBodega" => $_POST['txtCampoBodega'.$i],
+                    "fechaAprobacionArtes" => $_POST['txtFechaAprob'.$i],
                 );
             }
             
@@ -92,6 +93,7 @@ class checkListRecepcionControlador extends checkListRecepcionModelo {
             "codigoMaterial" => isset($_POST['txtCodMaterialRecep']) ? $_POST['txtCodMaterialRecep']: null,
             "cantidadRecibida" => isset($_POST['txtCantidadRecep']) ? $_POST['txtCantidadRecep'] : null,
             "montoTotalFactura" => isset($_POST['txtMontoFactRecep']) ? $_POST['txtMontoFactRecep'] : null,
+            "fechaAprobacionArtes" => isset($_POST['txtfechaAprobacionArtes']) ? $_POST['txtfechaAprobacionArtes'] : null,
         );
         
 //        print_r($data);

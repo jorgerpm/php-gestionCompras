@@ -100,7 +100,12 @@ function abrirModalChecklist(val_datos) {
 
 
 function agregarUserCheckList() {
-    var usuario = document.getElementById('cmbUserListRecep').value;
+    var user = document.getElementById('cmbUserListRecep');
+    if(user === null){
+        swal('', 'Seleccione un rol y un usuario de la lista.', 'warning');
+        return false;
+    }
+    var usuario = user.value;
     if (usuario !== null && usuario !== '') {
 
         var rolid = document.getElementById('cmbRolListRecep').value;
@@ -120,13 +125,25 @@ function agregarUserCheckList() {
                 existe = true;
             }
         }
+        
+        //si ya existe el rol en la tabla
+        var existeRol = false;
+        for (let i = 0; i < index; i++) {
+            var idRoll = document.getElementById('txtIdRolRecep' + i).value;
+            if (idRoll === rolid) {
+                existeRol = true;
+            }
+        }
 
         if (existe) {
-            swal("", "El usuario seleccionado ya se encuentra en la lista.", "error")
+            swal("", "El usuario seleccionado ya se encuentra en la lista.", "error");
+        }else if (existeRol) {
+            swal("", "El rol seleccionado ya se encuentra en la lista.", "error");
         } else {
             var fila = tbody.insertRow();
 
             var tieneCamposBodega = document.getElementById('chkCampoBodega').checked;
+            var tieneFechaAprob = document.getElementById('chkFechaAprob').checked;
             
             console.log("campos:: ", tieneCamposBodega);
 
@@ -136,7 +153,8 @@ function agregarUserCheckList() {
                 fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserRecep' + index + '" value="' + datuser[1] + '">';
                 fila.insertCell().innerHTML = datuser[2];
                 fila.insertCell().innerHTML = '<input id="i' + index + '" type="button" value="x" onclick="eliminarFilaRecep(this);" class="btn btn-secondary btn-sm fa">'
-                +'<input id="txtCampoBodega' + index + '" name="txtCampoBodega' + index + '" type="hidden" value="'+(tieneCamposBodega === true ? 'SI' : 'NO')+'">';                
+                +'<input id="txtCampoBodega' + index + '" name="txtCampoBodega' + index + '" type="hidden" value="'+(tieneCamposBodega === true ? 'SI' : 'NO')+'">'
+                +'<input id="txtFechaAprob' + index + '" name="txtFechaAprob' + index + '" type="hidden" value="'+(tieneFechaAprob === true ? 'SI' : 'NO')+'">';
                 
                 
 //            } else {
@@ -147,6 +165,8 @@ function agregarUserCheckList() {
         document.getElementById('cmbRolListRecep').value = '';
         document.getElementById('cmbUserListRecep').value = '';
         document.getElementById('chkCampoBodega').checked = false;
+        document.getElementById('chkFechaAprob').checked = false;
+        
     } else {
         swal('', 'Seleccione un usuario de la lista.', 'warning');
     }
@@ -171,7 +191,10 @@ function abrirModalRecepcion(val_datos){
 //        processData: false,
         success: function (data) {
             LOADING.style = 'display: none;';
-            console.log('fiiiinnn   successss');
+//            console.log('fiiiinnn   successss: ', data);
+            if(data.includes("window.location.replace")){
+                window.location.replace("index");
+            }
             valorDiv.innerHTML = (data);
             
             //bloquear el boton guardar si el estado ya es COMPLETO
@@ -184,7 +207,10 @@ function abrirModalRecepcion(val_datos){
         },
         error: function (error) {
             LOADING.style = 'display: none;';
-            console.log('fiiiinnn   errrroooorr');
+            //console.log('fiiiinnn   errrroooorr');
+            if(error.includes("window.location.replace")){
+                window.location.replace("index");
+            }
             valorDiv.innerHTML = (error);
         }
     });

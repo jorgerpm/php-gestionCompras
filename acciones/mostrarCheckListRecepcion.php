@@ -79,13 +79,15 @@ if(isset($_POST['dataChecklistRecep'])){
         foreach ($respuesta->listaDetalles as $deta) { 
             $rols[$deta->idUsuario]['nombreRol'] = $deta->nombreRol;
             $rols[$deta->idUsuario]['idRol'] = $deta->idRol;
+            $rols[$deta->idUsuario]['idUsuario'] = $deta->idUsuario;
             $rols[$deta->idUsuario]['camposBodega'] = $deta->camposBodega;
+            $rols[$deta->idUsuario]['fechaAprobacionArtes'] = $deta->fechaAprobacionArtes;
         }
         
         foreach($rols as $rrol){
             ?>
 <hr>
-<div style="text-align: center;"><label class="control-label">INFORMACIÓN A LLENAR POR <?php echo $rrol['nombreRol']; ?></label></div>
+<div style="text-align: center;"><label class="control-label">INFORMACIÓN A LLENAR POR <?php echo $rrol['nombreRol']; echo "(".$rrol['idUsuario'].")" ?></label></div>
 
         <?php if($rrol['idRol'] == 5 || $rrol['camposBodega'] == 'SI'){ ?>
 
@@ -129,12 +131,25 @@ if(isset($_POST['dataChecklistRecep'])){
         </div>
         <br>
         <?php } ?>
+        
+        <!-- para el campo de fecha aprobacion artes -->
+        <?php if($rrol['fechaAprobacionArtes'] == 'SI'){ ?>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label">FECHA APROBACI&Oacute;N (ARTES)</label>
+                <input type="date" class="form-control form-control-sm" id="txtfechaAprobacionArtes" name="txtfechaAprobacionArtes"
+                       value="<?php echo ($respuesta->fechaAprobacionArtes != null ? date('Y-m-d', $respuesta->fechaAprobacionArtes / 1000) : 'new Date()' ); ?>"
+                           <?php echo ($respuesta->fechaAprobacionArtes!=null && $respuesta->fechaAprobacionArtes!="") ? "readonly" : "" ?> required="">
+            </div>
+        </div>
+        <br>    
+        <?php }?>
 
 
         <?php $observ = null;
         $idObs = 0;
         foreach ($respuesta->listaDetalles as $pregunta) {
-            if($pregunta->idRol == $rrol['idRol']){
+            if($pregunta->idRol == $rrol['idRol'] && $pregunta->idUsuario == $rrol['idUsuario']){
                 $idObs = $pregunta->id;
                 ?>
 
