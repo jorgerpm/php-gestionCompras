@@ -6,13 +6,13 @@ class checkListRecepcionModelo extends serviciosWebModelo {
         return $ordenCompra;
     }
 
-    protected function listar_checklist_modelo($fechaIni, $fechaFin, $codigoSol, $codigoRC, $desde, $hasta) {
+    protected function listar_checklist_modelo($fechaIni, $fechaFin, $codigoSol, $codigoRC, $desde, $hasta, $todos) {
         $array = [];
         
         $lista = self::invocarGet('checkListRecepcion/listarCheckList?fechaInicial='.$fechaIni.'&fechaFinal='.$fechaFin
                 .'&codigoSolicitud='.$codigoSol.'&codigoRC='.$codigoRC
                 .'&idUsuario='.$_SESSION['Usuario']->id.'&rolPrincipal='.($_SESSION['Rol']->principal==1?'true':'false')
-                .'&desde='.$desde.'&hasta='.$hasta, $array);
+                .'&desde='.$desde.'&hasta='.$hasta.'&buscarTodo='.$todos, $array);
         
         return $lista;
     }

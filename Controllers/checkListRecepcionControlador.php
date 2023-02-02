@@ -49,12 +49,12 @@ class checkListRecepcionControlador extends checkListRecepcionModelo {
     }
     
     
-    public function listar_checklist_controlador($post, $regsPagina){
+    public function listar_checklist_controlador($post, $regsPagina, $todos){
         if(isset($post) && isset($post['dtFechaIni']) && isset($post['dtFechaFin'])){
-            $respuesta = checkListRecepcionModelo::listar_checklist_modelo($post['dtFechaIni'], $post['dtFechaFin'], (isset($post['txtNumeroSol']) ? $post['txtNumeroSol'] : null), (isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null), $post['txtDesde'], $regsPagina);
+            $respuesta = checkListRecepcionModelo::listar_checklist_modelo($post['dtFechaIni'], $post['dtFechaFin'], (isset($post['txtNumeroSol']) ? $post['txtNumeroSol'] : null), (isset($post['txtNumeroRC']) ? $post['txtNumeroRC'] : null), $post['txtDesde'], $regsPagina, $todos);
         }
         else{
-            $respuesta = checkListRecepcionModelo::listar_checklist_modelo(date("Y-m-d"), date("Y-m-d"), null, null, 0, $regsPagina);
+            $respuesta = checkListRecepcionModelo::listar_checklist_modelo(date("Y-m-d"), date("Y-m-d"), null, null, 0, $regsPagina, $todos);
         }
         
         if(!isset($respuesta)){

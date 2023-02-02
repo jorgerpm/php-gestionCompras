@@ -4,11 +4,11 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
 <main class="app-content">
     <div class="app-title" style="height: 50px">
         <div>
-            <span class="tamañoTitulo"><i class="fa fa-calculator"></i> Lista de checkList recepci&oacute;n</span>
+            <span class="tamañoTitulo"><i class="fa fa-calculator"></i> CheckList recepci&oacute;n por completar</span>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">Lista de checkList recepci&oacute;n</a></li>
+            <li class="breadcrumb-item"><a href="#">CheckList recepci&oacute;n por completar</a></li>
         </ul>
     </div>
     </div>
@@ -24,9 +24,9 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
                     }
                     $cotContr = new checkListRecepcionControlador();
                     if (isset($_POST['btnSearch'])) {
-                        $respuesta = $cotContr->listar_checklist_controlador($_POST, $regsPagina, 'true');
+                        $respuesta = $cotContr->listar_checklist_controlador($_POST, $regsPagina, 'false');
                     } else {
-                        $respuesta = $cotContr->listar_checklist_controlador(null, $regsPagina, 'true');
+                        $respuesta = $cotContr->listar_checklist_controlador(null, $regsPagina, 'false');
                     }
                     
                     ?>
@@ -71,25 +71,8 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
                             </div>
                             <div class="col-md-1 col-12"></div>
                             <div class="col-md-2 col-12" style="text-align: right">
-                                <label class="control-label" >&nbsp;</label>
-                                <?php /*if($_SESSION['Rol']->principal === true || $_SESSION['Rol']->id ==1){ */ ?>
-                                <button style="width: 100%;" class="btn btn-primary btn-sm" type="button" 
-                                        onclick="ejecutarReporteCsv('XLSCHECKLISTRECEPCION', document.querySelector('#dtFechaIni').value, document.querySelector('#dtFechaFin').value);">
-                                    <i class="fa fa-file-excel-o"></i><span id="btnText">Exportar xls</span></button>
-                                <?php /*}*/ ?>
                             </div>
                         </div>
-                        
-                        <div class="row" style="padding-top: 10px">
-                            <div class="col-md-2 col-12">
-                                <?php /*if($_SESSION['Rol']->principal === true || $_SESSION['Rol']->id ==1){*/ ?>
-                                <button class="btn btn-primary btn-sm" type="button" 
-                                            onclick="ejecutarReporteCsv('XLSBITACORA', document.querySelector('#dtFechaIni').value, document.querySelector('#dtFechaFin').value);">
-                                    <i class="fa fa-file-excel-o"></i><span id="btnText">Exportar bit&aacute;cora</span></button>
-                                <?php /*}*/ ?>
-                            </div>
-                        </div>
-                            
                             
                         <div class="RespuestaAjax"></div>
                         <br>
@@ -116,7 +99,7 @@ include 'Template/Modals/modalChecklistRecepcion.php'; ?>
                                     <tr>
                                         <td>
                                             <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" title="Ver detalle recepci&oacute;n"
-                                                    onclick='abrirModalRecepcion(variableComp = <?php echo json_encode($recepcion); ?>, 0)'></button>
+                                                    onclick='abrirModalRecepcion(variableComp = <?php echo json_encode($recepcion); ?>, 1)'></button>
                                         </td>
                                         
                                         <td><?php echo date("d/m/Y H:i:s", $recepcion->fechaRecepcion / 1000); ?></td>

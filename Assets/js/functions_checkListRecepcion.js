@@ -174,7 +174,7 @@ function agregarUserCheckList() {
 
 
 
-function abrirModalRecepcion(val_datos){
+function abrirModalRecepcion(val_datos, verGuardar){
     const LOADING = document.querySelector('.loader');
     LOADING.style = 'display: flex;';
     
@@ -199,9 +199,13 @@ function abrirModalRecepcion(val_datos){
             
             //bloquear el boton guardar si el estado ya es COMPLETO
             document.querySelector('#btnActionForm').style = '';
-            if(val_datos.estado === "COMPLETO"){
+            document.querySelector('#btnImprimir').style = '';
+//            
+            if(val_datos.estado === "COMPLETO" || verGuardar === 0){//si es cero no muestra el boton guardar, si es 1 si muestra el boton guardar
                 document.querySelector('#btnActionForm').style = 'display: none;';
             }
+            if(verGuardar === 1)//es 1 para la pantalla de completar checklist
+                document.querySelector('#btnImprimir').style = 'display: none;';
             //cerrar el popup
 //            $('#modalAutorizaciones').modal('hide');
         },

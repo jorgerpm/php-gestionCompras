@@ -24,5 +24,6 @@ class listasBlancasUtil {
         'listaComparativos',
         'preguntasCheckList',
         'listaCheckListRecepcion',
+        'listaCheckListPorCompletar',
     ];
 }

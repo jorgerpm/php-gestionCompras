@@ -36,7 +36,7 @@
                         <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                         
                         &nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-secondary" type="button" onclick="ejecutarReportePdf('RECEPCION', document.querySelector('#txtIdCheckList').value);" >
+                        <button id="btnImprimir" class="btn btn-secondary" type="button" onclick="ejecutarReportePdf('RECEPCION', document.querySelector('#txtIdCheckList').value);" >
                             <i class="fa fa-fw fa-lg fa-print"></i>
                             <span id="btnText">Imprimir</span>
                         </button>
