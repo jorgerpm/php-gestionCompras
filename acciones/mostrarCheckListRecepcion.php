@@ -103,7 +103,7 @@ if(isset($_POST['dataChecklistRecep'])){
             </div -->
             <div class="col-md-3">
                 <label class="control-label">CANTIDAD RECIBIDA</label>
-                <input type="number" class="form-control form-control-sm" id="txtCantidadRecep" name="txtCantidadRecep"
+                <input type="number" step="any" class="form-control form-control-sm" id="txtCantidadRecep" name="txtCantidadRecep"
                        value="<?php echo $respuesta->cantidadRecibida; ?>" min="1"
                            <?php echo ($respuesta->cantidadRecibida!=null && $respuesta->cantidadRecibida!="" && $respuesta->cantidadRecibida>0) ? "readonly" : "" ?> required="">
             </div>
@@ -124,7 +124,7 @@ if(isset($_POST['dataChecklistRecep'])){
         <div class="row">
             <div class="col-md-3">
                 <label class="control-label">MONTO TOTAL FACTURA</label>
-                <input type="number" class="form-control form-control-sm" id="txtMontoFactRecep" name="txtMontoFactRecep"
+                <input type="number" step="any" class="form-control form-control-sm" id="txtMontoFactRecep" name="txtMontoFactRecep"
                        value="<?php echo $respuesta->montoTotalFactura; ?>" min="1"
                            <?php echo ($respuesta->montoTotalFactura!=null && $respuesta->montoTotalFactura!="" && $respuesta->montoTotalFactura>0) ? "readonly" : "" ?> required="">
             </div>

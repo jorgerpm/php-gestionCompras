@@ -108,13 +108,17 @@ $('#formSolicitud').submit(function (e) {
             success: function (data) {
                 LOADING.style = 'display: none;';
                 console.log('fiiiinnn   successss', data);
+                if(data.includes("window.location.replace")){
+                    window.location.replace("index");
+                }
                 respuesta.html(data);
-//            if(data.includes("success"))
-//                window.location.href = "solicitudCotizacion";
             },
             error: function (error) {
                 LOADING.style = 'display: none;';
                 console.log('fiiiinnn   errrroooorr: ', error);
+                if(error.includes("window.location.replace")){
+                    window.location.replace("index");
+                }
                 respuesta.html(error);
             },
             statusCode: {

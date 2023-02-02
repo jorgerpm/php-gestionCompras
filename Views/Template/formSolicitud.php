@@ -35,7 +35,7 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
             <label class="control-label">Monto aprobado</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input type="number" id="txtMontoAprob" name="txtMontoAprob" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->montoAprobado : "" ?>" >
+            <input type="number" step="any" id="txtMontoAprob" name="txtMontoAprob" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->montoAprobado : "" ?>" >
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <label class="control-label">Fecha autorizaci&oacute;n RC</label>
