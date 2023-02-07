@@ -82,13 +82,17 @@
                         <table class="table table-hover table-bordered" id="tablaSolicitudes">
                             <thead>
                                 <tr>
-                                    <th style="width: 5%">Ver</th>
+                                    <th style="width: 5%"><?php echo ($_SESSION['Rol']->id == 2) ? "Cotizar" : "Ver"; ?></th>
                                     <th>Fecha solicitud</th>
                                     <th>Código solicitud</th>
                                     <th>Código de RC</th>
+                                    <?php if($_SESSION['Rol']->id == 2) {//es proveedores ?>
+                                    <th>Observaci&oacute;n</th>
+                                    <?php } else { ?>
                                     <th>Estado</th>
                                     <th>Unidad de negocio</th>
                                     <th>Usuario</th>
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,15 +101,30 @@
                                 foreach ($respuesta as $solicitud) { ?>
                                     <tr>
                                         <td>
+                                            <?php if($_SESSION['Rol']->id == 2) {//es proveedores 
+                                                $key = "hashidebsystems1";
+
+                                                $numSolEncrypt1 = openssl_encrypt($solicitud->codigoSolicitud, "aes-128-ecb", $key, OPENSSL_RAW_DATA);
+                                                $numSolEncrypt = base64_encode($numSolEncrypt1);
+                                            ?>
+                                            <a class="btn btn-info fa fa-file-archive-o" type="button" style="padding: 5px" title="Generar cotizaci&oacute;n"
+                                               href="formularioCotizacion?token=<?php echo $numSolEncrypt;?>"></a>
+                                            
+                                            <?php } else { ?>
                                             <button class="btn btn-info fa fa-external-link" type="button" style="padding: 5px" title="Ver detalle solicitud"
                                                     onclick='abrirFormulario(variableSolicitud = <?php echo json_encode($solicitud); ?>)'></button>
+                                            <?php } ?>
                                         </td>
                                         <td><?php echo date("d/m/Y H:i:s", $solicitud->fechaSolicitud / 1000); ?></td>
                                         <td><?php echo $solicitud->codigoSolicitud; ?></td>
                                         <td><?php echo $solicitud->codigoRC; ?></td>
+                                        <?php if($_SESSION['Rol']->id == 2) {//es proveedores ?>
+                                        <td><?php echo $solicitud->observacion; ?></td>
+                                        <?php } else { ?>
                                         <td><?php echo $solicitud->estado; ?></td>
                                         <td><?php echo $solicitud->unidadNegocioRC; ?></td>
                                         <td><?php echo $solicitud->usuario; ?></td>
+                                        <?php } ?>
                                     </tr>
                                 <?php }
                                 } else{

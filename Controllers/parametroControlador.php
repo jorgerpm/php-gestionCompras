@@ -3,7 +3,7 @@
 class parametroControlador extends parametroModelo {
 
     public function listarParametros() {
-        $listaParametros = parametroModelo::listar_parametros();
+        $listaParametros = parametroModelo::listar_parametros_modelo();
         if(!isset($listaParametros)) {
             $listaParametros = [];
         }
