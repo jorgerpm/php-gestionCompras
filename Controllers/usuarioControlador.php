@@ -99,7 +99,7 @@ class usuarioControlador extends usuarioModelo {
             if ($respuesta->respuesta == "ENVIO EXITOSO") {
                 return '<script>swal("", "Se envió una nueva clave al correo ingresado.", "success");</script>';
             } elseif(isset($respuesta->respuesta)) {
-                return '<script>swal("", " . Error en el envío del correo. . ", "error");</script>';
+                return '<script>swal("", "'.$respuesta->respuesta.'", "error");</script>';
             }else{
                 return '<script>swal("", "Error en el envío del correo.", "error");</script>';
             }
