@@ -52,7 +52,7 @@ if (isset($_POST['txtActivo'])) {
             }
             else{
                 if($regsPagina <= $totalRegs){
-                    echo '<li><label >Mostrando del '.($_POST['txtDesde']+1).' al '.(($regsPagina*$activo)>$totalRegs?$totalRegs:($regsPagina*$activo)).' de '.$totalRegs.'&nbsp;&nbsp;</label></li>';
+                    echo '<li><label >Mostrando del '.((isset($_POST['txtDesde']) ? $_POST['txtDesde'] : 0)+1).' al '.(($regsPagina*$activo)>$totalRegs?$totalRegs:($regsPagina*$activo)).' de '.$totalRegs.'&nbsp;&nbsp;</label></li>';
                 }
                 else{
                     echo '<li><label >Mostrando '.$totalRegs.' de '.$totalRegs.'&nbsp;&nbsp;</label></li>';

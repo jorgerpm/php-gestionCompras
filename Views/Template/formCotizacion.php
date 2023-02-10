@@ -109,6 +109,7 @@
                     <th style="width:5%">CANTIDAD</th>
                     <th>PRODUCTO</th>
                     <th style="width:30%">DETALLES - OBSERVACIONES</th>
+                    <th style="width:8%; text-align: center;">ARCHIVO</th>
                     <th style="width:10%; text-align: center">APLICA IVA <br><input id="chkTodosIva" type="checkbox" onchange="toggle(this, <?php echo count($solicitud->listaDetalles); ?>)"></th>
                     <th style="width:10%">VALOR UNITARIO</th>
                     <th style="width:10%">VALOR TOTAL</th>
@@ -126,6 +127,14 @@
                                 <td style="text-align: center"><label id="lblCantidad<?php echo $i + 1 ?>"><?php echo $listaDetalles[$i]->cantidad ?></label></td>
                                 <td><label id="lblDetalle<?php echo $i + 1 ?>"><?php echo $listaDetalles[$i]->detalle ?></label></td>
                                 <td><input id="txtObservDetalle<?php echo $i + 1 ?>" style="width: 100%; text-transform: uppercase"></td>
+                                <td style="text-align: center;">
+                                    <?php if(isset($listaDetalles[$i]->pathArchivo)){ ?>
+                                    <a href="<?php echo $listaDetalles[$i]->pathArchivo; ?>" target="_blank">
+                                        <i class="fa fa-fw fa-lg fa-download"></i>
+                                    </a>
+                                    <?php } ?>
+                                    
+                                </td>
                                 <td style="text-align: center"><input id="chkIva<?php echo $i + 1 ?>" type="checkbox" onclick="valorTotal(<?php echo count($solicitud->listaDetalles); ?>);"></td>
                                 <td style="text-align: end"><input type="number" id="txtValorUnitario<?php echo $i + 1 ?>" class="monto<?php echo $i + 1 ?>" onkeyup="valorTotalDetalle(<?php echo ($i + 1) . ', ' . count($solicitud->listaDetalles); ?>);" style="width: 100%; text-align: end;" lang="en" min="0.00" step="any"></td>
                                 <td style="text-align: end"><label id="lblValorTotal<?php echo $i + 1 ?>">0</label></td>
@@ -135,22 +144,22 @@
                 }
                 ?>
                 <tr>
-                    <td colspan="4"></td>
+                    <td colspan="5"></td>
                     <td style="font-weight: bold; text-align: end">SUBTOTAL:</td>
                     <td style="text-align: end"><label id="lblSubtotal">0</label></td>
                 </tr>
                 <tr>
-                    <td colspan="4"></td>
+                    <td colspan="5"></td>
                     <td style="font-weight: bold; text-align: end">SUBTOTAL SIN IVA:</td>
                     <td style="text-align: end"><label id="lblSubtotalSinIva">0</label></td>
                 </tr>
                 <tr>
-                    <td colspan="4"></td>
+                    <td colspan="5"></td>
                     <td style="font-weight: bold; text-align: end">IVA:</td>
                     <td style="text-align: end"><label id="lblIva">0</label></td>
                 </tr>
                 <tr>
-                    <td colspan="4"></td>
+                    <td colspan="5"></td>
                     <td style="font-weight: bold; text-align: end">TOTAL:</td>
                     <td style="text-align: end"><label id="lblTotal">0</label></td>
                 </tr>

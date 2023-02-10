@@ -23,10 +23,25 @@ class solicitudControlador extends solicitudModelo {
         $detalles = array();
         
         for($i=0;$i<$registros;$i++){
+            
+            //aqui la parte del archivo que se carga con cada detalle
+            $destino = null;
+            //echo "va a entraar " . isset($_FILES['archivoDeta'.$i]);
+            if(isset($_FILES['archivoDeta'.$i])){
+                $carpeta = "../archivosDetalles/";
+                opendir($carpeta);
+                $destino = $carpeta . $_FILES['archivoDeta'.$i]['name'];
+                copy($_FILES['archivoDeta'.$i]['tmp_name'], $destino);
+                
+                $destino = str_replace("../", "", $destino);
+              //  echo $destino;
+            }
+            
             $dt = [
                 'id' => isset($post['txtIdDetalle'.$i]) ? $post['txtIdDetalle'.$i] : 0,
                 'cantidad' => $post['txtCantidad'.$i],
-                'detalle' => mb_strtoupper($post['txtDetalle'.$i], 'utf-8')
+                'detalle' => mb_strtoupper($post['txtDetalle'.$i], 'utf-8'),
+                'pathArchivo' => $destino,
             ];
             
             $detalles[] = $dt;

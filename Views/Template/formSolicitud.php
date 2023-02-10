@@ -115,8 +115,8 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
                     <th style="width: 5%">Cantidad</th>
                     <!-- th>C&oacute;digo producto</th -->
                     <th>Descripci&oacute;n</th>
-                    <!-- th>Precio unitario</th>
-                    <th>Precio total</th -->
+                    
+                    <th>Archivo</th>
                     <th style="width: 5%"></th>
                 </tr>
             </thead>
@@ -127,6 +127,7 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
                         echo '<tr>';
                         echo '<td><input type="number" id="txtCantidad' . ($i + 1) . '" style="width: 100%" value="' . $solicitudGet->listaDetalles[$i]->cantidad . '"></td>'
                         . '<td><input id="txtDetalle' . ($i + 1) . '" style="width: 100%; text-transform: uppercase;" value="' . $solicitudGet->listaDetalles[$i]->detalle . '"></td>'
+                        . '<td>aqui archivo</td>'
                         . '<td><input id="' . ($i + 1) . '" type="button" value="x" onclick="eliminarFila(this);">';
                         echo '<input type="hidden" id="txtIdDetalle' . ($i + 1) . '" name="txtIdDetalle' . ($i + 1) . '" value="' . $solicitudGet->listaDetalles[$i]->id . '"></td>';
                         echo '</tr>';

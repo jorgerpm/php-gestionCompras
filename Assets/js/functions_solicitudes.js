@@ -11,7 +11,10 @@ function agregarFila() {
 //    console.log("index tabla: ", index);
 //    console.log("index tbody: ", tbody.rows.length);
 
-    tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + index + '" style="width: 100%"></td><td><input id="txtDetalle' + index + '" style="width: 100%; text-transform: uppercase;"></td><td><input id="' + index + '" type="button" value="x" onclick="eliminarFila(this);">'
+    tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + index + '" style="width: 100%"></td>'
+            + '<td><input id="txtDetalle' + index + '" style="width: 100%; text-transform: uppercase;"></td>'
+            + '<td><input type="file" name="fileDeta'+index+'" class="btn btn-primary btn-sm fa" id="fileDeta'+index+'" ></td>'
+            + '<td><input id="' + index + '" type="button" value="x" onclick="eliminarFila(this);">'
             + '<input type="hidden" id="txtIdDetalle' + index + '" name="txtIdDetalle' + index + '" value="0"></td>';
 }
 
@@ -28,13 +31,14 @@ function eliminarFila(input) {
     for (i = 0; i < tbody.rows.length; i++) {
         tbody.rows[i].cells[0].children[0].id = 'txtCantidad' + i;
         tbody.rows[i].cells[1].children[0].id = 'txtDetalle' + i;
-        tbody.rows[i].cells[2].children[0].id = i;
+        tbody.rows[i].cells[2].children[0].id = 'fileDeta' + i;
+        tbody.rows[i].cells[3].children[0].id = i;
         //para el input oculto
-        tbody.rows[i].cells[2].children[1].id = 'txtIdDetalle' + i;
+        tbody.rows[i].cells[3].children[1].id = 'txtIdDetalle' + i;
 
 //            console.log(tabla.rows[i].cells[0].children[0].id);
 //            console.log(tabla.rows[i].cells[1].children[0].id);
-        console.log(tbody.rows[i].cells[2].children[1].id);
+        console.log(tbody.rows[i].cells[3].children[1].id);
     }
 
 }
@@ -95,6 +99,14 @@ $('#formSolicitud').submit(function (e) {
             formdata.append(txtIdCantidad, cant);
             formdata.append(txtIdDetalle, det);
             formdata.append(txtCodigoDetalle, idDetalle);
+            
+            //para los archivos
+            let txtFileDeta = "fileDeta"+i;
+            var fileDeta = document.querySelector("#"+txtFileDeta);
+            if(fileDeta.files.length > 0 ) {
+                console.log("filll: ", fileDeta.files[0]);
+                formdata.append('archivoDeta'+i, fileDeta.files[0]); // En la posición 0; es decir, el primer elemento
+            }
         }
 
 
@@ -193,13 +205,10 @@ function abrirFormulario(val_datos) {
         }
 
         for (let i = 0; i < val_datos.listaDetalles.length; i++) {
-//            console.log(val_datos.listaDetalles[i]);
-//            tbody.insertRow().innerHTML = '<td>' + val_datos.listaDetalles[i].cantidad + '</td>'
-//                    + '<td>' + val_datos.listaDetalles[i].detalle + '</td>'
-//                    + '<td></td>';
 
             tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + i + '" value="'+val_datos.listaDetalles[i].cantidad+'" style="width: 100%" readonly></td>\n\
 <td><input id="txtDetalle' + i + '" value="'+val_datos.listaDetalles[i].detalle+'" style="width: 100%; text-transform: uppercase;" readonly></td>\n\
+<td>'+(val_datos.listaDetalles[i].pathArchivo ? '<a href="'+val_datos.listaDetalles[i].pathArchivo+'" target="_blank"><i class="fa fa-fw fa-lg fa-download"></i></a>' : '')+'</td>\n\
 <td><input type="hidden" id="txtIdDetalle' + i + '" name="txtIdDetalle' + i + '" value="'+val_datos.listaDetalles[i].id+'"></td>';
         }
 
@@ -294,6 +303,7 @@ fileSelector.addEventListener('change', (event) => {
 
                 tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + index + '" style="width: 100%" value="' + columnas[0] + '"></td>'
                         + '<td><input id="txtDetalle' + index + '" style="width: 100%; text-transform: uppercase;" value="' + columnas[1] + '"></td>'
+                        + '<td><input type="file" name="fileDeta'+index+'" class="btn btn-primary btn-sm fa" id="fileDeta'+index+'" ></td>'
                         + '<td><input id="' + index + '" type="button" value="x" onclick="eliminarFila(this);">'
                         + '<input type="hidden" id="txtIdDetalle' + index + '" name="txtIdDetalle' + index + '" value="0"></td>';
             }
