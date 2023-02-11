@@ -118,7 +118,16 @@ if(isset($_GET['token'])){
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class="control-label">Contraseña:</label>
-                                                <input class="form-control" id="txtClave" name="txtClave" type="password" placeholder="Contraseña">
+                                                <div class="input-group">
+                                                <input class="form-control" id="txtClave" name="txtClave" type="password" placeholder="Contraseña" required=""
+                                                       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,20}$"
+                                                        minlength="8" maxlength="20">
+                                                <div class="input-group-append">
+                                                    <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                                  </div>
+                                                </div>
+                                                <label class="control-label">M&iacute;nimo 8 caracteres. M&aacute;ximo 20. Al menos una letra mayúscula. Al menos una letra min&uacute;scula. 
+Al menos un dígito. Y al menos uno de los siguientes caracteres ! @ $ % & * ?</label>
                                             </div>
                                         </div>
                                         <div class="tile-footer" style="text-align: end;">
@@ -210,6 +219,25 @@ if(isset($_GET['token'])){
                     $("#txtUsuarioProveedor").val(value);
                 });
             });
+        </script>
+        <script type="text/javascript">
+        function mostrarPassword(){
+                        var cambio = document.getElementById("txtClave");
+                        if(cambio.type == "password"){
+                                cambio.type = "text";
+                                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                        }else{
+                                cambio.type = "password";
+                                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                        }
+                } 
+
+                $(document).ready(function () {
+                //CheckBox mostrar contraseña
+                $('#ShowPassword').click(function () {
+                        $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+                });
+        });
         </script>
     </body>
 </html>
