@@ -14,11 +14,25 @@
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
-                    <div class="mb-3">
-                        <button class="btn btn-primary btn-sm fa" type="button" onclick="openModalProveedor(null);"><i class="fas fa-plus-circle"></i> Nuevo</button>
-                        <div style="text-align: end; margin-top: -30px">
-                            <input type="file" name="" class="btn btn-primary btn-sm fa" id="inputFileCsv" accept=".csv" required="">
-                            <button type="button" class="btn btn-primary fa" name="btnCargarArchivo" id="btnCargarArchivo">cargar proveedores</button>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button class="btn btn-primary btn-sm fa" type="button" onclick="openModalProveedor(null);"><i class="fas fa-plus-circle"></i> Nuevo</button>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4" style="text-align: end; ">
+                            <input type="file" name="" class="btn btn-primary btn-sm fa" id="inputFileCsv" accept=".csv" required="" style="width: 100%">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary fa" name="btnCargarArchivo" id="btnCargarArchivo">
+                                <i class="fa fa-upload"></i><span id="btnText">Cargar archivo</span></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary fa" name="btnExportarProvs" id="btnExportarProvs" 
+                                    onclick="ejecutarReporteCsv('XLSPROVEEDORES', null, null);">
+                                <i class="fa fa-file-excel-o"></i><span id="btnText">Exportar xls</span></button>
                         </div>
                     </div>
                     <div>

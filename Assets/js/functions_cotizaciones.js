@@ -288,6 +288,16 @@ function abrirFormulario(val_datos) {
             rowAux.insertCell().innerHTML = '<label id="lblCantidad' + i + '" style="width: 100%; text-align: center;">' + val_datos.listaDetalles[i].cantidad + '</label>';
             rowAux.insertCell().innerHTML = '<label id="lblDetalle' + i + '">' + val_datos.listaDetalles[i].detalle + '</label>';
             rowAux.insertCell().innerHTML = '<label id="txtObservDetalle' + i + '" style="width: 100%">' + val_datos.listaDetalles[i].observacion + '</label>';
+            
+            console.log(";;;;", val_datos.solicitudDto.listaDetalles[i]);
+            
+            if(val_datos.solicitudDto.listaDetalles[i] && val_datos.solicitudDto.listaDetalles[i].pathArchivo){
+                rowAux.insertCell().innerHTML = '<div style="text-align:center;"><a href="'+val_datos.solicitudDto.listaDetalles[i].pathArchivo+'" target="_blank"><i class="fa fa-fw fa-lg fa-download"></i></a></div>';
+            }
+            else{
+                rowAux.insertCell().innerHTML = "";
+            }
+            
             rowAux.insertCell().innerHTML = '<label id="chkIva' + i + '" style="width: 100%; text-align: center;">' + (val_datos.listaDetalles[i].tieneIva ? 'SI' : 'NO') + '</label>';
             rowAux.insertCell().innerHTML = '<label id="txtValorUnitario' + i + '" class="monto' + i + '" style="width: 100%; text-align: end;">' + formatNumberES(val_datos.listaDetalles[i].valorUnitario, 2) + '</label>';
             rowAux.insertCell().innerHTML = '<label id="lblValorTotal' + i + '" style="width: 100%; text-align: end;">' + formatNumberES(val_datos.listaDetalles[i].valorTotal, 2) + '</label>';
@@ -315,6 +325,9 @@ function generarOC(val_datos) {
     var numeroSolicitud = document.querySelector('#txtCodSolComp').value;
     var rucProveedor = document.querySelector('#txtRucProv').value;
     var obsComparativo = document.querySelector('#txtObsComp').value;
+    
+    var txtDetaFinal = document.querySelector('#txtDetaFinal').value;
+    var txtObserOC = document.querySelector('#txtObserOC').value;
 
     if (obsComparativo !== null && obsComparativo !== '') {
         
@@ -345,7 +358,8 @@ function generarOC(val_datos) {
         $.ajax({
             type: 'POST',
             url: 'acciones/generarOrdenCompra.php',
-            data: {"txtNumSol": numeroSolicitud, "txtRuc": rucProveedor, "txtObsComp": obsComparativo, "detallesProd": detsCodigos},
+            data: {"txtNumSol": numeroSolicitud, "txtRuc": rucProveedor, "txtObsComp": obsComparativo, "detallesProd": detsCodigos,
+            'txtDetaFinal':txtDetaFinal,'txtObserOC':txtObserOC},
             //        cache: false,
             //        contentType: false,
             //        processData: false,

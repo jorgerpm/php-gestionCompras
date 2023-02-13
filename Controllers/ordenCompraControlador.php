@@ -9,7 +9,9 @@ class ordenCompraControlador extends ordenCompraModelo {
                 'estado' => 'GENERADO_OC',
                 'usuario' => $_SESSION['Usuario']->nombre,
                 'idUsuario' => $_SESSION['Usuario']->id,
-                'observacion' => mb_strtoupper($_POST['txtObsComp'], 'utf-8'), //esta es la observacion para el comparativo
+                'observacion' => mb_strtoupper($_POST['txtObserOC'], 'utf-8'),
+            'detalleFinal' => mb_strtoupper($_POST['txtDetaFinal'], 'utf-8'),
+            'observacionComparativo' => mb_strtoupper($_POST['txtObsComp'], 'utf-8'), //esta es la observacion para el comparativo
                 "listaDetalles" => $_POST['detallesProd'],
             );
         

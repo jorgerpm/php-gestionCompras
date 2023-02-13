@@ -13,6 +13,7 @@ function abrirFormularioOrdenCompra(val_datos, rolAutoriza) {
         document.querySelector('#txtFecha').value = new Date(val_datos.fechaOrdenCompra).toISOString().split('T')[0];
         //document.querySelector('#txtRubrosAdicionales').value = val_datos.adicionales;
         document.querySelector('#txtObservaciones').value = val_datos.observacion;
+        document.querySelector('#txtDetaFinal').value = val_datos.detalleFinal;
         document.querySelector('#txtEstado').value = val_datos.estado;
         
         document.querySelector('#txtUsuario').value = val_datos.usuario;

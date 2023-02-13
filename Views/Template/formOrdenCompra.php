@@ -125,7 +125,11 @@
         </table>
         <div>
             <label class="control-label">Observaciones:</label>
-            <textarea class="form-control" id="txtObservaciones" name="txtObservaciones" placeholder="Observaciones" style="text-transform: uppercase;"></textarea>
+            <textarea class="form-control" id="txtObservaciones" name="txtObservaciones"  style="text-transform: uppercase;" readonly=""></textarea>
+        </div>
+        <div>
+            <label class="control-label">Detalle final O.C.:</label>
+            <textarea class="form-control" id="txtDetaFinal" name="txtDetaFinal" style="text-transform: uppercase;" readonly=""></textarea>
         </div>
     </div>
     <br>
