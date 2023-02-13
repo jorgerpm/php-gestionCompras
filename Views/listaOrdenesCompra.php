@@ -90,6 +90,7 @@
                                     <th style="width: 5%">Aut.</th>
                                     <th style="width: 5%">Check.</th>
                                     <th>Fecha orden de compra</th>
+                                    <th>Código O.C.</th>
                                     <th>Código solicitud</th>
                                     <th>Código RC</th>
                                     <th>Estado</th>
@@ -125,6 +126,7 @@
                                         </td>
                                         
                                         <td><?php echo date("d/m/Y H:i:s", $ordenCompra->fechaOrdenCompra / 1000); ?></td>
+                                        <td><?php echo $ordenCompra->codigoOrdenCompra; ?></td>
                                         <td><?php echo $ordenCompra->codigoSolicitud; ?></td>
                                         <td><?php echo $ordenCompra->codigoRC; ?></td>
                                         <td><?php echo $ordenCompra->estado; ?></td>
