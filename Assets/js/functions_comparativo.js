@@ -72,6 +72,7 @@ function abrirModalCodigoProducto(val_datosAux) {
         var val_datos=null;
         val_datosAux.map(v=> {
             console.log("dd: ", v);
+            console.log("aqui ric: ", rucProveedor);
             if(v.codigoSolicitud === numeroSolicitud && v.rucProveedor === rucProveedor){
                 console.log("si igual");
                 val_datos = v;

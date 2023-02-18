@@ -58,64 +58,75 @@ $('#frmCotizacion').submit(function (e) {
     LOADING.style = 'display: flex;';
 
     e.preventDefault(); //no se envíe el submit todavía
-
-    //obtener los datos de los totales
-    var lblSubtotal = document.getElementById('lblSubtotal').innerHTML;
-    var lblSubtotalSinIva = document.getElementById('lblSubtotalSinIva').innerHTML;
-    var lblIva = document.getElementById('lblIva').innerHTML;
-    var lblTotal = document.getElementById('lblTotal').innerHTML;
-
-    //obtener datos de los detalles
-    var regs = document.getElementById('registrosTabla').value;
-    var listaDetalles = new Array();
-    for (i = 1; i <= regs; i++) {
-        const detalle = {
-            cantidad: document.getElementById('lblCantidad' + i).innerHTML,
-            detalle: document.getElementById('lblDetalle' + i).innerHTML,
-            observDetalle: document.getElementById('txtObservDetalle' + i).value,
-            tieneIva: document.getElementById('chkIva' + i).checked,
-            valorUnitario: document.getElementById('txtValorUnitario' + i).value,
-            valorTotal: document.getElementById('lblValorTotal' + i).innerHTML,
-        };
-        listaDetalles.push(detalle);
+    
+    //comprobar que si exista el proveedor buscado
+    if(document.querySelector("#txtRazonSocial").value === null || document.querySelector("#txtRazonSocial").value === ''){
+        console.log("NOOOO existe la razon social");
+        swal('','COMPLETE LOS DATOS DEL PROVEEDOR','warning');
+        LOADING.style = 'display: none;';
     }
+    else{
+        console.log("SII existe la razon social");
 
+        //obtener los datos de los totales
+        var lblSubtotal = document.getElementById('lblSubtotal').innerHTML;
+        var lblSubtotalSinIva = document.getElementById('lblSubtotalSinIva').innerHTML;
+        var lblIva = document.getElementById('lblIva').innerHTML;
+        var lblTotal = document.getElementById('lblTotal').innerHTML;
 
-    var form = $(this);
-
-    var accion = form.attr('action');
-    var metodo = form.attr('method');
-
-    var respuesta = form.children('.RespuestaAjax');
-
-    var formdata = new FormData(this);
-
-    formdata.append('lblSubtotal', lblSubtotal);
-    formdata.append('lblSubtotalSinIva', lblSubtotalSinIva);
-    formdata.append('lblIva', lblIva);
-    formdata.append('lblTotal', lblTotal);
-
-    formdata.append('listaDetalles', JSON.stringify(listaDetalles));
-
-    console.log(listaDetalles);
-
-    $.ajax({
-        type: metodo,
-        url: accion,
-        data: formdata ? formdata : form.serialize(),
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            LOADING.style = 'display: none;';
-            respuesta.html(data);
-            document.getElementById("frmCotizacion").reset();
-        },
-        error: function (error) {
-            LOADING.style = 'display: none;';
-            respuesta.html(error);
+        //obtener datos de los detalles
+        var regs = document.getElementById('registrosTabla').value;
+        var listaDetalles = new Array();
+        for (i = 1; i <= regs; i++) {
+            const detalle = {
+                cantidad: document.getElementById('lblCantidad' + i).innerHTML,
+                detalle: document.getElementById('lblDetalle' + i).innerHTML,
+                observDetalle: document.getElementById('txtObservDetalle' + i).value,
+                tieneIva: document.getElementById('chkIva' + i).checked,
+                valorUnitario: document.getElementById('txtValorUnitario' + i).value,
+                valorTotal: document.getElementById('lblValorTotal' + i).innerHTML,
+            };
+            listaDetalles.push(detalle);
         }
-    });
+
+
+        var form = $(this);
+
+        var accion = form.attr('action');
+        var metodo = form.attr('method');
+
+        var respuesta = form.children('.RespuestaAjax');
+
+        var formdata = new FormData(this);
+
+        formdata.append('lblSubtotal', lblSubtotal);
+        formdata.append('lblSubtotalSinIva', lblSubtotalSinIva);
+        formdata.append('lblIva', lblIva);
+        formdata.append('lblTotal', lblTotal);
+
+        formdata.append('listaDetalles', JSON.stringify(listaDetalles));
+
+        console.log(listaDetalles);
+
+        $.ajax({
+            type: metodo,
+            url: accion,
+            data: formdata ? formdata : form.serialize(),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                LOADING.style = 'display: none;';
+                respuesta.html(data);
+                document.getElementById("frmCotizacion").reset();
+            },
+            error: function (error) {
+                LOADING.style = 'display: none;';
+                respuesta.html(error);
+            }
+        });
+        
+    }
 });
 
 //funcion para buscar al cotizacion por codigoRC
@@ -479,6 +490,8 @@ function selectCotizacion(source, ruc) {
     } else {
         document.querySelector("#btnActionForm").disabled = true;
     }
+    
+    console.log("ruc select: ",  document.querySelector("#txtRucProv").value);
 }
 
 
@@ -493,16 +506,24 @@ function buscarProvPorRuc() {
 //            contentType: false,
 //            processData: false,
             success: function (data) {
-                console.log(JSON.parse(data));
-                data = JSON.parse(data);
-//                LOADING.style = 'display: none;';
-                document.querySelector("#txtRazonSocial").value = data.razonSocial;
-                document.querySelector("#txtTelefono").value = data.telefono1;
-                document.querySelector("#txtCorreo").value = data.correo;
-                document.querySelector("#txtDireccion").value = data.direccion;
-                
-//                document.querySelector("#txtDireccion").value = data.direccion;
-
+                if(data !== null){
+                    console.log("proveedor encontrado: ", JSON.parse(data));
+                    data = JSON.parse(data);
+                    if(data !== null && data.id !== null){
+        //                LOADING.style = 'display: none;';
+                        document.querySelector("#txtRazonSocial").value = data.razonSocial;
+                        document.querySelector("#txtTelefono").value = data.telefono1;
+                        document.querySelector("#txtCorreo").value = data.correo;
+                        document.querySelector("#txtDireccion").value = data.direccion;
+    //                document.querySelector("#txtDireccion").value = data.direccion;
+                    }
+                    else{
+                        swal('','NO EXISTE UN PROVEEDOR CON EL RUC INGRESADO','warning');
+                    }
+                }
+                else{
+                    swal('','NO EXISTE UN PROVEEDOR CON EL RUC INGRESADO','warning');
+                }
             },
             error: function (error) {
 //                LOADING.style = 'display: none;';

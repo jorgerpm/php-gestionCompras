@@ -94,16 +94,14 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
     </div>
 
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-12">
+        <div class="col-md-2 col-sm-2 col-12">
             <button class="btn btn-primary btn-sm fa" type="button" onclick="agregarFila();" id="btnAniadir">
                 <i class="fa fa-plus"></i> A&ntilde;adir producto</button>
-                
-                <div style="text-align: end; margin-top: -30px">
-                    <input type="file" name="" class="btn btn-primary btn-sm fa" id="fileDetalles" accept=".csv" >
-                </div>
-
         </div>
-
+        <div class="col-md-7"></div>
+        <div class="col-md-3" style="text-align: end;">
+            <input type="file" name="" class="btn btn-primary btn-sm fa" id="fileDetalles" accept=".csv" style="width: 100%;">
+        </div>
     </div>
 
 
