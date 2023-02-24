@@ -100,6 +100,8 @@
                                     <th>Subtotal sin iva</th>
                                     <th>IVA</th>
                                     <th>Total</th>
+                                    <th>Usuario rechaza</th>
+                                    <th>Raz&oacute;n rechazo</th>
                                     <!-- th>Usuario</th -->
                                 </tr>
                             </thead>
@@ -136,11 +138,22 @@
                                         <td style="text-align: end;"><?php echo number_format($ordenCompra->subtotalSinIva, 2); ?></td>
                                         <td style="text-align: end;"><?php echo number_format($ordenCompra->iva, 2); ?></td>
                                         <td style="text-align: end;"><?php echo number_format($ordenCompra->total, 2); ?></td>
+                                        
+                                        <?php $usRech = ""; $razonRech = "";
+                                        foreach($ordenCompra->listaAutorizaciones as $autoriz){ 
+                                            if($autoriz->estado == "RECHAZADO"){
+                                                $usRech = $autoriz->usuarioAutoriza; 
+                                                $razonRech = $autoriz->observacion;
+                                            }
+                                        }?>
+                                        
+                                        <td><?php echo $usRech; ?></td>
+                                        <td><?php echo $razonRech; ?></td>
                                         <!-- td>?php /*echo $ordenCompra->usuario;*/ ?></td -->
                                     </tr>
                                 <?php }
                                 } else{
-                                    echo '<td colspan="12">No existen registros.</td>';
+                                    echo '<td colspan="16">No existen registros.</td>';
                                 } ?>
                             </tbody>
                         </table>
