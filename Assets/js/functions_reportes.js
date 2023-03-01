@@ -79,11 +79,19 @@ function pruebajspdf(val_datos) {
     console.log(elementHTML);
 
     console.log(val_datos);
+    
+    let dataImpr = {'comparativoSelect': val_datos}
+    
+    if(val_datos === null){
+        var d = document.getElementById('txtNumSol');
+        console.log("es null:: ", d);
+        dataImpr = {'txtNumSol': d.value};
+    }
 
     $.ajax({
         type: 'POST',
         url: 'acciones/imprimirComparativo.php',
-        data: {'comparativoSelect': val_datos},
+        data: dataImpr,
 //            cache: false,
 //            contentType: false,
 //            processData: false,

@@ -220,11 +220,13 @@ echo '</div>
                             
                         <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                         
+                        
                         &nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-secondary" type="button" onclick='pruebajspdf(variableComp = <?php echo json_encode($_POST['comparativoSelect']); ?>);' >
+                        <button class="btn btn-secondary" type="button" onclick='pruebajspdf(variableComp = <?php if(isset($_POST['comparativoSelect'])){ echo json_encode($_POST['comparativoSelect']); }else{ echo "null";} ?>);' >
                             <i class="fa fa-fw fa-lg fa-print"></i>
                             <span id="btnText">Imprimir</span>
                         </button>
+                        
                         
                         &nbsp;&nbsp;&nbsp;
                         <button id="btnRechazar" class="btn btn-warning" type="button" onclick="rechazarTodas();" >

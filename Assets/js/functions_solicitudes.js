@@ -103,7 +103,7 @@ $('#formSolicitud').submit(function (e) {
             //para los archivos
             let txtFileDeta = "fileDeta"+i;
             var fileDeta = document.querySelector("#"+txtFileDeta);
-            if(fileDeta.files.length > 0 ) {
+            if(fileDeta && fileDeta.files.length > 0 ) {
                 console.log("filll: ", fileDeta.files[0]);
                 formdata.append('archivoDeta'+i, fileDeta.files[0]); // En la posición 0; es decir, el primer elemento
             }
