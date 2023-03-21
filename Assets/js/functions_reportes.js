@@ -134,15 +134,25 @@ function pruebajspdf(val_datos) {
 
 
 
-const formatNumberES = (n, d = 0) => {
+const NOFUNCA_formatNumberESxxx = (n, d = 0) => {
+    console.log("el d: ", d);
     n = new Intl.NumberFormat("en-US").format(parseFloat(n).toFixed(d));
 //    n=new Intl.NumberFormat("en-US",  { style: 'currency', currency: 'USD' }).format(parseFloat(n).toFixed(d));
     if (d > 0) {
         // Obtenemos la cantidad de decimales que tiene el numero
-        const decimals = n.indexOf(".") > -1 ? n.length - 1 - n.indexOf(".") : 0;
+        
+        console.log("vaolor.n: ", n);
+        console.log("n.indexOf():", n.indexOf("."));
+        console.log("n.length: ", n.length);
+        
+        const decimals = n.indexOf(".") > -1 ? n.length - n.indexOf(".") : 0;
+        
+        console.log("decimals: ", decimals);
 
         // añadimos los ceros necesios al numero
         n = (decimals === 0) ? n + "." + "0".repeat(d) : n + "0".repeat(d - decimals);
+        
+        console.log("n: ", n);
     }
     return n;
 }

@@ -10,6 +10,9 @@ function eliminarFilaRecep(input) {
         tbody.rows[i].cells[0].children[0].id = "txtIdRolRecep" + i;
         tbody.rows[i].cells[1].children[0].id = "txtIdUserRecep" + i;
         tbody.rows[i].cells[3].children[0].id = "i"+i;
+        
+        tbody.rows[i].cells[3].children[1].id = "txtCampoBodega"+i;
+        tbody.rows[i].cells[3].children[2].id = "txtFechaAprob"+i;
     }
 }
 
@@ -46,6 +49,16 @@ $('.FormularioRecepciones').submit(function (e) {
             let txtIdRolRecep = 'txtIdRolRecep' + i;
             let idRol = document.getElementById(txtIdRolRecep).value;
             formdata.append(txtIdRolRecep, idRol);
+            
+            //para los campos adicionaes de bodega y fecha
+            let txtCampoBodega = 'txtCampoBodega' + i;
+            let valorCampoBodega = document.getElementById(txtCampoBodega).value;
+            formdata.append(txtCampoBodega, valorCampoBodega);
+            
+            let txtFechaAprob = 'txtFechaAprob' + i;
+            let valorFechaAprob = document.getElementById(txtFechaAprob).value;
+            formdata.append(txtFechaAprob, valorFechaAprob);
+            
         }
 
         $.ajax({
@@ -153,8 +166,8 @@ function agregarUserCheckList() {
                 fila.insertCell().innerHTML = datuser[0] + '<input type="hidden" id="txtIdUserRecep' + index + '" value="' + datuser[1] + '">';
                 fila.insertCell().innerHTML = datuser[2];
                 fila.insertCell().innerHTML = '<input id="i' + index + '" type="button" value="x" onclick="eliminarFilaRecep(this);" class="btn btn-secondary btn-sm fa">'
-                +'<input id="txtCampoBodega' + index + '" name="txtCampoBodega' + index + '" type="hidden" value="'+(tieneCamposBodega === true ? 'SI' : 'NO')+'">'
-                +'<input id="txtFechaAprob' + index + '" name="txtFechaAprob' + index + '" type="hidden" value="'+(tieneFechaAprob === true ? 'SI' : 'NO')+'">';
+                +'<input id="txtCampoBodega' + index + '" type="hidden" value="'+(tieneCamposBodega === true ? 'SI' : 'NO')+'">'
+                +'<input id="txtFechaAprob' + index + '" type="hidden" value="'+(tieneFechaAprob === true ? 'SI' : 'NO')+'">';
                 
                 
 //            } else {

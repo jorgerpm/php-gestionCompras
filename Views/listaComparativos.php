@@ -115,10 +115,10 @@
                                                 if($detalle->seleccionada){
                                                     echo '<td>'.$detalle->proveedorDto->razonSocial.'</td>';
                                                     
-                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->subtotal, 2).'</td>';
-                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->subtotalSinIva, 2).'</td>';
-                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->iva, 2).'</td>';
-                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->total, 2).'</td>';
+                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->subtotal, 4).'</td>';
+                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->subtotalSinIva, 4).'</td>';
+                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->iva, 4).'</td>';
+                                                    echo '<td style="text-align: end;">'.number_format($detalle->cotizacion->total, 4).'</td>';
                                                 }
                                             }
                                             ?>

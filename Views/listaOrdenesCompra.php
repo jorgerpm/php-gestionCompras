@@ -134,10 +134,10 @@
                                         <td><?php echo $ordenCompra->estado; ?></td>
                                         <td><?php echo $ordenCompra->unidadNegocioRC; ?></td>
                                         <td><?php echo $ordenCompra->rucProveedor; ?></td>
-                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->subtotal, 2); ?></td>
-                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->subtotalSinIva, 2); ?></td>
-                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->iva, 2); ?></td>
-                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->total, 2); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->subtotal, 4); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->subtotalSinIva, 4); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->iva, 4); ?></td>
+                                        <td style="text-align: end;"><?php echo number_format($ordenCompra->total, 4); ?></td>
                                         
                                         <?php $usRech = ""; $razonRech = "";
                                         foreach($ordenCompra->listaAutorizaciones as $autoriz){ 

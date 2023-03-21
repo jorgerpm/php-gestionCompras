@@ -176,6 +176,12 @@
         <button class="btn btn-primary" type="button" id="btnAutorizar" style="display: none" onclick="generarAutorizacion();">
                 <i class="fa fa-floppy-o"></i> Guardar</button>
         <?php } ?>
+        
+        <?php if($_SESSION['Rol']->id == 1 || $_SESSION['Rol']->principal === true) { ?>
+        <button class="btn btn-primary" type="button" id="btnActualizar" style="display: none" onclick="actualizarOC();">
+                <i class="fa fa-floppy-o"></i> Actualizar datos</button>
+        <?php } ?>
+        
         <a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
         
         &nbsp;&nbsp;&nbsp;

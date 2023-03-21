@@ -27,10 +27,10 @@ function abrirFormularioOrdenCompra(val_datos, rolAutoriza) {
         //document.querySelector('#txtValidezCotizacion').value = val_datos.validezCotizacion;
         document.querySelector('#listFormaPago').value = val_datos.formaPago;
         
-        document.querySelector('#lblSubtotal').innerHTML = formatNumberES(val_datos.subtotal, 2);
-        document.querySelector('#lblSubtotalSinIva').innerHTML = formatNumberES(val_datos.subtotalSinIva, 2);
-        document.querySelector('#lblIva').innerHTML = formatNumberES(val_datos.iva, 2);
-        document.querySelector('#lblTotal').innerHTML = formatNumberES(val_datos.total, 2);
+        document.querySelector('#lblSubtotal').innerHTML = miFormatoNumber.new(val_datos.subtotal, CANT_DECIMALES);
+        document.querySelector('#lblSubtotalSinIva').innerHTML = miFormatoNumber.new(val_datos.subtotalSinIva, CANT_DECIMALES);
+        document.querySelector('#lblIva').innerHTML = miFormatoNumber.new(val_datos.iva, CANT_DECIMALES);
+        document.querySelector('#lblTotal').innerHTML = miFormatoNumber.new(val_datos.total, CANT_DECIMALES);
 
         //ocultar input y label razón rechazo
         if(document.querySelector('#lblRazonRechazo')){
@@ -109,13 +109,34 @@ function abrirFormularioOrdenCompra(val_datos, rolAutoriza) {
             
             rowAux.insertCell().innerHTML = '<label id="lblCantidad'+i+'" style="width: 100%; text-align: center;">'+val_datos.listaDetalles[i].cantidad+'</label>';
             
-            rowAux.insertCell().innerHTML = '<label>'+ (val_datos.listaDetalles[i].codigoProducto === null ? '' : val_datos.listaDetalles[i].codigoProducto) +'</label></td>';
+            //solo si el rol es admin o es rolprincipal, y si todavia no lo han autorizado y los siguientes estados
+            if(document.querySelector('#btnActualizar') && (val_datos.estado === 'GENERADO_OC' || val_datos.estado === 'POR_AUTORIZAR' || val_datos.estado === 'AUTORIZADO_TEMP') ){
+                rowAux.insertCell().innerHTML = '<input id="txtCodProd'+i+'" name="txtCodProd'+i+'" value="'+ (val_datos.listaDetalles[i].codigoProducto === null ? '' : val_datos.listaDetalles[i].codigoProducto) +'" style="text-transform: uppercase;"></input>';
+                rowAux.insertCell().innerHTML = '<input id="lblDetalle'+i+'" name="lblDetalle'+i+'" value="'+val_datos.listaDetalles[i].detalle+'" style="text-transform: uppercase;"></input>';
+            }
+            else{
+                rowAux.insertCell().innerHTML = '<label>'+ (val_datos.listaDetalles[i].codigoProducto === null ? '' : val_datos.listaDetalles[i].codigoProducto) +'</label>';
+                rowAux.insertCell().innerHTML = '<label id="lblDetalle'+i+'">'+val_datos.listaDetalles[i].detalle+'</label>';
+            }
             
-            rowAux.insertCell().innerHTML = '<label id="lblDetalle'+i+'">'+val_datos.listaDetalles[i].detalle+'</label>';
+            
             rowAux.insertCell().innerHTML = '<label id="txtObservDetalle'+i+'" style="width: 100%">'+val_datos.listaDetalles[i].observacion+'</label>';
             rowAux.insertCell().innerHTML = '<label id="chkIva'+i+'" style="width: 100%; text-align: center;">'+(val_datos.listaDetalles[i].tieneIva ? 'SI' : 'NO')+'</label>';
-            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario'+i+'" class="monto'+i+'" style="width: 100%; text-align: end;">'+formatNumberES(val_datos.listaDetalles[i].valorUnitario, 2)+'</label>';
-            rowAux.insertCell().innerHTML = '<label id="lblValorTotal'+i+'" style="width: 100%; text-align: end;">'+formatNumberES(val_datos.listaDetalles[i].valorTotal, 2)+'</label>';
+            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario'+i+'" class="monto'+i+'" style="width: 100%; text-align: end;">'+miFormatoNumber.new(val_datos.listaDetalles[i].valorUnitario, CANT_DECIMALES)+'</label>';
+            rowAux.insertCell().innerHTML = '<label id="lblValorTotal'+i+'" style="width: 100%; text-align: end;">'+miFormatoNumber.new(val_datos.listaDetalles[i].valorTotal, CANT_DECIMALES)+'</label>'
+            + '<input id="idDetalle'+i+'" name="idDetalle'+i+'" style="display: none;" value="'+val_datos.listaDetalles[i].id+'"></input>';
+            
+            
+        }
+        
+        //para mostrar el boton de actualizadatos
+        if(document.querySelector('#btnActualizar')){
+            if(val_datos.estado === 'GENERADO_OC' || val_datos.estado === 'POR_AUTORIZAR' || val_datos.estado === 'AUTORIZADO_TEMP'){
+                document.querySelector('#btnActualizar').style = '';
+            }
+            else{
+                document.querySelector('#btnActualizar').style = 'display: none;';
+            }
         }
 
     //para la parte de los autorizadores, pero solo si ya esta autorizado la OC
@@ -189,4 +210,42 @@ function generarAutorizacion(){
             respuesta.html(error);
         }
     });
+}
+
+
+function actualizarOC(){
+    
+    const LOADING = document.querySelector('.loader');
+    LOADING.style = 'display: flex;';
+    
+    var form = document.forms['frmOrdenCompra'];
+    var formdata = new FormData(form);
+    
+    var tbody = document.getElementById('tbodySol');
+    var ixb = (tbody.rows.length - 4);//se resta cuatro por los totales
+    formdata.append("cantDetas", ixb);
+    
+//    var respuesta = form.elements('.RespuestaAjax');
+    var respuesta = $('#idRespuestaAjax');
+    
+    console.log(respuesta);
+    
+    $.ajax({
+        type: 'POST',
+        url: 'acciones/actualizarOrdenCompra.php',
+        data: formdata ? formdata : form.serialize(),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log(data);
+            LOADING.style = 'display: none;';
+            respuesta.html(data);
+        },
+        error: function (error) {
+            LOADING.style = 'display: none;';
+            respuesta.html(error);
+        }
+    });
+    
 }

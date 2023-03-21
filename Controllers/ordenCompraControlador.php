@@ -97,4 +97,40 @@ class ordenCompraControlador extends ordenCompraModelo {
         
         return $respuesta;
     }
+    
+    public function actualiza_orden_compra_controlador(){
+        
+        
+//        print_r($_POST['cantDetas']);
+        
+        $datelles = [];
+        
+       for($i=0;$i<$_POST['cantDetas'];$i++){
+           $datelles[$i] = array(
+               'id' => $_POST['idDetalle'.$i],
+               'codigoProducto' => mb_strtoupper($_POST['txtCodProd'.$i], 'utf-8'),
+               'detalle' => mb_strtoupper($_POST['lblDetalle'.$i], 'utf-8'),
+           );
+       }
+        
+        
+        $data = array(
+            'idUsuario' => $_SESSION['Usuario']->id,
+            'usuario' => $_SESSION['Usuario']->usuario,
+            'id' => $_POST['txtId'],
+            'listaDetalles' => $datelles,
+        );
+        
+//        print_r($data);
+//        echo PHP_EOL;
+        
+        $respuesta = ordenCompraModelo::actualiza_orden_compra_modelo($data);
+        
+//        print_r($respuesta);
+        
+        return '<script>swal("", "Datos actualizados correctamente.", "success")'
+                    . '.then((value) => {
+                        $(`#btnSearch`).click(); 
+                    });</script>';
+    }
 }

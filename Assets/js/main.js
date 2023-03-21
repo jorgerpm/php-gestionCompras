@@ -262,3 +262,30 @@ function exportTableToExcel(tableID, filename = ''){
         downloadLink.click();
     }
 }
+
+//para indicar cuantos decimales se quiere trabajar
+const CANT_DECIMALES = 4;
+/*
+ * funcion para formatear los valores con coma (para miles) un punto (para decimales)
+ */
+var miFormatoNumber = {
+ separador: ",", // separador para los miles
+ sepDecimal: '.', // separador para los decimales
+ formatear:function (num, decs){
+     num = num.toFixed(decs);
+ num +='';
+ var splitStr = num.split('.');
+ var splitLeft = splitStr[0];
+ var splitRight = splitStr.length > 1 ? this.sepDecimal + splitStr[1] : '';
+ var regx = /(\d+)(\d{3})/;
+ while (regx.test(splitLeft)) {
+ splitLeft = splitLeft.replace(regx, '$1' + this.separador + '$2');
+ }
+ return this.simbol + splitLeft +splitRight;
+ },
+ new:function(num, decs, simbol){
+ this.simbol = simbol ||'';
+ decs = decs || 0;
+ return this.formatear(num, decs);
+ }
+}

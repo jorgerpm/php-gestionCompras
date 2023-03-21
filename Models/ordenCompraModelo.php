@@ -25,4 +25,10 @@ class ordenCompraModelo extends serviciosWebModelo {
         $listaOrdenes = self::invocarGet('ordenCompra/listarOrdenesPorAutorizar?codigoRC='.$codigoRC.'&codigoSolicitud='.$codigoSolicitud.'&idUsuario='.$idUsuario.'&rolPrincipal='.$rolPrincipal.'&desde='.$desde.'&hasta='.$hasta, $array);
         return $listaOrdenes;
     }
+    
+    
+    protected function actualiza_orden_compra_modelo($data){
+        $ordenCompra = self::invocarPost('ordenCompra/actualizarOrdenCompra', $data);
+        return $ordenCompra;
+    }
 }

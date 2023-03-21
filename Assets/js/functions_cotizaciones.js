@@ -19,7 +19,10 @@ function valorTotalDetalle(index, cantDetalles) {
         valUnit = parseFloat(txtValUnit);
     }
     var valTotalDet = cantidad * valUnit;
-    document.getElementById('lblValorTotal' + index).innerHTML = formatNumberES(valTotalDet.toFixed(2), 2); //aqui estaba con 4 decimales
+    console.log("valTotalDet: ", valTotalDet);
+    
+    //este metodo "formatNumber.new" esta en el archivo main.js
+    document.getElementById('lblValorTotal' + index).innerHTML = miFormatoNumber.new(valTotalDet, CANT_DECIMALES);//aqui estaba con 4 decimales
 
     valorTotal(cantDetalles);
 }
@@ -43,13 +46,13 @@ function valorTotal(cantDetalles) {
                 subtotalSinIva += parseFloat(lblValTotal);
         }
     }
-    document.getElementById('lblSubtotal').innerHTML = formatNumberES(subtotal.toFixed(2), 2);
-    document.getElementById('lblSubtotalSinIva').innerHTML = formatNumberES(subtotalSinIva.toFixed(2), 2);
+    document.getElementById('lblSubtotal').innerHTML = miFormatoNumber.new(subtotal, CANT_DECIMALES);
+    document.getElementById('lblSubtotalSinIva').innerHTML = miFormatoNumber.new(subtotalSinIva, CANT_DECIMALES);
 
     var iva = subtotal * 0.12;
-    document.getElementById('lblIva').innerHTML = formatNumberES(iva.toFixed(2), 2);
+    document.getElementById('lblIva').innerHTML = miFormatoNumber.new(iva, CANT_DECIMALES);
     var total = subtotalSinIva + subtotal + iva;
-    document.getElementById('lblTotal').innerHTML = formatNumberES(total.toFixed(2), 2);
+    document.getElementById('lblTotal').innerHTML = miFormatoNumber.new(total, CANT_DECIMALES);
 }
 
 //enviar a guardar la cotizacion
@@ -206,10 +209,10 @@ function abrirFormulario(val_datos) {
         document.querySelector('#txtValidezCotizacion').value = val_datos.validezCotizacion;
         document.querySelector('#listFormaPago').value = val_datos.formaPago;
 
-        document.querySelector('#lblSubtotal').innerHTML = formatNumberES(val_datos.subtotal, 2);
-        document.querySelector('#lblSubtotalSinIva').innerHTML = formatNumberES(val_datos.subtotalSinIva, 2);
-        document.querySelector('#lblIva').innerHTML = formatNumberES(val_datos.iva, 2);
-        document.querySelector('#lblTotal').innerHTML = formatNumberES(val_datos.total, 2);
+        document.querySelector('#lblSubtotal').innerHTML = miFormatoNumber.new(val_datos.subtotal, CANT_DECIMALES);
+        document.querySelector('#lblSubtotalSinIva').innerHTML = miFormatoNumber.new(val_datos.subtotalSinIva, CANT_DECIMALES);
+        document.querySelector('#lblIva').innerHTML = miFormatoNumber.new(val_datos.iva, CANT_DECIMALES);
+        document.querySelector('#lblTotal').innerHTML = miFormatoNumber.new(val_datos.total, CANT_DECIMALES);
         
         document.querySelector('#txtobssol').value = val_datos.solicitudDto.observacion;
 
@@ -310,8 +313,8 @@ function abrirFormulario(val_datos) {
             }
             
             rowAux.insertCell().innerHTML = '<label id="chkIva' + i + '" style="width: 100%; text-align: center;">' + (val_datos.listaDetalles[i].tieneIva ? 'SI' : 'NO') + '</label>';
-            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario' + i + '" class="monto' + i + '" style="width: 100%; text-align: end;">' + formatNumberES(val_datos.listaDetalles[i].valorUnitario, 2) + '</label>';
-            rowAux.insertCell().innerHTML = '<label id="lblValorTotal' + i + '" style="width: 100%; text-align: end;">' + formatNumberES(val_datos.listaDetalles[i].valorTotal, 2) + '</label>';
+            rowAux.insertCell().innerHTML = '<label id="txtValorUnitario' + i + '" class="monto' + i + '" style="width: 100%; text-align: end;">' + miFormatoNumber.new(val_datos.listaDetalles[i].valorUnitario, CANT_DECIMALES) + '</label>';
+            rowAux.insertCell().innerHTML = '<label id="lblValorTotal' + i + '" style="width: 100%; text-align: end;">' + miFormatoNumber.new(val_datos.listaDetalles[i].valorTotal, CANT_DECIMALES) + '</label>';
         }
 
     } else {
@@ -591,4 +594,6 @@ function rechazarTodas(){
         swal("", "Debe ingresar una observación del rechazo.", "warning");
     }
 }
+
+
 

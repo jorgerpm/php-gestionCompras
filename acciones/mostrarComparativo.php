@@ -86,8 +86,8 @@ foreach ($respuesta[0]->listaDetalles as $detalle){
         foreach ($cotizacion->listaDetalles as $detCot){    
             if($detalle->detalle == $detCot->detalle){
     
-                echo   '<td style="border: 1px solid; text-align:end;">$ '.number_format($detCot->valorUnitario, 2).'</td>
-                    <td style="border: 1px solid; text-align:end;">$ '.number_format($detCot->valorTotal, 2).'</td>
+                echo   '<td style="border: 1px solid; text-align:end;">$ '.number_format($detCot->valorUnitario, 4).'</td>
+                    <td style="border: 1px solid; text-align:end;">$ '.number_format($detCot->valorTotal, 4).'</td>
                     <td style="border: 1px solid; text-align:center;">'.$cotizacion->tiempoEntrega.'</td>';
                     //<!-- hasta aca se deb repetir -->
             }
@@ -114,7 +114,7 @@ foreach ($respuesta[0]->listaDetalles as $detalle){
                 <td></td>';
     foreach ($respuesta as $cot){
         echo   '<td style="border: 1px solid;">SUBTOTAL</td>
-                <td colspan="2" style="border: 1px solid; text-align:end;">$ '.number_format($cot->subtotal, 2).'</td>';
+                <td colspan="2" style="border: 1px solid; text-align:end;">$ '.number_format($cot->subtotal, 4).'</td>';
     }
     echo   '
             </tr>
@@ -123,7 +123,7 @@ foreach ($respuesta[0]->listaDetalles as $detalle){
                 <td></td>';
     foreach ($respuesta as $cot){
         echo   '<td style="border: 1px solid;">SUBTOTAL SIN IVA</td>
-                <td colspan="2" style="border: 1px solid; text-align:end;">$ '.number_format($cot->subtotalSinIva, 2).'</td>';
+                <td colspan="2" style="border: 1px solid; text-align:end;">$ '.number_format($cot->subtotalSinIva, 4).'</td>';
     }
     echo       '
             </tr>
@@ -132,7 +132,7 @@ foreach ($respuesta[0]->listaDetalles as $detalle){
                 <td></td>';
     foreach ($respuesta as $cot){
          echo '<td style="border: 1px solid;">IVA</td>
-                <td colspan="2" style="border: 1px solid; text-align:end;">$ '.number_format($cot->iva, 2).'</td>';
+                <td colspan="2" style="border: 1px solid; text-align:end;">$ '.number_format($cot->iva, 4).'</td>';
     }
     echo   '
             </tr>
@@ -141,7 +141,7 @@ foreach ($respuesta[0]->listaDetalles as $detalle){
                 <td></td>';
     foreach ($respuesta as $cot){
         echo   '<td style="border: 1px solid;">TOTAL</td>
-                <td colspan="2" style="border: 1px solid; text-align:end;">$ '.number_format($cot->total, 2).'</td>';
+                <td colspan="2" style="border: 1px solid; text-align:end;">$ '.number_format($cot->total, 4).'</td>';
     }
     echo      '
             </tr>
