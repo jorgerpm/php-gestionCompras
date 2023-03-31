@@ -11,8 +11,8 @@ function agregarFila() {
 //    console.log("index tabla: ", index);
 //    console.log("index tbody: ", tbody.rows.length);
 
-    tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + index + '" style="width: 100%"></td>'
-            + '<td><input id="txtDetalle' + index + '" style="width: 100%; text-transform: uppercase;"></td>'
+    tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + index + '" style="width: 100%" required></td>'
+            + '<td><input id="txtDetalle' + index + '" style="width: 100%; text-transform: uppercase;" required></td>'
             + '<td><input type="file" name="fileDeta'+index+'" class="btn btn-primary btn-sm fa" id="fileDeta'+index+'" ></td>'
             + '<td><input id="' + index + '" type="button" value="x" onclick="eliminarFila(this);">'
             + '<input type="hidden" id="txtIdDetalle' + index + '" name="txtIdDetalle' + index + '" value="0"></td>';

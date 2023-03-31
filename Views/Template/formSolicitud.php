@@ -145,7 +145,7 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
     <div style="text-align: center">
         <button class="btn btn-primary" type="submit" id="btnGuardaSolic">
             <i class="fa fa-floppy-o"></i> Guardar y enviar</button>
-        <a class="btn btn-secondary" href="#" data-dismiss="modal">
+        <a class="btn btn-secondary" href="./solicitudCotizacion" data-dismiss="modal">
             <i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
     </div>
     <div class="RespuestaAjax" ></div>
