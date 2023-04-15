@@ -136,7 +136,9 @@ $('.FormLogin').submit(function (e) {
         contentType: false,
         processData: false,
         success: function (data) {
-            LOADING.style = 'display: none;';
+            if(!data.includes("window.location.href"))
+                LOADING.style = 'display: none;';
+
             textClave.value = null;
             respuesta.html(data);
         },
@@ -232,7 +234,7 @@ function exportTableToCSV(filename) {
 
 
 
-function exportTableToExcel(tableID, filename = ''){
+function exportTableToExcel(tableID, filename){
     var downloadLink;
     var dataType = 'application/vnd.ms-excel';
     var tableSelect = document.getElementById(tableID);

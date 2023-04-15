@@ -35,19 +35,41 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
             <label class="control-label">Monto aprobado</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input type="number" step="any" id="txtMontoAprob" name="txtMontoAprob" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->montoAprobado : "" ?>" >
+            <input type="number" step="any" id="txtMontoAprob" name="txtMontoAprob" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->montoAprobado : "" ?>" required="">
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <label class="control-label">Fecha autorizaci&oacute;n RC</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input id="dtFechaAprobRC" name="dtFechaAprobRC" class="form-control btn-sm" type="date" value="<?php echo isset($solicitudGet) ? date("Y-m-d", $solicitudGet->fechaAutorizaRC / 1000) : date("Y-m-d"); ?>" >
+            <input id="dtFechaAprobRC" name="dtFechaAprobRC" class="form-control btn-sm" type="date" value="<?php echo isset($solicitudGet) ? date("Y-m-d", $solicitudGet->fechaAutorizaRC / 1000) : date("Y-m-d"); ?>" required="">
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <label class="control-label">Estado RC</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input id="txtEstadoRC" name="txtEstadoRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->estadoRC : "" ?>" >
+            <input id="txtEstadoRC" name="txtEstadoRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->estadoRC : "" ?>" required="">
+        </div>
+    </div>
+    
+    
+    <div class="row" style="padding-bottom: 5px">
+        <div class="col-md-2 col-sm-2 col-12">
+            <label class="control-label">Autorizado por</label>
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <input id="txtAutorizadoPor" name="txtAutorizadoPor" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->autorizadoPorRC : ""; ?>" required="">
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <label class="control-label">Solicitado por</label>
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <input id="txtSolicitadoPor" name="txtSolicitadoPor" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->solicitadoPorRC : ""  ?>" required="">
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <label class="control-label">Unidad de negocio</label>
+        </div>
+        <div class="col-md-2 col-sm-2 col-12">
+            <input id="txtUnidadNegoRC" name="txtUnidadNegoRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->unidadNegocioRC : "" ?>" required="">
         </div>
     </div>
     
@@ -77,10 +99,10 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
         </div>
         
         <div class="col-md-2 col-sm-2 col-12">
-            <label class="control-label">Unidad de negocio</label>
+            
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input id="txtUnidadNegoRC" name="txtUnidadNegoRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->unidadNegocioRC : "" ?>" >
+            
         </div>
     </div>
 

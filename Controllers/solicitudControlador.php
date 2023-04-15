@@ -31,15 +31,30 @@ class solicitudControlador extends solicitudModelo {
 
                 //aqui la parte del archivo que se carga con cada detalle
                 $destino = null;
-                //echo "va a entraar " . isset($_FILES['archivoDeta'.$i]);
+                
+                $inipath = php_ini_loaded_file();
+
+//if ($inipath) {
+//    echo 'Loaded php.ini: ' . $inipath;
+//} else {
+//   echo 'A php.ini file is not loaded';
+//}
+                
                 if(isset($_FILES['archivoDeta'.$i])){
+                    $archivo = $_FILES['archivoDeta'.$i];
                     $carpeta = "../archivosDetalles/";
-                    opendir($carpeta);
-                    $destino = $carpeta . $_FILES['archivoDeta'.$i]['name'];
-                    copy($_FILES['archivoDeta'.$i]['tmp_name'], $destino);
+                    //opendir($carpeta);
+                    $destino = $carpeta . $archivo['name'];
+                    
+                    move_uploaded_file($archivo['tmp_name'], $destino);
 
                     $destino = str_replace("../", "", $destino);
                   //  echo $destino;
+                }
+                else{
+                    if(isset($_POST['linkArchivo'.$i])){
+                        $destino = $_POST['linkArchivo'.$i];
+                    }
                 }
 
                 $dt = [
@@ -67,6 +82,8 @@ class solicitudControlador extends solicitudModelo {
                 "fechaAutorizaRC" => $post['dtFechaAprobRC'],
                 "estadoRC" => mb_strtoupper($post['txtEstadoRC'], 'utf-8'),
                 "unidadNegocioRC" => mb_strtoupper($post['txtUnidadNegoRC'], 'utf-8'),
+                "autorizadoPorRC" => mb_strtoupper($post['txtAutorizadoPor'], 'utf-8'),
+                "solicitadoPorRC" => mb_strtoupper($post['txtSolicitadoPor'], 'utf-8'),
             );
 
             $respuesta = solicitudModelo::guardar_solicitud_modelo($data);

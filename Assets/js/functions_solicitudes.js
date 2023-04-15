@@ -13,7 +13,7 @@ function agregarFila() {
 
     tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + index + '" style="width: 100%" required></td>'
             + '<td><input id="txtDetalle' + index + '" style="width: 100%; text-transform: uppercase;" required></td>'
-            + '<td><input type="file" name="fileDeta'+index+'" class="btn btn-primary btn-sm fa" id="fileDeta'+index+'" ></td>'
+            + '<td><input type="file" class="btn btn-primary btn-sm fa" id="fileDeta'+index+'" ></td>'
             + '<td><input id="' + index + '" type="button" value="x" onclick="eliminarFila(this);">'
             + '<input type="hidden" id="txtIdDetalle' + index + '" name="txtIdDetalle' + index + '" value="0"></td>';
 }
@@ -86,6 +86,9 @@ $('#formSolicitud').submit(function (e) {
 
         formdata.append('registrosTabla', tbody.rows.length);
 
+        //para comprobar del tamani del archivo
+        var exedio = false;
+
         for (i = 0; i < tbody.rows.length; i++) {
             //alert(tabla.rows[i].cells[0].innerHTML);
             let txtIdCantidad = 'txtCantidad' + i;
@@ -105,48 +108,57 @@ $('#formSolicitud').submit(function (e) {
             var fileDeta = document.querySelector("#"+txtFileDeta);
             if(fileDeta && fileDeta.files.length > 0 ) {
                 console.log("filll: ", fileDeta.files[0]);
+                if(fileDeta.files[0].size > 5242880){
+                    exedio = true;
+                }
                 formdata.append('archivoDeta'+i, fileDeta.files[0]); // En la posición 0; es decir, el primer elemento
             }
         }
 
-
-        $.ajax({
-            type: 'POST',
-            url: './acciones/guardarSolicitud.php',
-            data: formdata ? formdata : form.serialize(),
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                LOADING.style = 'display: none;';
-                console.log('fiiiinnn   successss', data);
-                if(data.includes("window.location.replace")){
-                    window.location.replace("index");
+        if(exedio === false){
+            $.ajax({
+                type: 'POST',
+                url: './acciones/guardarSolicitud.php',
+                data: formdata ? formdata : form.serialize(),
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    LOADING.style = 'display: none;';
+                    console.log('fiiiinnn   successss', data);
+                    if(data.includes("window.location.replace")){
+                        window.location.replace("index");
+                    }
+                    respuesta.html(data);
+                },
+                error: function (error) {
+                    LOADING.style = 'display: none;';
+                    console.log('fiiiinnn   errrroooorr: ', error);
+                    if(error.includes("window.location.replace")){
+                        window.location.replace("index");
+                    }
+                    respuesta.html(error);
+                },
+                statusCode: {
+                    404: function () {
+    //              alert( "page not found" );
+                    }
                 }
-                respuesta.html(data);
-            },
-            error: function (error) {
-                LOADING.style = 'display: none;';
-                console.log('fiiiinnn   errrroooorr: ', error);
-                if(error.includes("window.location.replace")){
-                    window.location.replace("index");
-                }
-                respuesta.html(error);
-            },
-            statusCode: {
-                404: function () {
-//              alert( "page not found" );
-                }
-            }
-        }).done(function (data) {
-//        console.log("se hixxoooo", data);//tambien
-        })
-                .fail(function () {
-//    alert( "error" );
-                })
-                .always(function () {
-//    alert( "complete" );
-                });
+            }).done(function (data) {
+    //        console.log("se hixxoooo", data);//tambien
+            })
+                    .fail(function () {
+    //    alert( "error" );
+                    })
+                    .always(function () {
+    //    alert( "complete" );
+                    });
+                    
+        }
+        else {
+            swal("", "Existe un archivo que pesar m\u00e1s de 5MB.", "warning");
+            LOADING.style = 'display: none;';
+        }
 
     } else {
         swal("", "Ingrese los detalles a la solicitud.", "warning");
@@ -173,6 +185,8 @@ function abrirFormulario(val_datos) {
         document.querySelector('#dtFechaAprobRC').value = new Date(val_datos.fechaAutorizaRC).toISOString().split('T')[0];
         document.querySelector('#txtEstadoRC').value = val_datos.estadoRC;
         document.querySelector('#txtUnidadNegoRC').value = val_datos.unidadNegocioRC;
+        document.querySelector('#txtAutorizadoPor').value = val_datos.autorizadoPorRC;
+        document.querySelector('#txtSolicitadoPor').value = val_datos.solicitadoPorRC;
         
         //poner a todos como readonly
         document.querySelector('#txtUnidadNegoRC').readOnly = true;
@@ -182,15 +196,20 @@ function abrirFormulario(val_datos) {
         document.querySelector('#txtMontoAprob').readOnly = true;
         document.querySelector('#dtFechaAprobRC').readOnly = true;
         document.querySelector('#txtEstadoRC').readOnly = true;
+        document.querySelector('#txtAutorizadoPor').readOnly = true;
+        document.querySelector('#txtSolicitadoPor').readOnly = true;
         
 
         //ocultar los botones
-        if(val_datos.estado === "ENVIADO" || val_datos.estado === "COTIZADO")
+        if(val_datos.estado === "ENVIADO" || val_datos.estado === "COTIZADO"){
             document.querySelector('#btnGuardaSolic').style = '';
-        else
+            document.querySelector('#btnAniadir').style = '';
+        }
+        else{
             document.querySelector('#btnGuardaSolic').style = 'display: none;';
-    
-        document.querySelector('#btnAniadir').style = 'display: none;';
+            document.querySelector('#btnAniadir').style = 'display: none;';
+        }
+        
         document.querySelector('#fileDetalles').style = 'display: none;';
 
 
@@ -206,10 +225,14 @@ function abrirFormulario(val_datos) {
 
         for (let i = 0; i < val_datos.listaDetalles.length; i++) {
 
-            tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + i + '" value="'+val_datos.listaDetalles[i].cantidad+'" style="width: 100%" readonly></td>\n\
-<td><input id="txtDetalle' + i + '" value="'+val_datos.listaDetalles[i].detalle+'" style="width: 100%; text-transform: uppercase;" readonly></td>\n\
-<td>'+(val_datos.listaDetalles[i].pathArchivo ? '<a href="'+val_datos.listaDetalles[i].pathArchivo+'" target="_blank"><i class="fa fa-fw fa-lg fa-download"></i></a>' : '')+'</td>\n\
-<td><input type="hidden" id="txtIdDetalle' + i + '" name="txtIdDetalle' + i + '" value="'+val_datos.listaDetalles[i].id+'"></td>';
+            tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + i + '" value="'+val_datos.listaDetalles[i].cantidad+'" style="width: 100%" ></td>\n\
+<td><input id="txtDetalle' + i + '" value="'+val_datos.listaDetalles[i].detalle+'" style="width: 100%; text-transform: uppercase;" ></td>\n\
+<td>'+(val_datos.listaDetalles[i].pathArchivo ? '<a href="'+val_datos.listaDetalles[i].pathArchivo+'" target="_blank"><i class="fa fa-fw fa-lg fa-download"></i></a>\n\
+<input type="hidden" id="linkArchivo'+i+'" name="linkArchivo'+i+'" value="'+val_datos.listaDetalles[i].pathArchivo+'" /> ' : '')+'</td>'
+//<td><input type="file" class="btn btn-primary btn-sm fa" id="fileDeta'+index+'" ></td>\n\
++'<td><input id="' + i + '" type="button" value="x" onclick="eliminarFila(this);">\n\
+<input type="hidden" id="txtIdDetalle' + i + '" name="txtIdDetalle' + i + '" value="'+val_datos.listaDetalles[i].id+'"></td>';            
+            
         }
 
     } else {
@@ -303,7 +326,7 @@ fileSelector.addEventListener('change', (event) => {
 
                 tbody.insertRow().innerHTML = '<td><input type="number" id="txtCantidad' + index + '" style="width: 100%" value="' + columnas[0] + '"></td>'
                         + '<td><input id="txtDetalle' + index + '" style="width: 100%; text-transform: uppercase;" value="' + columnas[1] + '"></td>'
-                        + '<td><input type="file" name="fileDeta'+index+'" class="btn btn-primary btn-sm fa" id="fileDeta'+index+'" ></td>'
+                        + '<td><input type="file" class="btn btn-primary btn-sm fa" id="fileDeta'+index+'" ></td>'
                         + '<td><input id="' + index + '" type="button" value="x" onclick="eliminarFila(this);">'
                         + '<input type="hidden" id="txtIdDetalle' + index + '" name="txtIdDetalle' + index + '" value="0"></td>';
             }

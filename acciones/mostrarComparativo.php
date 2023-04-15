@@ -189,7 +189,7 @@ echo '</div>
                             <label class="control-label form-control-sm">SOLICITADO POR:</label>
                         </div>
                         <div class="col-sm-2" style="padding: 0px">
-                            <input class="form-control form-control-sm" value="'.$respuesta[0]->solicitudDto->usuario.'" readonly>
+                            <input class="form-control form-control-sm" value="'.$respuesta[0]->solicitudDto->solicitadoPorRC.'" readonly>
                         </div>
                         <div class="col-sm-2" style="padding-right: 0px">
                             <label class="control-label form-control-sm">ELABORADO POR:</label>
@@ -201,7 +201,7 @@ echo '</div>
                             <label class="control-label form-control-sm">APROBADO POR:</label>
                         </div>
                         <div class="col-sm-2" style="padding-left: 0px">
-                            <input class="form-control form-control-sm" readonly>
+                            <input class="form-control form-control-sm" value="'.$respuesta[0]->solicitudDto->autorizadoPorRC.'" readonly>
                         </div>
                     </div>';
 

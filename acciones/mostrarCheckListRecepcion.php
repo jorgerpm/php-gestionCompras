@@ -31,7 +31,7 @@ if(isset($_POST['dataChecklistRecep'])){
             </div>
             <div class="col-md-3">
                 <label class="control-label">Solicitado por</label>
-                <input class="form-control form-control-sm" value="<?php echo $respuesta->solicitud->usuario; ?>" readonly="">
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->solicitud->solicitadoPorRC; ?>" readonly="">
             </div>
         </div>
         <div class="row">
