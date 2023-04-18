@@ -65,6 +65,7 @@
                                     <th>Fecha</th>
                                     <th>Código solicitud</th>
                                     <th>Código RC</th>
+                                    <th>Cotizaci&oacute;n</th>
                                     <th>Documento</th>
                                     <th>Estado</th>
                                     <th>Total</th>
@@ -80,6 +81,7 @@
                                         <td><?php echo date("d/m/Y H:i:s", $historial->fechaCambio / 1000); ?></td>
                                         <td><?php echo $historial->codigoSolicitud; ?></td>
                                         <td><?php echo $historial->codigoRC; ?></td>
+                                        <td><?php echo $historial->codigoCotizacion; ?></td>
                                         <td><?php echo $historial->documento == "ORDEN_COMPRA" ? "ORDEN DE COMPRA" : $historial->documento ?></td>
                                         <td><?php echo $historial->estado; ?></td>
                                         <td><?php echo $historial->valorTotal; ?></td>
