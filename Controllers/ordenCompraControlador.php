@@ -25,7 +25,9 @@ class ordenCompraControlador extends ordenCompraModelo {
                         $(`#btnSearch`).click(); 
                     });</script>';
         }
-        else{
+        else if(isset($ordenCompra) && isset($ordenCompra->respuesta)){
+            return '<script>swal("", "'.$ordenCompra->respuesta.'", "error");</script>';
+        }else{
             return '<script>swal("", "Error al generar la orden de compra.", "error");</script>';
         }
         
@@ -52,7 +54,9 @@ class ordenCompraControlador extends ordenCompraModelo {
                         $(`#btnSearch`).click(); 
                     });</script>';
                 }
-                else{
+                else if(isset($ordenCompra) && isset($ordenCompra->respuesta)){
+                    return '<script>swal("", "'.$ordenCompra->respuesta.'", "error");</script>';
+                }else{
                     return '<script>swal("", "Error al generar la autorización.", "error");</script>';
                 }
             } else{

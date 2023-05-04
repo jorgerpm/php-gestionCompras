@@ -30,8 +30,8 @@ if(isset($_POST['dataChecklistRecep'])){
                 <input class="form-control form-control-sm" value="<?php echo date("d/m/Y", $respuesta->solicitud->fechaSolicitud / 1000); ?>" readonly="">
             </div>
             <div class="col-md-3">
-                <label class="control-label">Solicitado por</label>
-                <input class="form-control form-control-sm" value="<?php echo $respuesta->solicitud->solicitadoPorRC; ?>" readonly="">
+                <label class="control-label">Aprobado por</label>
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->solicitud->autorizadoPorRC; ?>" readonly="">
             </div>
         </div>
         <div class="row">
@@ -47,7 +47,10 @@ if(isset($_POST['dataChecklistRecep'])){
                 <label class="control-label">Nombre comercial</label>
                 <input class="form-control form-control-sm" value="<?php echo $respuesta->ordenCompra->proveedorDto->nombreComercial; ?>" readonly="">
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <label class="control-label">Solicitado por</label>
+                <input class="form-control form-control-sm" value="<?php echo $respuesta->solicitud->solicitadoPorRC; ?>" readonly="">
+            </div>
         </div>
 
 <div class="row">

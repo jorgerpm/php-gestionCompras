@@ -73,7 +73,7 @@ function abrirFormularioOrdenCompra(val_datos, rolAutoriza) {
             display = "";
             
         if(val_datos.estado !== 'RECHAZADO' && val_datos.estado !== 'AUTORIZADO' && val_datos.estado !== 'COMPLETO'
-                && val_datos.estado !== 'PENDIENTE_RECEPCION'){
+                /*&& val_datos.estado !== 'PENDIENTE_RECEPCION'*/){
             if(document.querySelector('#btnAutorizar')){
                 document.querySelector('#btnAutorizar').style =  '';
             }

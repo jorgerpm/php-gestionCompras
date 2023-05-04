@@ -396,34 +396,42 @@ function generarOC(val_datos) {
 }
 
 function cambiarEstadoCotizacion() {
-    const LOADING = document.querySelector('.loader');
-    LOADING.style = 'display: flex;';
+    const valRazonDev = document.getElementById("txtRazonRechazo").value;
+    
+    if(valRazonDev && valRazonDev !== null && valRazonDev !== ''){
 
-    var form = document.forms['frmCotizacion'];
-    var formdata = new FormData(form);
+        const LOADING = document.querySelector('.loader');
+        LOADING.style = 'display: flex;';
 
-//    var respuesta = form.elements('.RespuestaAjax');
-    var respuesta = $('#idRespuestaAjax');
+        var form = document.forms['frmCotizacion'];
+        var formdata = new FormData(form);
 
-    console.log(respuesta);
+    //    var respuesta = form.elements('.RespuestaAjax');
+        var respuesta = $('#idRespuestaAjax');
 
-    $.ajax({
-        type: 'POST',
-        url: 'acciones/cambiarEstadoCotizacion.php',
-        data: formdata ? formdata : form.serialize(),
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            console.log(data);
-            LOADING.style = 'display: none;';
-            respuesta.html(data);
-        },
-        error: function (error) {
-            LOADING.style = 'display: none;';
-            respuesta.html(error);
-        }
-    });
+        console.log(respuesta);
+
+        $.ajax({
+            type: 'POST',
+            url: 'acciones/cambiarEstadoCotizacion.php',
+            data: formdata ? formdata : form.serialize(),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log(data);
+                LOADING.style = 'display: none;';
+                respuesta.html(data);
+            },
+            error: function (error) {
+                LOADING.style = 'display: none;';
+                respuesta.html(error);
+            }
+        });
+        
+    }else{
+        swal('','Ingrese la raz\u00f3n de anulaci\u00f3n.','warning');
+    }
 }
 
 function abrirComprativo() {
@@ -581,6 +589,7 @@ function rechazarTodas(){
     //            processData: false,
                 success: function (data) {
                     LOADING.style = 'display: none;';
+                    console.log("respuesta: ", data);
                     respuesta.html(data);
                 },
                 error: function (error) {
