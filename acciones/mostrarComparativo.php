@@ -192,17 +192,19 @@ echo '</div>
                             <input class="form-control form-control-sm" value="'.$respuesta[0]->solicitudDto->solicitadoPorRC.'" readonly>
                         </div>
                         <div class="col-sm-2" style="padding-right: 0px">
-                            <label class="control-label form-control-sm">ELABORADO POR:</label>
+                            <label class="control-label form-control-sm">REVISADO POR:</label>
                         </div>
                         <div class="col-sm-2" style="padding: 0px">
-                            <input class="form-control form-control-sm" value="'.$_SESSION['Usuario']->nombre.'" readonly>
+                            <input class="form-control form-control-sm" value="'.
+        (isset($_POST['comparativoSelect']) ? $_POST['comparativoSelect']['usuario'] : $_SESSION['Usuario']->nombre)
+                        .'" readonly>
                         </div>
-                        <div class="col-sm-2">
-                            <label class="control-label form-control-sm">APROBADO POR:</label>
-                        </div>
-                        <div class="col-sm-2" style="padding-left: 0px">
-                            <input class="form-control form-control-sm" value="'.$respuesta[0]->solicitudDto->autorizadoPorRC.'" readonly>
-                        </div>
+                        <div class="col-sm-2">'.
+                         //   <label class="control-label form-control-sm">APROBADO POR:</label>
+                        '</div>
+                        <div class="col-sm-2" style="padding-left: 0px">'.
+                         //   <input class="form-control form-control-sm" value="'.$respuesta[0]->solicitudDto->autorizadoPorRC.'" readonly>
+                        '</div>
                     </div>';
 
 ?>
