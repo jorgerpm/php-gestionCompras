@@ -366,3 +366,60 @@ function reverseMatrix(matrix) {
     });
     return output;
 }
+
+
+
+function buscarOrdenJD(){
+    document.getElementById("txtMontoAprob").value = '';
+    document.getElementById("dtFechaAprobRC").value = '';
+    document.getElementById("txtEstadoRC").value = '';
+    document.getElementById("txtAutorizadoPor").value = '';
+    document.getElementById("txtSolicitadoPor").value = '';
+    document.getElementById("txtUnidadNegoRC").value = '';
+    
+    
+    const numOrd = document.getElementById("txtCodRC").value;
+    if(numOrd.length > 0){
+        
+        const LOADING = document.querySelector('.loader');
+        LOADING.style = 'display: flex;';
+        
+        $.ajax({
+        type: 'POST',
+        url: 'acciones/integracionJD.php',
+        data: {'codigoRC': numOrd}
+        })
+        .done(function (datax) {
+                    LOADING.style = 'display: none;';
+            
+            const data = JSON.parse(datax);
+    
+    console.log("JD::: ", data);
+            
+            if(data !== null && data.estadoRC !== null){
+                console.log("new Date(data.fechaAutorizaRC): ", new Date(data.fechaAutorizaRC).toISOString()) ;
+                
+                document.getElementById("txtMontoAprob").value = data.montoAprobado;
+                document.getElementById("dtFechaAprobRC").value = new Date(data.fechaAutorizaRC).toISOString().split("T")[0];
+                document.getElementById("txtEstadoRC").value = data.estadoRC;
+                document.getElementById("txtAutorizadoPor").value = data.autorizadoPorRC;
+                document.getElementById("txtSolicitadoPor").value = data.solicitadoPorRC;
+                document.getElementById("txtUnidadNegoRC").value = data.unidadNegocioRC;
+            }
+            else if(data !== null && data.respuesta !== null){
+                swal('',data.respuesta.toString(),'warning');
+            }else{
+                swal('','No existe RC en JD con los datos ingresados.','warning');
+            }
+            
+        })
+        .fail(function (error) {
+            LOADING.style = 'display: none;';
+            swal('','Error: ' + error,'error');
+        });
+        
+    }
+    else{
+        swal('','Ingrese el código RC','warning');
+    }
+}

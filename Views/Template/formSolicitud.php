@@ -11,7 +11,13 @@ $numSolicitud = $contr1sol->getUltimoCodigoSolicitud();
             <label>C&oacute;digo de RC</label>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
-            <input id="txtCodRC" name="txtCodRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->codigoRC : ""; ?>" required="" >
+            <div class="input-group">
+            <input id="txtCodRC" name="txtCodRC" class="form-control btn-sm" style="text-transform: uppercase;" value="<?php echo isset($solicitudGet) ? $solicitudGet->codigoRC : ""; ?>" required="" />
+            
+            <div class="input-group-append">
+                <button class="btn btn-primary btn-sm" type="button" onclick="buscarOrdenJD()"> <span class="fa fa-search icon"></span> </button>
+            </div>
+            </div>
         </div>
         <div class="col-md-2 col-sm-2 col-12">
             <label>C&oacute;digo solicitud</label>
