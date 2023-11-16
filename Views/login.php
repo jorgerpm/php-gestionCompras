@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" translate="no">
 
     <head>
         <meta charset="utf-8">
@@ -13,7 +13,7 @@
         <title>Sistema gesti&oacute;n de compras</title>
     </head>
 
-    <body>
+    <body lang="es" translate="no">
         <div class="loader"></div>
         <!-- Color superior (Verde) -->
         <section class="material-half-bg">

@@ -8,7 +8,7 @@ if(isset($_GET['token'])){
 }
 
 ?>
-<html lang="en">
+<html lang="es" translate="no">
     <head>
         <meta name="description" content="Formulario para el registro de proveedores">
 
