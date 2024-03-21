@@ -49,7 +49,11 @@ function valorTotal(cantDetalles) {
     document.getElementById('lblSubtotal').innerHTML = miFormatoNumber.new(subtotal, CANT_DECIMALES);
     document.getElementById('lblSubtotalSinIva').innerHTML = miFormatoNumber.new(subtotalSinIva, CANT_DECIMALES);
 
-    var iva = subtotal * 0.12;
+//porcentaje del iva
+    const porcentajeIva = document.getElementById("porcentajeIva").value;
+
+    var iva = subtotal * parseFloat(parseFloat(porcentajeIva)/100);
+    //var iva = subtotal * 0.12;
     document.getElementById('lblIva').innerHTML = miFormatoNumber.new(iva, CANT_DECIMALES);
     var total = subtotalSinIva + subtotal + iva;
     document.getElementById('lblTotal').innerHTML = miFormatoNumber.new(total, CANT_DECIMALES);

@@ -1,4 +1,18 @@
 <form id="frmCotizacion" action="acciones/guardarCotizacion.php" method="POST" data-form="save" autocomplete="off" enctype="multipart/form-data">
+    
+    <?php 
+    //aqui leer los parametros para obtener el iva
+    $paramcontr = new parametroControlador();
+    $params = $paramcontr->listarParametros();
+    foreach ($params as $paramIva){
+        if($paramIva->id == 35){//35 es el codigo del parametro 35	PORCENTAJE_IVA
+        ?>
+        <input type="hidden" id="porcentajeIva" name="porcentajeIva" value="<?php echo $paramIva->valor;?>"/>
+        <?php
+        }
+    }
+    ?>
+    
     <div>
         <p><button style="display: none;" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm fa" type="button" onclick="window.location.href = ''">buscar</button></p>
     </div>
